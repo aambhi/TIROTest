@@ -1,0 +1,388 @@
+﻿using EntityFrameworkExtras.EF6;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using TIROERP.Core.Model;
+using TIROERP.Core.RepositoryInterface;
+using TIROERP.Infrastructure.DBModel;
+using TIROERP.Infrastructure.Utilities;
+
+namespace TIROERP.Infrastructure.Repository
+{
+    public class StatusSearchRepository : IStatusSearch
+    {
+        TIROERPEntities _entities;
+        private static string loginuser = ((UserLoginResult)HttpContext.Current.Session["UserDetails"]).REGISTRATION_NO;
+        CommonRepository commonRepoObj = new CommonRepository();
+
+        public List<CandidateSearch> GetCandidateResult(CandidateSearch search)
+        {
+            _entities = new TIROERPEntities();
+
+            var candidateresult = (_entities.PROC_STATUS_SEARCH_CANDIDATE(search.REGISTRATION_NO, search.PASSPORT_NO, search.NAME, search.DOB, search.CONTACT_NO, search.USER_TYPE_ID)).ToList()
+                .Select(x => new CandidateSearch
+                {
+                    REGISTRATION_NO = x.REGISTRATION_NO,
+                    NAME = x.CANDIDATE_NAME,
+                    DOB = x.DATE_OF_BIRTH,
+                    PASSPORT_NO = x.PASSPORT_NUMBER,
+                    CONTACT_NO = x.CONTACT_NO
+                }).ToList();
+            return candidateresult;
+        }
+
+        public List<IEnumerable> GetCandidateDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var results = new TIROERPEntities()
+                            .MultipleResults("[dbo].[PROC_CANDIDATE_STATUS_SEARCH]")
+                            .With<Candidate>()
+                            .With<UserEducation>()
+                            .With<UserCertification>()
+                            .With<UserExperience>()
+                            .With<UserDocument>()
+                            .With<UserRequirement>()
+                            .With<UserAddress>()
+                            .With<UserContact>()
+                            .With<UserEmail>()
+                            .Execute(REGISTRATION_NO);
+
+            return results;
+            //Mapping to objects of Candidate Model
+            //List<Candidate> lst_candidateDetails = new List<Candidate>();
+            //lst_candidateDetails = (List<Candidate>)results[0];
+            //if (lst_candidateDetails.Count > 0)
+            //{
+            //    lst_candidateDetails[0].LST_USER_LANGUAGE = (List<UserLanguage>)results[1];
+            //    lst_candidateDetails[0].LST_USER_EDUCATION = (List<UserEducation>)results[2];
+            //    lst_candidateDetails[0].LST_USER_CERTIFICATION = (List<UserCertification>)results[3];
+            //    lst_candidateDetails[0].LST_USER_EXPERIENCE = (List<UserExperience>)results[4];
+            //    lst_candidateDetails[0].LST_USER_DOCUMENT = (List<UserDocument>)results[5];
+            //    lst_candidateDetails[0].LST_USER_ADDRESS = (List<UserAddress>)results[6];
+            //    lst_candidateDetails[0].LST_USER_CONTACT = (List<UserContact>)results[7];
+            //    lst_candidateDetails[0].LST_USER_EMAIL = (List<UserEmail>)results[8];
+            //    lst_candidateDetails[0].LST_USER_REQUIREMENT = (List<UserRequirement>)results[14];
+            //}
+            //return lst_candidateDetails[0];
+        }
+
+        public List<IEnumerable> GetProcessDetails(int userRequirementId)
+        {
+            var USER_REQUIREMENT_ID = new SqlParameter { ParameterName = "USER_REQUIREMENT_ID", Value = userRequirementId };
+
+            var results = new TIROERPEntities()
+                            .MultipleResults("[dbo].[PROC_GET_PROCESS_DETAILS]")
+                            .With<Mofa>()
+                            .With<Medical>()
+                            .With<VisaEndorsement>()
+                            .With<Policy>()
+                            .With<Ticket>()
+                            .Execute(USER_REQUIREMENT_ID);
+            return results;
+        }
+
+        public List<IEnumerable> GetMasterData()
+        {
+            var results = new TIROERPEntities()
+                .MultipleResults("[dbo].[PROC_USER_GETMASTER]")
+                .With<Country>()
+                .With<ContactType>()
+                .With<AvailingType>()
+                .With<Source>()
+                .With<Status>()
+                .With<MaritalStatus>()
+                .With<Nationality>()
+                .With<Language>()
+                .With<University>()
+                .With<Company>()
+                .With<IndustryDesignation>()
+                .With<UserEducation>()
+                .With<VehicleType>()
+                .With<Branch>()
+                .With<Certification>()
+                .With<VisaMaster>()
+                .With<RequirementMaster>()
+                .With<Gender>()
+                .With<Religion>()
+                .Execute();
+
+            return results;
+        }
+
+        public List<UserEducation> GetUserEducationDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var results = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS]")
+            .With<UserEducation>()
+            .Execute(REGISTRATION_NO);
+
+            return (List<UserEducation>)results[0];
+        }
+
+        public List<UserCertification> GetUserCertificationDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var userCertificationDetails = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS]")
+            .With<UserCertification>()
+            .Execute(REGISTRATION_NO);
+            
+            return (List<UserCertification>)userCertificationDetails[0];
+        }
+
+        public Candidate GetCandidateContactDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var results = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS]")
+            .With<UserAddress>()
+            .With<UserContact>()
+            .With<UserEmail>()
+            .With<Candidate>()
+            .Execute(REGISTRATION_NO);
+
+            Candidate candidateObj = new Candidate();
+
+            candidateObj.LST_USER_ADDRESS = (List<UserAddress>)results[0];
+            candidateObj.LST_USER_CONTACT = (List<UserContact>)results[1];
+            candidateObj.LST_USER_EMAIL = (List<UserEmail>)results[2];
+            var otherdetails = (List<Candidate>)results[3];
+            candidateObj.WEBSITE = otherdetails[0].WEBSITE;
+            candidateObj.SKYPE = otherdetails[0].SKYPE;
+            candidateObj.CONTACT_REMARK = otherdetails[0].CONTACT_REMARK;
+
+            return candidateObj;
+
+        }
+
+        public Candidate GetCandidateDocumentDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var results = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS]")
+            .With<UserDocument>()
+            .Execute(REGISTRATION_NO);
+
+            Candidate candidateObj = new Candidate();
+
+            candidateObj.LST_USER_DOCUMENT = (List<UserDocument>)results[0];
+
+            return candidateObj;
+        }
+
+        public Candidate GetCandidateExperienceDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+
+            var results = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS]")
+            .With<UserExperience>()
+            .Execute(REGISTRATION_NO);
+
+            Candidate candidateObj = new Candidate();
+
+            candidateObj.LST_USER_EXPERIENCE = (List<UserExperience>)results[0];
+
+            return candidateObj;
+        }
+
+        public Candidate GetCandidatePersonalDetails(string registrationNo)
+        {
+            var REGISTRATION_NO = new SqlParameter { ParameterName = "REGISTRATION_NO", Value = registrationNo };
+            var CONDITIONAL_OPERATOR = new SqlParameter { ParameterName = "CONDITIONAL_OPERATOR", Value = "UPDATE" };
+
+            var results = new TIROERPEntities()
+            .MultipleResults("[dbo].[PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS]")
+            .With<Candidate>()
+            .With<UserLanguage>()
+            .Execute(REGISTRATION_NO, CONDITIONAL_OPERATOR);
+
+            Candidate candidateObj = new Candidate();
+
+            var lstcand = (List<Candidate>)results[0];
+            candidateObj = lstcand[0];
+            candidateObj.LST_USER_LANGUAGE = (List<UserLanguage>)results[1];
+
+            return candidateObj;
+        }
+
+        public Candidate UpdateCandidateDetails(Candidate candidate)
+        {
+            _entities = new TIROERPEntities();
+            Candidate candidateresult = new Candidate();
+            candidateresult.CONDITIONAL_OPERATOR = candidate.CONDITIONAL_OPERATOR;
+            try
+            {
+                var procedure = new PROC_UPDATE_CANDIDATE()
+                {
+                    UDT_USER_DETAIL = CommonRepository.GetLstUserDetails(candidate),//lstUserDetails,
+                    Conditional_Operator = candidate.CONDITIONAL_OPERATOR,
+                    UDT_USER_PASSPORT = CommonRepository.GetLstUserPassport(candidate),
+                    UDT_USER_DRIVING = CommonRepository.GetLstUserDriving(candidate),
+                    UDT_USER_EDUCATION = CommonRepository.GetLstUserEducation(candidate),
+                    UDT_USER_CERTIFICATION = commonRepoObj.GetLstUserCertification(candidate),
+                    UDT_USER_ADDRESS = CommonRepository.GetLstUserAddress(candidate),
+                    UDT_USER_CONTACT = CommonRepository.GetLstUserContact(candidate),
+                    UDT_USER_EMAIL = CommonRepository.GetLstUserEmail(candidate),
+                    UDT_USER_DOCUMENTS = CommonRepository.GetLstUserDocument(candidate),
+                    UDT_USER_EXPERIENCE = commonRepoObj.GetLstUserExperience(candidate),
+                    UDT_USER_LANGUAGE = CommonRepository.GetLstUserLanguage(candidate),
+                    UDT_PROCESS_MEDICAL = CommonRepository.GetProcessMedical(candidate),
+                    UDT_PROCESS_MOFA = CommonRepository.GetProcessMofa(candidate),
+                    UDT_PROCESS_VISA_ENDORSEMENT = CommonRepository.GetProcessVisaEndorsement(candidate),
+                    UDT_PROCESS_POLICY = CommonRepository.GetProcessPolicy(candidate),
+                    UDT_TICKET_DETAILS = CommonRepository.GetProcessTicket(candidate.Ticket_Details),
+                };
+                if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PERSONAL_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Candidate>(procedure).ToList();
+                    var personaldetails = results
+                        .Select(x => new Candidate
+                        {
+                            REGISTRATION_NO = x.REGISTRATION_NO,
+                            REGISTRATION_DATE = Convert.ToDateTime(Convert.ToDateTime(x.REGISTRATION_DATE).ToString("dd/MMM/yyyy")),
+                            Candidate_Name = x.Candidate_Name,
+                            PASSPORT_NUMBER = x.PASSPORT_NUMBER,
+                            Contact_No = x.Contact_No,
+                            USER_EMAIL = x.USER_EMAIL,
+                            DATE_OF_BIRTH = Convert.ToDateTime(Convert.ToDateTime(x.DATE_OF_BIRTH).ToString("dd/MMM/yyyy")),
+                            Age = x.Age,
+                            AVAILING_TYPE = x.AVAILING_TYPE,
+                            CURRENT_LOCATION = x.CURRENT_LOCATION,
+                            STATUS_NAME = x.STATUS_NAME,
+                            TOTAL_WORK_EXPERIENCE = x.TOTAL_WORK_EXPERIENCE,
+                            TOTAL_GULF_EXPERIENCE = x.TOTAL_GULF_EXPERIENCE,
+                            FILE_PATH = x.FILE_PATH,
+                            CONDITIONAL_OPERATOR = candidate.CONDITIONAL_OPERATOR
+                        }).ToList();
+
+                    candidateresult = personaldetails[0];
+
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_EDUCATION_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<UserEducation>(procedure).ToList();
+                    candidateresult.LST_USER_EDUCATION = results;
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_CERTIFICATION_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<UserCertification>(procedure).ToList();
+                    candidateresult.LST_USER_CERTIFICATION = results;
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_OFFICIAL_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Candidate>(procedure).ToList();
+                    candidateresult = results[0];
+                    candidateresult.CONDITIONAL_OPERATOR = candidate.CONDITIONAL_OPERATOR;
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_DOCUMENT_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<UserDocument>(procedure).ToList();
+                    candidateresult.LST_USER_DOCUMENT = results;
+                    candidateresult.SERVER_MAP_PATH = HttpContext.Current.Server.MapPath("~/Uploads/");
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_EXPERIENCE_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<UserExperience>(procedure).ToList();
+                    candidateresult.LST_USER_EXPERIENCE = results;
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_CONTACT_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<UserAddress>(procedure).ToList();
+                    candidateresult.LST_USER_ADDRESS= results;
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_AGENT_PERSONAL_DETAILS") 
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Candidate>(procedure).ToList();
+                    candidateresult = results[0];
+                    candidateresult.CONDITIONAL_OPERATOR = "UPDATE_AGENT_PERSONAL_DETAILS";
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_DOCTOR_PERSONAL_DETAILS")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Candidate>(procedure).ToList();
+                    candidateresult = results[0];
+                    candidateresult.CONDITIONAL_OPERATOR = "UPDATE_DOCTOR_PERSONAL_DETAILS";
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PROCESS_MEDICAL")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Medical>(procedure).ToList();
+                    candidateresult.Medical_Details = results[0];
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PROCESS_MOFA")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Mofa>(procedure).ToList();
+                    candidateresult.MOFA_Details = results[0];
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PROCESS_VISA_ENDORSEMENT")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<VisaEndorsement>(procedure).ToList();
+                    candidateresult.VisaEndorsement_Details = results[0];
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PROCESS_POLICY")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Policy>(procedure).ToList();
+                    candidateresult.Policy_Details = results[0];
+                    return candidateresult;
+                }
+                else if (candidate.CONDITIONAL_OPERATOR == "UPDATE_PROCESS_TICKET")
+                {
+                    var results = _entities.Database.ExecuteStoredProcedure<Ticket>(procedure).ToList();
+                    candidateresult.Ticket_Details = results[0];
+                    return candidateresult;
+                }
+
+
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<UserRequirement> AddUpdateUserRequirement(int userRequirementId, string regno, int requirementid, int candidateStatus, bool status)
+        {
+            _entities = new TIROERPEntities();
+
+            var lstUserReq = _entities.PROC_USER_ADDUPDATE_REQUIREMENT(userRequirementId, regno, requirementid, candidateStatus, status, loginuser)
+                .Select(c => new UserRequirement
+                {
+                    USER_REQUIREMENT_ID = c.USER_REQUIREMENT_ID,
+                    REGISTRATION_NO = c.REGISTRATION_NO,
+                    REQUIREMENT_ID = c.REQUIREMENT_ID,
+                    REQUIREMENT = c.REQUIREMENT,
+                    CANDIDATE_STATUS = c.CANDIDATE_STATUS,
+                    STATUS_NAME = c.STATUS_NAME,
+                    CURRENT_STATUS = c.CURRENT_STATUS,
+                    CREATED_BY = c.CREATED_BY
+                }).ToList();
+
+            return lstUserReq;
+        }
+    }
+}
+

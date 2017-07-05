@@ -1,0 +1,30 @@
+==================================================================
+DateTime16/06/2017 20:49:47
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetPeopleDetails?registrationNo=A620170006
+ Action: GetPeopleDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+DateTime16/06/2017 20:50:08
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetPeopleDetails?registrationNo=A620170006
+ Action: GetPeopleDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+DateTime16/06/2017 20:51:00
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetPeopleDetails?registrationNo=A620170006
+ Action: GetPeopleDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================

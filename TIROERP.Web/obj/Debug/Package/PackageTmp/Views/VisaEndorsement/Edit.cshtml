@@ -1,0 +1,165 @@
+﻿@model TIROERP.Core.Model.VisaEndorsement
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string reportName = string.Empty;
+    string filepath = string.Empty;
+    string ReportPath = string.Empty;
+    if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.VisaEndorsementFilePath))
+        {
+            ReportPath = Model.VisaEndorsementFilePath;
+            reportName = Model.VisaEndorsementFilePath.Substring(15);
+            filepath = Url.Content(Server.MapPath("~/Uploads/VisaEndorsementUploadedFiles/" + Model.VisaEndorsementFilePath));
+        }
+    }
+}
+@Scripts.Render("~/bundles/chosen")
+@Styles.Render("~/Content/chosen")
+
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+<script src="~/Content/js/Process/VisaEndorsement.js"></script>
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SubmissionStatusID").chosen();
+
+        $("#SubmissionDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $(document).on("click", ".removeFile", function () {
+
+            $(this).parent().remove();
+
+            $(".fileGroup").hide();
+            $(".fileadd").show();
+            $("#VisaEndorsementFilePath").val('');
+        });
+
+        var file = '@reportName';
+        if (file == null || file == "") {
+            $(".fileadd").show();
+        }
+
+        $("#SaveVisaEndorsement").click(function (e) {
+            var isStepValid = true;
+
+            var SubmissionDate = $("#SubmissionDate").val();
+            if (SubmissionDate == "") {
+                $("#Err_SubmissionDate").text("Please enter Submission Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_SubmissionDate").text("");
+            }
+
+            var SubmissionStatusID = $("#SubmissionStatusID").val();
+            if (SubmissionStatusID == "") {
+                $("#Err_SubmissionStatusID").text("Please select Submission Status");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_SubmissionStatusID").text("");
+            }
+
+            return isStepValid;
+        });
+    });
+</script>
+@using (Html.BeginForm("Edit", "VisaEndorsement", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Visa Endorsement</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+                                @Html.HiddenFor(model => model.VisaEndorsementId)
+                                @Html.HiddenFor(model => model.USER_REQUIREMENT_ID)
+                                @Html.HiddenFor(model => model.CreatedBy)
+                                @Html.HiddenFor(model => model.CreatedDate)
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Submission Date<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.SubmissionDate, "{0:dd-MMM-yyyy}", new { @id = "SubmissionDate", @class = "form-control  date-picker", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.SubmissionDate, "", new { @class = "text-danger",@id= "Err_SubmissionDate" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Submission Status <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+
+                                        @Html.DropDownList("SubmissionStatusID", (IEnumerable<SelectListItem>)ViewBag.GetSubmissionDetails, "Select Submission Status", new { @id = "SubmissionStatusID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.SubmissionStatusID, "", new { @class = "text-danger",@id= "Err_SubmissionStatusID" })
+                                    </div>
+                                </div>
+
+                                @if (ReportPath != null && ReportPath != "")
+                                {
+                                    <div class="form-group fileGroup">
+                                        <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Report</label>
+                                        <div class="col-md-6 col-sm-6 addPadding file-name">
+                                            @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                                            <span class="glyphicon glyphicon-remove removeFile remove-part" title="Delete"></span>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                <div class="form-group fileadd" style="display:none;">
+                                    <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="visaendorsementFile" id="visaendorsementFile" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.VisaEndorsementFilePath)
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveVisaEndorsement">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

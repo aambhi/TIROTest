@@ -1,0 +1,18 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadContactDetailsPartialView?registrationNo=C120170014
+ Action: LoadContactDetailsPartialView
+ Error Message: Could not find stored procedure 'dbo.PROC_USER_CONTACT_DETAILS'.
+ Inner Exception: Could not find stored procedure 'dbo.PROC_USER_CONTACT_DETAILS'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/Update
+ Action: Update
+ Error Message: Procedure or function PROC_UPDATE_CANDIDATE has too many arguments specified.
+ Inner Exception: Procedure or function PROC_UPDATE_CANDIDATE has too many arguments specified.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

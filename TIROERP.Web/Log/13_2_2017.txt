@@ -1,0 +1,69 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/Update
+ Action: Update
+ Error Message: Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+ Inner Exception: Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCandidatePersonalDetails?registrationNo=C220170002
+ Action: LoadCandidatePersonalDetails
+ Error Message: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCandidatePersonalDetails?registrationNo=C220170002
+ Action: LoadCandidatePersonalDetails
+ Error Message: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCandidatePersonalDetails?registrationNo=C220170002
+ Action: LoadCandidatePersonalDetails
+ Error Message: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.String' type to a nullable 'System.Int32' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

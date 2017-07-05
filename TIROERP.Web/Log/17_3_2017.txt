@@ -1,0 +1,31 @@
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSpecializationByEducation
+ Action: GetSpecializationByEducation
+ Error Message: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: RequirementSearch
+ URL: http://localhost:50130/RequirementSearch/RequirementSearch?success=Success! Well done its submitted. Requirement ID :R0080
+ Action: RequirementSearch
+ Error Message: The data reader is incompatible with the specified 'TIROERPModel.PROC_REQUIREMENT_SEARCH_RESULT_Result2'. A member of the type, 'IS_ACTIVE', does not have a corresponding column in the data reader with the same name.
+ Inner Exception: The data reader is incompatible with the specified 'TIROERPModel.PROC_REQUIREMENT_SEARCH_RESULT_Result2'. A member of the type, 'IS_ACTIVE', does not have a corresponding column in the data reader with the same name.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

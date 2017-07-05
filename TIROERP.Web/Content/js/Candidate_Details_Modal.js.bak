@@ -1,0 +1,89 @@
+﻿$(document).ready(function () {
+
+    //Initialise Datepicker
+    $("#DATE_OF_BIRTH").datepicker({
+        maxDate: "-1D",
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true, yearRange: "-70:+0",
+    });
+
+    $(document).on("click", "#submitEducationDetails", function () {
+
+        var formData = JSON.stringify({
+            "LST_USER_EDUCATION": educationCollection,
+            "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+            "CONDITIONAL_OPERATOR": "UPDATE EDUCATION DETAILS"
+        });
+
+        var urlPath = "/StatusSearch/Update";
+        $.ajax({
+            url: urlPath,
+            data: formData,
+            type: 'POST',
+            contentType: "application/json",
+            traditional:true,
+            success: function (d) {
+                window.location.href = '/StatusSearch/GetCandidateDetails?' + 'registrationNo=' + d;
+            },
+            error: function (error) {
+                //window.location.href = '/StatusSearch/GetCandidateDetails?' + 'registrationNo=' + d;
+                alert(error);
+        }
+        });
+        return false;
+    });
+
+    $("#UpdatePersonalDetails").click(function (e) {
+
+        //fetch all values
+        var formData = JSON.stringify({
+            "FIRST_NAME": $("#FIRST_NAME").val(),
+            "MIDDLE_NAME": $("#MIDDLE_NAME").val(),
+            "LAST_NAME": $("#LAST_NAME").val(),
+            "FILE_PATH": $("#FILE_PATH").val(),
+
+            "FATHER_NAME": $("#FATHER_NAME").val(),
+            "MOTHER_NAME": $("#MOTHER_NAME").val(),
+            "GENDER_CODE": $("#GENDER_CODE").val(),
+            "DATE_OF_BIRTH": $("#DATE_OF_BIRTH").val(),
+            "PLACE_OF_BIRTH": $("#PLACE_OF_BIRTH").val(),
+            "MARITAL_STATUS_ID": $("#MARITAL_STATUS_ID").val(),
+            "NATIONALITY_ID": $("#NATIONALITY_ID").val(),
+            "CURRENT_LOCATION": $("#CURRENT_LOCATION").val(),
+
+            "RELIGION_ID": $("#RELIGION_ID").val(),
+            "PASSPORT_NUMBER": $("#PASSPORT_NUMBER").val(),
+            "DATE_OF_ISSUE": $("#DATE_OF_ISSUE").val(),
+            "PLACE_OF_ISSUE": $("#PLACE_OF_ISSUE").val(),
+            "DATE_OF_EXPIRY": $("#DATE_OF_EXPIRY").val(),
+            "EMIGRATION_CLEARANCE_REQUIRED": $("#EMIGRATION_CLEARANCE_REQUIRED").val() === "Yes" ? true: false,
+            "DRIVING_LICENCE_NUMBER": $("#DRIVING_LICENCE_NUMBER").val(),
+            "DRIVING_PLACE_OF_ISSUE": $("#DRIVING_PLACE_OF_ISSUE").val(),
+            "DRIVING_DATE_OF_ISSUE": $("#DRIVING_DATE_OF_ISSUE").val(),
+            "DRIVING_EXPIRY_DATE": $("#DRIVING_EXPIRY_DATE").val(),
+            "VEHICLE_TYPE_ID": $("#VEHICLE_TYPE_ID").val(),
+            "DRIVING_REMARK": $("#DRIVING_REMARK").val(),
+
+            "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+            "CONDITIONAL_OPERATOR": "UPDATE PERSONAL DETAILS"
+        });
+
+        var urlLink = "/StatusSearch/Update";
+
+        $.ajax({
+            contentType: "application/json",
+            type: 'POST',
+            url: urlLink,
+            traditional: true,
+            data: formData,
+            success: function (d) {
+                window.location.href = '/StatusSearch/GetCandidateDetails?' + 'registrationNo=' + d;
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+        return false;
+    });
+});

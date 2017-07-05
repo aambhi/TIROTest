@@ -1,0 +1,69 @@
+﻿@model TIROERP.Core.Model.TaskMaster
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "Task", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Create Task </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-inline">
+
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Task Name <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.TASK_NAME, new { @id = "TASK_NAME", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "100" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Task Description <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextAreaFor(model => model.TASK_COMMENT, new { @id = "TASK_COMMENT", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "200" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Assign To <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.TASK_ASSIGNED_TO, (SelectList)ViewData["EmployeeList"], "Select Employee", new { @id = "TASK_ASSIGNED_TO", @class = "form-control", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.TASK_ASSIGNED_TO, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </form>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

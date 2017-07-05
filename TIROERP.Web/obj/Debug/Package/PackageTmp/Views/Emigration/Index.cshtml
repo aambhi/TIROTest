@@ -1,0 +1,187 @@
+﻿@model IEnumerable<TIROERP.Core.Model.Emigration>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+        $("#FromDate").datepicker({
+
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate, instance) {
+                if (selectedDate != '') { //added this to fix the issue
+                    $("#ToDate").datepicker("option", "minDate", selectedDate);
+                    var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
+                    date.setMonth(date.getMonth() + 2);
+                    console.log(selectedDate, date);
+                    $("#ToDate").datepicker("option", "minDate", selectedDate);
+                    $("#ToDate").datepicker("option", "maxDate", date);
+                }
+            }
+        });
+        $("#ToDate").datepicker({
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Process --> Emigration</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>@Html.ActionLink("Add New Record", "Create", "Emigration", new { }, new { @class = "btn btn-primary" })</h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a href="#"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            @if (!string.IsNullOrEmpty(@ViewBag.Success))
+                            {
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    @ViewBag.Success
+                                </div>
+                            }
+
+                            <div data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport No</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("PassportNo", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Passport No.", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none;">
+                                    <label class="control-label col-md-3 col-sm-3">From Date</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("FromDate", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none;">
+                                    <label class="control-label col-md-3 col-sm-3">To Date</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("ToDate", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary" title="Submit" name="SubmitButton" id="SubmitButton" value="Submit">Search</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Reset", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table"  style="table-layout:fixed;"cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="headings">
+                                        <th>Candidate Name</th>
+                                        <th>Is ECR</th>
+                                        <th>DM No.& Date</th>
+                                        <th>Policy No.& Date</th>
+                                        <th>Policy Amt</th>
+                                        <th>Policy Company</th>
+                                        <th>Submission Date</th>
+                                        <th>EM No.</th>
+                                        <th>Policy Att.</th>
+                                        <th>EM Att.</th>
+                                        <th>Remark</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@(Html.DisplayFor(modelItem => item.CANDIDATE_NAME) + (item.PASSPORT_NUMBER != "" ? " | " + item.PASSPORT_NUMBER : "") )</td>
+                                            <td>
+                                                @(item.IS_ECR == true ? "Yes" : "No")
+                                            </td>
+                                            <td>
+                                                @if (item.DM_DATE != null)
+                                                {
+                                                    @(item.DM_NO + " | " + Convert.ToDateTime(item.DM_DATE).ToString("dd-MMM-yyyy"))
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.POLICY_DATE != null)
+                                                {
+                                                    @(item.POLICY_NO + " | " + Convert.ToDateTime(item.POLICY_DATE).ToString("dd-MMM-yyyy"))
+                                                }
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.POLICY_AMOUNT)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.POLICY_COMPANYNAME)</td>
+                                            <td>@(item.SUBMISSION_DATE != null ? Convert.ToDateTime(item.SUBMISSION_DATE).ToString("dd-MMM-yyyy") : "")</td>
+                                            <td>@Html.DisplayFor(modelItem => item.EMIGRATION_CLEARANCENO)</td>
+
+                                            <td>
+                                                @if (item.POLICY_ATTACHMENT != null)
+                                                {
+                                                    string filepath = Url.Content(Server.MapPath("~/Uploads/EmigrationUploadedFiles/" + item.POLICY_ATTACHMENT));
+                                                    @Html.ActionLink("Download", "Download", "Medical", new { filepath = filepath }, new { @class = "glyphicon glyphicon-download" })
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.EMIGRATION_ATTACHMENT != null)
+                                                {
+                                                    string filepath = Url.Content(Server.MapPath("~/Uploads/EmigrationUploadedFiles/" + item.EMIGRATION_ATTACHMENT));
+                                                    @Html.ActionLink("Download", "Download", "Medical", new { filepath = filepath }, new { @class = "glyphicon glyphicon-download" })
+                                                }
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.REMARK)</td>
+                                            <td>@Html.ActionLink("Edit", "Edit", new { id = item.EMIGRATION_ID }, new { @class = "btn btn-info btn-xs" }) </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+}

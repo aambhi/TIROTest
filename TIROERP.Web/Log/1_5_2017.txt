@@ -1,0 +1,44 @@
+==================================================================
+DateTime01/05/2017 18:27:20
+ Controller: document
+ URL: http://localhost:50130/document
+ Action: Index
+ Error Message: Encountered end tag "div" with no matching start tag.  Are your start/end tags properly balanced?
+
+ Inner Exception: Encountered end tag "div" with no matching start tag.  Are your start/end tags properly balanced?
+
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime01/05/2017 19:10:02
+ Controller: Document
+ URL: http://localhost:50130/Document
+ Action: Index
+ Error Message: The SqlParameterCollection only accepts non-null SqlParameter type objects, not String objects.
+ Inner Exception: The SqlParameterCollection only accepts non-null SqlParameter type objects, not String objects.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime01/05/2017 19:10:50
+ Controller: Document
+ URL: http://localhost:50130/Document
+ Action: Index
+ Error Message: The SqlParameterCollection only accepts non-null SqlParameter type objects, not String objects.
+ Inner Exception: The SqlParameterCollection only accepts non-null SqlParameter type objects, not String objects.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime01/05/2017 19:11:59
+ Controller: Document
+ URL: http://localhost:50130/Document
+ Action: Index
+ Error Message: The SqlParameterCollection only accepts non-null SqlParameter type objects.
+Parameter name: value
+ Inner Exception: The SqlParameterCollection only accepts non-null SqlParameter type objects.
+Parameter name: value
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TIROERP.Core.Model.Advertisement>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+    });
+</script>
+
+@using (Html.BeginForm("Index", "Advertisement", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Advertisement </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>@Html.ActionLink("Add New Record", "Create", "Advertisement", new { @class = "btn btn-primary" })</h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a href="#"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            @if (@ViewBag.SuccessMsg != null)
+                            {
+                                <div class="alert alert-success alert-dismissable" id="divPostErrorMsg">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    Record Saved Successfully
+                                </div>
+                            }
+                            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="headings">
+                                        <th>Paper Name</th>
+                                        <th>Agency Name</th>
+                                        <th>Expenses</th>
+                                        <th>Requirement</th>
+                                        <th>Advertisement Date</th>
+                                        <th>Download File</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var docDetail in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => docDetail.PAPER_NAME)</td>
+                                            <td>@Html.DisplayFor(modelItem => docDetail.AD_AGENCY_NAME)</td>
+                                            <td>@Html.DisplayFor(modelItem => docDetail.EXPENSES)</td>
+                                            <td>@Html.DisplayFor(modelItem => docDetail.REQUIREMENT_NAME)</td>
+                                            <td>@Convert.ToDateTime(docDetail.ADV_DATE).ToString("dd-MMM-yyyy") </td>
+                                            <td>
+                                                @if (docDetail.FILE_PATH != null)
+                                                {
+                                                    string filepath = Url.Content(Server.MapPath("~/Uploads/AdvertisementUploadedFiles/" + docDetail.FILE_PATH));
+                                                    @Html.ActionLink("Download", "Download", "Medical", new { filepath = filepath }, new { @class = "glyphicon glyphicon-download" })
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = docDetail.ADV_ID }, new { @class = "btn btn-info btn-xs" })
+                                                @Html.ActionLink("Delete", "Delete", new { id = docDetail.ADV_ID }, new { @class = "btn btn-danger btn-xs" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+}

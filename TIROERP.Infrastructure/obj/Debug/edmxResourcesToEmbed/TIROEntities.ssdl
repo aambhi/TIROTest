@@ -1,0 +1,1801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TIROERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_AD_MEDIUM_MASTER">
+    <Key>
+      <PropertyRef Name="AD_MEDIUM_ID" />
+    </Key>
+    <Property Name="AD_MEDIUM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD_MEDIUM_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_ADDRESS_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="ADDRESS_TYPE_ID" />
+    </Key>
+    <Property Name="ADDRESS_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADDRESS_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="TYPE_FOR" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_ADVERTISEMENT_MASTER">
+    <Key>
+      <PropertyRef Name="ADV_ID" />
+    </Key>
+    <Property Name="ADV_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PAPER_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="AD_AGENCY_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EXPENSES" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="FILE_PATH" Type="varchar" MaxLength="200" />
+    <Property Name="ADV_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_AIRLINES_MASTER">
+    <Key>
+      <PropertyRef Name="AirlinesId" />
+    </Key>
+    <Property Name="AirlinesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AirlinesName" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_ALLOWANCE_MASTER">
+    <Key>
+      <PropertyRef Name="ALLOWANCE_ID" />
+    </Key>
+    <Property Name="ALLOWANCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ALLOWANCE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_ALLOWANCE_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+    </Key>
+    <Property Name="ALLOWANCE_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ALLOWANCE_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_AVAILING_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="AVAILING_TYPE_ID" />
+    </Key>
+    <Property Name="AVAILING_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AVAILING_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TYPE_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_BRANCH_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_BRANCH_MASTER">
+    <Key>
+      <PropertyRef Name="BRANCH_CODE" />
+      <PropertyRef Name="BRANCH_NAME" />
+    </Key>
+    <Property Name="BRANCH_CODE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BRANCH_NAME" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_CAREER_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="CAREER_STATUS_ID" />
+    </Key>
+    <Property Name="CAREER_STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAREER_STATUS_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="STATUS_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_CERTIFICATION_MASTER">
+    <Key>
+      <PropertyRef Name="CERTIFICATION_ID" />
+    </Key>
+    <Property Name="CERTIFICATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CERTIFICATION_NAME" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_CITY_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CITY_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="STATE_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="CITY_NAME" Type="varchar" MaxLength="80" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_COMPANY_MASTER">
+    <Key>
+      <PropertyRef Name="COMPANY_ID" />
+    </Key>
+    <Property Name="COMPANY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COMPANY_NAME" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="CONTACT_PERSON" Type="varchar" MaxLength="70" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_CONNECTED_TICKETDETAILS">
+    <Key>
+      <PropertyRef Name="ConnectTicketID" />
+    </Key>
+    <Property Name="ConnectTicketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TicketID" Type="int" />
+    <Property Name="PnrNumber" Type="varchar" MaxLength="20" />
+    <Property Name="TicketNumber" Type="varchar" MaxLength="20" />
+    <Property Name="FlightNumber" Type="varchar" MaxLength="20" />
+    <Property Name="IsBooked" Type="bit" />
+    <Property Name="IsCancelled" Type="bit" />
+    <Property Name="DepartureCityCode" Type="varchar" MaxLength="20" />
+    <Property Name="DepartureDate" Type="date" />
+    <Property Name="DepartureTime" Type="varchar" MaxLength="20" />
+    <Property Name="ArrivalDate" Type="date" />
+    <Property Name="ArrivalTime" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="DestinationCityCode" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_CONTACT_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="CONTACT_TYPE_ID" />
+    </Key>
+    <Property Name="CONTACT_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CONTACT_TYPE" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_COUNTRY_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="COUNTRY_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="COUNTRY_NAME" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_CURRENCY_MASTER">
+    <Key>
+      <PropertyRef Name="CURRENCY_ID" />
+    </Key>
+    <Property Name="CURRENCY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CURRENCY_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CURRENCY_SYMBOL" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_DESIGNATION_MASTER">
+    <Key>
+      <PropertyRef Name="DESIGNATION_ID" />
+    </Key>
+    <Property Name="DESIGNATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INDUSTRY_ID" Type="int" Nullable="false" />
+    <Property Name="DESIGNATION_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_EDUCATION_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="EDUCATION_TYPE_ID" />
+    </Key>
+    <Property Name="EDUCATION_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EDUCATION_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_EMAIL_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="EMAIL_TYPE_ID" />
+    </Key>
+    <Property Name="EMAIL_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMAIL_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_EMIGRATION">
+    <Key>
+      <PropertyRef Name="EMIGRATION_ID" />
+    </Key>
+    <Property Name="EMIGRATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" />
+    <Property Name="FE_NO" Type="varchar" MaxLength="20" />
+    <Property Name="PT_NO" Type="varchar" MaxLength="20" />
+    <Property Name="DM_NO" Type="varchar" MaxLength="20" />
+    <Property Name="DM_DATE" Type="datetime" />
+    <Property Name="POLICY_NO" Type="varchar" MaxLength="20" />
+    <Property Name="POLICY_DATE" Type="datetime" />
+    <Property Name="POLICY_AMOUNT" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="POLICY_COMPANYNAME" Type="varchar" MaxLength="50" />
+    <Property Name="POLICY_ATTACHMENT" Type="varchar" MaxLength="100" />
+    <Property Name="SUBMISSION_DATE" Type="datetime" />
+    <Property Name="EMIGRATION_CLEARANCENO" Type="varchar" MaxLength="20" />
+    <Property Name="EMIGRATION_ATTACHMENT" Type="varchar" MaxLength="100" />
+    <Property Name="POE" Type="varchar" MaxLength="50" />
+    <Property Name="REMARK" Type="varchar" MaxLength="500" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="IS_ECR" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_ERROR_LOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PAGE_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="PAGE_URL" Type="varchar" MaxLength="100" />
+    <Property Name="METHOD_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="ERROR_MESSAGE" Type="varchar" MaxLength="500" />
+    <Property Name="INNER_EXCEPTION_MESSAGE" Type="varchar" MaxLength="1000" />
+    <Property Name="USER_IP" Type="varchar" MaxLength="50" />
+    <Property Name="USER_CODE" Type="varchar" MaxLength="500" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_GENDER_MASTER">
+    <Key>
+      <PropertyRef Name="GENDER_CODE" />
+    </Key>
+    <Property Name="GENDER_CODE" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="GENDER_NAME" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GENDER_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_INDUSTRY_MASTER">
+    <Key>
+      <PropertyRef Name="INDUSTRY_ID" />
+    </Key>
+    <Property Name="INDUSTRY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INDUSTRY_TYPE" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_INTERVIEW">
+    <Key>
+      <PropertyRef Name="InterviewID" />
+    </Key>
+    <Property Name="InterviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_ID" Type="int" />
+    <Property Name="Agent_ID" Type="varchar" MaxLength="20" />
+    <Property Name="RequirementID" Type="int" />
+    <Property Name="InterviewModeId" Type="int" Nullable="false" />
+    <Property Name="InterviewDate" Type="datetime" Nullable="false" />
+    <Property Name="InterviewVenue" Type="varchar" MaxLength="150" />
+    <Property Name="InterviewExpenses" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="InterviewRemark" Type="varchar" MaxLength="250" />
+    <Property Name="IsSelected" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_INTERVIEW_MODE_MASTER">
+    <Key>
+      <PropertyRef Name="INTERVIEW_MODE_ID" />
+    </Key>
+    <Property Name="INTERVIEW_MODE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INTERVIEW_MODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_LANGUAGE_MASTER">
+    <Key>
+      <PropertyRef Name="LANGUAGE_ID" />
+    </Key>
+    <Property Name="LANGUAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LANGUAGE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_LMS_MENU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_LMS_MENU">
+    <Key>
+      <PropertyRef Name="LMS_MENU_ID" />
+    </Key>
+    <Property Name="LMS_MENU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MENU_NAME" Type="varchar" MaxLength="30" />
+    <Property Name="MENU_TITLE" Type="varchar" MaxLength="50" />
+    <Property Name="MENU_URL" Type="varchar" MaxLength="100" />
+    <Property Name="PARENT_MENU_ID" Type="int" />
+    <Property Name="IS_PARENT" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="10" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="REMARK" Type="varchar" MaxLength="100" />
+    <Property Name="PAGE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CONTROLLER_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MENU_ICON" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_MARITAL_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="MARITAL_STATUS_ID" />
+    </Key>
+    <Property Name="MARITAL_STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MARITAL_STATUS" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MARITAL_STATUS_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_MEDICAL">
+    <Key>
+      <PropertyRef Name="MedicalId" />
+    </Key>
+    <Property Name="MedicalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CheckupDate" Type="date" />
+    <Property Name="TokenNumber" Type="varchar" MaxLength="30" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="MedicalStatus" Type="int" />
+    <Property Name="ReportPath" Type="varchar" MaxLength="150" />
+    <Property Name="Remark" Type="varchar" MaxLength="250" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_MEDICAL_STATUS">
+    <Key>
+      <PropertyRef Name="MedicalStatusID" />
+    </Key>
+    <Property Name="MedicalStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MedicalStatus" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_MOFA">
+    <Key>
+      <PropertyRef Name="MofaID" />
+    </Key>
+    <Property Name="MofaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" />
+    <Property Name="MofaNumber" Type="varchar" MaxLength="30" />
+    <Property Name="MofaDate" Type="date" />
+    <Property Name="ApplicationNumber" Type="varchar" MaxLength="30" />
+    <Property Name="ApplicationDate" Type="date" />
+    <Property Name="HealthNumber" Type="varchar" MaxLength="30" />
+    <Property Name="HealthDate" Type="date" />
+    <Property Name="DDNumber" Type="varchar" MaxLength="30" />
+    <Property Name="DDDate" Type="date" />
+    <Property Name="MofaFilePath" Type="varchar" MaxLength="150" />
+    <Property Name="MofaRemark" Type="varchar" MaxLength="250" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_NATIONALITY_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_NATIONALITY_MASTER">
+    <Key>
+      <PropertyRef Name="NATIONALITY_ID" />
+    </Key>
+    <Property Name="NATIONALITY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NATIONALITY" Type="varchar" MaxLength="80" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_PASSPORT_DETAILS">
+    <Key>
+      <PropertyRef Name="PASSPORT_ID" />
+    </Key>
+    <Property Name="PASSPORT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTATION_NUMBER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PASSPORT_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="DATE_OF_ISSUE" Type="date" />
+    <Property Name="PLACE_OF_ISSUE" Type="varchar" MaxLength="50" />
+    <Property Name="DATE_OF_EXPIRY" Type="date" />
+    <Property Name="EMIGRATION_CLEARANCE_REQUIRED" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_POLICY">
+    <Key>
+      <PropertyRef Name="POLICYID" />
+    </Key>
+    <Property Name="POLICYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" Nullable="false" />
+    <Property Name="Policy" Type="varchar" MaxLength="100" />
+    <Property Name="PolicyDate" Type="date" />
+    <Property Name="PolicyFees" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PolicyRemark" Type="varchar" MaxLength="250" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_PORTAL_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_PORTAL_MASTER">
+    <Key>
+      <PropertyRef Name="PORTAL_ID" />
+    </Key>
+    <Property Name="PORTAL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PORTAL_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_PREFIX_MASTER">
+    <Key>
+      <PropertyRef Name="PREFIX_ID" />
+    </Key>
+    <Property Name="PREFIX_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PREFIX" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PREFIX_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="int" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="10" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="10" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_REGISTRATION_COUNTER">
+    <Key>
+      <PropertyRef Name="COUNTER_ID" />
+    </Key>
+    <Property Name="COUNTER_ID" Type="int" Nullable="false" />
+    <Property Name="COUNTER_FOR" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="COUNTER_PREFIX" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CURRENT_VALUE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_RELIGION_MASTER">
+    <Key>
+      <PropertyRef Name="RELIGION_ID" />
+    </Key>
+    <Property Name="RELIGION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RELIGION_NAME" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="RELIGION_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_ALLOWANCE">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_ALLOWANCE_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_ALLOWANCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ALLOWANCE_ID" Type="int" />
+    <Property Name="REQUIRMENT_ID" Type="int" />
+    <Property Name="IS_INCLUDED" Type="bit" />
+    <Property Name="IS_ALLOWANCE" Type="bit" />
+    <Property Name="ALLOWANCE_AMOUNT" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="IS_NOT_APPLICABLE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="ALLOWANCE_TYPE_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_DETAILS">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COMPANY_ID" Type="varchar" MaxLength="20" />
+    <Property Name="RECIEVED_DATE" Type="datetime" />
+    <Property Name="NO_OF_OPENINGS" Type="int" />
+    <Property Name="EXPERIENCE" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="JOB_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+    <Property Name="GENDER" Type="char" MaxLength="1" />
+    <Property Name="AGE" Type="int" />
+    <Property Name="RELIGION_ID" Type="int" />
+    <Property Name="INTERVIEW_MODE_ID" Type="int" />
+    <Property Name="SPECIALIZATION_ID" Type="int" />
+    <Property Name="POSTING_PLACE" Type="varchar" MaxLength="70" />
+    <Property Name="CURRENCY_TYPE_ID" Type="int" />
+    <Property Name="BASIC_RANGE" Type="int" />
+    <Property Name="OVERTIME" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TRIP_PER_YEAR" Type="int" />
+    <Property Name="CONTACT_PERIOD" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="WORKING_HOURS" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="LEAVES_PER_YEAR" Type="int" />
+    <Property Name="REMARK" Type="varchar" MaxLength="200" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="EXPERIENCE_FROM" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="EXPERIENCE_TO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AGE_FROM" Type="int" />
+    <Property Name="AGE_TO" Type="int" />
+    <Property Name="BASIC_SALARY_RANGE_TO" Type="int" />
+    <Property Name="BASIC_SALARY_RANGE_FROM" Type="int" />
+    <Property Name="CONTACT_PERSON" Type="varchar" MaxLength="20" />
+    <Property Name="STATUS_ID" Type="varchar" MaxLength="20" />
+    <Property Name="JOB_TITLE" Type="varchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_GENDER">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_GENDER_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_GENDER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_LANGUAGE">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_LANGUAGE_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_LANGUAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIRMENT_ID" Type="int" />
+    <Property Name="LANGUAGE_ID" Type="int" />
+    <Property Name="CAN_READ" Type="bit" />
+    <Property Name="CAN_WRITE" Type="bit" />
+    <Property Name="CAN_SPEAK" Type="bit" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_RELIGION">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_RELIIGION_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_RELIIGION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="RELIGION_ID" Type="varchar" MaxLength="10" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_REQUIREMENT_TYPE_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_REQUIREMENT_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_TYPE_ID" />
+      <PropertyRef Name="REQUIREMENT_TYPE" />
+      <PropertyRef Name="IS_ACTIVE" />
+      <PropertyRef Name="CREATED_DATE" />
+    </Key>
+    <Property Name="REQUIREMENT_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_TYPE" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_CERTIFICATION">
+    <Key>
+      <PropertyRef Name="REQIREMENT_CERTIFICATION_ID" />
+    </Key>
+    <Property Name="REQIREMENT_CERTIFICATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="CERTIFICATION_ID" Type="int" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_EDUCATION_TYPE">
+    <Key>
+      <PropertyRef Name="REQIREMENT_EDUCATION_TYPE_ID" />
+    </Key>
+    <Property Name="REQIREMENT_EDUCATION_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="EDUCATION_TYPE_ID" Type="varchar" MaxLength="70" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_INDUSTRY">
+    <Key>
+      <PropertyRef Name="REQIREMENT_INDUSTRY_ID" />
+    </Key>
+    <Property Name="REQIREMENT_INDUSTRY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="INDUSTRY_ID" Type="varchar" MaxLength="70" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_SPECIALIZATION">
+    <Key>
+      <PropertyRef Name="REQIREMENT_SPECIALIZATION_ID" />
+    </Key>
+    <Property Name="REQIREMENT_SPECIALIZATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" />
+    <Property Name="SPECIALIZATION_ID" Type="varchar" MaxLength="70" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_RESUME_VIEW">
+    <Key>
+      <PropertyRef Name="RESUME_VIEW_ID" />
+    </Key>
+    <Property Name="RESUME_VIEW_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" />
+    <Property Name="VIEWED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_ROLE_MASTER">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROLE_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.TBL_SAVE_TO_FOLDER_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_SAVE_TO_FOLDER_DETAILS">
+    <Key>
+      <PropertyRef Name="FOLDER_ID" />
+      <PropertyRef Name="REGISTRATION_NO" />
+      <PropertyRef Name="FOLDER_NAME" />
+    </Key>
+    <Property Name="FOLDER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FOLDER_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_SOURCE_MASTER">
+    <Key>
+      <PropertyRef Name="SOURCE_ID" />
+    </Key>
+    <Property Name="SOURCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SOURCE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SOURCE_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_SPECIALIZATION_MASTER">
+    <Key>
+      <PropertyRef Name="SPECIALIZATION_ID" />
+    </Key>
+    <Property Name="SPECIALIZATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EDUCATION_TYPE_ID" Type="int" Nullable="false" />
+    <Property Name="SPECIALIZATION_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_STATE_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="STATE_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="COUNTRY_CODE" Type="varchar" MaxLength="8" />
+    <Property Name="STATE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="STATUS_ID" />
+    </Key>
+    <Property Name="STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STATUS_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS_ORDER" Type="int" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_TASK_FOLLOWUP">
+    <Key>
+      <PropertyRef Name="TASK_FOLLOWUP_ID" />
+    </Key>
+    <Property Name="TASK_FOLLOWUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TASK_ID" Type="int" />
+    <Property Name="TASK_COMMENT" Type="varchar" MaxLength="200" />
+    <Property Name="PERC_COMPLETED" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_TASK_MASTER">
+    <Key>
+      <PropertyRef Name="TASK_ID" />
+    </Key>
+    <Property Name="TASK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TASK_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="TASK_ASSIGNED_TO" Type="varchar" MaxLength="20" />
+    <Property Name="PERC_COMPLETED" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="TASK_COMMENT" Type="varchar" MaxLength="200" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_TICKET">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="TicketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" Nullable="false" />
+    <Property Name="AirlinesID" Type="int" />
+    <Property Name="OtherAirlines" Type="varchar" MaxLength="100" />
+    <Property Name="IsDirect" Type="bit" />
+    <Property Name="PnrNumber" Type="varchar" MaxLength="20" />
+    <Property Name="TicketNumber" Type="varchar" MaxLength="20" />
+    <Property Name="FlightNumber" Type="varchar" MaxLength="20" />
+    <Property Name="IsBooked" Type="bit" />
+    <Property Name="IsCancelled" Type="bit" />
+    <Property Name="DepartureCityCode" Type="varchar" MaxLength="20" />
+    <Property Name="DepartureDate" Type="date" />
+    <Property Name="DepartureTime" Type="varchar" MaxLength="20" />
+    <Property Name="DestinationCityCode" Type="varchar" MaxLength="20" />
+    <Property Name="ArivalDate" Type="date" />
+    <Property Name="ArrivalTime" Type="varchar" MaxLength="20" />
+    <Property Name="ReportPath" Type="varchar" MaxLength="100" />
+    <Property Name="Remark" Type="varchar" MaxLength="250" />
+    <Property Name="createdBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_UNIVERSITY_MASTER">
+    <Key>
+      <PropertyRef Name="UNIVERSITY_ID" />
+    </Key>
+    <Property Name="UNIVERSITY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UNIVERSITY_NAME" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_ADDRESS">
+    <Key>
+      <PropertyRef Name="USER_ADDRESS_ID" />
+    </Key>
+    <Property Name="USER_ADDRESS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ADDRESS_TYPE_ID" Type="int" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="250" />
+    <Property Name="CITY_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="USER_VILLAGE" Type="varchar" MaxLength="50" />
+    <Property Name="USER_PINCODE" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="STATE_CODE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_USER_CERTIFICATION">
+    <Key>
+      <PropertyRef Name="USER_CERTIFICATION_ID" />
+    </Key>
+    <Property Name="USER_CERTIFICATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="CERTIFICATION" Type="varchar" MaxLength="70" />
+    <Property Name="CERTIFICATION_LEVEL" Type="int" />
+    <Property Name="INSTITUTE" Type="varchar" MaxLength="80" />
+    <Property Name="YEAR_OF_PASSING" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_USER_CONTACTS">
+    <Key>
+      <PropertyRef Name="USER_CONTACT_ID" />
+    </Key>
+    <Property Name="USER_CONTACT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="CONTACT_TYPE_ID" Type="int" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DETAILS">
+    <Key>
+      <PropertyRef Name="REGISTRATION_NO" />
+    </Key>
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_TYPE_ID" Type="int" Nullable="false" />
+    <Property Name="AVAILING_TYPE_ID" Type="int" />
+    <Property Name="SOURCE_ID" Type="int" />
+    <Property Name="STATUS_ID" Type="int" />
+    <Property Name="VISIT_NUMBER" Type="int" />
+    <Property Name="REQUIREMENT_ID" Type="varchar" MaxLength="20" />
+    <Property Name="LOGIN_ACCESS" Type="bit" Nullable="false" />
+    <Property Name="LOGIN_PASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="USER_IMAGE_PATH" Type="varchar" MaxLength="100" />
+    <Property Name="REMARK" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="IS_EXPERIENCED" Type="bit" />
+    <Property Name="WEBSITE" Type="varchar" MaxLength="50" />
+    <Property Name="SKYPE" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_REMARK" Type="varchar" MaxLength="1000" />
+    <Property Name="EDUCATION_REMARK" Type="varchar" MaxLength="1000" />
+    <Property Name="WORK_REMARK" Type="varchar" MaxLength="1000" />
+    <Property Name="BRANCH_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="CIVILIAN_NO" Type="varchar" MaxLength="20" />
+    <Property Name="NAME" Type="varchar" MaxLength="20" />
+    <Property Name="CLIENT_DESIGNATION" Type="int" />
+    <Property Name="CLIENT_INDUSTRY_ID" Type="int" />
+    <Property Name="REFERENCE" Type="varchar" MaxLength="20" />
+    <Property Name="GAMCA_NO" Type="varchar" MaxLength="20" />
+    <Property Name="LOCATION_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="OTHER_SOURCE" Type="varchar" MaxLength="20" />
+    <Property Name="REFERRER_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="COMPANY_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="DESIGNATION_ID" Type="varchar" MaxLength="50" />
+    <Property Name="INDUSTRY_ID" Type="varchar" MaxLength="50" />
+    <Property Name="TOTAL_WORK_EXPERIENCE" Type="varchar" MaxLength="50" />
+    <Property Name="TOTAL_GULF_EXPERIENCE" Type="varchar" MaxLength="50" />
+    <Property Name="SKILLS" Type="varchar" MaxLength="100" />
+    <Property Name="CLINIC_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="VISA_ID" Type="int" />
+    <Property Name="POST_APPLIED_FOR" Type="varchar" MaxLength="100" />
+    <Property Name="FILE_NO" Type="varchar" MaxLength="20" />
+    <Property Name="PERSONAL_REMARK" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DOCUMENT_MASTER">
+    <Key>
+      <PropertyRef Name="DOCUMENT_TYPE_ID" />
+    </Key>
+    <Property Name="DOCUMENT_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DOCUMENT_TYPE" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DOCUMENT_PATH" Type="varchar" MaxLength="150" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DOCUMENTS">
+    <Key>
+      <PropertyRef Name="DOCUMENT_ID" />
+    </Key>
+    <Property Name="DOCUMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DOCUMENT_TYPE_ID" Type="varchar" MaxLength="50" />
+    <Property Name="DOCUMENT_PATH" Type="varchar" MaxLength="200" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DRIVING_LICENCE_DETAILS">
+    <Key>
+      <PropertyRef Name="DRIVING_LICENCE_ID" />
+    </Key>
+    <Property Name="DRIVING_LICENCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DRIVING_LICENCE_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="PLACE_OF_ISSUE" Type="varchar" MaxLength="20" />
+    <Property Name="DATE_OF_ISSUE" Type="date" />
+    <Property Name="EXPIRY_DATE" Type="date" />
+    <Property Name="VEHICLE_TYPE_ID" Type="int" />
+    <Property Name="REMARK" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EDUCATION_DETAILS">
+    <Key>
+      <PropertyRef Name="USER_EDUCATION_ID" />
+    </Key>
+    <Property Name="USER_EDUCATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="EDUCATION_TYPE_ID" Type="int" />
+    <Property Name="SPECIALIZATION_TYPE_ID" Type="int" />
+    <Property Name="UNIVERSITY_ID" Type="varchar" MaxLength="70" />
+    <Property Name="UNIVERSITY_YEAR_OF_PASSING" Type="varchar" MaxLength="8" />
+    <Property Name="IS_HIGHEST_QUALIFICATION" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EMAIL_ADDRESS">
+    <Key>
+      <PropertyRef Name="USER_EMAIL_ID" />
+    </Key>
+    <Property Name="USER_EMAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="USER_EMAIL" Type="varchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EXPERIENCE">
+    <Key>
+      <PropertyRef Name="EXPERIENCE_ID" />
+    </Key>
+    <Property Name="EXPERIENCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_COMPANY_NAME" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="IS_CURRENT_COMPANY" Type="bit" />
+    <Property Name="DESIGNATION_ID" Type="int" />
+    <Property Name="INDUSTRY_ID" Type="int" />
+    <Property Name="CITY_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="TOTAL_WORK_EXPERIENCE" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="REMARK" Type="varchar" MaxLength="100" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="WORK_PERIOD_FROM" Type="datetime" />
+    <Property Name="WORK_PERIOD_TO" Type="datetime" />
+    <Property Name="STATE_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="COUNTRY_CODE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_USER_LANGUAGE">
+    <Key>
+      <PropertyRef Name="USER_LANGUAGE_ID" />
+    </Key>
+    <Property Name="USER_LANGUAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LANGUAGE_ID" Type="int" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IS_READ" Type="bit" Nullable="false" />
+    <Property Name="IS_WRITE" Type="bit" Nullable="false" />
+    <Property Name="IS_SPEAK" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_MENU_MAPPING">
+    <Key>
+      <PropertyRef Name="USER_MENU_ID" />
+    </Key>
+    <Property Name="USER_MENU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="MENU_ID" Type="int" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="10" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="USER_TYPE_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_USER_PERSONAL_DETAILS">
+    <Key>
+      <PropertyRef Name="REGISTRATION_NO" />
+    </Key>
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FATHER_NAME" Type="varchar" MaxLength="80" />
+    <Property Name="MOTHER_NAME" Type="varchar" MaxLength="80" />
+    <Property Name="GENDER_CODE" Type="char" MaxLength="1" />
+    <Property Name="DATE_OF_BIRTH" Type="datetime" />
+    <Property Name="PLACE_OF_BIRTH" Type="varchar" MaxLength="50" />
+    <Property Name="MARITAL_STATUS_ID" Type="int" />
+    <Property Name="NATIONALITY_ID" Type="int" />
+    <Property Name="CURRENT_LOCATION" Type="varchar" MaxLength="50" />
+    <Property Name="RELIGION_ID" Type="int" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_REGISTRATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REG_MONTH" Type="int" />
+    <Property Name="REG_YEAR" Type="int" />
+    <Property Name="USER_TYPE_ID" Type="int" />
+    <Property Name="CURRENT_COUNTER" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_USER_REQUIREMENT">
+    <Key>
+      <PropertyRef Name="USER_REQUIREMENT_ID" />
+    </Key>
+    <Property Name="USER_REQUIREMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="int" Nullable="false" />
+    <Property Name="CANDIDATE_STATUS" Type="int" Nullable="false" />
+    <Property Name="CURRENT_STATUS" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_USER_TYPE">
+    <Key>
+      <PropertyRef Name="USER_TYPE_ID" />
+    </Key>
+    <Property Name="USER_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_VISA_DETAILS">
+    <Key>
+      <PropertyRef Name="USER_VISA_ID" />
+    </Key>
+    <Property Name="USER_VISA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="VISA_ID" Type="int" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_VEHICLE_TYPE">
+    <Key>
+      <PropertyRef Name="VEHICLE_TYPE_ID" />
+    </Key>
+    <Property Name="VEHICLE_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VEHICLE_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="VEHICLE_ORDER" Type="int" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_ENDORSEMENT">
+    <Key>
+      <PropertyRef Name="VisaEndorsementId" />
+    </Key>
+    <Property Name="VisaEndorsementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_REQUIREMENT_ID" Type="int" Nullable="false" />
+    <Property Name="SubmissionDate" Type="date" />
+    <Property Name="SubmissionStatusID" Type="int" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="VisaEndorsementFilePath" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_MASTER">
+    <Key>
+      <PropertyRef Name="VISA_ID" />
+    </Key>
+    <Property Name="VISA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTRATION_NUMBER" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="CIVILIAN_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="VISA_NUMBER" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PLACE_OF_ENDORSEMENT" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="ISSUE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="EXPIRY_DATE" Type="datetime" Nullable="false" />
+    <Property Name="RECIEVED_DATE" Type="datetime" Nullable="false" />
+    <Property Name="FILE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="FILE_PATH" Type="varchar" MaxLength="100" />
+    <Property Name="REMARK" Type="varchar" MaxLength="100" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="PURPOSE" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_SUBMISSION_STATUS">
+    <Key>
+      <PropertyRef Name="VisaSubmissionStatusID" />
+    </Key>
+    <Property Name="VisaSubmissionStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubmissionStatus" Type="varchar" MaxLength="30" />
+    <Property Name="CreatedBy" Type="nchar" MaxLength="10" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ArbabTravelsERP.dbo.Tmp_TBL_TASK_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tmp_TBL_TASK_MASTER">
+    <Key>
+      <PropertyRef Name="TASK_ID" />
+    </Key>
+    <Property Name="TASK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TASK_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="TASK_ASSIGNED_TO" Type="varchar" MaxLength="20" />
+    <Property Name="PERC_COMPLETED" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+    <Property Name="MODIFIED_DATE" Type="datetime" />
+    <Property Name="MODIFIED_BY" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER">
+    <End Role="TBL_INDUSTRY_MASTER" Type="Self.TBL_INDUSTRY_MASTER" Multiplicity="1" />
+    <End Role="TBL_DESIGNATION_MASTER" Type="Self.TBL_DESIGNATION_MASTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_INDUSTRY_MASTER">
+        <PropertyRef Name="INDUSTRY_ID" />
+      </Principal>
+      <Dependent Role="TBL_DESIGNATION_MASTER">
+        <PropertyRef Name="INDUSTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="0..1" />
+    <End Role="TBL_EMIGRATION" Type="Self.TBL_EMIGRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_EMIGRATION">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER">
+    <End Role="TBL_INTERVIEW_MODE_MASTER" Type="Self.TBL_INTERVIEW_MODE_MASTER" Multiplicity="1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_INTERVIEW_MODE_MASTER">
+        <PropertyRef Name="INTERVIEW_MODE_ID" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="InterviewModeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="RequirementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="Agent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MEDICAL_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_MEDICAL" Type="Self.TBL_MEDICAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_MEDICAL">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MOFA_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="0..1" />
+    <End Role="TBL_MOFA" Type="Self.TBL_MOFA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_MOFA">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_POLICY_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_POLICY" Type="Self.TBL_POLICY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_POLICY">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER">
+    <End Role="TBL_ALLOWANCE_MASTER" Type="Self.TBL_ALLOWANCE_MASTER" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ALLOWANCE_MASTER">
+        <PropertyRef Name="ALLOWANCE_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="ALLOWANCE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER">
+    <End Role="TBL_ALLOWANCE_TYPE_MASTER" Type="Self.TBL_ALLOWANCE_TYPE_MASTER" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ALLOWANCE_TYPE_MASTER">
+        <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="REQUIRMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_GENDER" Type="Self.TBL_REQUIREMENT_GENDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_GENDER">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_LANGUAGE" Type="Self.TBL_REQUIREMENT_LANGUAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_LANGUAGE">
+        <PropertyRef Name="REQUIRMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_RELIGION" Type="Self.TBL_REQUIREMENT_RELIGION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_RELIGION">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_TICKET_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_TICKET" Type="Self.TBL_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_TICKET">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="1" />
+    <End Role="TBL_USER_DOCUMENTS" Type="Self.TBL_USER_DOCUMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_USER_DOCUMENTS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="1" />
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="1" />
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_VISA_ENDORSEMENT" Type="Self.TBL_VISA_ENDORSEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_VISA_ENDORSEMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GET_COUNTRY_STATE_CITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_DESIGNATION_BYINDUSTRY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDUSTRY_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GET_SPECIALIZATION_BYEDUCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EDUCATION_TYPE_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_ADD_DELETE_MENU_FOR_USERTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MENU_ID" Type="int" Mode="In" />
+    <Parameter Name="USER_TYPE_ID" Type="varchar" Mode="In" />
+    <Parameter Name="CREATED_BY" Type="varchar" Mode="In" />
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_ALL_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+    <Parameter Name="REGISTRATION_NO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_CANDIDATE_STATUS_SEARCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REGISTRATION_NO" Type="varchar" Mode="In" />
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_CHECK_DUPLICATEREQUIREMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="COMPANY_ID" Type="varchar" Mode="In" />
+    <Parameter Name="CONTACT_PERSON" Type="varchar" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_CHECKDUPLICATE_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_TYPE_ID" Type="int" Mode="In" />
+    <Parameter Name="FIRST_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="LAST_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="DATE_OF_BIRTH" Type="datetime" Mode="In" />
+    <Parameter Name="PLACE_OF_BIRTH" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_DOCUMENT_DOWNLOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PASSPORT_NO" Type="varchar" Mode="In" />
+    <Parameter Name="REGISTRATION_NO" Type="varchar" Mode="In" />
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_ADVERTISEMENT_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADVERTISEMENT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_AGENT_NAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PROC_GET_ALL_CITIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_ALL_SPECIALIZATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_ALL_STATES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_CANDIDATE_NAME_BASED_ON_PASPPORT_NO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_REQUIREMENT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REQUIREMENT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_LAYOUT_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_TYPE_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_MENU_BY_SELECTED_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_TYPE_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_PASSPORT_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_GET_REQUIREMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RequirementId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_GETUSER_BYUSERTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_TYPE_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_REQUIREMENT_DETAILS_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="COMPANY_ID" Type="varchar" Mode="In" />
+    <Parameter Name="NO_OF_OPENINGS" Type="int" Mode="In" />
+    <Parameter Name="EXPERIENCE_FROM" Type="decimal" Mode="In" />
+    <Parameter Name="EXPERIENCE_TO" Type="decimal" Mode="In" />
+    <Parameter Name="JOB_DESCRIPTION" Type="varchar" Mode="In" />
+    <Parameter Name="GENDER_CODES" Type="char" Mode="In" />
+    <Parameter Name="AGE_FROM" Type="int" Mode="In" />
+    <Parameter Name="AGE_TO" Type="int" Mode="In" />
+    <Parameter Name="RELIGION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="INTERVIEW_MODE_ID" Type="int" Mode="In" />
+    <Parameter Name="SPECIALIZATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="POSTING_PLACE" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CURRENCY_TYPE_ID" Type="int" Mode="In" />
+    <Parameter Name="BASIC_SALARY_RANGE_TO" Type="int" Mode="In" />
+    <Parameter Name="BASIC_SALARY_RANGE_FROM" Type="int" Mode="In" />
+    <Parameter Name="OVERTIME" Type="decimal" Mode="In" />
+    <Parameter Name="TRIP_PER_YEAR" Type="int" Mode="In" />
+    <Parameter Name="CONTACT_PERIOD" Type="decimal" Mode="In" />
+    <Parameter Name="WORKING_HOURS" Type="decimal" Mode="In" />
+    <Parameter Name="LEAVES_PER_YEAR" Type="int" Mode="In" />
+    <Parameter Name="REMARK" Type="varchar(max)" Mode="In" />
+    <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+    <Parameter Name="USER_CODE" Type="varchar" Mode="In" />
+    <Parameter Name="CONTACT_PERSON" Type="varchar" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+    <Parameter Name="ALLOWANCE_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="LANGUAGES_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="EDUCATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="INDUSTRY_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DESIGNATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CIRTIFICATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="RequirementID" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="PROC_REQUIREMENT_DETAILS_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REQUIREMENT_ID" Type="int" Mode="In" />
+    <Parameter Name="COMPANY_ID" Type="varchar" Mode="In" />
+    <Parameter Name="NO_OF_OPENINGS" Type="int" Mode="In" />
+    <Parameter Name="EXPERIENCE_FROM" Type="decimal" Mode="In" />
+    <Parameter Name="EXPERIENCE_TO" Type="decimal" Mode="In" />
+    <Parameter Name="JOB_DESCRIPTION" Type="varchar" Mode="In" />
+    <Parameter Name="GENDER_CODES" Type="char" Mode="In" />
+    <Parameter Name="AGE_FROM" Type="int" Mode="In" />
+    <Parameter Name="AGE_TO" Type="int" Mode="In" />
+    <Parameter Name="RELIGION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="INTERVIEW_MODE_ID" Type="int" Mode="In" />
+    <Parameter Name="SPECIALIZATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="POSTING_PLACE" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CURRENCY_TYPE_ID" Type="int" Mode="In" />
+    <Parameter Name="BASIC_SALARY_RANGE_TO" Type="int" Mode="In" />
+    <Parameter Name="BASIC_SALARY_RANGE_FROM" Type="int" Mode="In" />
+    <Parameter Name="OVERTIME" Type="decimal" Mode="In" />
+    <Parameter Name="TRIP_PER_YEAR" Type="int" Mode="In" />
+    <Parameter Name="CONTACT_PERIOD" Type="decimal" Mode="In" />
+    <Parameter Name="WORKING_HOURS" Type="decimal" Mode="In" />
+    <Parameter Name="LEAVES_PER_YEAR" Type="int" Mode="In" />
+    <Parameter Name="REMARK" Type="varchar" Mode="In" />
+    <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+    <Parameter Name="USER_CODE" Type="varchar" Mode="In" />
+    <Parameter Name="CONTACT_PERSON" Type="varchar" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+    <Parameter Name="ALLOWANCE_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="LANGUAGES_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="EDUCATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="INDUSTRY_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DESIGNATION_IDS" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CIRTIFICATION_IDS" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="PROC_REQUIREMENT_SEARCH_RESULT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="COMPANY_ID" Type="varchar" Mode="In" />
+    <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+    <Parameter Name="CLIENT_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_STATUS_SEARCH_CANDIDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REGISTRATION_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="PASSPORT_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="CANDIDATE_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="DATE_OF_BIRTH" Type="date" Mode="In" />
+    <Parameter Name="CONTACT_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="USER_TYPE_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_UPDATE_USER_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_REQUIREMENT_ID" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PROC_USER_ADDUPDATE_REQUIREMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_REQUIREMENT_ID" Type="int" Mode="In" />
+    <Parameter Name="REGISTRATION_NO" Type="varchar" Mode="In" />
+    <Parameter Name="REQUIREMENT_ID" Type="int" Mode="In" />
+    <Parameter Name="CANDIDATE_STATUS" Type="int" Mode="In" />
+    <Parameter Name="CURRENT_STATUS" Type="bit" Mode="In" />
+    <Parameter Name="CREATED_BY" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_USER_LOGIN_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="USER_PASSWORD" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_VISA_GETALLVISA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CREATED_BY" Type="nvarchar" Mode="In" />
+    <Parameter Name="VISA_ID" Type="int" Mode="In" />
+    <Parameter Name="VISA_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="FROMDATE" Type="datetime" Mode="In" />
+    <Parameter Name="TODATE" Type="datetime" Mode="In" />
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_VISA_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REGISTRATION_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="VISA_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="PLACE_OF_ENDORSEMENT" Type="varchar" Mode="In" />
+    <Parameter Name="ISSUE_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="EXPIRY_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="RECIEVED_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="FILE_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="FILE_PATH" Type="varchar" Mode="In" />
+    <Parameter Name="REMARK" Type="varchar" Mode="In" />
+    <Parameter Name="CREATED_BY" Type="varchar" Mode="In" />
+    <Parameter Name="PURPOSE" Type="varchar" Mode="In" />
+    <Parameter Name="CONDITIONAL_OPERATOR" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="TIROERPModelStoreContainer">
+    <EntitySet Name="TBL_AD_MEDIUM_MASTER" EntityType="Self.TBL_AD_MEDIUM_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ADDRESS_TYPE_MASTER" EntityType="Self.TBL_ADDRESS_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ADVERTISEMENT_MASTER" EntityType="Self.TBL_ADVERTISEMENT_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_AIRLINES_MASTER" EntityType="Self.TBL_AIRLINES_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ALLOWANCE_MASTER" EntityType="Self.TBL_ALLOWANCE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ALLOWANCE_TYPE_MASTER" EntityType="Self.TBL_ALLOWANCE_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_AVAILING_TYPE_MASTER" EntityType="Self.TBL_AVAILING_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CAREER_STATUS_MASTER" EntityType="Self.TBL_CAREER_STATUS_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CERTIFICATION_MASTER" EntityType="Self.TBL_CERTIFICATION_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CITY_MASTER" EntityType="Self.TBL_CITY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_COMPANY_MASTER" EntityType="Self.TBL_COMPANY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CONNECTED_TICKETDETAILS" EntityType="Self.TBL_CONNECTED_TICKETDETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CONTACT_TYPE_MASTER" EntityType="Self.TBL_CONTACT_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_COUNTRY_MASTER" EntityType="Self.TBL_COUNTRY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CURRENCY_MASTER" EntityType="Self.TBL_CURRENCY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DESIGNATION_MASTER" EntityType="Self.TBL_DESIGNATION_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_EDUCATION_TYPE_MASTER" EntityType="Self.TBL_EDUCATION_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_EMAIL_TYPE_MASTER" EntityType="Self.TBL_EMAIL_TYPE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_EMIGRATION" EntityType="Self.TBL_EMIGRATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ERROR_LOG" EntityType="Self.TBL_ERROR_LOG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_GENDER_MASTER" EntityType="Self.TBL_GENDER_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_INDUSTRY_MASTER" EntityType="Self.TBL_INDUSTRY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_INTERVIEW" EntityType="Self.TBL_INTERVIEW" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_INTERVIEW_MODE_MASTER" EntityType="Self.TBL_INTERVIEW_MODE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_LANGUAGE_MASTER" EntityType="Self.TBL_LANGUAGE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MARITAL_STATUS_MASTER" EntityType="Self.TBL_MARITAL_STATUS_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MEDICAL" EntityType="Self.TBL_MEDICAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MEDICAL_STATUS" EntityType="Self.TBL_MEDICAL_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MOFA" EntityType="Self.TBL_MOFA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_PASSPORT_DETAILS" EntityType="Self.TBL_PASSPORT_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_POLICY" EntityType="Self.TBL_POLICY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_PREFIX_MASTER" EntityType="Self.TBL_PREFIX_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REGISTRATION_COUNTER" EntityType="Self.TBL_REGISTRATION_COUNTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_RELIGION_MASTER" EntityType="Self.TBL_RELIGION_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIREMENT_ALLOWANCE" EntityType="Self.TBL_REQUIREMENT_ALLOWANCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIREMENT_DETAILS" EntityType="Self.TBL_REQUIREMENT_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIREMENT_GENDER" EntityType="Self.TBL_REQUIREMENT_GENDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIREMENT_LANGUAGE" EntityType="Self.TBL_REQUIREMENT_LANGUAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIREMENT_RELIGION" EntityType="Self.TBL_REQUIREMENT_RELIGION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIRMENT_CERTIFICATION" EntityType="Self.TBL_REQUIRMENT_CERTIFICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIRMENT_EDUCATION_TYPE" EntityType="Self.TBL_REQUIRMENT_EDUCATION_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIRMENT_INDUSTRY" EntityType="Self.TBL_REQUIRMENT_INDUSTRY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_REQUIRMENT_SPECIALIZATION" EntityType="Self.TBL_REQUIRMENT_SPECIALIZATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_RESUME_VIEW" EntityType="Self.TBL_RESUME_VIEW" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ROLE_MASTER" EntityType="Self.TBL_ROLE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_SOURCE_MASTER" EntityType="Self.TBL_SOURCE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_SPECIALIZATION_MASTER" EntityType="Self.TBL_SPECIALIZATION_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_STATE_MASTER" EntityType="Self.TBL_STATE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_STATUS_MASTER" EntityType="Self.TBL_STATUS_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_TASK_FOLLOWUP" EntityType="Self.TBL_TASK_FOLLOWUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_TASK_MASTER" EntityType="Self.TBL_TASK_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_TICKET" EntityType="Self.TBL_TICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_UNIVERSITY_MASTER" EntityType="Self.TBL_UNIVERSITY_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_ADDRESS" EntityType="Self.TBL_USER_ADDRESS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_CERTIFICATION" EntityType="Self.TBL_USER_CERTIFICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_CONTACTS" EntityType="Self.TBL_USER_CONTACTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_DETAILS" EntityType="Self.TBL_USER_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_DOCUMENT_MASTER" EntityType="Self.TBL_USER_DOCUMENT_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_DOCUMENTS" EntityType="Self.TBL_USER_DOCUMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_DRIVING_LICENCE_DETAILS" EntityType="Self.TBL_USER_DRIVING_LICENCE_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_EDUCATION_DETAILS" EntityType="Self.TBL_USER_EDUCATION_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_EMAIL_ADDRESS" EntityType="Self.TBL_USER_EMAIL_ADDRESS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_EXPERIENCE" EntityType="Self.TBL_USER_EXPERIENCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_LANGUAGE" EntityType="Self.TBL_USER_LANGUAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_MENU_MAPPING" EntityType="Self.TBL_USER_MENU_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_PERSONAL_DETAILS" EntityType="Self.TBL_USER_PERSONAL_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_REGISTRATION" EntityType="Self.TBL_USER_REGISTRATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_REQUIREMENT" EntityType="Self.TBL_USER_REQUIREMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_TYPE" EntityType="Self.TBL_USER_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_VISA_DETAILS" EntityType="Self.TBL_USER_VISA_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_VEHICLE_TYPE" EntityType="Self.TBL_VEHICLE_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_VISA_ENDORSEMENT" EntityType="Self.TBL_VISA_ENDORSEMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_VISA_MASTER" EntityType="Self.TBL_VISA_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_VISA_SUBMISSION_STATUS" EntityType="Self.TBL_VISA_SUBMISSION_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_BRANCH_MASTER" EntityType="Self.TBL_BRANCH_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_BRANCH_MASTER].[BRANCH_CODE] AS [BRANCH_CODE], 
+    [TBL_BRANCH_MASTER].[BRANCH_NAME] AS [BRANCH_NAME], 
+    [TBL_BRANCH_MASTER].[IS_ACTIVE] AS [IS_ACTIVE], 
+    [TBL_BRANCH_MASTER].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_BRANCH_MASTER].[CREATED_DATE] AS [CREATED_DATE]
+    FROM [dbo].[TBL_BRANCH_MASTER] AS [TBL_BRANCH_MASTER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_LMS_MENU" EntityType="Self.TBL_LMS_MENU" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_LMS_MENU].[LMS_MENU_ID] AS [LMS_MENU_ID], 
+    [TBL_LMS_MENU].[MENU_NAME] AS [MENU_NAME], 
+    [TBL_LMS_MENU].[MENU_TITLE] AS [MENU_TITLE], 
+    [TBL_LMS_MENU].[MENU_URL] AS [MENU_URL], 
+    [TBL_LMS_MENU].[PARENT_MENU_ID] AS [PARENT_MENU_ID], 
+    [TBL_LMS_MENU].[IS_PARENT] AS [IS_PARENT], 
+    [TBL_LMS_MENU].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_LMS_MENU].[CREATED_DATE] AS [CREATED_DATE], 
+    [TBL_LMS_MENU].[REMARK] AS [REMARK], 
+    [TBL_LMS_MENU].[PAGE_NAME] AS [PAGE_NAME], 
+    [TBL_LMS_MENU].[CONTROLLER_NAME] AS [CONTROLLER_NAME], 
+    [TBL_LMS_MENU].[MENU_ICON] AS [MENU_ICON]
+    FROM [dbo].[TBL_LMS_MENU] AS [TBL_LMS_MENU]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_NATIONALITY_MASTER" EntityType="Self.TBL_NATIONALITY_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_NATIONALITY_MASTER].[NATIONALITY_ID] AS [NATIONALITY_ID], 
+    [TBL_NATIONALITY_MASTER].[NATIONALITY] AS [NATIONALITY], 
+    [TBL_NATIONALITY_MASTER].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_NATIONALITY_MASTER].[CREATED_DATE] AS [CREATED_DATE]
+    FROM [dbo].[TBL_NATIONALITY_MASTER] AS [TBL_NATIONALITY_MASTER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_PORTAL_MASTER" EntityType="Self.TBL_PORTAL_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_PORTAL_MASTER].[PORTAL_ID] AS [PORTAL_ID], 
+    [TBL_PORTAL_MASTER].[PORTAL_NAME] AS [PORTAL_NAME], 
+    [TBL_PORTAL_MASTER].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_PORTAL_MASTER].[CREATED_DATE] AS [CREATED_DATE], 
+    [TBL_PORTAL_MASTER].[IS_ACTIVE] AS [IS_ACTIVE]
+    FROM [dbo].[TBL_PORTAL_MASTER] AS [TBL_PORTAL_MASTER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_REQUIREMENT_TYPE_MASTER" EntityType="Self.TBL_REQUIREMENT_TYPE_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_REQUIREMENT_TYPE_MASTER].[REQUIREMENT_TYPE_ID] AS [REQUIREMENT_TYPE_ID], 
+    [TBL_REQUIREMENT_TYPE_MASTER].[REQUIREMENT_TYPE] AS [REQUIREMENT_TYPE], 
+    [TBL_REQUIREMENT_TYPE_MASTER].[IS_ACTIVE] AS [IS_ACTIVE], 
+    [TBL_REQUIREMENT_TYPE_MASTER].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_REQUIREMENT_TYPE_MASTER].[CREATED_DATE] AS [CREATED_DATE]
+    FROM [dbo].[TBL_REQUIREMENT_TYPE_MASTER] AS [TBL_REQUIREMENT_TYPE_MASTER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_SAVE_TO_FOLDER_DETAILS" EntityType="Self.TBL_SAVE_TO_FOLDER_DETAILS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_SAVE_TO_FOLDER_DETAILS].[FOLDER_ID] AS [FOLDER_ID], 
+    [TBL_SAVE_TO_FOLDER_DETAILS].[REGISTRATION_NO] AS [REGISTRATION_NO], 
+    [TBL_SAVE_TO_FOLDER_DETAILS].[FOLDER_NAME] AS [FOLDER_NAME], 
+    [TBL_SAVE_TO_FOLDER_DETAILS].[CREATED_BY] AS [CREATED_BY], 
+    [TBL_SAVE_TO_FOLDER_DETAILS].[CREATED_DATE] AS [CREATED_DATE]
+    FROM [dbo].[TBL_SAVE_TO_FOLDER_DETAILS] AS [TBL_SAVE_TO_FOLDER_DETAILS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Tmp_TBL_TASK_MASTER" EntityType="Self.Tmp_TBL_TASK_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tmp_TBL_TASK_MASTER].[TASK_ID] AS [TASK_ID], 
+    [Tmp_TBL_TASK_MASTER].[TASK_NAME] AS [TASK_NAME], 
+    [Tmp_TBL_TASK_MASTER].[TASK_ASSIGNED_TO] AS [TASK_ASSIGNED_TO], 
+    [Tmp_TBL_TASK_MASTER].[PERC_COMPLETED] AS [PERC_COMPLETED], 
+    [Tmp_TBL_TASK_MASTER].[CREATED_DATE] AS [CREATED_DATE], 
+    [Tmp_TBL_TASK_MASTER].[CREATED_BY] AS [CREATED_BY], 
+    [Tmp_TBL_TASK_MASTER].[MODIFIED_DATE] AS [MODIFIED_DATE], 
+    [Tmp_TBL_TASK_MASTER].[MODIFIED_BY] AS [MODIFIED_BY]
+    FROM [dbo].[Tmp_TBL_TASK_MASTER] AS [Tmp_TBL_TASK_MASTER]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER" Association="Self.FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER">
+      <End Role="TBL_INDUSTRY_MASTER" EntitySet="TBL_INDUSTRY_MASTER" />
+      <End Role="TBL_DESIGNATION_MASTER" EntitySet="TBL_DESIGNATION_MASTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_EMIGRATION" EntitySet="TBL_EMIGRATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER" Association="Self.FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER">
+      <End Role="TBL_INTERVIEW_MODE_MASTER" EntitySet="TBL_INTERVIEW_MODE_MASTER" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_USER_DETAILS" Association="Self.FK_TBL_INTERVIEW_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MEDICAL_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_MEDICAL_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_MEDICAL" EntitySet="TBL_MEDICAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MOFA_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_MOFA_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_MOFA" EntitySet="TBL_MOFA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_POLICY_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_POLICY_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_POLICY" EntitySet="TBL_POLICY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER">
+      <End Role="TBL_ALLOWANCE_MASTER" EntitySet="TBL_ALLOWANCE_MASTER" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER">
+      <End Role="TBL_ALLOWANCE_TYPE_MASTER" EntitySet="TBL_ALLOWANCE_TYPE_MASTER" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER" Association="Self.FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_GENDER" EntitySet="TBL_REQUIREMENT_GENDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_LANGUAGE" EntitySet="TBL_REQUIREMENT_LANGUAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_RELIGION" EntitySet="TBL_REQUIREMENT_RELIGION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_TICKET_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_TICKET_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_TICKET" EntitySet="TBL_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS" Association="Self.FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_USER_DOCUMENTS" EntitySet="TBL_USER_DOCUMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS" Association="Self.FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_VISA_ENDORSEMENT" EntitySet="TBL_VISA_ENDORSEMENT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

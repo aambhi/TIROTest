@@ -1,0 +1,44 @@
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSpecializationByEducation
+ Action: GetSpecializationByEducation
+ Error Message: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSpecializationByEducation
+ Action: GetSpecializationByEducation
+ Error Message: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: candidate
+ URL: http://localhost:50130/candidate/create/1
+ Action: create
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================

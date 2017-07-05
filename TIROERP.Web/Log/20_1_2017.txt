@@ -1,0 +1,20 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C1020160002
+ Action: GetCandidateDetails
+ Error Message: The using block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+ Inner Exception: The using block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C1020160002
+ Action: GetCandidateDetails
+ Error Message: C:\Users\Ambi\AppData\Local\Temp\Temporary ASP.NET Files\root\b9a2fec2\476eda69\App_Web_getcandidatedetails.cshtml.c48c7015.nottfyji.0.cs(31): error CS0246: The type or namespace name 'Test' could not be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: C:\Users\Ambi\AppData\Local\Temp\Temporary ASP.NET Files\root\b9a2fec2\476eda69\App_Web_getcandidatedetails.cshtml.c48c7015.nottfyji.0.cs(31): error CS0246: The type or namespace name 'Test' could not be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

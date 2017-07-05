@@ -1,0 +1,46 @@
+==================================================================
+DateTime14/04/2017 15:20:10
+ Controller: Emigration
+ URL: http://localhost:50130/Emigration/Create
+ Action: Create
+ Error Message: The view 'Policy' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Emigration/Policy.aspx
+~/Views/Emigration/Policy.ascx
+~/Views/Shared/Policy.aspx
+~/Views/Shared/Policy.ascx
+~/Views/Emigration/Policy.cshtml
+~/Views/Emigration/Policy.vbhtml
+~/Views/Shared/Policy.cshtml
+~/Views/Shared/Policy.vbhtml
+ Inner Exception: The view 'Policy' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Emigration/Policy.aspx
+~/Views/Emigration/Policy.ascx
+~/Views/Shared/Policy.aspx
+~/Views/Shared/Policy.ascx
+~/Views/Emigration/Policy.cshtml
+~/Views/Emigration/Policy.vbhtml
+~/Views/Shared/Policy.cshtml
+~/Views/Shared/Policy.vbhtml
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime14/04/2017 15:23:51
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime14/04/2017 15:23:51
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

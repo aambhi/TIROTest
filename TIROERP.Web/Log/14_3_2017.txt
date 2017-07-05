@@ -1,0 +1,9 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetAgentDetails?registrationNo=A320160002
+ Action: GetAgentDetails
+ Error Message: DataBinding: 'System.Web.Mvc.SelectListItem' does not contain a property with the name '24,19'.
+ Inner Exception: DataBinding: 'System.Web.Mvc.SelectListItem' does not contain a property with the name '24,19'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

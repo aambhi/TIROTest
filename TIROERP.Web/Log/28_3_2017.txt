@@ -1,0 +1,156 @@
+==================================================================
+DateTime28-Mar-17 2:49:01 PM
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C320170073
+ Action: GetCandidateDetails
+ Error Message: Nullable object must have a value.
+ Inner Exception: Nullable object must have a value.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 3:02:25 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 3:13:30 PM
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C320170074
+ Action: GetCandidateDetails
+ Error Message: Nullable object must have a value.
+ Inner Exception: Nullable object must have a value.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 3:25:18 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 3:50:34 PM
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/Update
+ Action: Update
+ Error Message: Cannot insert the value NULL into column 'FIRST_NAME', table 'ArbabTravelsERP.dbo.TBL_USER_PERSONAL_DETAILS'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+ Inner Exception: Cannot insert the value NULL into column 'FIRST_NAME', table 'ArbabTravelsERP.dbo.TBL_USER_PERSONAL_DETAILS'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 4:03:41 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 4:05:26 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 4:07:16 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 5:10:36 PM
+ Controller: Ticket
+ URL: http://localhost:50130/Ticket
+ Action: Index
+ Error Message: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 5:25:45 PM
+ Controller: Ticket
+ URL: http://localhost:50130/Ticket/Ticket
+ Action: Ticket
+ Error Message: Conversion failed when converting date and/or time from character string.
+The statement has been terminated.
+ Inner Exception: Conversion failed when converting date and/or time from character string.
+The statement has been terminated.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 5:30:03 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime28-Mar-17 7:02:45 PM
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: EXCEPTION OCCURED 1
+ Inner Exception: 11-Jun-15 12:00:00 AM
+ User: 15-Dec-16 12:00:00 AM
+ UserIP: 
+==================================================================
+==================================================================
+DateTime28-Mar-17 7:02:45 PM
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: Invalid object name '##TMP_EXPERIENCE'.
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime28-Mar-17 7:06:40 PM
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: EXCEPTION OCCURED 1
+ Inner Exception: 18-Jun-15 12:00:00 AM
+ User: 14-Dec-16 12:00:00 AM
+ UserIP: 
+==================================================================

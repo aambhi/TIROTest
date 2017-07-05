@@ -1,0 +1,65 @@
+﻿@model List<TIROERP.Core.Model.Candidate>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+    });
+</script>
+
+<div class="right_col">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Total No. of Candidates</h3>
+            </div>
+        </div>
+
+        <div class="x_content">
+            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="headings">
+                        <th>Registration No.</th>
+                        <th>Registration Date</th>
+                        <th>Candidate Name</th>
+                        <th>Contact No</th>
+                        <th>Passport No</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var candidate in Model)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(candidate.REGISTRATION_NO, "GetCandidateDetails", "StatusSearch", new { registrationNo = Convert.ToString(candidate.REGISTRATION_NO) }, new { })</td>
+                            <td>@Convert.ToDateTime(candidate.REGISTRATION_DATE).ToString("dd/MMM/yyyy")</td>
+                            <td>@Html.DisplayFor(modelItem => candidate.Candidate_Name)</td>
+                            <td>@Html.DisplayFor(modelItem => candidate.Contact_No)</td>
+                            <td>@Html.DisplayFor(modelItem => candidate.PASSPORT_NUMBER)</td>
+                            <td>@Convert.ToDateTime(candidate.DATE_OF_BIRTH).ToString("dd/MMM/yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

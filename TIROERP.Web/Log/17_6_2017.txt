@@ -1,0 +1,70 @@
+==================================================================
+DateTime17/06/2017 03:00:09
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the varchar value 'S020' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.StoreRead()
+ClientConnectionId:f597b545-739b-4ca9-b62e-9ebaa1b87ead
+Error Number:245,State:1,Class:16
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime17/06/2017 03:00:12
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/Update
+ Action: Update
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: Conversion failed when converting the varchar value 'S020' to data type int.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime17/06/2017 03:00:21
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetAgentDetails?registrationNo=A620170006
+ Action: GetAgentDetails
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: Conversion failed when converting the varchar value 'S020' to data type int.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime17/06/2017 03:02:38
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetAgentDetails?registrationNo=A620170006
+ Action: GetAgentDetails
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: Conversion failed when converting the varchar value 'S020' to data type int.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime17/06/2017 03:04:39
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetAgentDetails?registrationNo=A620170006
+ Action: GetAgentDetails
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: Conversion failed when converting the varchar value 'S020' to data type int.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime17/06/2017 03:10:53
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadContactDetailsPartialView?registrationNo=A620170006
+ Action: LoadContactDetailsPartialView
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

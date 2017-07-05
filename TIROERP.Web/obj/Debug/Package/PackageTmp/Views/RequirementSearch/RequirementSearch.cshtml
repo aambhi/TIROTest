@@ -1,0 +1,224 @@
+﻿@model IEnumerable<TIROERP.Core.Model.RequirementSearchResult>
+@{
+    ViewBag.Title = "RequirementSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+
+
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var allPages = '';
+    $(document).ready(function () {
+
+        var status = '@ViewData["Status"]'
+        if (status) {
+            $("#STATUS").val('True').trigger("chosen:updated");
+        }
+
+        var oTable = $('#common-grid').DataTable(
+              {
+                  "order": [],
+                  "columnDefs": [{
+                      "targets": 'no-sort',
+                      "orderable": false,
+                  }]
+
+              });
+        allPages = oTable.cells().nodes();
+
+
+        // $('#CLIENT_NAME').chosen();
+        $('#COMPANY_NAME_ID').chosen();
+        $('#STATUS').chosen();
+        $('#CLIENT_NAME').chosen();
+
+
+        $('#SEND_EMAIL').bind('click', function () {
+            var checkedRID = '';
+            $('.check-req:checkbox:checked').each(function () {
+                checkedRID += $(this).data('rid');
+            })
+            if (checkedRID == '') {
+                alert('Please select checkbox');
+                return false;
+            } else {
+                //open pop-up
+                var AgentDetailsPostBackURL = '@(Url.Action("GetAgentDetails"))';
+                //'/TIROERP.Web/RequirementSearch/GetAgentDetails';
+                var options = { "backdrop": "static", keyboard: true };
+                event.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: AgentDetailsPostBackURL,
+                    contentType: "application/json",
+                    datatype: "html",
+                    success: function (data) {
+                        if (data == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $('#SendEmailModal').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                    },
+                    error: function (jqxhr, status, error) {
+                        alert("Dynamic content load failed." + error);
+                    }
+                });
+            }
+
+        });
+
+        $('#checkAll').change(function () {
+            if ($(this).is(":checked")) {
+                console.log($(allPages).find('.check-req').length);
+                $(allPages).find('.check-req').prop('checked', true);
+            } else {
+                $(allPages).find('.check-req').prop('checked', false);
+            }
+
+        })
+
+    });
+
+
+    $("#closbtn").click(function () {
+        $('#myModal').modal('hide');
+    });
+</script>
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content" style="height:550px;width: 140%;">
+            <div id='SendEmailModal'></div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("RequirementSearch", "RequirementSearch", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Requirement Search</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        @if (ViewData["Success"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                                @ViewData["Success"]
+                            </div>
+                        }
+                        <div class="x_title">
+                            <h2>Requirement Search</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="step-5">
+                            <div id="candidateForm5" data-parsley-validate class="form-horizontal form-label-left">
+
+                                <div class="groupCompany career" id="divCandidate">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Contact Person</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*@Html.TextBox("CLIENT_NAME", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Client Name", @autocomplete = "off" })*@
+                                            @Html.DropDownList("CLIENT_NAME", ViewData["GetClient"] as SelectList, "", new { @id = "CLIENT_NAME", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Contact Person" })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Company Name</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownList("COMPANY_NAME_ID", ViewData["GetCompany"] as SelectList, "", new { @id = "COMPANY_NAME_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Company" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Job Title</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("JOB_TITLE", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Job Title", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Status <span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            @Html.DropDownList("STATUS", ViewData["GetStatus"] as SelectList, "", new { @id = "STATUS", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Status" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary" title="Search" name="SubmitButton" id="SubmitButton" value="Submit">Search</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Reset", "RequirementSearch")
+                                        </div>
+                                        <input type="button" class="btn btn-default" id="SEND_EMAIL" value="Send Email" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="x_content">
+                                <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th class="no-sort"><input type="checkbox" id="checkAll" /></th>
+                                            <th>Requirement Id</th>
+                                            <th>Company Name</th>
+                                            <th>Contact Person</th>
+                                            <th>Job Title</th>
+                                            <th>Status</th>
+                                            <th class="no-sort">Edit</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th><input type="checkbox" class="check-req" data-rid="@item.REQUIREMENT_ID" /></th>
+                                                    @*<td>  @string.Format("R00{0}", @item.REQUIREMENT_ID)</td>*@
+                                                    <td><a href="@Url.Action("ViewRequirementDetails", "RequirementSearch", new { requirementID = @item.REQUIREMENT_ID })" class="btn btn-primary btn-xs">@string.Format("R00{0}", @item.REQUIREMENT_ID)</a></td>
+                                                    <td>@item.COMPANY_NAME </td>
+                                                    <td>@item.CLIENT_NAME </td>
+                                                    <td>@item.JOB_TITLE</td>
+                                                    <td>@item.STATUS</td>
+
+                                                    <td><a href="@Url.Action("EditRequirementDetails", "Requirement", new { requirementID = @item.REQUIREMENT_ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>Edit</a></td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                            }

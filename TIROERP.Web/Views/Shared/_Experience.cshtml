@@ -1,0 +1,677 @@
+﻿@{
+    string expJSON = "";
+    var userExperience = new List<TIROERP.Core.Model.UserExperience>();
+
+    if (ViewBag.UserExperienceDetails != null)
+    {
+        userExperience = ViewBag.UserExperienceDetails as List<TIROERP.Core.Model.UserExperience>;
+
+        if (userExperience != null)
+        {
+            for (int i = 0; i < userExperience.Count; i++)
+            {
+                expJSON += "{\"EXPERIENCE_ID\":\"" + userExperience[i].EXPERIENCE_ID + "\",\"USER_COMPANY_NAME\":\"" + userExperience[i].USER_COMPANY_NAME + "\", \"INDUSTRY_ID\":\"" + userExperience[i].INDUSTRY_ID + "\",\"DESIGNATION_ID\":\"" + userExperience[i].DESIGNATION_ID + "\",\"WORK_PERIOD_FROM\":\"" + Convert.ToDateTime(userExperience[i].WORK_PERIOD_FROM).ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture) + "\" ,\"WORK_PERIOD_TO\":\"" + Convert.ToDateTime(userExperience[i].WORK_PERIOD_TO).ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture) + "\",\"WORK_CITY_CODE\":\"" + userExperience[i].WORK_CITY_CODE + "\",\"WORK_STATE_CODE\":\"" + userExperience[i].WORK_STATE_CODE + "\",\"IS_CURRENT_COMPANY\":\"" + userExperience[i].IS_CURRENT_COMPANY + "\",\"IsNew\" : \"" + true + "\",\"OTHER_COMPANY\":\"" + "" + "\",\"COUNTRY_CODE\":\"" + userExperience[i].COUNTRY_CODE + "\",\"OTHER_DESIGNATIONs\":\"" + "" + "\",\"SRNO\":\"" + i + "\"},";
+            }
+
+            expJSON = expJSON.TrimEnd(',');
+            expJSON = "[" + expJSON + "]";
+        }
+    }
+}
+
+<script type="text/javascript">
+    var lstOfUserExp = '@ViewBag.UserExperienceDetails';
+    experienceCollection = (typeof experienceCollection != 'undefined' && experienceCollection instanceof Array) ? experienceCollection : [];
+    if (lstOfUserExp != null && @expJSON.Length > 0) {
+        experienceCollection = "@expJSON".replace(/&quot;/g, '\"');
+        experienceCollection = JSON.parse(experienceCollection);
+    }
+    
+</script>
+
+<div class="groupCompany career" id="groupcompany">
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">Company Name</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("USER_COMPANY_NAME", ViewData["GetCompany"] as SelectList, "", new { @id = "USER_COMPANY_NAME", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Company", @tabindex = "69" })
+                @Html.TextBox("OTHER_COMPANY", "", new { @id = "OTHER_COMPANY", @class = "form-control col-md-7 col-xs-12", @placeholder = "Other Company Name", @autocomplete = "off", @style = "display:none;", @maxlength = "80", @tabindex = "70" })
+                @Html.ValidationMessage("USER_COMPANY_NAME", "", new { @class = "text-danger", @id = "Err_USER_COMPANY_NAME" })
+            </div>
+            <div class="col-xs-1 col-md-1">
+                <button type="button" class="addButton addCompany" id="SaveWork" tabindex="81"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">Currently Working</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="btn-group col-md-12 col-sm-12" data-toggle="buttons" style="z-index:1;">
+                    <label class="btn btn-default active">
+                        <input type="radio" name="currentlyworking" id="WorkNo" value="false" checked="checked" tabindex="71">
+                        No
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="currentlyworking" id="WorkYes" value="true" tabindex="72">
+                        Yes
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">Industry</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("INDUSTRY_ID", ViewData["GetIndustryDesignation"] as SelectList, "", new { @id = "INDUSTRY_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Industry", @tabindex = "73" })
+                @Html.ValidationMessage("INDUSTRY_ID", "", new { @class = "text-danger", @id = "Err_INDUSTRY_ID" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">Designation</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("DESIGNATION_ID", new SelectList(""), "", new { @id = "DESIGNATION_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Designation", @tabindex = "74" })
+                @Html.TextBox("OTHER_DESIGNATION", "", new { @id = "OTHER_DESIGNATION", @class = "form-control col-md-7 col-xs-12", @placeholder = "Other Designation", @autocomplete = "off", @style = "display:none;", @maxlength = "80", @tabindex = "75" })
+                @Html.ValidationMessage("DESIGNATION_ID", "", new { @class = "text-danger", @id = "Err_DESIGNATION_ID" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="contactperson">Work Period</label>
+            <div class="col-md-3 col-sm-3 datepicker" id="datepicker" data-date-format="dd/MM/yyyy">
+                @Html.TextBox("WORK_PERIOD_FROM", "", new { @id = "WORK_PERIOD_FROM", @class = "date-picker form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10", @tabindex = "76" })
+                @Html.ValidationMessage("WORK_PERIOD_FROM", "", new { @class = "text-danger", @id = "Err_WORK_PERIOD_FROM" })
+                <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+            </div>
+            <div class="col-md-3 col-sm-3 datepicker" id="datepicker" data-date-format="dd/MM/yyyy">
+                @Html.TextBox("WORK_PERIOD_TO", "", new { @id = "WORK_PERIOD_TO", @class = "date-picker form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10", @tabindex = "77" })
+                @Html.ValidationMessage("WORK_PERIOD_TO", "", new { @class = "text-danger", @id = "Err_WORK_PERIOD_TO" })
+                <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">Country</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("WORK_EXP_COUNTRY_CODE", ViewData["GetCountry"] as SelectList, "", new { @id = "WORK_EXP_COUNTRY_CODE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Country", @tabindex = "78" })
+                @Html.ValidationMessage("WORK_EXP_COUNTRY_CODE", "", new { @class = "text-danger", @id = "Err_WORK_EXP_COUNTRY_CODE" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">State</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("WORK_EXP_STATE_CODE", new SelectList(string.Empty, "STATE_CODE", "STATE_NAME"), "", new { @id = "WORK_EXP_STATE_CODE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select State", @tabindex = "79" })
+                @Html.ValidationMessage("WORK_EXP_STATE_CODE", "", new { @class = "text-danger", @id = "Err_WORK_EXP_STATE_CODE" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3">City</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("WORK_CITY_CODE", "", new { @id = "WORK_CITY_CODE", @class = "form-control col-md-7 col-xs-12", @placeholder = "City", @autocomplete = "off", @maxlength = "20", @tabindex = "80", @onkeypress = "return isAlphaNumeric(event)" })
+                @*@Html.DropDownList("WORK_CITY_CODE", new SelectList(string.Empty, "CITY_CODE", "CITY_NAME"), "Select City", new { @id = "WORK_CITY_CODE", @class = "form-control", @autocomplete = "off" })
+                    @Html.ValidationMessage("WORK_CITY_CODE", "", new { @class = "text-danger", @id = "Err_WORK_CITY_CODE" })*@
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>Company</th>
+                        <th>Designation</th>
+                        <th>Industry</th>
+                        <th>Work Period</th>
+                        <th>State-City</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tblwork">
+                        @if (userExperience != null && userExperience.Count > 0)
+                        {
+                            foreach (var expItem in userExperience)
+                            {
+                                <tr id='tr_old_row_exp_@expItem.EXPERIENCE_ID'>
+                                    <td data-companyId="@expItem.COMPANY_NAME">
+                                        @expItem.COMPANY_NAME
+                                        <input type="hidden" class="user_company_name" value="@expItem.USER_COMPANY_NAME" />
+                                    </td>
+                                    <td>
+                                        @expItem.DESIGNATION
+                                    </td>
+                                    <td>
+                                        @expItem.INDUSTRY_TYPE
+                                    </td>
+                                    <td data-work-period-from="@expItem.WORK_PERIOD_FROM">
+                                        @expItem.WORK_PERIOD_FROM - @expItem.WORK_PERIOD_TO
+                                    </td>
+                                    <td>
+                                        @expItem.STATE_NAME - @expItem.CITY_NAME
+                                    </td>
+                                    <td>
+                                        <a class="delete-exp" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#USER_COMPANY_NAME').chosen({width: "100%"});
+        $('#DESIGNATION_ID').chosen({width: "100%"});
+        $('#INDUSTRY_ID').chosen({width: "100%"});
+        $('#WORK_EXP_COUNTRY_CODE').chosen({width: "100%"});
+        $('#WORK_EXP_STATE_CODE').chosen({width: "100%"});
+
+        //$("#WORK_CITY_CODE").focusout(function () {
+        //    $("#SaveWork").focus();
+        //});
+
+        $(".exp_careerstatus").change(function () {
+            var IS_EXPERIENCED = $('input[name=careerstatus]:checked').val();
+            if (IS_EXPERIENCED == "false") {
+                $("#groupcompany").css("display", "none");
+                $("#TOTAL_WORK_EXPERIENCE").val('')
+                $("#TOTAL_GULF_EXPERIENCE").val('')
+                $("#tblwork").html('');
+                experienceCollection = new Array();
+            }
+            else {
+                $("#groupcompany").css("display", "block");
+            }
+        });
+
+        $("#USER_COMPANY_NAME").change(function () {
+            var compname = $("#USER_COMPANY_NAME option:selected").text();
+            if (compname == "Other") {
+                $("#OTHER_COMPANY").css("display", "block");
+            }
+            else {
+                $("#OTHER_COMPANY").css("display", "none");
+            }
+        });
+
+        //Show Other Designation
+        $("#DESIGNATION_ID").change(function () {
+            var designation = $("#DESIGNATION_ID option:selected").text();
+            if (designation == "Other") {
+                $("#OTHER_DESIGNATION").css("display", "block");
+            }
+            else {
+                $("#OTHER_DESIGNATION").css("display", "none");
+            }
+        });
+
+        //GetDesignation
+        $("#INDUSTRY_ID").change(function (e) {
+            $("#DESIGNATION_ID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDesignationByIndustry","Candidate")', // we are calling json method
+                dataType: 'json',
+                data: { industryId: $("#INDUSTRY_ID").val() },
+                dataType: "json",
+                async: true,
+                success: function (states) {
+                    if (states == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    $("#DESIGNATION_ID").append('<option value="0">--Select Designation--</option>');
+                    $.each(states.selectList, function (i, state) {
+                        $("#DESIGNATION_ID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                    $("#DESIGNATION_ID").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#DESIGNATION_ID").append('<option >--Select Designation--</option>');
+                }
+            });
+            return false;
+        });
+
+        //GetState
+        $("#WORK_EXP_COUNTRY_CODE").change(function () {
+            $("#WORK_EXP_STATE_CODE").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCountryStateCity", "Candidate")',
+                dataType: 'json',
+                data: { code: $("#WORK_EXP_COUNTRY_CODE").val(), type: "S" },
+                dataType: "json",
+                async: true,
+                success: function (states) {
+                    if (states == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    $("#WORK_EXP_STATE_CODE").append('<option value="0">--Select State--</option>');
+                    $.each(states.selectList, function (i, state) {
+                        $("#WORK_EXP_STATE_CODE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+                    $("#WORK_EXP_STATE_CODE").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#WORK_EXP_STATE_CODE").append('<option value="0">--Select State--</option>');
+                }
+            });
+            return false;
+        })
+
+        //GetCity
+        @*$("#WORK_EXP_STATE_CODE").change(function () {
+            $("#WORK_CITY_CODE").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCountryStateCity", "Candidate")',
+                dataType: 'json',
+                data: { code: $("#WORK_EXP_STATE_CODE").val(), type: "C" },
+                success: function (states) {
+                    $("#WORK_CITY_CODE").append('<option value="0">--Select City--</option>');
+                    $.each(states, function (i, state) {
+                        $("#WORK_CITY_CODE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+                    $("#WORK_CITY_CODE").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#WORK_CITY_CODE").append('<option value="0">--Select City--</option>');
+                }
+            });
+            return false;
+        })*@
+
+
+        $("#SaveWork").click(function (e) {
+            var isStepValid = true;
+
+            var USER_COMPANY_NAME = $("#USER_COMPANY_NAME").val();
+            var DESIGNATION_ID = $("#DESIGNATION_ID").val();
+            var INDUSTRY_ID = $("#INDUSTRY_ID").val();
+            var WORK_PERIOD_FROM = $("#WORK_PERIOD_FROM").val();
+            var WORK_PERIOD_TO = $("#WORK_PERIOD_TO").val();
+            var WORK_CITY_CODE = $("#WORK_CITY_CODE").val();
+            var Other_Company = $("#OTHER_COMPANY").val();
+            var Other_Designation = $("#OTHER_DESIGNATION").val();
+            var IS_EXPERIENCED = $('input[name=careerstatus]:checked').val();
+            var IS_CURRENT_STATUS = $('input[name=currentlyworking]:checked').val();
+
+            var WORK_COUNTRY = $("#WORK_EXP_COUNTRY_CODE").val();
+            var WORK_STATE = $("#WORK_EXP_STATE_CODE").val();
+
+
+            if (IS_EXPERIENCED == "true") {
+                if (USER_COMPANY_NAME == "") {
+                    $("#Err_USER_COMPANY_NAME").text("Please select Company");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_USER_COMPANY_NAME").text("");
+                }
+
+                if (DESIGNATION_ID == "" || DESIGNATION_ID == "0") {
+                    $("#Err_DESIGNATION_ID").text("Please select Designation");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_DESIGNATION_ID").text("");
+                }
+
+                if (INDUSTRY_ID == "") {
+                    $("#Err_INDUSTRY_ID").text("Please select Industry");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_INDUSTRY_ID").text("");
+                }
+
+                if (WORK_PERIOD_FROM == "") {
+                    $("#Err_WORK_PERIOD_FROM").text("Please select Work Period from");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_WORK_PERIOD_FROM").text("");
+                }
+
+                if (WORK_PERIOD_TO == "") {
+                    $("#Err_WORK_PERIOD_TO").text("Please select Work Period To");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_WORK_PERIOD_TO").text("");
+                }
+
+
+                if(!isDate(WORK_PERIOD_FROM)){
+                    $("#Err_WORK_PERIOD_FROM").text("Invalid Work Period from");
+                    isStepValid = false;
+                }
+                if(!isDate(WORK_PERIOD_TO)){
+                    $("#Err_WORK_PERIOD_TO").text("Invalid Work Period To");
+                    isStepValid = false;
+                }
+
+                if (WORK_COUNTRY == "" || WORK_COUNTRY == "0") {
+                    $("#Err_WORK_EXP_COUNTRY_CODE").text("Please select Country");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_WORK_EXP_COUNTRY_CODE").text("");
+                }
+                //if (WORK_STATE == "" || WORK_STATE == "0") {
+                //    $("#Err_WORK_EXP_STATE_CODE").text("Please select State");
+                //    isStepValid = false;
+                //}
+                //else {
+                //    $("#Err_WORK_EXP_STATE_CODE").text("");
+                //}
+                //if (WORK_CITY_CODE == "" || WORK_CITY_CODE == "0") {
+                //    $("#Err_WORK_CITY_CODE").text("Please select City");
+                //    isStepValid = false;
+                //}
+                //else {
+                //    $("#Err_WORK_CITY_CODE").text("");
+                //}
+
+
+
+                var compname = $("#USER_COMPANY_NAME option:selected").text();
+                if (compname == "Other") {
+                    if (Other_Company == "") {
+                        $("#Err_USER_COMPANY_NAME").text("Please select other Company");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#Err_USER_COMPANY_NAME").text("");
+                    }
+                }
+
+                var designation = $("#DESIGNATION_ID option:selected").text();
+                if (designation == "Other") {
+                    if (Other_Designation == "") {
+                        $("#Err_DESIGNATION_ID").text("Please select Designation");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#Err_DESIGNATION_ID").text("");
+                    }
+                }
+
+            }
+
+
+            if (isStepValid) {
+                var _compname = $("#USER_COMPANY_NAME option:selected").text();
+                if (_compname == "Other")
+                    _compname =Other_Company;
+
+                var _designation = $("#DESIGNATION_ID option:selected").text();
+                if (_designation == "Other")
+                    _designation=Other_Designation;
+
+                var row_id = experienceCollection.length + 1;
+                var row = "";
+                row += "<tr id ='tr_old_row_exp_" + row_id + "'><td data-companyId = " + $("#USER_COMPANY_NAME option:selected").val() + ">" + _compname + "</td><td>" + _designation + "</td>";
+                row += "<td>" + $("#INDUSTRY_ID option:selected").text() + "</td><td data-work-period-from = " + $("#WORK_PERIOD_FROM").val() +">" + $("#WORK_PERIOD_FROM").val() + "-" + $("#WORK_PERIOD_TO").val() + "</td>";
+                row += "<td>" + $("#WORK_EXP_STATE_CODE option:selected").text() + "-" + $("#WORK_CITY_CODE").val() + "</td>";
+                row += '<td><a onclick="fnDeleteExperience(' + row_id + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tblwork").append(row);
+
+                var addJson = { "EXPERIENCE_ID":"0","USER_COMPANY_NAME": USER_COMPANY_NAME, "INDUSTRY_ID": INDUSTRY_ID, "IsNew": "true", "DESIGNATION_ID": DESIGNATION_ID, "WORK_PERIOD_FROM": convertJSDate(WORK_PERIOD_FROM), "WORK_PERIOD_TO": convertJSDate(WORK_PERIOD_TO), "WORK_CITY_CODE": WORK_CITY_CODE, "WORK_STATE_CODE": WORK_STATE,"IS_CURRENT_COMPANY": IS_CURRENT_STATUS, "OTHER_COMPANY": $("#OTHER_COMPANY").val(), "COUNTRY_CODE": WORK_COUNTRY, "OTHER_DESIGNATION": Other_Designation,"SRNO":row_id };
+
+                var exists = !!_.where(experienceCollection, { "USER_COMPANY_NAME": USER_COMPANY_NAME , "WORK_PERIOD_FROM": WORK_PERIOD_FROM }).length;
+                if (!exists)
+                    experienceCollection.push(addJson);
+                else {
+                    var contact = $.grep(experienceCollection, function (e) { return (e.USER_COMPANY_NAME == USER_COMPANY_NAME && e.WORK_PERIOD_FROM == WORK_PERIOD_FROM); });
+                    if (contact && contact.length == 1) {
+                        contact[0].IsNew = 'false';
+                    }
+                }
+
+                var urlLink = '@Url.Action("CalculateExperience", "Candidate")';
+                var formdata = JSON.stringify({
+                    "LST_USER_EXPERIENCE": experienceCollection
+                });
+
+                $.ajax({
+                    contentType: "application/json",
+                    type: 'POST',
+                    url: urlLink,
+                    traditional: true,
+                    data: formdata,
+                    dataType: "json",
+                    async: true,
+                    success: function (d) {
+                        if (d == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $('#TOTAL_GULF_EXPERIENCE').val(d.gulftotalYearofExp);
+                        $('#TOTAL_WORK_EXPERIENCE').val(d.totalYearofExp);
+                    }
+                });
+
+                $("#WORK_PERIOD_FROM").val('');
+                $("#WORK_PERIOD_TO").val('');
+                $("#OTHER_COMPANY").val('');
+                $("#OTHER_COMPANY").css("display", "none");
+                $("#OTHER_DESIGNATION").val('');
+                $("#OTHER_DESIGNATION").css("display", "none");
+                $('#USER_COMPANY_NAME').val('').trigger("chosen:updated");
+                $('#INDUSTRY_ID').val('').trigger("chosen:updated");
+                $('#DESIGNATION_ID').val('').trigger("chosen:updated");
+                $('#WORK_EXP_COUNTRY_CODE').val('').trigger("chosen:updated");
+                $('#WORK_EXP_STATE_CODE').val('').trigger("chosen:updated");
+                $('#WORK_CITY_CODE').val('');
+                $("#WORK_PERIOD_FROM").datepicker("destroy");
+                $("#WORK_PERIOD_FROM").datepicker({
+                    maxDate: "-1D",
+                    changeMonth: true,
+                    changeYear: true, yearRange: "-70:+0",
+                    numberOfMonths: 1,
+                    dateFormat: "dd/mm/yy",
+                    onClose: function (selectedDate) {
+                        $("#WORK_PERIOD_TO").datepicker("option", "minDate", selectedDate);
+                    }
+                });
+                $("#WORK_PERIOD_TO").datepicker("destroy");
+                $("#WORK_PERIOD_TO").datepicker({
+                    maxDate: "D",
+                    changeMonth: true,
+                    changeYear: true, yearRange: "-70:+10",
+                    numberOfMonths: 1,
+                    dateFormat: "dd/mm/yy",
+                    onClose: function (selectedDate) {
+                        $("#WORK_PERIOD_FROM").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    function convertJSDate(_date) {
+        var dsplit = _date.split("/");
+        d = new Date(dsplit[2], dsplit[1] - 1, dsplit[0]);
+        return d;
+    }
+
+    function fnDeleteExperience(rowId) {
+        //var deletedRowId = $(this).closest("tr").attr("data-companyId");
+        var deletedRow = $('#tr_old_row_exp_' + rowId);
+        deletedRow.remove();
+
+        var contact = $.grep(experienceCollection, function (e) { return (e.SRNO == rowId); });
+        if (contact && contact.length == 1) {
+            contact[0].IsNew = 'false';
+        }
+
+        var urlLink = '@Url.Action("CalculateExperience", "Candidate")';
+        var formdata = JSON.stringify({
+            "LST_USER_EXPERIENCE": experienceCollection
+        });
+
+        $.ajax({
+            contentType: "application/json",
+            type: 'POST',
+            url: urlLink,
+            traditional: true,
+            data: formdata,
+            dataType: "json",
+            async: true,
+            success: function (d) {
+                if (d == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                $('#TOTAL_GULF_EXPERIENCE').val(d.gulftotalYearofExp);
+                $('#TOTAL_WORK_EXPERIENCE').val(d.totalYearofExp);
+            }
+        });
+
+    }
+
+    function DaysInMonth(date2_UTC) {
+        var monthStart = new Date(date2_UTC.getFullYear(), date2_UTC.getMonth(), 1);
+        var monthEnd = new Date(date2_UTC.getFullYear(), date2_UTC.getMonth() + 1, 1);
+        var monthLength = (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
+        return monthLength;
+    }
+
+    function calculateTotalExperience(experienceArr)
+    {
+        var totalyear = 0;
+        var totalmonth = 0;
+        var totalday = 0;
+
+        var gulftotalyear = 0;
+        var gulftotalmonth = 0;
+        var gulftotalday = 0;
+
+        _.each(experienceArr, function (d) {
+            if (d.IsNew == 'true') {
+                //var year = d.WORK_PERIOD_FROM.slice(6, 10);
+                //var month = d.WORK_PERIOD_FROM.slice(3, 5);
+                //month = parseInt(month, 10) - 1;
+                //var day = d.WORK_PERIOD_FROM.slice(0, 2);
+                //var fromdate = new Date(year, month, day);
+
+
+                //var tyear = d.WORK_PERIOD_TO.slice(6, 10);
+                //var tmonth = d.WORK_PERIOD_TO.slice(3, 5);
+                //tmonth = parseInt(tmonth, 10) - 1;
+                //var tday = d.WORK_PERIOD_TO.slice(0, 2);
+                //var todate = new Date(tyear, tmonth, tday);
+
+                var fromdate = d.WORK_PERIOD_FROM;
+                var todate = d.WORK_PERIOD_TO;
+
+                //convert to UTC
+                var date2_UTC = new Date(Date.UTC(todate.getUTCFullYear(), todate.getUTCMonth(), todate.getUTCDate()));
+                var date1_UTC = new Date(Date.UTC(fromdate.getUTCFullYear(), fromdate.getUTCMonth(), fromdate.getUTCDate()));
+
+                //--------------------------------------------------------------
+                var days = date2_UTC.getDate() - date1_UTC.getDate();
+                if (days < 0) {
+
+                    date2_UTC.setMonth(date2_UTC.getMonth() - 1);
+                    days += DaysInMonth(date2_UTC);
+                }
+                totalday = totalday + days;
+                //--------------------------------------------------------------
+                var months = date2_UTC.getMonth() - date1_UTC.getMonth();
+                if (months < 0) {
+                    date2_UTC.setFullYear(date2_UTC.getFullYear() - 1);
+                    months += 12;
+                }
+                totalmonth = totalmonth + months;
+                //--------------------------------------------------------------
+                var years = date2_UTC.getFullYear() - date1_UTC.getFullYear();
+                totalyear = totalyear + years;
+
+                //Calculate Gulf Experience
+                if (d.COUNTRY_CODE != "IND") {
+                    //var year = d.WORK_PERIOD_FROM.slice(6, 10);
+                    //var month = d.WORK_PERIOD_FROM.slice(3, 5);
+                    //month = parseInt(month, 10) - 1;
+                    //var day = d.WORK_PERIOD_FROM.slice(0, 2);
+                    //var fromdate = new Date(year, month, day);
+
+
+                    //var tyear = d.WORK_PERIOD_TO.slice(6, 10);
+                    //var tmonth = d.WORK_PERIOD_TO.slice(3, 5);
+                    //tmonth = parseInt(tmonth, 10) - 1;
+                    //var tday = d.WORK_PERIOD_TO.slice(0, 2);
+                    //var todate = new Date(tyear, tmonth, tday);
+
+                    var fromdate = d.WORK_PERIOD_FROM;
+                    var todate = d.WORK_PERIOD_TO;
+
+                    //convert to UTC
+                    var date2_UTC = new Date(Date.UTC(todate.getUTCFullYear(), todate.getUTCMonth(), todate.getUTCDate()));
+                    var date1_UTC = new Date(Date.UTC(fromdate.getUTCFullYear(), fromdate.getUTCMonth(), fromdate.getUTCDate()));
+
+                    //--------------------------------------------------------------
+                    var days = date2_UTC.getDate() - date1_UTC.getDate();
+                    if (days < 0) {
+
+                        date2_UTC.setMonth(date2_UTC.getMonth() - 1);
+                        days += DaysInMonth(date2_UTC);
+                    }
+                    gulftotalday = gulftotalday + days;
+                    //--------------------------------------------------------------
+                    var months = date2_UTC.getMonth() - date1_UTC.getMonth();
+                    if (months < 0) {
+                        date2_UTC.setFullYear(date2_UTC.getFullYear() - 1);
+                        months += 12;
+                    }
+                    gulftotalmonth = gulftotalmonth + months;
+                    //--------------------------------------------------------------
+                    var years = date2_UTC.getFullYear() - date1_UTC.getFullYear();
+                    gulftotalyear = gulftotalyear + years;
+                }
+            }
+
+        });
+
+        var yAppendix, mAppendix, dAppendix;
+        if (totalyear > 1) yAppendix = " years";
+        else yAppendix = " year";
+        if (totalmonth > 1) mAppendix = " months";
+        else mAppendix = " month";
+        if (totalday > 1) dAppendix = " days";
+        else dAppendix = " day";
+
+        var totalexp = totalyear + yAppendix + ", " + totalmonth + mAppendix + ", and " + totalday + dAppendix;
+        $('#TOTAL_WORK_EXPERIENCE').val(totalexp);
+
+        var yAppendix, mAppendix, dAppendix;
+        if (gulftotalyear > 1) yAppendix = " years";
+        else yAppendix = " year";
+        if (gulftotalmonth > 1) mAppendix = " months";
+        else mAppendix = " month";
+        if (gulftotalday > 1) dAppendix = " days";
+        else dAppendix = " day";
+
+        var gulftotalexp = gulftotalyear + yAppendix + ", " + gulftotalmonth + mAppendix + ", and " + gulftotalday + dAppendix;
+        $('#TOTAL_GULF_EXPERIENCE').val(gulftotalexp);
+    }
+</script>

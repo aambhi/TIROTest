@@ -1,0 +1,249 @@
+﻿@model TIROERP.Core.Model.Interview
+@{
+    ViewBag.Title = "Interview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datepicker" rel="stylesheet" />
+<script src="~/bundles/datepicker"></script>
+
+<link href="~/Content/css/chosen.css" rel="stylesheet" />
+<script src="~/Content/js/chosen.jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".chosen-select").chosen({
+            no_results_text: "Oops, nothing found!"
+        });
+
+        $("#InterviewModeId").chosen({
+            no_results_text: "Oops, nothing found!"
+        });
+
+        $("#InterviewDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        //Disable agent/Company
+        @*$("#Company_ID").change(function () {
+            var company = $("#Company_ID").val();
+            if (company != "" && company != "undefined") {
+                $('#Agent_ID').prop("disabled", true).trigger("chosen:updated");
+            }
+            else {
+                $('#Agent_ID').prop("disabled", false).trigger("chosen:updated");
+            }
+
+            $("#RequirementID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRequirementByCompany")', // we are calling json method
+                dataType: 'json',
+                data: { Company_id: $("#Company_ID").val() },
+                success: function (states) {
+                    $("#RequirementID").append('<option value="0">--Select Requirement--</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#RequirementID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                    $("#RequirementID").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#RequirementID").append('<option value="0">--Select Requirement--</option>');
+                }
+            });
+            return false;
+        });
+
+        $("#Agent_ID").change(function (e) {
+            var agent = $("#Agent_ID").val();
+            if (agent != "" && agent != "undefined") {
+                $('#Company_ID').prop("disabled", true);
+            }
+            else {
+                $('#Company_ID').prop("disabled", false);
+            }
+
+            $("#RequirementID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRequirementByContactPerson")', // we are calling json method
+                dataType: 'json',
+                data: { ContactPerson: $("#Agent_ID").val() },
+                success: function (states) {
+                    $("#RequirementID").append('<option value="0">--Select Requirement--</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#RequirementID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                    $("#RequirementID").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#RequirementID").append('<option value="0">--Select Requirement--</option>');
+                }
+            });
+            return false;
+        });*@
+
+        //Hide Venue/Expense on basis of Interview Mode
+        $("#InterviewModeId").change(function (e) {
+            var modeid = $("#InterviewModeId").val();
+            if (modeid == "2") {
+                $("#InterviewVenue").empty();
+                $("#InterviewExpenses").empty();
+
+                $('#InterviewVenue').prop("disabled", false).trigger("chosen:updated");
+                $('#InterviewExpenses').prop("disabled", false).trigger("chosen:updated");
+            }
+            else {
+                $('#InterviewVenue').prop("disabled", true).trigger("chosen:updated");
+                $('#InterviewExpenses').prop("disabled", true).trigger("chosen:updated");
+            }
+        });
+
+
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SaveRequirement").click(function (e) {
+           
+            var Req = $("#RequirementID").val();
+            if (Req == "" || Req == "0") {
+                $("#lblReq").show();
+                $("label[for = Req]").text("Please select Requirement");
+            }
+            else {
+                $("#lblReq").hide();
+                $("label[for = Req]").text("");
+            }
+
+            var IntMode = $("#InterviewModeId").val();
+            if (IntMode == "" || IntMode == "0") {
+                $("#lblIntMode").show();
+                $("label[for = IntMode]").text("Please select Interview Mode");
+            }
+            else {
+                $("#lblIntMode").hide();
+                $("label[for = IntMode]").text("");
+            }
+
+            var lblReq = $("#lblReq").text();
+            var lblIntMode = $("#lblIntMode").text();
+
+            if (lblReq != "" || lblIntMode != "") {
+                if ($(".alert-success").length) {
+                    $(".alert-success").remove();
+                    ViewData["Success"] = null;
+                }
+                return false;
+            }
+
+        });
+    });
+</script>
+@using (Html.BeginForm("Interview", "Interview", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Interview</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Interview Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            @if (@TempData["Success"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    @TempData["Success"]
+                                </div>
+                            }
+                            <!-- Tabs -->
+                            <br />
+
+                            <div id="requirementForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Requirement <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @*@Html.DropDownListFor(model => model.RequirementID, ViewData["GetRequirement"] as SelectList, "Select Requirement", new { @id = "RequirementID", @class = "form-control", @autocomplete = "off" })*@
+                                        @Html.DropDownList("Requirement_ID", (IEnumerable<SelectListItem>)ViewBag.GetRequirement, "Select Requirement",htmlAttributes:  new { @id = "RequirementID", @class = "form-control chosen-select", @autocomplete = "off" })
+                                        <label for="Req" id="lblReq" style="display:none;" class="text-danger"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Interview Mode<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @*@Html.DropDownListFor(model => model.InterviewModeId, ViewData["GetModeOfInterview"] as SelectList, "Select Mode of Interview", new { @id = "InterviewModeId", @class = "form-control", @autocomplete = "off" })*@
+                                        @Html.DropDownList("InterviewModeId", (IEnumerable<SelectListItem>)ViewBag.GetModeOfInterview, "Select Mode of Interview", htmlAttributes: new { @id = "InterviewModeId", @class = "form-control interviewMode", @autocomplete = "off" })
+                                        <label for="IntMode" id="lblIntMode" style="display:none;" class="text-danger"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Date</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.InterviewDate, new { @id = "InterviewDate", @class = "form-control  date-picker", @placeholder = "Interview Date", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.InterviewDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Venue</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.InterviewVenue, new { @id = "InterviewVenue", @class = "form-control  date-picker", @placeholder = "Interview Venue", @autocomplete = "off", @maxlength = "20" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Expense</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.InterviewExpenses, new { @id = "InterviewExpenses", @class = "form-control  date-picker", @placeholder = "Interview Expenses", @autocomplete = "off", @maxlength = "5" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.InterviewRemark, new { @id = "InterviewRemark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success" id="SaveRequirement">Submit</button>
+                                    <div class="btn btn-default">
+                                        @Html.ActionLink("Cancel", "Interview")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

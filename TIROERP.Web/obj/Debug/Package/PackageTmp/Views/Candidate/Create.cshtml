@@ -1,0 +1,1652 @@
+﻿@model TIROERP.Core.Model.Candidate
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/wizard")
+@Styles.Render("~/Content/wizard")
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+<script src="~/Content/js/AttachmentUpload.js"></script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+     <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Candidate</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Candidate Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div class="x_content">
+                            @if (@ViewBag.RegNo != null)
+                            {
+                                string iserror = ViewBag.RegNo;
+                                if (iserror.Contains("Error"))
+                                {
+                            <div class="alert alert-danger alert-dismissable" id="divPostSucsessMsg">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                                @ViewBag.RegNo
+                            </div>
+                                }
+                                else
+                                {
+                            <div class="alert alert-success alert-dismissable" id="divPostErrorMsg">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                                Success! Well done its submitted : @ViewBag.RegNo
+                            </div>
+                                }
+                            }
+                            <div class="alert alert-danger alert-dismissable" id="divDupError" style="display:none;">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="alert alert-success alert-dismissable" id="divSuccessMsg" style="display:none;">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                            </div>
+                            <!-- Tabs -->
+                            <br />
+
+                            <!-- Smart Wizard -->
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr">
+                                                Step 1<br />
+                                                <small>Official Details</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr">
+                                                Step 2<br />
+                                                <small>Personal Details</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr">
+                                                Step 3<br />
+                                                <small>Contact Details</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-4">
+                                            <span class="step_no">4</span>
+                                            <span class="step_descr">
+                                                Step 4<br />
+                                                <small>Education Details</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-5">
+                                            <span class="step_no">5</span>
+                                            <span class="step_descr">
+                                                Step 5<br />
+                                                <small>Work Experience Details</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-6">
+                                            <span class="step_no">6</span>
+                                            <span class="step_descr">
+                                                Step 6<br />
+                                                <small>Upload Documents</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="step-1">
+                                    @Html.HiddenFor(model => model.REGISTRATION_NO);
+                                    <h2 class="StepTitle">Step 1 Official Details</h2>
+                                    <div id="candidateForm1" data-parsley-validate class="form-horizontal form-label-left">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Availing For <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.DropDownListFor(model => model.AVAILING_TYPE_ID, ViewData["GetAvailingType"] as SelectList, "", new { @id = "AVAILING_TYPE_ID", @class = "form-control", @data_placeholder = "Select Availing For" ,@tabindex="1"})
+                                                @Html.ValidationMessageFor(model => model.AVAILING_TYPE_ID, "", new { @class = "text-danger", @id = "ErrItem_AVAILING_TYPE_ID" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Source <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.DropDownListFor(model => model.SOURCE_ID, ViewData["GetSource"] as SelectList, "", new { @id = "SOURCE_ID", @class = "form-control", @data_placeholder = "Select Source", @tabindex = "2" })
+                                                @Html.ValidationMessageFor(model => model.SOURCE_ID, "", new { @class = "text-danger", @id = "ErrItem_SOURCE_ID" })
+                                                <div id="divOtherSource" style="display:none;margin-top: 10px;">
+                                                    @Html.DropDownListFor(model => model.OTHER_SOURCE, new SelectList(""), "Select Other Source", new { @id = "OTHER_SOURCE", @class = "form-control", @style = "width:100%;", @data_placeholder = "Select Other Source", @tabindex = "3" })
+                                                </div>
+                                                <div id="divReferrer" style="display:none;margin-top: 10px;">
+                                                    @Html.TextBoxFor(model => model.REFERRER_NAME, new { @id = "REFERRER_NAME", @class = "form-control", @placeholder = "Referrer Name", @maxlength = "20", @tabindex = "4" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.DropDownListFor(model => model.STATUS_ID, ViewData["GetStatus"] as SelectList, "", new { @id = "STATUS_ID", @class = "form-control", @data_placeholder = "Select Status", @tabindex = "5" })
+                                                @Html.ValidationMessageFor(model => model.STATUS_ID, "", new { @class = "text-danger", @id = "ErrItem_STATUS_ID" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Post Applied For</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.POST_APPLIED_FOR, new { @id = "POST_APPLIED_FOR", @class = "form-control", @placeholder = "Post Applied For", @maxlength = "50", @tabindex = "6", @onkeypress = "return isAlphaNumeric(event)" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">File No.</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.FILE_NO, new { @id = "FILE_NO", @class = "form-control", @placeholder = "File No", @maxlength = "20", @tabindex = "7" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Requirement </label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.DropDownListFor(model => model.REQUIREMENT_ID, ViewData["GetRequirementMaster"] as SelectList, "", new { @id = "REQUIREMENT_ID", @class = "form-control", @data_placeholder = "Select Reqirement", @tabindex = "8" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Visa Number</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.DropDownListFor(model => model.VISA_ID, ViewData["GetVisaMaster"] as SelectList, "", new { @id = "VISA_ID", @class = "form-control", @data_placeholder = "Select Visa Number", @tabindex = "9" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Login Access </label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @{
+                                                    List<SelectListItem> listLoginAccess = new List<SelectListItem>();
+                                                    listLoginAccess.Add(new SelectListItem
+                                                    {
+                                                        Text = "Yes",
+                                                        Value = "Yes"
+                                                    });
+                                                    listLoginAccess.Add(new SelectListItem
+                                                    {
+                                                        Text = "No",
+                                                        Value = "No"
+                                                    });
+                                                }
+                                                @Html.DropDownListFor(model => model.LOGIN_ACCESS, new SelectList(listLoginAccess, "Value", "Text", "No"), "Select Login Access", new { @id = "LOGIN_ACCESS", @class = "form-control", @disabled = "disabled" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextAreaFor(model => model.REMARK, new { @id = "REMARK", @class = "form-control", @placeholder = "Remark", @maxlength = "1000", @tabindex = "10" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="step-2">
+                                    <h2 class="StepTitle">Step 2 Personal Details</h2>
+                                    <div class="col-md-12" style="margin-top:10px">
+                                        <div class="col-md-9">
+                                            <div id="candidateForm2" data-parsley-validate class="form-horizontal form-label-left">
+                                                <div class="form-group">
+                                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Full Name  <span class="required">*</span></label>
+                                                    <div class="col-md-3 col-sm-3">
+                                                        @Html.TextBoxFor(model => model.FIRST_NAME, new { @id = "FIRST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "First Name", @maxlength = "50", @tabindex = "11", @onkeypress = "return isAlphaNumeric(event)" })
+                                                        @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger", @id = "ErrItem_FIRST_NAME" })
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2">
+                                                        @Html.TextBoxFor(model => model.MIDDLE_NAME, new { @id = "MIDDLE_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Middle Name", @maxlength = "50", @tabindex = "12", @onkeypress = "return isAlphaNumeric(event)" })
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3">
+                                                        @Html.TextBoxFor(model => model.LAST_NAME, new { @id = "LAST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Last Name", @maxlength = "50", @tabindex = "13", @onkeypress = "return isAlphaNumeric(event)" })
+                                                        @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger", @id = "ErrItem_LAST_NAME" })
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Father Name</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.FATHER_NAME, new { @id = "FATHER_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Father Name", @maxlength = "80", @tabindex = "14", @onkeypress = "return isAlphaNumeric(event)" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Mother Name</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.MOTHER_NAME, new { @id = "MOTHER_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Mother Name", @maxlength = "80", @tabindex = "15", @onkeypress = "return isAlphaNumeric(event)" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Gender <span class="required">*</span>  </label>
+                                                    <div class="col-md-6 col-sm-6">
+                                                        @Html.DropDownListFor(model => model.GENDER_CODE, ViewData["GetGender"] as SelectList, "", new { @id = "GENDER_CODE", @class = "form-control", @data_placeholder = "Select Gender", @tabindex = "16" })
+                                                        @Html.ValidationMessageFor(model => model.GENDER_CODE, "", new { @class = "text-danger", @id = "ErrItem_GENDER_CODE" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date of Birth <span class="required">*</span> </label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DATE_OF_BIRTH, new { @id = "DATE_OF_BIRTH", @class = "form-control", @placeholder = "DD/MM/YYYY", @maxlength = "10", @tabindex = "17" })
+                                                        @Html.ValidationMessageFor(model => model.DATE_OF_BIRTH, "", new { @class = "text-danger", @id = "ErrItem_DATE_OF_BIRTH" })
+                                                        <span id="textBoxName"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Place of Birth <span class="required">*</span></label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.PLACE_OF_BIRTH, new { @id = "PLACE_OF_BIRTH", @class = "form-control", @placeholder = "Place of Birth", @maxlength = "50", @tabindex = "18", @onkeypress = "return isAlphaNumeric(event)" })
+                                                        @Html.ValidationMessageFor(model => model.PLACE_OF_BIRTH, "", new { @class = "text-danger", @id = "ErrItem_PLACE_OF_BIRTH" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Martial Status</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.DropDownListFor(model => model.MARITAL_STATUS_ID, ViewData["GetMaritalStatus"] as SelectList, "", new { @id = "MARITAL_STATUS_ID", @class = "form-control", @data_placeholder = "Select Marital Status", @tabindex = "19" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Nationality <span class="required">*</span></label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.DropDownListFor(model => model.NATIONALITY_ID, ViewData["GetNationality"] as SelectList, "", new { @id = "NATIONALITY_ID", @class = "form-control", @data_placeholder = "Select Nationality", @tabindex = "20" })
+                                                        @Html.ValidationMessageFor(model => model.NATIONALITY_ID, "", new { @class = "text-danger", @id = "ErrItem_NATIONALITY_ID" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Current Location <span class="required">*</span></label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.CURRENT_LOCATION, new { @id = "CURRENT_LOCATION", @class = "form-control", @placeholder = "Current Location", @maxlength = "20", @tabindex = "21" })
+                                                        @*@Html.DropDownListFor(model => model.CURRENT_LOCATION, ViewData["GetLocation"] as SelectList, "Select Current Location", new { @id = "CURRENT_LOCATION", @class = "form-control" })*@
+                                                        @Html.ValidationMessageFor(model => model.CURRENT_LOCATION, "", new { @class = "text-danger", @id = "ErrItem_CURRENT_LOCATION", @onkeypress = "return isAlphaNumeric(event)" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Religion<span class="required">*</span></label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.DropDownListFor(model => model.RELIGION_ID, ViewData["GetReligion"] as SelectList, "", new { @id = "RELIGION_ID", @class = "form-control", @data_placeholder = "Select Religion", @tabindex = "22" })
+                                                        @Html.ValidationMessageFor(model => model.RELIGION_ID, "", new { @class = "text-danger", @id = "ErrItem_RELIGION_ID" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="padding-left:90px;">
+                                                    @Html.Partial("~/Views/Shared/_Language.cshtml")
+                                                </div>
+                                                <hr />
+                                                <h4>Passport Details</h4>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Passport No</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.PASSPORT_NUMBER, new { @id = "PASSPORT_NUMBER", @class = "form-control", @placeholder = "Passport No", @maxlength = "20", @tabindex = "28", @onkeypress = "return isAlphaNumeric(event)" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Place Of Issue</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.PLACE_OF_ISSUE, new { @id = "PLACE_OF_ISSUE", @class = "form-control", @placeholder = "Place of Issue", @maxlength = "20", @tabindex = "29", @onkeypress = "return isAlphaNumeric(event)" })
+                                                        @Html.ValidationMessageFor(model => model.PLACE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_POI" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group input-daterange">
+                                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date of Issue </label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DATE_OF_ISSUE, new { @id = "DATE_OF_ISSUE", @class = "form-control", @placeholder = "DD/MM/YYYY", @maxlength = "20", @tabindex = "30" })
+                                                        @Html.ValidationMessageFor(model => model.DATE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DOI" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group input-daterange">
+                                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date Of Expiry</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DATE_OF_EXPIRY, new { @id = "DATE_OF_EXPIRY", @class = "form-control", @placeholder = "DD/MM/YYYY", @maxlength = "20", @tabindex = "31" })
+                                                        @Html.ValidationMessageFor(model => model.DATE_OF_EXPIRY, "", new { @class = "text-danger", @id = "ErrItem_DOE" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Emigration Clearance </label>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        @{
+                                                            List<SelectListItem> listEmigration = new List<SelectListItem>();
+                                                            listEmigration.Add(new SelectListItem
+                                                            {
+                                                                Text = "Required",
+                                                                Value = "true"
+                                                            });
+                                                            listEmigration.Add(new SelectListItem
+                                                            {
+                                                                Text = "Not Required",
+                                                                Value = "false"
+                                                            });
+                                                        }
+                                                        @Html.DropDownListFor(model => model.EMIGRATION_CLEARANCE_REQUIRED, listEmigration, "", new { @id = "EMIGRATION_CLEARANCE_REQUIRED", @class = "form-control", @data_placeholder = "Select Emigration", @tabindex = "32" })
+                                                        @Html.ValidationMessageFor(model => model.EMIGRATION_CLEARANCE_REQUIRED, "", new { @class = "text-danger", @id = "ErrItem_EMIGRATION" })
+                                                    </div>
+                                                </div>
+
+                                                <hr />
+                                                <h4>Driving License Details</h4>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Driving License No</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DRIVING_LICENCE_NUMBER, new { @id = "DRIVING_LICENCE_NUMBER", @class = "form-control", @placeholder = "Driving License No.", @maxlength = "20", @tabindex = "33" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Place Of Issue</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DRIVING_PLACE_OF_ISSUE, new { @id = "DRIVING_PLACE_OF_ISSUE", @class = "form-control", @placeholder = "Place of Issue", @maxlength = "20", @tabindex = "34", @onkeypress = "return isAlphaNumeric(event)" })
+                                                        @Html.ValidationMessageFor(model => model.DRIVING_PLACE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DPOI" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4" for="contactperson">Date Of Issue</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DRIVING_DATE_OF_ISSUE, new { @id = "DRIVING_DATE_OF_ISSUE", @class = "form-control", @placeholder = "DD/MM/YYYY", @maxlength = "20", @tabindex = "35" })
+                                                        @Html.ValidationMessageFor(model => model.DRIVING_DATE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DDOI" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4" for="contactperson">Date Of Expiry</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBoxFor(model => model.DRIVING_EXPIRY_DATE, new { @id = "DRIVING_EXPIRY_DATE", @class = "date-picker form-control", @placeholder = "DD/MM/YYYY", @maxlength = "20", @tabindex = "36" })
+                                                        @Html.ValidationMessageFor(model => model.DRIVING_EXPIRY_DATE, "", new { @class = "text-danger", @id = "ErrItem_DDOE" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Vehicle Type</label>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+
+                                                        @Html.DropDownListFor(model => model.VEHICLE_TYPE_ID, ViewData["GetVehicleType"] as SelectList, "", new { @id = "VEHICLE_TYPE_ID", @class = "form-control", @data_placeholder = "Select Vehicle Type", @tabindex = "37" })
+                                                        @Html.ValidationMessageFor(model => model.VEHICLE_TYPE_ID, "", new { @class = "text-danger", @id = "ErrItem_VEHICLETYPE" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Remark</label>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextAreaFor(model => model.DRIVING_REMARK, new { @id = "DRIVING_REMARK", @class = " form-control", @placeholder = "Remark", @maxlength = "1000", @tabindex = "38" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                                <div>
+                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="fileupload" id="SaveImage"></span>
+                                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
+                                            </div>
+                                            @Html.HiddenFor(model => model.FILE_PATH)
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="step-3">
+                                    <h2 class="StepTitle">Step 3 Contact Details</h2>
+                                    <div id="candidateForm3" class="form-horizontal form-label-left">
+                                        @Html.Partial("~/Views/Shared/_Address.cshtml")
+                                        @Html.Partial("~/Views/Shared/_Contact.cshtml")
+                                        @Html.Partial("~/Views/Shared/_Email.cshtml")
+
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Website</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.WEBSITE, new { @id = "WEBSITE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Website", @maxlength = "50", @tabindex = "52" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Skype</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.SKYPE, new { @id = "SKYPE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Skype", @maxlength = "50", @tabindex = "53" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextAreaFor(model => model.CONTACT_REMARK, new { @id = "CONTACT_REMARK", @class = " form-control col-md-7 col-xs-12", @placeholder = "Remark", @maxlength = "1000", @tabindex = "54" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step-4">
+                                    <h2 class="StepTitle">Step 4 Educational Details</h2>
+                                    <div id="candidateForm4" data-parsley-validate class="form-horizontal form-label-left">
+
+                                        @Html.Partial("~/Views/Shared/_Education.cshtml")
+                                        @Html.Partial("~/Views/Shared/_Certification.cshtml")
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextAreaFor(model => model.EDUCATION_REMARK, new { @id = "EDUCATION_REMARK", @class = "date-picker form-control col-md-7 col-xs-12", @placeholder = "Remark", @maxlength = "1000", @tabindex = "67" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step-5">
+                                    <h2 class="StepTitle">Step 5 Work Experience Details</h2>
+                                    <div id="candidateForm5" data-parsley-validate class="form-horizontal form-label-left">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Career Status</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="btn-group" data-toggle="buttons" id="isExp" style="z-index:1;">
+                                                    <label class="btn btn-default active">
+
+                                                        <input type="radio" name="careerstatus" id="Experience" class="exp_careerstatus" value="true" checked="checked" tabindex="68">
+                                                        Experienced
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="radio" name="careerstatus" class="exp_careerstatus" id="Fresher" value="false">
+                                                        Fresher
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @Html.Partial("~/Views/Shared/_Experience.cshtml")
+
+                                        <div class="form-group career ">
+                                            <label class="control-label col-md-3 col-sm-3">Total Work Experience</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.TOTAL_WORK_EXPERIENCE, new { @id = "TOTAL_WORK_EXPERIENCE", @class = "form-control", @placeholder = "Total Work Experience", @readonly = "readonly", @tabindex = "82" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group career">
+                                            <label class="control-label col-md-3 col-sm-3">Total Gulf Experience</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.TOTAL_GULF_EXPERIENCE, new { @id = "TOTAL_GULF_EXPERIENCE", @class = "form-control", @placeholder = "Total Gulf Experiemce", @readonly = "readonly", @tabindex = "83" })
+                                            </div>,
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Skills</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => model.SKILLS, new { @id = "SKILLS", @class = "form-control", @placeholder = "Skills", @maxlength = "50", @tabindex = "84" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextAreaFor(model => model.WORK_REMARK, new { @id = "WORK_REMARK", @class = "form-control", @placeholder = "Remark", @maxlength = "1000", @tabindex = "85" })
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="step-6">
+                                    <h2 class="StepTitle">Step 6 Upload Documents</h2>
+                                    <div id="candidateForm6" data-parsley-validate class="form-horizontal form-label-left">
+                                        @Html.Partial("~/Views/Shared/_Document.cshtml")
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(model => model.USER_TYPE_ID)
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /page content -->
+                                                            }
+@*For Progress Bar*@
+<div id="progressBar" style="margin: 0px; padding: 0px; position: fixed; right: 0px;
+                top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
+                opacity: .8; filter: alpha(opacity=70);display:none">
+    <p style="position: fixed; top: 20%; left: 30%; color: White;">
+        <img src="@Url.Content("~/Content/img/please_wait.gif")">
+    </p>
+</div>
+@*For Progress Bar [end]*@
+
+<script type="text/javascript">
+
+    var addressCollection = new Array();
+    var contactCollection = new Array();
+    var emailCollection = new Array();
+    var educationCollection = new Array();
+    var certificationCollection = new Array();
+    var experienceCollection = new Array();
+    var documentCollection = new Array();
+    var languageCollection = new Array();
+
+    function isAlphaNumeric() {
+        var charCode = event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) ||
+              (charCode >= 65 && charCode <= 90) ||
+              (charCode >= 97 && charCode <= 122) || charCode ==32)
+            return true;
+
+        return false;
+    }
+
+    function isDate(txtDate) {
+        var currVal = txtDate;
+        if (currVal == '')
+            return false;
+
+        //Declare Regex
+        var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+        var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+        if (dtArray == null)
+            return false;
+
+        //Checks for mm/dd/yyyy format.
+        dtMonth = dtArray[3];
+        dtDay = dtArray[1];
+        dtYear = dtArray[5];
+
+        if (dtMonth < 1 || dtMonth > 12)
+            return false;
+        else if (dtDay < 1 || dtDay > 31)
+            return false;
+        else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+            return false;
+        else if (dtMonth == 2) {
+            var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+            if (dtDay > 29 || (dtDay == 29 && !isleap))
+                return false;
+        }
+        return true;
+    }
+
+    $(document).ready(function () {
+
+        //Set Default value
+        $("#NATIONALITY_ID").val('1');
+        $("#STATUS_ID").val('1');
+
+        $("#LOGIN_ACCESS").chosen();
+        $("#GENDER_CODE").chosen();
+        $("#MARITAL_STATUS_ID").chosen();
+        $("#NATIONALITY_ID").chosen();
+        //$("#CURRENT_LOCATION").chosen();
+        $("#RELIGION_ID").chosen();
+        $("#IS_EMIGRATION").chosen();
+        $("#EMIGRATION_CLEARANCE_REQUIRED").chosen();
+        $("#VEHICLE_TYPE_ID").chosen();
+        $("#AVAILING_TYPE_ID").chosen();
+        $("#SOURCE_ID").chosen();
+        $("#STATUS_ID").chosen();
+        $("#VISA_ID").chosen();
+        $("#REQUIREMENT_ID").chosen();
+        $("#OTHER_SOURCE").chosen();
+        $('#LANGUAGE_ID').chosen({ width: "100%" });
+
+        var source = $("#SOURCE_ID").val();
+        if (source == "5" || source == "8") {
+            $("#divReferrer").css("display", "block");
+            $("#divOtherSource").css("display", "none");
+        }
+        else if (source == "2" || source == "3" || source == "4" || source == "6") {
+            $("#divOtherSource").css("display", "block");
+            $("#divReferrer").css("display", "none");
+            $("#OTHER_SOURCE").attr("width", "100%");
+        }
+        else {
+            $("#divReferrer").css("display", "none");
+            $("#divOtherSource").css("display", "none");
+        }
+
+        //Initialise Datepicker
+        $("#DATE_OF_BIRTH").datepicker({
+            maxDate: "-1D",
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-70:+0",
+        });
+        $("#DATE_OF_ISSUE").datepicker({
+            maxDate: "-1D",
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+0",
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#DATE_OF_EXPIRY").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#DATE_OF_EXPIRY").datepicker({
+
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#DATE_OF_ISSUE").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        $("#DRIVING_DATE_OF_ISSUE").datepicker({
+            maxDate: "-1D",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+0",
+            numberOfMonths: 1,
+            dateFormat: "dd/mm/yy",
+            onClose: function (selectedDate) {
+                $("#DRIVING_EXPIRY_DATE").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#DRIVING_EXPIRY_DATE").datepicker({
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+30",
+            numberOfMonths: 1,
+            dateFormat: "dd/mm/yy",
+            onClose: function (selectedDate) {
+                $("#DRIVING_DATE_OF_ISSUE").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        $("#WORK_PERIOD_FROM").datepicker({
+            maxDate: "-1D",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+0",
+            numberOfMonths: 1,
+            dateFormat: "dd/mm/yy",
+            onClose: function (selectedDate) {
+                $("#WORK_PERIOD_TO").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#WORK_PERIOD_TO").datepicker({
+            maxDate: "D",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+            numberOfMonths: 1,
+            dateFormat: "dd/mm/yy",
+            onClose: function (selectedDate) {
+                $("#WORK_PERIOD_FROM").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        $("#REMARK").focusout(function () {
+            $(".btn-success").focus();
+        });
+
+        $("#DRIVING_REMARK").focusout(function () {
+            $(".btn-success").focus();
+        });
+        $("#CONTACT_REMARK").focusout(function () {
+            $(".btn-success").focus();
+        });
+        $("#EDUCATION_REMARK").focusout(function () {
+            $(".btn-success").focus();
+        });
+        $("#WORK_REMARK").focusout(function () {
+            $(".btn-success").focus();
+        });
+        $("#DOCUMENT_PATH").focusout(function () {
+            $(".btn-default").focus();
+        });
+
+
+        $('#wizard').smartWizard({
+            keyNavigation: false,
+            onLeaveStep: leaveAStepCallback,
+            onFinish: onFinishCallback,
+
+        });
+
+        function leaveAStepCallback(obj, context) {
+            return validateSteps(context.fromStep, context.toStep); // return false to stay on step and true to continue navigation
+        }
+
+        function onFinishCallback(objs, context) {
+            var regNo = $("#REGISTRATION_NO").val();
+            if (regNo != "") {
+                $('#progressBar').show();
+                var urlLink = '@Url.Action("Update", "StatusSearch")';
+                var formData = JSON.stringify({
+                    "LST_USER_DOCUMENT": documentCollection,
+                    "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                    "CONDITIONAL_OPERATOR": "CANDIDATE_DOCUMENT_DETAILS"
+                });
+
+                $.ajax({
+                    contentType: "application/json",
+                    type: 'POST',
+                    url: urlLink,
+                    traditional: true,
+                    data: formData,
+                    dataType: "json",
+                    async: true,
+                    success: function (data) {
+                        if (data == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $('#progressBar').hide();
+                        window.location.href = '@Url.Action("Create", "Candidate")' + '?id=1' + '&RegNo=' + $("#REGISTRATION_NO").val();
+                        //$("#divSuccessMsg").html("Document details saved Successfully. Registration No: " + d.REGISTRATION_NO);
+                        //$("#divSuccessMsg").show();
+                        return true;
+                    },
+                    error: function (ex) {
+                        $('#progressBar').hide();
+                        $("#divSuccessMsg").hide();
+                        $("#divDupError").hide();
+                    }
+                });
+            }
+        }
+
+        function convertJSDate(_date) {
+            var dsplit = _date.split("/");
+            d = new Date(dsplit[2], dsplit[1] - 1, dsplit[0]);
+            return d;
+        }
+
+        // Your Step validation logic
+        function validateSteps(stepnumber, toStep) {
+            var isStepValid = true;
+            if (stepnumber > toStep)
+                return isStepValid;
+
+            // validate step 1
+            if (stepnumber == 1) {
+                $("body").scrollTop(0);
+                // Your step validation logic
+                // set isStepValid = false if has errors
+
+                var availingtype = $("#AVAILING_TYPE_ID").val();
+                if (availingtype == "") {
+                    $("#ErrItem_AVAILING_TYPE_ID").text("Please select Availing For");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_AVAILING_TYPE_ID").text("");
+                }
+
+                var source = $("#SOURCE_ID").val();
+                if (source == "" || source == "0") {
+                    $("#ErrItem_SOURCE_ID").text("Please select Source");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_SOURCE_ID").text("");
+                }
+
+                var status = $("#STATUS_ID").val();
+                if (status == "") {
+                    $("#ErrItem_STATUS_ID").text("Please select Status");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_STATUS_ID").text("");
+                }
+
+                if (isStepValid) {
+                    var regNo = $("#REGISTRATION_NO").val();
+                    if (regNo != "") {
+                        $('#progressBar').show();
+                        var urlLink = '@Url.Action("Update", "StatusSearch")';
+                        var formData = JSON.stringify({
+
+                            "AVAILING_TYPE_ID": $("#AVAILING_TYPE_ID").val(),
+                            "SOURCE_ID": $("#SOURCE_ID").val(),
+                            "OTHER_SOURCE": $("#OTHER_SOURCE").val(),
+                            "REFERRER_NAME": $("#REFERRER_NAME").val(),
+                            "STATUS_ID": $("#USER_STATUS_ID").val(),
+                            "POST_APPLIED_FOR": $("#POST_APPLIED_FOR").val(),
+                            "FILE_NO": $("#FILE_NO").val(),
+                            "REQUIREMENT_ID": $("#REQUIREMENT_ID").val(),
+                            "VISA_ID": $("#VISA_ID").val(),
+                            "LOGIN_ACCESS": $("#LOGIN_ACCESS").val() === "" ? false : true,
+                            "REMARK": $("#REMARK").val(),
+
+                            "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                            "CONDITIONAL_OPERATOR": "UPDATE_OFFICIAL_DETAILS"
+                        });
+
+                        $.ajax({
+                            contentType: "application/json",
+                            type: 'POST',
+                            url: urlLink,
+                            traditional: true,
+                            data: formData,
+                            dataType: "json",
+                            async: true,
+                            success: function (d) {
+                                if (d == "SessionTimeout") {
+                                    window.location.href = '@Url.Action("LogOut", "Login")';
+                                }
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").html("Official details saved Successfully. Registration No: " + d.REGISTRATION_NO);
+                                $("#divSuccessMsg").show();
+                                return true;
+                            },
+                            error: function (ex) {
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").hide();
+                                $("#divDupError").hide();
+                            }
+                        });
+                    }
+                }
+                return isStepValid;
+            }
+            else if (stepnumber == 2) {
+                $("body").scrollTop(0);
+
+                var firstname = $("#FIRST_NAME").val();
+                if (firstname == "") {
+                    $("#ErrItem_FIRST_NAME").text("Please enter First Name");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_FIRST_NAME").text("");
+                }
+
+                var lastname = $("#LAST_NAME").val();
+                if (lastname == "") {
+                    $("#ErrItem_LAST_NAME").text("Please enter Last Name");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_LAST_NAME").text("");
+                }
+
+                var gender = $("#GENDER_CODE").val();
+                if (gender == "") {
+                    $("#ErrItem_GENDER_CODE").text("Please select Gender");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_GENDER_CODE").text("");
+                }
+
+                var dob = $("#DATE_OF_BIRTH").val();
+                if (!isDate(dob)) {
+                    $("#ErrItem_DATE_OF_BIRTH").text("Invalid Date of Birth");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_DATE_OF_BIRTH").text("");
+                }
+
+                var pob = $("#PLACE_OF_BIRTH").val();
+                if (pob == "") {
+                    $("#ErrItem_PLACE_OF_BIRTH").text("Please enter Place of Birth");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_PLACE_OF_BIRTH").text("");
+                }
+
+                var nationality = $("#NATIONALITY_ID").val();
+                if (nationality == "") {
+                    $("#ErrItem_NATIONALITY_ID").text("Please select Nationality");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_NATIONALITY_ID").text("");
+                }
+
+                var location = $("#CURRENT_LOCATION").val();
+                if (location == "") {
+                    $("#ErrItem_CURRENT_LOCATION").text("Please enter Current Location");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_CURRENT_LOCATION").text("");
+                }
+
+                var religion = $("#RELIGION_ID").val();
+                if (religion == "") {
+                    $("#ErrItem_RELIGION_ID").text("Please select Religion");
+                    isStepValid = false;
+                }
+                else {
+                    $("#ErrItem_RELIGION_ID").text("");
+                }
+
+                var passport = $("#PASSPORT_NUMBER").val();
+                if (passport != "") {
+
+                    var poi = $("#PLACE_OF_ISSUE").val();
+                    if (poi == "") {
+                        $("#ErrItem_POI").text("Please enter Place of Issue.");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_POI").text("");
+                    }
+
+                    var doi = $("#DATE_OF_ISSUE").val();
+                    if (!isDate(doi)) {
+                        $("#ErrItem_DOI").text("Invalid Date of Issue");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_DOI").text("");
+                    }
+
+                    var doe = $("#DATE_OF_EXPIRY").val();
+                    if (!isDate(doe)) {
+                        $("#ErrItem_DOE").text("Invalid Date of Expiry");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_DOE").text("");
+                    }
+
+                    var emigration = $("#EMIGRATION_CLEARANCE_REQUIRED").val();
+                    if (emigration == "" || emigration == "0") {
+                        $("#ErrItem_EMIGRATION").text("Please select Emigration Clearance");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_EMIGRATION").text("");
+                    }
+
+                }
+                else {
+                    $("#ErrItem_POI").text("");
+                    $("#ErrItem_DOI").text("");
+                    $("#ErrItem_DOE").text("");
+                    $("#ErrItem_EMIGRATION").text("");
+                }
+
+                var driving = $("#DRIVING_LICENCE_NUMBER").val();
+                if (driving != "") {
+
+                    var dpoi = $("#DRIVING_PLACE_OF_ISSUE").val();
+                    if (dpoi == "") {
+                        $("#ErrItem_DPOI").text("Please enter Place of Issue.");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_DPOI").text("");
+                    }
+
+                    var ddoi = $("#DRIVING_DATE_OF_ISSUE").val();
+                    if (!isDate(ddoi)) {
+                        $("#ErrItem_DDOI").text("Invalid Date of Issue");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_DDOI").text("");
+                    }
+
+                    var ddoe = $("#DRIVING_EXPIRY_DATE").val();
+                    if (!isDate(ddoe)) {
+                        $("#ErrItem_DDOE").text("Invalid Date of Expiry");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_DDOE").text("");
+                    }
+
+                    var vehicletype = $("#VEHICLE_TYPE_ID").val();
+                    if (vehicletype == "" || vehicletype == "0") {
+                        $("#ErrItem_VEHICLETYPE").text("Please select Vehicle Type");
+                        isStepValid = false;
+                    }
+                    else {
+                        $("#ErrItem_VEHICLETYPE").text("");
+                    }
+
+                }
+                else {
+                    $("#ErrItem_DPOI").text("");
+                    $("#ErrItem_DDOI").text("");
+                    $("#ErrItem_DDOE").text("");
+                    $("#ErrItem_VEHICLETYPE").text("");
+                }
+
+                if (isStepValid) {
+                    var regNo = $("#REGISTRATION_NO").val();
+                    if (regNo != "") {
+                        $('#progressBar').show();
+                        var urlLink = '@Url.Action("Update", "StatusSearch")';
+                        var formData = JSON.stringify({
+                            "FIRST_NAME": $("#FIRST_NAME").val(),
+                            "MIDDLE_NAME": $("#MIDDLE_NAME").val(),
+                            "LAST_NAME": $("#LAST_NAME").val(),
+                            "FILE_PATH": $("#FILE_PATH").val(),
+
+                            "FATHER_NAME": $("#FATHER_NAME").val(),
+                            "MOTHER_NAME": $("#MOTHER_NAME").val(),
+                            "GENDER_CODE": $("#GENDER_CODE").val(),
+                            "DATE_OF_BIRTH": convertJSDate($("#DATE_OF_BIRTH").val()),
+                            "PLACE_OF_BIRTH": $("#PLACE_OF_BIRTH").val(),
+                            "MARITAL_STATUS_ID": $("#MARITAL_STATUS_ID").val(),
+                            "NATIONALITY_ID": $("#NATIONALITY_ID").val(),
+                            "CURRENT_LOCATION": $("#CURRENT_LOC").val(),
+
+                            "LST_USER_LANGUAGE": languageCollection,
+
+                            "RELIGION_ID": $("#RELIGION_ID").val(),
+                            "PASSPORT_ID": $("#PASSPORT_ID").val(),
+                            "PASSPORT_NUMBER": $("#PASSPORT_NUMBER").val(),
+                            "DATE_OF_ISSUE": convertJSDate($("#DATE_OF_ISSUE").val()),
+                            "PLACE_OF_ISSUE": $("#PLACE_OF_ISSUE").val(),
+                            "DATE_OF_EXPIRY": convertJSDate($("#DATE_OF_EXPIRY").val()),
+                            "EMIGRATION_CLEARANCE_REQUIRED": $("#EMIGRATION_CLEARANCE_REQUIRED").val() === "Yes" ? true : false,
+
+                            "DRIVING_LICENCE_ID": $("#DRIVING_LICENCE_ID").val(),
+                            "DRIVING_LICENCE_NUMBER": $("#DRIVING_LICENCE_NUMBER").val(),
+                            "DRIVING_PLACE_OF_ISSUE": $("#DRIVING_PLACE_OF_ISSUE").val(),
+                            "DRIVING_DATE_OF_ISSUE": convertJSDate($("#DRIVING_DATE_OF_ISSUE").val()),
+                            "DRIVING_EXPIRY_DATE": convertJSDate($("#DRIVING_EXPIRY_DATE").val()),
+                            "VEHICLE_TYPE_ID": $("#VEHICLE_TYPE_ID").val(),
+                            "DRIVING_REMARK": $("#DRIVING_REMARK").val(),
+
+                            "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                            "CONDITIONAL_OPERATOR": "CANDIDATE_PERSONAL_DETAILS"
+                        });
+
+                        $.ajax({
+                            contentType: "application/json",
+                            type: 'POST',
+                            url: urlLink,
+                            traditional: true,
+                            data: formData,
+                            dataType: "json",
+                            async: true,
+                            success: function (d) {
+                                if (d == "SessionTimeout") {
+                                    window.location.href = '@Url.Action("LogOut", "Login")';
+                                }
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").html("Personal details saved Successfully. Registration No: " + d.REGISTRATION_NO);
+                                $("#divSuccessMsg").show();
+                                return true;
+                            },
+                            error: function (ex) {
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").hide();
+                                $("#divDupError").hide();
+                            }
+                        });
+                    }
+                    else {
+                        //Duplication Check
+                        var urlLink = '@Url.Action("DuplicateCheck", "Candidate")';
+                        $('#progressBar').show();
+                        $.ajax({
+                            contentType: "application/json",
+                            type: 'GET',
+                            url: urlLink,
+                            traditional: true,
+                            data: {
+                                "FIRST_NAME": $("#FIRST_NAME").val(),
+                                "LAST_NAME": $("#LAST_NAME").val(),
+                                "DATE_OF_BIRTH": $("#DATE_OF_BIRTH").val(),
+                                "PLACE_OF_BIRTH": $("#PLACE_OF_BIRTH").val(),
+                                "USER_TYPE_ID": $("#USER_TYPE_ID").val()
+                            },
+                            dataType: "json",
+                            async: true,
+                            success: function (d) {
+                                if (d == "SessionTimeout") {
+                                    window.location.href = '@Url.Action("LogOut", "Login")';
+                                }
+                                if (d) {
+                                    $("#divDupError").html("Record Already Exists.");
+                                    $("#divDupError").show();
+                                }
+                                else {
+                                    $("#divDupError").hide();
+                                }
+                                $('#progressBar').hide();
+                                isStepValid = false;
+                            },
+                            error: function (ex) {
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").hide();
+                                $("#divDupError").hide();
+                            }
+                        });
+
+
+                    }
+                }
+
+                return isStepValid;
+            }
+
+            else if (stepnumber == 3) {
+                $("body").scrollTop(0);
+
+                var tbladdresscount = $('#tblchild').children().length;
+                if (tbladdresscount < 1) {
+                    $("#Err_ADDRESS_TYPE_ID").text("Please select Address Type");
+                    $("#Err_ADDRESS").text("Please enter Address details");
+                    $("#Err_COUNTRY_CODE").text("Please select Country");
+                    $("#Err_STATE_CODE").text("Please select State");
+                    $("#Err_CITY_CODE").text("Please select City");
+                    $("#Err_USER_PINCODE").text("Please enter Pin Code");
+                    isStepValid = false;
+                }
+
+                var tblcontactcount = $('#tblcontact').children().length;
+                if (tblcontactcount < 1) {
+                    $("#Err_CONTACT_TYPE_ID").text("Please select Contact Type");
+                    $("#Err_CONTACT_NO").text("Please enter Contact no.");
+                    isStepValid = false;
+                }
+
+                if (isStepValid) {
+                    var regNo = $("#REGISTRATION_NO").val();
+                    if (regNo != "") {
+                        $('#progressBar').show();
+                        var urlLink = '@Url.Action("Update", "StatusSearch")';
+                        var formData = JSON.stringify({
+                            "LST_USER_ADDRESS": addressCollection,
+                            "LST_USER_CONTACT": contactCollection,
+                            "LST_USER_EMAIL": emailCollection,
+                            "WEBSITE": $("#WEBSITE").val(),
+                            "SKYPE": $("#SKYPE").val(),
+                            "CONTACT_REMARK": $("#CONTACT_REMARK").val(),
+
+                            "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                            "CONDITIONAL_OPERATOR": "CANDIDATE_CONTACT_DETAILS"
+                        });
+
+                        $.ajax({
+                            contentType: "application/json",
+                            type: 'POST',
+                            url: urlLink,
+                            traditional: true,
+                            data: formData,
+                            dataType: "json",
+                            async: true,
+                            success: function (d) {
+                                if (d == "SessionTimeout") {
+                                    window.location.href = '@Url.Action("LogOut", "Login")';
+                                }
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").html("Contact details saved Successfully. Registration No: " + $("#REGISTRATION_NO").val());
+                                $("#divSuccessMsg").show();
+                                return true;
+                            },
+                            error: function (ex) {
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").hide();
+                                $("#divDupError").hide();
+                            }
+                        });
+                    }
+                    else {
+                        var urlLink = '@Url.Action("Create", "Candidate")';
+                        var formdata = JSON.stringify({
+                            "LST_USER_ADDRESS": addressCollection,
+                            "LST_USER_CONTACT": contactCollection,
+                            "LST_USER_EMAIL": emailCollection,
+                            "LST_USER_EDUCATION": educationCollection,
+                            "LST_USER_CERTIFICATION": certificationCollection,
+                            "LST_USER_EXPERIENCE": experienceCollection,
+                            "LST_USER_DOCUMENT": documentCollection,
+                            "LST_USER_LANGUAGE": languageCollection,
+
+                            "AVAILING_TYPE_ID": $("#AVAILING_TYPE_ID").val(),
+                            "SOURCE_ID": $("#SOURCE_ID").val(),
+                            "OTHER_SOURCE": $("#OTHER_SOURCE").val(),
+                            "REFERRER_NAME": $("#REFERRER_NAME").val(),
+                            "STATUS_ID": $("#STATUS_ID").val(),
+                            "POST_APPLIED_FOR": $("#POST_APPLIED_FOR").val(),
+                            "FILE_NO": $("#FILE_NO").val(),
+                            "REQUIREMENT_ID": $("#REQUIREMENT_ID").val(),
+                            "VISA_ID": $("#VISA_ID").val(),
+                            "IS_EXPERIENCED": $('input[name=careerstatus]:checked').val(),
+                            "EDUCATION_REMARK": $("#EDUCATION_REMARK").val(),
+                            "WORK_REMARK": $("#WORK_REMARK").val(),
+
+                            "TOTAL_WORK_EXPERIENCE": $("#TOTAL_WORK_EXPERIENCE").val(),
+                            "TOTAL_GULF_EXPERIENCE": $("#TOTAL_GULF_EXPERIENCE").val(),
+                            "SKILLS": $("#SKILLS").val(),
+                            "FIRST_NAME": $("#FIRST_NAME").val(),
+                            "MIDDLE_NAME": $("#MIDDLE_NAME").val(),
+                            "LAST_NAME": $("#LAST_NAME").val(),
+                            "FILE_PATH": $("#FILE_PATH").val(),
+                            "REMARK": $("#REMARK").val(),
+                            "WEBSITE": $("#WEBSITE").val(),
+
+                            "SKYPE": $("#SKYPE").val(),
+                            "CONTACT_REMARK": $("#CONTACT_REMARK").val(),
+                            "FATHER_NAME": $("#FATHER_NAME").val(),
+                            "MOTHER_NAME": $("#MOTHER_NAME").val(),
+                            "GENDER_CODE": $("#GENDER_CODE").val(),
+                            "DATE_OF_BIRTH": convertJSDate($("#DATE_OF_BIRTH").val()),
+                            "PLACE_OF_BIRTH": $("#PLACE_OF_BIRTH").val(),
+                            "MARITAL_STATUS_ID": $("#MARITAL_STATUS_ID").val(),
+                            "NATIONALITY_ID": $("#NATIONALITY_ID").val(),
+                            "CURRENT_LOCATION": $("#CURRENT_LOCATION").val(),
+
+                            "RELIGION_ID": $("#RELIGION_ID").val(),
+                            "PASSPORT_NUMBER": $("#PASSPORT_NUMBER").val(),
+                            "DATE_OF_ISSUE": convertJSDate($("#DATE_OF_ISSUE").val()),
+                            "PLACE_OF_ISSUE": $("#PLACE_OF_ISSUE").val(),
+                            "DATE_OF_EXPIRY": convertJSDate($("#DATE_OF_EXPIRY").val()),
+                            "EMIGRATION_CLEARANCE_REQUIRED": $("#EMIGRATION_CLEARANCE_REQUIRED").val(),
+                            "DRIVING_LICENCE_NUMBER": $("#DRIVING_LICENCE_NUMBER").val(),
+                            "DRIVING_PLACE_OF_ISSUE": $("#DRIVING_PLACE_OF_ISSUE").val(),
+                            "DRIVING_DATE_OF_ISSUE": convertJSDate($("#DRIVING_DATE_OF_ISSUE").val()),
+                            "DRIVING_EXPIRY_DATE": convertJSDate($("#DRIVING_EXPIRY_DATE").val()),
+                            "VEHICLE_TYPE_ID": $("#VEHICLE_TYPE_ID").val(),
+                            "DRIVING_REMARK": $("#DRIVING_REMARK").val(),
+                            "USER_TYPE_ID": $("#USER_TYPE_ID").val()
+
+                        });
+                        $.ajax({
+                            contentType: "application/json",
+                            type: 'POST',
+                            url: urlLink,
+                            traditional: true,
+                            data: formdata,
+                            dataType: "json",
+                            async: true,
+                            success: function (d) {
+                                if (d == "SessionTimeout") {
+                                    window.location.href = '@Url.Action("LogOut", "Login")';
+                                }
+
+                                $('#progressBar').hide();
+                                $("#divDupError").hide();
+                                $('#divPostErrorMsg').hide();
+                                $('#divPostSucsessMsg').hide();
+
+                                if (d.regno.indexOf("Error") >= 0) {
+                                    $("#divDupError").html(d.regno);
+                                    $("#divDupError").show();
+                                    isStepValid =false
+                                    return isStepValid;
+                                }
+                                $("#REGISTRATION_NO").val(d.regno);
+                                $("#divSuccessMsg").html("Record Created Successfully. Registration No: " + d.regno);
+                                $("#divSuccessMsg").show();
+                                return true;
+                            },
+                            error: function (ex) {
+                                $('#progressBar').hide();
+                                $("#divSuccessMsg").hide();
+                                $("#divDupError").hide();
+                            }
+                        });
+                    }
+                }
+
+                return isStepValid;
+
+            }
+            else if (stepnumber == 4) {
+                $("body").scrollTop(0);
+
+                var tbleducationcount = educationCollection.length;
+                if (tbleducationcount < 1) {
+                    return true;
+                }
+                var regNo = $("#REGISTRATION_NO").val();
+                if (regNo != "") {
+                    $('#progressBar').show();
+                    var urlLink = '@Url.Action("Update", "StatusSearch")';
+                    var formData = JSON.stringify({
+                        "LST_USER_EDUCATION": educationCollection,
+                        "LST_USER_CERTIFICATION": certificationCollection,
+                        "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                        "EDUCATION_REMARK": $("#EDUCATION_REMARK").val(),
+                        "CONDITIONAL_OPERATOR": "CANDIDATE_EDUCATION_CERTIFICATION_DETAILS"
+                    });
+
+                    $.ajax({
+                        contentType: "application/json",
+                        type: 'POST',
+                        url: urlLink,
+                        traditional: true,
+                        data: formData,
+                        dataType: "json",
+                        async: true,
+                        success: function (d) {
+                            if (d == "SessionTimeout") {
+                                window.location.href = '@Url.Action("LogOut", "Login")';
+                            }
+                            $('#progressBar').hide();
+                            $("#divSuccessMsg").html("Education details saved Successfully. Registration No: " + $("#REGISTRATION_NO").val());
+                            $("#divSuccessMsg").show();
+                            return true;
+                        },
+                        error: function (ex) {
+                            $('#progressBar').hide();
+                            $("#divSuccessMsg").hide();
+                            $("#divDupError").hide();
+                        }
+                    });
+                }
+            }
+            else if (stepnumber == 5) {
+                $("body").scrollTop(0);
+                var tblworkcount = experienceCollection.length;
+                if (tblworkcount < 1) {
+                    return true;
+                }
+                var regNo = $("#REGISTRATION_NO").val();
+                if (regNo != "") {
+                    $('#progressBar').show();
+                    var urlLink = '@Url.Action("Update", "StatusSearch")';
+                    var formData = JSON.stringify({
+                        "LST_USER_EXPERIENCE": experienceCollection,
+                        "TOTAL_WORK_EXPERIENCE": $("#TOTAL_WORK_EXPERIENCE").val(),
+                        "TOTAL_GULF_EXPERIENCE": $("#TOTAL_GULF_EXPERIENCE").val(),
+                        "SKILLS": $("#SKILLS").val(),
+                        "WORK_REMARK": $("#WORK_REMARK").val(),
+
+                        "REGISTRATION_NO": $("#REGISTRATION_NO").val(),
+                        "CONDITIONAL_OPERATOR": "CANDIDATE_EXPERIENCE_DETAILS"
+                    });
+
+                    $.ajax({
+                        contentType: "application/json",
+                        type: 'POST',
+                        url: urlLink,
+                        traditional: true,
+                        data: formData,
+                        dataType: "json",
+                        async: true,
+                        success: function (d) {
+                            if (d == "SessionTimeout") {
+                                window.location.href = '@Url.Action("LogOut", "Login")';
+                            }
+                            $('#progressBar').hide();
+                            $("#divSuccessMsg").html("Experience details saved Successfully. Registration No: " + $("#REGISTRATION_NO").val());
+                            $("#divSuccessMsg").show();
+                            return true;
+                        },
+                        error: function (ex) {
+                            $('#progressBar').hide();
+                            $("#divSuccessMsg").hide();
+                            $("#divDupError").hide();
+                        }
+                    });
+                }
+            }
+
+            return isStepValid;
+            // ...
+        }
+        function validateAllSteps() {
+            var isStepValid = true;
+
+            // all step validation logic
+
+            var availingtype = $("#AVAILING_TYPE_ID").val();
+            if (availingtype == "") {
+                $("#ErrItem_AVAILING_TYPE_ID").text("Please select Availing Type");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_AVAILING_TYPE_ID").text("");
+            }
+
+            var source = $("#SOURCE_ID").val();
+            if (source == "") {
+                $("#ErrItem_SOURCE_ID").text("Please select Source");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_SOURCE_ID").text("");
+            }
+
+            var status = $("#STATUS_ID").val();
+            if (status == "") {
+                $("#ErrItem_STATUS_ID").text("Please select Status");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_STATUS_ID").text("");
+            }
+
+            var firstname = $("#FIRST_NAME").val();
+            if (firstname == "") {
+                $("#ErrItem_FIRST_NAME").text("Please enter First Name");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_FIRST_NAME").text("");
+            }
+
+            var lastname = $("#LAST_NAME").val();
+            if (lastname == "") {
+                $("#ErrItem_LAST_NAME").text("Please enter Last Name");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_LAST_NAME").text("");
+            }
+
+            var gender = $("#GENDER_CODE").val();
+            if (gender == "") {
+                $("#ErrItem_GENDER_CODE").text("Please select Gender");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_GENDER_CODE").text("");
+            }
+
+            var dob = $("#DATE_OF_BIRTH").val();
+            if (dob == "") {
+                $("#ErrItem_DATE_OF_BIRTH").text("Please enter Date of Birth");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_DATE_OF_BIRTH").text("");
+            }
+
+            var pob = $("#PLACE_OF_BIRTH").val();
+            if (pob == "") {
+                $("#ErrItem_PLACE_OF_BIRTH").text("Please enter Place of Birth");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_PLACE_OF_BIRTH").text("");
+            }
+
+            var nationality = $("#NATIONALITY_ID").val();
+            if (nationality == "") {
+                $("#ErrItem_NATIONALITY_ID").text("Please select Nationality");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_NATIONALITY_ID").text("");
+            }
+
+            var location = $("#CURRENT_LOCATION").val();
+            if (location == "") {
+                $("#ErrItem_CURRENT_LOCATION").text("Please enter Current Location");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_CURRENT_LOCATION").text("");
+            }
+
+            var religion = $("#RELIGION_ID").val();
+            if (religion == "") {
+                $("#ErrItem_RELIGION_ID").text("Please select Religion");
+                isStepValid = false;
+            }
+            else {
+                $("#ErrItem_RELIGION_ID").text("");
+            }
+
+            var tbladdresscount = $('#tblchild').children().length;
+            if (tbladdresscount < 1) {
+                $("#Err_ADDRESS_TYPE_ID").text("Please select Address Type");
+                $("#Err_ADDRESS").text("Please enter Address details");
+                $("#Err_COUNTRY_CODE").text("Please select Country");
+                $("#Err_STATE_CODE").text("Please select State");
+                $("#Err_CITY_CODE").text("Please select City");
+                $("#Err_USER_PINCODE").text("Please enter Pin Code");
+                isStepValid = false;
+            }
+
+            var tblcontactcount = $('#tblcontact').children().length;
+            if (tblcontactcount < 1) {
+                $("#Err_CONTACT_TYPE_ID").text("Please select Contact Type");
+                $("#Err_CONTACT_NO").text("Please enter Contact no.");
+                isStepValid = false;
+            }
+            return isStepValid;
+        }
+
+        //GetSource
+        $("#AVAILING_TYPE_ID").change(function (e) {
+            $("#SOURCE_ID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSourceByAvailingType")', // we are calling json method
+                data: { availTypeID: $("#AVAILING_TYPE_ID").val() },
+                dataType: "json",
+                async: true,
+                success: function (states) {
+                    if (states == "SessionTimeout") {
+                        window.location.href = '@Url.Action("Login", "Login")';
+                    }
+
+                    //$("#SOURCE_ID").append('<option value="0">--Select Source--</option>');
+                    $.each(states.selectList, function (i, state) {
+                        $("#SOURCE_ID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+
+                    var availingtype = $("#AVAILING_TYPE_ID").val();
+                    if (availingtype == "1") {
+                        $("#SOURCE_ID").val("1").trigger("chosen:updated").change();
+                    }
+                    else if (availingtype == "4" || availingtype == "3") {
+                        $("#SOURCE_ID").val("8").trigger("chosen:updated").change();
+                    }
+                    else if (availingtype == "2") {
+                        $("#SOURCE_ID").val("6").trigger("chosen:updated").change();
+                    }
+                    
+                },
+                error: function (ex) {
+                    $("#SOURCE_ID").append('<option >--Select Source--</option>');
+                }
+            });
+            return false;
+        });
+
+        //GetOtherSource
+        $("#SOURCE_ID").change(function (e) {
+            $("#divReferrer").css("display", "none");
+            $("#divOtherSource").css("display", "none");
+            var source = $("#SOURCE_ID").val();
+            if (source == "5" || source == "8") {
+                $("#divReferrer").css("display", "block");
+                $("#divOtherSource").css("display", "none");
+            }
+            else if (source == "2" || source == "3" || source == "4" || source == "6") {
+                $("#divOtherSource").css("display", "block");
+                $("#divReferrer").css("display", "none");
+                $("#OTHER_SOURCE").empty();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetOtherSourceBySource")', // we are calling json method
+                    data: { sourceId: $("#SOURCE_ID").val() },
+                    dataType: "json",
+                    async: true,
+                    success: function (states) {
+                        if (states == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $("#OTHER_SOURCE").next(".chosen-container").css("width", "100%");
+                        $("#OTHER_SOURCE").append('<option value="0">Select Other Source</option>');
+
+                        $.each(states.selectList, function (i, state) {
+                            $("#OTHER_SOURCE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                        }); // here we are adding option for States
+
+                        $("#OTHER_SOURCE").attr("data-placeholder", "Select Other Source").trigger("chosen:updated");
+                    },
+                    error: function (ex) {
+                        $("#OTHER_SOURCE").append('<option >--Select Other Source--</option>');
+                    }
+                });
+                return false;
+            }
+        });
+
+    });
+
+    $("#SaveImage").change(function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "Candidate");
+    });
+
+    function UploadAttachment(file, uploadFrom) {
+        var path = "";
+        if (file.length > 0) {
+            var isvalid = checkImagefile(file);
+            if (isvalid) {
+                var data = new FormData();
+
+                // Add the uploaded image content to the form data collection
+                data.append("UploadedImage", file[0]);
+                data.append("UploadFrom", uploadFrom);
+
+                // Make Ajax request with the contentType = false, and procesDate = false
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadImageFile", "StatusSearch")',
+                    contentType: false,
+                    processData: false,
+                    data: data
+                });
+
+                ajaxRequest.done(function (xhr, textStatus) {
+                    if (xhr == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    // Do other operation
+                    path = xhr;
+                    $("#FILE_PATH").val(path);
+                });
+            }
+        }
+        else {
+            path = "";
+            $("#FILE_PATH").val(path);
+        }
+    }
+
+</script>

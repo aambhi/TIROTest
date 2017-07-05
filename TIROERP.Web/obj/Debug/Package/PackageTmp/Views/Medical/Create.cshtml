@@ -1,0 +1,221 @@
+﻿@model TIROERP.Core.Model.Medical
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render(("~/bundles/mask"))
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#USER_REQUIREMENT_ID").chosen();
+        $("#DoctorID").chosen();
+
+        //$("#ReportDate").mask("99/99/9999");
+        //$("#CheckupDate").mask("99/99/9999");
+
+        $("#ReportDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#CheckupDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#USER_REQUIREMENT_ID").change(function (e) {
+            $("#CandidateName").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCandidateName","Medical")', // we are calling json method
+                data: { userRequirementId: $("#USER_REQUIREMENT_ID").val() },
+                success: function (d) {
+                    $("#CandidateName").val(d);
+                },
+                error: function (ex) {
+                    $("#CandidateName").empty();
+                }
+            });
+            return false;
+        });
+
+        $("#SaveMedical").click(function (e) {
+            var isStepValid = true;
+
+            var USER_REQUIREMENT_ID = $("#USER_REQUIREMENT_ID").val();
+            if (USER_REQUIREMENT_ID == "") {
+                $("#Err_USER_REQUIREMENT_ID").text("Please select Passport No.");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_USER_REQUIREMENT_ID").text("");
+            }
+
+            var DoctorID = $("#DoctorID").val();
+            if (DoctorID == "") {
+                $("#Err_DoctorID").text("Please select Doctor");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_DoctorID").text("");
+            }
+
+            var CheckupDate = $("#CheckupDate").val();
+            if (CheckupDate == "") {
+                $("#Err_CheckupDate").text("Please enter Checkup Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_CheckupDate").text("");
+            }
+
+            var MedicalStatus = $("#MedicalStatus").val();
+            if (MedicalStatus == "") {
+                $("#Err_MedicalStatus").text("Please select Medical Status");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_MedicalStatus").text("");
+            }
+
+            var ReportDate = $("#ReportDate").val();
+            if (ReportDate == "") {
+                $("#Err_ReportDate").text("Please enter Report Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_ReportDate").text("");
+            }
+
+            return isStepValid;
+        });
+    });
+</script>
+
+@using (Html.BeginForm("Create", "Medical", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Medical</h3>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Medical Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <!-- Tabs -->
+                            <br />
+                            <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport Number <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.DropDownListFor(model => model.USER_REQUIREMENT_ID, (IEnumerable<SelectListItem>)ViewBag.GetPassportNo, "Select Passport", htmlAttributes: new { @id = "USER_REQUIREMENT_ID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.USER_REQUIREMENT_ID, "", new { @class = "text-danger", @id = "Err_USER_REQUIREMENT_ID" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Doctor <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.DoctorID, (IEnumerable<SelectListItem>)ViewBag.GetDoctor, "Select Doctor", htmlAttributes: new { @id = "DoctorID", @class = "form-control", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.DoctorID, "", new { @class = "text-danger", @id = "Err_DoctorID" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Check-up Date<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.CheckupDate, new { @id = "CheckupDate", @class = "form-control  date-picker", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.CheckupDate, "", new { @class = "text-danger", @id = "Err_CheckupDate" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Token No</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.TokenNumber, new { @id = "TokenNumber", @class = "form-control  date-picker", @placeholder = "Token No", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.TokenNumber, "", new { @class = "text-danger", @id = "Err_TokenNumber" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">
+                                        Report Date
+                                    </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.ReportDate, new { @id = "ReportDate", @class = "form-control  date-picker", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.ReportDate, "", new { @class = "text-danger", @id = "Err_ReportDate" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        Fit @Html.RadioButtonFor(model => model.MedicalStatus, "19", new { @checked = "checked" })
+                                        UnFit @Html.RadioButtonFor(model => model.MedicalStatus, "22", false)
+                                        Awaiting @Html.RadioButtonFor(model => model.MedicalStatus, "9", false)
+                                        @Html.ValidationMessageFor(model => model.MedicalStatus, "", new { @class = "text-danger", @id = "Err_MedicalStatus" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="medicalFile" id="medicalFile" style="width: 100%;" />
+                                            @Html.HiddenFor(model => model.ReportPath)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.Remark, new { @id = "Remark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveMedical">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- End SmartWizard Content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

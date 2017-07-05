@@ -1,0 +1,59 @@
+==================================================================
+ Controller: RequirementSearch
+ URL: http://localhost:50130/RequirementSearch/SendEmailToAgents?requirementIdList=79%2C80&emailIdList=reliancejobs%40yahoo.c%2CImtiaz+Reliance+Manpower+Services
+ Action: SendEmailToAgents
+ Error Message: The specified cast from a materialized 'System.String' type to a nullable 'System.DateTime' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.String' type to a nullable 'System.DateTime' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Index
+ Action: Index
+ Error Message: The view 'Index' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Candidate/Index.aspx
+~/Views/Candidate/Index.ascx
+~/Views/Shared/Index.aspx
+~/Views/Shared/Index.ascx
+~/Views/Candidate/Index.cshtml
+~/Views/Candidate/Index.vbhtml
+~/Views/Shared/Index.cshtml
+~/Views/Shared/Index.vbhtml
+ Inner Exception: The view 'Index' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Candidate/Index.aspx
+~/Views/Candidate/Index.ascx
+~/Views/Shared/Index.aspx
+~/Views/Shared/Index.ascx
+~/Views/Candidate/Index.cshtml
+~/Views/Candidate/Index.vbhtml
+~/Views/Shared/Index.cshtml
+~/Views/Shared/Index.vbhtml
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard/CandidateIndex
+ Action: CandidateIndex
+ Error Message: The view 'CandidateIndex' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/DashBoard/CandidateIndex.aspx
+~/Views/DashBoard/CandidateIndex.ascx
+~/Views/Shared/CandidateIndex.aspx
+~/Views/Shared/CandidateIndex.ascx
+~/Views/DashBoard/CandidateIndex.cshtml
+~/Views/DashBoard/CandidateIndex.vbhtml
+~/Views/Shared/CandidateIndex.cshtml
+~/Views/Shared/CandidateIndex.vbhtml
+ Inner Exception: The view 'CandidateIndex' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/DashBoard/CandidateIndex.aspx
+~/Views/DashBoard/CandidateIndex.ascx
+~/Views/Shared/CandidateIndex.aspx
+~/Views/Shared/CandidateIndex.ascx
+~/Views/DashBoard/CandidateIndex.cshtml
+~/Views/DashBoard/CandidateIndex.vbhtml
+~/Views/Shared/CandidateIndex.cshtml
+~/Views/Shared/CandidateIndex.vbhtml
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

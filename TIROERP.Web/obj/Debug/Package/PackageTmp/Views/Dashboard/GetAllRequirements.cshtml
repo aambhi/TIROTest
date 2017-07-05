@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TIROERP.Core.Model.RequirementSearchResult>
+
+@{
+    ViewBag.Title = "GetAllRequirements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+    });
+</script>
+
+<div class="right_col">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Requirements</h3>
+            </div>
+        </div>
+
+        <div class="x_content">
+            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="headings">
+                        <th>Requirement Id</th>
+                        <th>Company/Client Name</th>
+                        <th>Status</th>
+                        <th class="no-sort">View</th>
+                        <th class="no-sort">Edit</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>  @string.Format("R00{0}", @item.REQUIREMENT_ID)</td>
+                                <td>@item.CLIENT_NAME</td>
+                                <td>@item.STATUS</td>
+                                <td><a href="@Url.Action("ViewRequirementDetails", "RequirementSearch", new { requirementID = @item.REQUIREMENT_ID })"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                <td><a href="@Url.Action("EditRequirementDetails", "Requirement", new { requirementID = @item.REQUIREMENT_ID })"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+

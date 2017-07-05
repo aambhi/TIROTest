@@ -1,0 +1,20 @@
+==================================================================
+DateTime18/05/2017 01:08:09
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C520170024
+ Action: GetCandidateDetails
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime18/05/2017 01:08:39
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C520170024
+ Action: GetCandidateDetails
+ Error Message: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ Inner Exception: An error occurred while reading from the store provider's data reader. See the inner exception for details.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

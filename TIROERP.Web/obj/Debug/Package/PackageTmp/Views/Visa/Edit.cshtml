@@ -1,0 +1,430 @@
+﻿
+@model TIROERP.Core.Model.Visa
+@using System.Globalization
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string reportName = string.Empty;
+    string filepath = string.Empty;
+    if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.FILE_PATH))
+        {
+            reportName = Model.FILE_PATH.Substring(15);
+            filepath = Url.Content(Server.MapPath("~/Uploads/VisaUploadedFiles/" + Model.FILE_PATH));
+        }
+    }
+
+}
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+<script src="~/Content/js/chosen/chosen.jquery.js"></script>
+
+<link href="~/Content/js/datepicker/jquery.calendars.picker.css" rel="stylesheet" />
+
+<script src="~/Content/js/datepicker/jquery.plugin.js"></script>
+<script src="~/Content/js/datepicker/jquery.calendars.js"></script>
+<script src="~/Content/js/datepicker/jquery.calendars.plus.js"></script>
+<script src="~/Content/js/datepicker/jquery.calendars.picker.js"></script>
+<script src="~/Content/js/datepicker/jquery.calendars.islamic.js"></script>
+
+<script type="text/javascript">
+    function isAlphaNumeric() {
+        var charCode = event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) ||
+              (charCode >= 65 && charCode <= 90) ||
+              (charCode >= 97 && charCode <= 122) || charCode == 32)
+            return true;
+
+        return false;
+    }
+
+    $(document).ready(function () {
+        $("#RECIEVED_DATE").datepicker({
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+        function fetchIndianDate(dateObject, alternateDateObject, hiddenDateObject, isIssueDate) {
+            alternateDateObject.empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetIndianDate","Visa")', // we are calling json method
+                dataType: 'json',
+                data: { date: dateObject.val(), purpose: $("#PURPOSE").val(), isIssueDate: isIssueDate },
+                success: function (d) {
+                    //var date = new Date(parseInt(d.substr(6)));
+                    //var indianDateFormat = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+                    if (isIssueDate == "1") {
+                        alternateDateObject.html(d.gregDate);
+                        hiddenDateObject.val(d.gregDate);
+
+                        $('#EXPIRY_DATE').val(d.hijriexpirydate);
+                        $("#altExpiryDate").html(d.expirydate);
+                        $("#INDIAN_FORMAT_EXPIRY_DATE").val(d.expirydate);
+                    }
+                    else {
+                        $("#altExpiryDate").html(d.gregDate);
+                        $("#INDIAN_FORMAT_EXPIRY_DATE").val(d.gregDate);
+                    }
+                },
+                error: function (ex) {
+                    alternateDateObject.html("");
+                    hiddenDateObject.val("");
+
+                }
+            });
+            return false;
+        }
+
+        var calendar = $.calendars.instance('islamic');
+        $('#ISSUE_DATE').calendarsPicker({
+            calendar: calendar,
+            dateFormat: "dd/mm/yyyy",
+            onSelect: function () {
+                fetchIndianDate($('#ISSUE_DATE'), $("#altIssueDate"), $("#INDIAN_FORMAT_ISSUE_DATE"), "1");
+            }
+        });
+        $('#EXPIRY_DATE').calendarsPicker({
+            calendar: calendar,
+            dateFormat: "dd/mm/yyyy",
+            onSelect: function () {
+                fetchIndianDate($('#EXPIRY_DATE'), $("#altExpiryDate"), $("#INDIAN_FORMAT_EXPIRY_DATE"), "2");
+            }
+        });
+
+        $("#REGISTRATION_NUMBER").chosen();
+        $("#PURPOSE").chosen();
+        $("#PLACE_OF_ENDORSEMENT").chosen();
+
+        //Fill Civilian No
+        $("#REGISTRATION_NUMBER").change(function (e) {
+            $("#CIVILIAN_NUMBER").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCivilianNo")', // we are calling json method
+                dataType: 'json',
+                data: { client_code: $("#REGISTRATION_NUMBER").val() },
+                success: function (d) {
+                    $("#CIVILIAN_NUMBER").val(d);
+                },
+                error: function (ex) {
+                    $("#CIVILIAN_NUMBER").val("");
+                }
+            });
+            return false;
+        });
+
+        $(document).on("click", ".removeFile", function () {
+
+            $(this).parent().remove();
+
+            $(".fileGroup").hide();
+            $(".fileadd").show();
+            $("#ReportPath").val('');
+        });
+
+        var file = '@reportName';
+        if (file == null || file == "") {
+            $(".fileadd").show();
+        }
+
+        var regno = '@Model.REGISTRATION_NUMBER';
+        if (regno != null || regno != "") {
+            $("#REGISTRATION_NUMBER").trigger("chosen:updated").change();
+        }
+
+
+        $("#SaveVisa").click(function (e) {
+            var isStepValid = true;
+
+            var regno = $("#REGISTRATION_NUMBER").val();
+            if (regno == "") {
+                $("#Err_REGISTRATION_NUMBER").text("Please select Client");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_REGISTRATION_NUMBER").text("");
+            }
+
+            var visano = $("#VISA_NUMBER").val();
+            if (visano == "") {
+                $("#Err_VISA_NUMBER").text("Please enter Visa Number");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_VISA_NUMBER").text("");
+            }
+
+
+            var PURPOSE = $("#PURPOSE").val();
+            if (PURPOSE == "") {
+                $("#Err_PURPOSE").text("Please select Purpose");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_PURPOSE").text("");
+            }
+
+            var PLACE_OF_ENDORSEMENT = $("#PLACE_OF_ENDORSEMENT").val();
+            if (PLACE_OF_ENDORSEMENT == "") {
+                $("#Err_PLACE_OF_ENDORSEMENT").text("Please select Place of Endorsement");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_PLACE_OF_ENDORSEMENT").text("");
+            }
+
+            var issueDate = $('#ISSUE_DATE').val();
+            var expiryDate = $('#EXPIRY_DATE').val();
+
+            if (issueDate == "") {
+                $("#Err_ISSUE_DATE").text("Please enter Issue Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_ISSUE_DATE").text("");
+            }
+
+            if (expiryDate == "") {
+                $("#Err_ExpiryDate").text("Please enter Expiry Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_ExpiryDate").text("");
+            }
+
+
+            var RECIEVED_DATE = $('#RECIEVED_DATE').val();
+            if (RECIEVED_DATE == "") {
+                $("#Err_RECIEVED_DATE").text("Please enter Received Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_RECIEVED_DATE").text("");
+            }
+
+            if (!isStepValid) {
+                return false;
+            }
+            else {
+                var issuedt = issueDate.split('/');
+                var expirydt = expiryDate.split('/');
+
+                var newissueDt = new Date(issuedt[2], issuedt[1], issuedt[0]);
+                var newexpiryDt = new Date(expirydt[2], expirydt[1], expirydt[0]);
+
+                if (newexpiryDt <= newissueDt) {
+                    $("#Err_ExpiryDate").text("Expiry date cannot be less than Issue date.");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm("Edit", "Visa", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Visa Details </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-inline">
+                                @Html.HiddenFor(model => model.VISA_ID)
+                                @Html.HiddenFor(model => model.CREATED_BY)
+                                @Html.HiddenFor(model => model.CREATED_DATE)
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Client Name <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.REGISTRATION_NUMBER, ViewBag.ClientList as SelectList, "Select Client", new { @id = "REGISTRATION_NUMBER", @class = "form-control", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.REGISTRATION_NUMBER, "", new { @class = "text-danger", @id = "Err_REGISTRATION_NUMBER" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Civilian Number</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.CIVILIAN_NUMBER, new { @id = "CIVILIAN_NUMBER", @class = "form-control", @placeholder = "Civilian Number", @autocomplete = "off", @maxlength = "20", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Visa Number<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.VISA_NUMBER, new { @id = "VISA_NUMBER", @class = "form-control", @placeholder = "Visa Number", @autocomplete = "off", @maxlength = "20", @onkeypress = "return isAlphaNumeric(event)" })
+                                        @Html.ValidationMessageFor(model => model.VISA_NUMBER, "", new { @class = "text-danger", @id = "Err_VISA_NUMBER" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Purpose <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @{
+                                            List<SelectListItem> listPurpose = new List<SelectListItem>();
+                                            listPurpose.Add(new SelectListItem
+                                            {
+                                                Text = "Employment",
+                                                Value = "Employment"
+                                            });
+                                            listPurpose.Add(new SelectListItem
+                                            {
+                                                Text = "Service",
+                                                Value = "Service"
+                                            });
+                                            listPurpose.Add(new SelectListItem
+                                            {
+                                                Text = "Family Visit",
+                                                Value = "FamilyVisit"
+                                            });
+                                            listPurpose.Add(new SelectListItem
+                                            {
+                                                Text = "Resident",
+                                                Value = "Resident"
+                                            });
+                                            listPurpose.Add(new SelectListItem
+                                            {
+                                                Text = "Business Visit",
+                                                Value = "BusinessVisit"
+                                            });
+                                        }
+                                        @Html.DropDownListFor(model => model.PURPOSE, listPurpose, "", new { @id = "PURPOSE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Purpose" })
+                                        @Html.ValidationMessageFor(model => model.PURPOSE, "", new { @class = "text-danger", @id = "Err_PURPOSE" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Place of Endorsement<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @{
+                                            List<SelectListItem> listPlaceEndorse = new List<SelectListItem>();
+                                            listPlaceEndorse.Add(new SelectListItem
+                                            {
+                                                Text = "Mumbai",
+                                                Value = "Mumbai"
+                                            });
+                                            listPlaceEndorse.Add(new SelectListItem
+                                            {
+                                                Text = "Delhi",
+                                                Value = "Delhi"
+                                            });
+                                        }
+                                        @Html.DropDownListFor(model => model.PLACE_OF_ENDORSEMENT, listPlaceEndorse, "", new { @id = "PLACE_OF_ENDORSEMENT", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Place of Endorsement" })
+                                        @Html.ValidationMessageFor(model => model.PLACE_OF_ENDORSEMENT, "", new { @class = "text-danger", @id = "Err_PLACE_OF_ENDORSEMENT" })
+                                    </div>
+                                </div>
+                                @{
+
+                                    string issue_date = string.Format(CultureInfo.InvariantCulture,
+                                 "{0:dd/MM/yyyy}", Model.ISSUE_DATE);
+                                    string receive_date = string.Format(CultureInfo.InvariantCulture,
+                                 "{0:dd/MM/yyyy}", Model.RECIEVED_DATE);
+                                    string expiry_date = string.Format(CultureInfo.InvariantCulture,
+                                 "{0:dd/MM/yyyy}", Model.EXPIRY_DATE);
+
+                                }
+                                <div class="input-daterange">
+                                    <div class="form-group">
+                                        @*<label class="control-label col-md-3 col-sm-3">Issue Date<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                @Html.TextBoxFor(model => issue_date, "{0:dd/MM/yyyy}", new { @id = "ISSUE_DATE", @class = "form-control  date-picker", @placeholder = "Issue Date", @autocomplete = "off", @maxlength = "20" })
+                                                @Html.ValidationMessageFor(model => model.ISSUE_DATE, "", new { @class = "text-danger" })
+                                                <label id="altIssueDate">@Model.INDIAN_FORMAT_ISSUE_DATE.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</label>
+                                                @Html.HiddenFor(model => model.INDIAN_FORMAT_ISSUE_DATE)
+                                            </div>*@
+                                        <label class="control-label col-md-3 col-sm-3">Issue Date<span class="required">*</span></label>
+                                        <div class="col-md-3 col-sm-3">
+                                            @Html.TextBoxFor(model => model.ISSUE_DATE, new { @id = "ISSUE_DATE", @class = "form-control  date-picker", @placeholder = "Issue Date", @autocomplete = "off", @maxlength = "10", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.ISSUE_DATE, "", new { @class = "text-danger", @id = "Err_ISSUE_DATE" })
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <label id="altIssueDate">@Model.INDIAN_FORMAT_ISSUE_DATE.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</label>
+                                            @Html.HiddenFor(model => model.INDIAN_FORMAT_ISSUE_DATE)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Expiry Date<span class="required">*</span></label>
+                                        <div class="col-md-3 col-sm-3">
+                                            @Html.TextBoxFor(model => expiry_date, "{0:dd/MM/yyyy}", new { @id = "EXPIRY_DATE", @class = "form-control  date-picker", @placeholder = "Expiry Date", @autocomplete = "off", @maxlength = "10", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.EXPIRY_DATE, "", new { @class = "text-danger", @id = "Err_ExpiryDate" })
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <label id="altExpiryDate">@Model.INDIAN_FORMAT_EXPIRY_DATE.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</label>
+                                            @Html.HiddenFor(model => model.INDIAN_FORMAT_EXPIRY_DATE)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Received On<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.RECIEVED_DATE, "{0:dd/MM/yyyy}", new { @id = "RECIEVED_DATE", @class = "form-control  date-picker", @placeholder = "Received Date", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.RECIEVED_DATE, "", new { @class = "text-danger", @id = "Err_RECIEVED_DATE" })
+                                    </div>
+                                </div>
+
+                                @if (@Model.FILE_PATH != null)
+                                {
+                                    <div class="form-group fileGroup">
+                                        <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Report</label>
+                                        <div class="col-md-6 col-sm-6 addPadding file-name">
+                                            @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                                            <span class="glyphicon glyphicon-remove removeFile remove-part" title="Delete"></span>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                <div class="form-group fileadd" style="display:none;">
+                                    <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="visaFile" id="visaFile" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.FILE_PATH)
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Remark</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextAreaFor(model => model.REMARK, new { @id = "REMARK", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveVisa">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </form>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                    }

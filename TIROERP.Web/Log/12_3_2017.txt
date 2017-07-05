@@ -1,0 +1,49 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/DeleteEmployee/E120170001
+ Action: DeleteEmployee
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: ChildMenuLayout
+ URL: http://localhost:50130/DashBoard
+ Action: ChildMenuLayout
+ Error Message: Value cannot be null or empty.
+Parameter name: contentPath
+ Inner Exception: Value cannot be null or empty.
+Parameter name: contentPath
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard
+ Action: Index
+ Error Message: Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'.
+ Inner Exception: Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: ChildMenuLayout
+ URL: http://localhost:50130/Error/Error
+ Action: ChildMenuLayout
+ Error Message: Value cannot be null or empty.
+Parameter name: contentPath
+ Inner Exception: Value cannot be null or empty.
+Parameter name: contentPath
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: task
+ URL: http://localhost:50130/task/create
+ Action: create
+ Error Message: Unable to cast object of type 'System.Collections.Generic.List`1[System.Collections.IEnumerable]' to type 'System.Web.Mvc.SelectList'.
+ Inner Exception: Unable to cast object of type 'System.Collections.Generic.List`1[System.Collections.IEnumerable]' to type 'System.Web.Mvc.SelectList'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

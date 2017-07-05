@@ -1,0 +1,512 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using TIROERP.Core.Model;
+using TIROERP.Core.RepositoryInterface;
+using TIROERP.Web.App_Start;
+
+namespace TIROERP.Web.Controllers
+{
+    [ErrorFilter]
+    [Authenticate]
+    public class StatusSearchController : Controller
+    {
+        private readonly IStatusSearch _iStatusSearchRepository;
+        public static List<UserEducation> lstEducationSpeciaization;
+        public static List<Certification> lstCertification;
+        public static List<ContactType> lstContactType;
+        public static List<Country> lstCountry;
+        public static List<Company> lstCompany;
+        public static List<IndustryDesignation> lstIndustryDesignation;
+        public StatusSearchController(IStatusSearch iStatusSearchRepository)
+        {
+            this._iStatusSearchRepository = iStatusSearchRepository;
+        }
+
+        // GET: StatusSearch
+        public ActionResult CandidateSearch(int id)
+        {
+            List<CandidateSearch> candidateresult = new List<CandidateSearch>();
+            ViewBag.UserTtypeId = id;
+            if (id == 1)
+            {
+                return View("CandidateSearch", candidateresult);
+            }
+            else if (id == 2)
+            {
+                return View("EmployeeSearch", candidateresult);
+            }
+            else if (id == 3)
+            {
+                return View("AgentSearch", candidateresult);
+            }
+            else if (id == 4)
+            {
+                return View("DoctorSearch", candidateresult);
+            }
+            else
+            {
+                return View("ClientSearch", candidateresult);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CandidateSearch(CandidateSearch search)
+        {
+            var candidateresult = _iStatusSearchRepository.GetCandidateResult(search);
+            ViewBag.UserTtypeId = search.USER_TYPE_ID;
+            if (search.USER_TYPE_ID == 1)
+            {
+                return View("CandidateSearch", candidateresult);
+            }
+            else if (search.USER_TYPE_ID == 2)
+            {
+                return View("EmployeeSearch", candidateresult);
+            }
+            else if (search.USER_TYPE_ID == 3)
+            {
+                return View("AgentSearch", candidateresult);
+            }
+            else if (search.USER_TYPE_ID == 4)
+            {
+                return View("DoctorSearch", candidateresult);
+            }
+            else
+            {
+                return View("ClientSearch", candidateresult);
+            }
+        }
+
+        public ActionResult GetCandidateDetails(string registrationNo)
+        {
+            var candidateresult = _iStatusSearchRepository.GetCandidateDetails(registrationNo);
+
+            Candidate candidatedetails = new Candidate();
+            var personaldetails = ((List<Candidate>)candidateresult[0])
+                .Select(x => new Candidate
+                {
+                    REGISTRATION_NO = x.REGISTRATION_NO,
+                    REGISTRATION_DATE = Convert.ToDateTime(Convert.ToDateTime(x.REGISTRATION_DATE).ToString("dd/MMM/yyyy")),
+                    Candidate_Name = x.Candidate_Name,
+                    PASSPORT_NUMBER = x.PASSPORT_NUMBER,
+                    Contact_No = x.Contact_No,
+                    USER_EMAIL = x.USER_EMAIL,
+                    DATE_OF_BIRTH = Convert.ToDateTime(Convert.ToDateTime(x.DATE_OF_BIRTH).ToString("dd/MMM/yyyy")),
+                    Age = x.Age,
+                    AVAILING_TYPE = x.AVAILING_TYPE,
+                    CURRENT_LOCATION = x.CURRENT_LOCATION,
+                    STATUS_NAME = x.STATUS_NAME,
+                    TOTAL_WORK_EXPERIENCE = x.TOTAL_WORK_EXPERIENCE,
+                    TOTAL_GULF_EXPERIENCE = x.TOTAL_GULF_EXPERIENCE,
+                    FILE_PATH = x.FILE_PATH,
+                    POST_APPLIED_FOR=x.POST_APPLIED_FOR,
+                    SOURCE_NAME=x.SOURCE_NAME,
+                    STATUS_ID=x.STATUS_ID
+
+                }).ToList();
+
+            candidatedetails = personaldetails[0];
+            candidatedetails.LST_USER_EDUCATION = ((List<UserEducation>)candidateresult[1]);
+            candidatedetails.LST_USER_CERTIFICATION = ((List<UserCertification>)candidateresult[2]);
+            candidatedetails.LST_USER_EXPERIENCE = ((List<UserExperience>)candidateresult[3]);
+            candidatedetails.LST_USER_DOCUMENT = ((List<UserDocument>)candidateresult[4]);
+            candidatedetails.LST_USER_REQUIREMENT = ((List<UserRequirement>)candidateresult[5]);
+            candidatedetails.LST_USER_ADDRESS = ((List<UserAddress>)candidateresult[6]);
+            candidatedetails.LST_USER_CONTACT = ((List<UserContact>)candidateresult[7]);
+            candidatedetails.LST_USER_EMAIL = ((List<UserEmail>)candidateresult[8]);
+
+            GetMasterData(candidatedetails);
+            return View(candidatedetails);
+
+        }
+
+        private void GetMasterData(Candidate candidate)
+        {
+            var result = _iStatusSearchRepository.GetMasterData();
+
+            lstCountry = (List<Country>)result[0];
+            var lstCountryres = (from country in lstCountry
+                                 group country by new { country.COUNTRY_CODE, country.COUNTRY_NAME } into c
+                                 select c).Select(c => new SelectListItem
+                                 {
+                                     Value = c.Key.COUNTRY_CODE,
+                                     Text = c.Key.COUNTRY_NAME
+                                 });
+
+            ViewData["GetCountry"] = new SelectList(lstCountryres, "Value", "Text");
+
+
+            List<Country> lstLocation = (List<Country>)result[0];
+            var location = lstLocation.Where(x => x.CITY_NAME != candidate.CURRENT_LOCATION)
+                .Select(c => new SelectListItem
+                {
+                    Value = c.CITY_CODE,
+                    Text = c.CITY_NAME
+                });
+            ViewData["GetLocation"] = new SelectList(location, "Value", "Text");
+
+
+            lstContactType = (List<ContactType>)result[1];
+            var lstAddressType = lstContactType.Where(x => x.TYPE_FOR == "ADDRESS").Select(c => new SelectListItem
+            {
+                Value = c.CONTACT_TYPE_ID.ToString(),
+                Text = c.CONTACT_TYPE
+            });
+            ViewData["GetAddressType"] = new SelectList(lstAddressType, "Value", "Text");
+
+            var lstConType = lstContactType.Where(x => x.TYPE_FOR == "PHONE").Select(c => new SelectListItem
+            {
+                Value = c.CONTACT_TYPE_ID.ToString(),
+                Text = c.CONTACT_TYPE
+            });
+            ViewData["GetContactType"] = new SelectList(lstConType, "Value", "Text");
+
+            var lstAvailingType = ((List<AvailingType>)result[2]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.AVAILING_TYPE_ID.ToString(),
+                    Text = c.AVAILING_TYPE
+                });
+            ViewData["GetAvailingType"] = new SelectList(lstAvailingType, "Value", "Text");
+
+            var lstSource = ((List<Source>)result[3]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.SOURCE_ID.ToString(),
+                    Text = c.SOURCE_NAME
+                });
+            ViewData["GetSource"] = new SelectList(lstSource, "Value", "Text");
+
+            var lstStatus = ((List<Status>)result[4]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.STATUS_ID.ToString(),
+                    Text = c.STATUS_NAME
+                });
+            ViewData["GetStatus"] = new SelectList(lstStatus, "Value", "Text");
+
+            var lstMaritalStatus = ((List<MaritalStatus>)result[5]).
+                Where(c => c.MARITAL_STATUS_ID != candidate.MARITAL_STATUS_ID).
+                Select(c => new SelectListItem
+                {
+                    Value = c.MARITAL_STATUS_ID.ToString(),
+                    Text = c.MARITAL_STATUS
+                });
+            ViewData["GetMaritalStatus"] = new SelectList(lstMaritalStatus, "Value", "Text");
+
+            var lstNationality = ((List<Nationality>)result[6]).
+                Where(c => c.NATIONALITY_ID != candidate.NATIONALITY_ID).
+                Select(c => new SelectListItem
+                {
+                    Value = c.NATIONALITY_ID.ToString(),
+                    Text = c.NATIONALITY
+                });
+            ViewData["GetNationality"] = new SelectList(lstNationality, "Value", "Text");
+
+            var lstLanguage = ((List<Language>)result[7]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.LANGUAGE_ID.ToString(),
+                    Text = c.LANGUAGE_NAME
+                });
+            ViewData["GetLanguage"] = new SelectList(lstLanguage, "Value", "Text");
+
+            var University = ((List<University>)result[8]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.UNIVERSITY_ID.ToString(),
+                    Text = c.UNIVERSITY_NAME
+                });
+            ViewData["GetUniversity"] = new SelectList(University, "Value", "Text");
+
+            lstCompany = ((List<Company>)result[9]).ToList();
+            var Company = lstCompany.Select(c => new SelectListItem
+            {
+                Value = c.COMPANY_ID.ToString(),
+                Text = c.COMPANY_NAME
+            });
+            ViewData["GetCompany"] = new SelectList(Company, "Value", "Text");
+
+            lstIndustryDesignation = (List<IndustryDesignation>)result[10];
+            var IndustryDesignation = (from ind in lstIndustryDesignation
+                                       group ind by new { ind.INDUSTRY_ID, ind.INDUSTRY_TYPE } into c
+                                       select c).Select(c => new SelectListItem
+                                       {
+                                           Value = c.Key.INDUSTRY_ID.ToString(),
+                                           Text = c.Key.INDUSTRY_TYPE
+                                       });
+            ViewData["GetIndustryDesignation"] = new SelectList(IndustryDesignation, "Value", "Text");
+
+            lstEducationSpeciaization = (List<UserEducation>)result[11];
+            var EducationSpeciaization = (from ind in lstEducationSpeciaization
+                                          group ind by new { ind.EDUCATION_TYPE_ID, ind.EDUCATION_TYPE } into c
+                                          select c).Select(c => new SelectListItem
+                                          {
+                                              Value = c.Key.EDUCATION_TYPE_ID.ToString(),
+                                              Text = c.Key.EDUCATION_TYPE
+                                          });
+            ViewData["GetEducationSpeciaization"] = new SelectList(EducationSpeciaization, "Value", "Text");
+
+            var VehicleType = ((List<VehicleType>)result[12]).
+                Select(c => new SelectListItem
+                {
+                    Value = c.VEHICLE_TYPE_ID.ToString(),
+                    Text = c.VEHICLE_TYPE
+                });
+            ViewData["GetVehicleType"] = new SelectList(VehicleType, "Value", "Text");
+
+            var Branch = ((List<Branch>)result[13]).
+               Select(c => new SelectListItem
+               {
+                   Value = c.BRANCH_CODE.ToString(),
+                   Text = c.BRANCH_NAME
+               });
+            ViewData["GetBranch"] = new SelectList(Branch, "Value", "Text");
+
+
+            lstCertification = ((List<Certification>)result[14]);
+
+            var Certification = lstCertification.Select(c => new SelectListItem
+            {
+                Value = c.CERTIFICATION_ID.ToString(),
+                Text = c.CERTIFICATION_NAME
+            });
+            ViewData["GetCertification"] = new SelectList(Certification, "Value", "Text");
+
+            var VisaMaster = ((List<VisaMaster>)result[15]).
+               Select(c => new SelectListItem
+               {
+                   Value = c.VISA_ID.ToString(),
+                   Text = c.VISA_NUMBER
+               });
+            ViewData["GetVisaMaster"] = new SelectList(VisaMaster, "Value", "Text");
+
+            var RequirementMaster = ((List<RequirementMaster>)result[16]).
+              Select(c => new SelectListItem
+              {
+                  Value = c.REQUIREMENT_ID.ToString(),
+                  Text = c.REQUIREMENT
+              });
+            ViewData["GetRequirementMaster"] = new SelectList(RequirementMaster, "Value", "Text");
+
+            var Gender = ((List<Gender>)result[17]).
+              Where(c => c.GENDER_CODE != candidate.GENDER_CODE).
+              Select(c => new SelectListItem
+              {
+                  Value = c.GENDER_CODE.ToString(),
+                  Text = c.GENDER_NAME
+              });
+            ViewData["GetGender"] = new SelectList(Gender, "Value", "Text");
+
+            var Religion = ((List<Religion>)result[18]).
+              Where(c => c.RELIGION_ID != candidate.RELIGION_ID).
+              Select(c => new SelectListItem
+              {
+                  Value = c.RELIGION_ID.ToString(),
+                  Text = c.RELIGION_NAME
+              });
+            ViewData["GetReligion"] = new SelectList(Religion, "Value", "Text");
+
+        }
+
+        [HttpGet]
+        public JsonResult LoadEducationPartialView(string registrationNo)
+        {
+            var result = _iStatusSearchRepository.GetUserEducationDetails(registrationNo);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadCertificationPartialView(string registrationNo)
+        {
+            var result = _iStatusSearchRepository.GetUserCertificationDetails(registrationNo);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadContactDetailsPartialView(string registrationNo)
+        {
+            Candidate userContactDetails = _iStatusSearchRepository.GetCandidateContactDetails(registrationNo);
+            var result = new { candidate = userContactDetails };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadDocumentsPartialView(string registrationNo)
+        {
+            var result = _iStatusSearchRepository.GetCandidateDocumentDetails(registrationNo);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadExpPartialView(string registrationNo)
+        {
+            var result = _iStatusSearchRepository.GetCandidateExperienceDetails(registrationNo);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult LoadCandidatePersonalDetails(string registrationNo)
+        {
+            Candidate candidate = new Candidate();
+            candidate = _iStatusSearchRepository.GetCandidatePersonalDetails(registrationNo);
+
+            return Json(candidate, JsonRequestBehavior.AllowGet);
+        }
+
+        private void GetViewDataForExpView()
+        {
+            //Company data
+            var Company = lstCompany.Select(c => new SelectListItem
+            {
+                Value = c.COMPANY_ID.ToString(),
+                Text = c.COMPANY_NAME
+            });
+            ViewData["GetCompany"] = new SelectList(Company, "Value", "Text");
+
+            //Industry Data
+            var IndustryDesignation = (from ind in lstIndustryDesignation
+                                       group ind by new { ind.INDUSTRY_ID, ind.INDUSTRY_TYPE } into c
+                                       select c).Select(c => new SelectListItem
+                                       {
+                                           Value = c.Key.INDUSTRY_ID.ToString(),
+                                           Text = c.Key.INDUSTRY_TYPE
+                                       });
+            ViewData["GetIndustryDesignation"] = new SelectList(IndustryDesignation, "Value", "Text");
+
+            //Country data
+            var lstCountryres = (from country in lstCountry
+                                 group country by new { country.COUNTRY_CODE, country.COUNTRY_NAME } into c
+                                 select c).Select(c => new SelectListItem
+                                 {
+                                     Value = c.Key.COUNTRY_CODE,
+                                     Text = c.Key.COUNTRY_NAME
+                                 });
+
+            ViewData["GetCountry"] = new SelectList(lstCountryres, "Value", "Text");
+        }
+
+        [HttpPost]
+        public ActionResult Update(Candidate candidate)
+        {
+            var result = _iStatusSearchRepository.UpdateCandidateDetails(candidate);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetProcessDetails(int userRequirementId)
+        {
+            var candDetails = _iStatusSearchRepository.GetProcessDetails(userRequirementId);
+
+            var mofa = ((List<Mofa>)candDetails[0])
+                .Select(x => new Mofa
+                {
+                    MofaNumber = x.MofaNumber,
+                    MofaDate = Convert.ToDateTime(Convert.ToDateTime(x.MofaDate).ToString("dd/MMM/yyyy")),
+                    ApplicationNumber = x.ApplicationNumber,
+                    ApplicationDate = x.ApplicationDate,
+                    HealthNumber = x.HealthNumber,
+                    HealthDate = x.HealthDate,
+                    DDNumber = x.DDNumber,
+                    DDDate = x.DDDate
+                });
+
+            var medical = ((List<Medical>)candDetails[1])
+                .Select(x => new Medical
+                {
+                    STATUS_NAME = x.STATUS_NAME,
+                    CheckupDate = x.CheckupDate,
+                    DoctorName = x.DoctorName,
+                    TokenNumber = x.TokenNumber
+                });
+
+            var visa = ((List<VisaEndorsement>)candDetails[2])
+                .Select(x => new VisaEndorsement
+                {
+                    VisaSubmissionStatus = x.VisaSubmissionStatus,
+                    SubmissionDate = x.SubmissionDate
+                });
+
+            var policy = ((List<Policy>)candDetails[3])
+                .Select(x => new Policy
+                {
+                    PolicyNumber = x.PolicyNumber,
+                    PolicyDate = x.PolicyDate
+                });
+
+            var ticket = ((List<Ticket>)candDetails[4])
+                .Select(x => new Ticket
+                {
+                    TravelStatus = x.TravelStatus,
+                    DepartureDate = x.DepartureDate,
+                    PnrNumber = x.PnrNumber,
+                    AirlinesName = x.AirlinesName,
+                    DepartureCity = x.DepartureCity,
+                    DestinationCity = x.DestinationCity,
+                    ArrivalTime = x.ArrivalTime,
+                });
+
+            var result = new { mofa = mofa, medical = medical, visa = visa, policy = policy, ticket = ticket };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddUpdateUserRequirement(string userRequirementId, string regno, int requirementid, int candidateStatus, bool status)
+        {
+            if (string.IsNullOrEmpty(userRequirementId))
+            {
+                userRequirementId = "0";
+            }
+            var lstReq = _iStatusSearchRepository.AddUpdateUserRequirement(Convert.ToInt16(userRequirementId), regno, requirementid, candidateStatus, status);
+            return Json(lstReq, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        #region Agent 
+        public ActionResult GetAgentDetails(string registrationNo) 
+        {
+            var candidateresult = _iStatusSearchRepository.GetCandidateDetails(registrationNo);
+
+            Candidate candidatedetails = new Candidate();
+            var personaldetails = ((List<Candidate>)candidateresult[0])
+                .Select(x => new Candidate
+                {
+                    REGISTRATION_NO = x.REGISTRATION_NO,
+                    REGISTRATION_DATE = Convert.ToDateTime(Convert.ToDateTime(x.REGISTRATION_DATE).ToString("dd/MMM/yyyy")),
+                    Candidate_Name = x.Candidate_Name,
+                    Contact_No = x.Contact_No,
+                    USER_EMAIL = x.USER_EMAIL,
+
+                    //Agent Specific fields
+                    MULTIPLE_INDUSTRY_ID = x.MULTIPLE_INDUSTRY_ID,
+                    MULTIPLE_DESIGNATION_ID = x.MULTIPLE_DESIGNATION_ID,
+                    INDUSTRY_TYPE = x.INDUSTRY_TYPE,
+                    DESIGNATION_NAME = x.DESIGNATION_NAME,
+                    FIRST_NAME = x.FIRST_NAME,
+                    MIDDLE_NAME = x.MIDDLE_NAME,
+                    LAST_NAME = x.LAST_NAME,
+                    REMARK = x.REMARK,
+
+                    AVAILING_TYPE = x.AVAILING_TYPE,
+                    CURRENT_LOCATION = x.CURRENT_LOCATION,
+                    STATUS_NAME = x.STATUS_NAME,
+                    TOTAL_WORK_EXPERIENCE = x.TOTAL_WORK_EXPERIENCE,
+                    TOTAL_GULF_EXPERIENCE = x.TOTAL_GULF_EXPERIENCE,
+                    FILE_PATH = x.FILE_PATH
+                }).ToList();
+
+            candidatedetails = personaldetails[0];
+            candidatedetails.LST_USER_ADDRESS = ((List<UserAddress>)candidateresult[5]);
+            candidatedetails.LST_USER_CONTACT = ((List<UserContact>)candidateresult[6]);
+            candidatedetails.LST_USER_EMAIL = ((List<UserEmail>)candidateresult[7]);
+            candidatedetails.LST_USER_REQUIREMENT = ((List<UserRequirement>)candidateresult[8]);
+
+            GetMasterData(candidatedetails);
+            return View(candidatedetails);
+        }
+        #endregion
+    }
+}

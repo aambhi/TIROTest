@@ -1,0 +1,65 @@
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard
+ Action: Index
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: 
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard
+ Action: Index
+ Error Message: The method or operation is not implemented.
+ Inner Exception: The method or operation is not implemented.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: ChildMenuLayout
+ URL: http://localhost:50130/Error/Error
+ Action: ChildMenuLayout
+ Error Message: The method or operation is not implemented.
+ Inner Exception: The method or operation is not implemented.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails/C1020160001
+ Action: GetCandidateDetails
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\StatusSearch\GetCandidateDetails.cshtml(785): error CS1061: 'Ticket' does not contain a definition for 'TRAVEL_STATUS' and no extension method 'TRAVEL_STATUS' accepting a first argument of type 'Ticket' could be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\StatusSearch\GetCandidateDetails.cshtml(785): error CS1061: 'Ticket' does not contain a definition for 'TRAVEL_STATUS' and no extension method 'TRAVEL_STATUS' accepting a first argument of type 'Ticket' could be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails/C1020160001
+ Action: GetCandidateDetails
+ Error Message: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ Inner Exception: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/CreateReq
+ Action: CreateReq
+ Error Message: Could not find stored procedure 'dbo.PROC_REQUIREMENT_MASTER'.
+ Inner Exception: Could not find stored procedure 'dbo.PROC_REQUIREMENT_MASTER'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/CreateReq
+ Action: CreateReq
+ Error Message: Invalid object name 'TBL_REQUIREMENT_STATUS_MASTER'.
+ Inner Exception: Invalid object name 'TBL_REQUIREMENT_STATUS_MASTER'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

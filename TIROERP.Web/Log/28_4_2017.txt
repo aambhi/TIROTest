@@ -1,0 +1,10 @@
+==================================================================
+DateTime28/04/2017 21:43:50
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/ResetPassword
+ Action: ResetPassword
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

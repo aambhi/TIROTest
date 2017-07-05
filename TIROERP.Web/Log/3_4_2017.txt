@@ -1,0 +1,260 @@
+==================================================================
+DateTime03-Apr-17 12:47:21 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create
+ Inner Exception: 21-Apr-83 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:21 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:21 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:27 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: create
+ Inner Exception: 0, 272, False, 27, 2, C1330, , 18-Mar-09 12:00:00 AM, 09-Mar-17 12:00:00 AM, 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:27 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 2
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:27 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 11
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:27 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 13
+ Error Message: 18-Mar-09 12:00:00 AM
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:27 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 14
+ Error Message: 09-Mar-17 12:00:00 AM
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 12:47:28 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 12
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:02 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:07 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:07 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:07 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:07 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:24 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:25 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:25 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:25 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:31:25 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:34:13 AM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: Invalid JSON primitive: _candidate.
+ Inner Exception: Invalid JSON primitive: _candidate.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:48 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create
+ Inner Exception: 14-Apr-83 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:49 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:49 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:50 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 2
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:50 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 11
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime03-Apr-17 1:50:50 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 12
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

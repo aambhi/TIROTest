@@ -1,0 +1,3076 @@
+﻿@model TIROERP.Core.Model.Candidate
+@{
+    ViewBag.Title = "GetCandidateDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string imagepath = string.Empty;
+    string noimagepath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["NoImageFile"]);
+    if (!string.IsNullOrEmpty(Model.FILE_PATH))
+    {
+        imagepath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImageFile"]) + "/Uploads/CandidateUploadedFiles/" + Model.FILE_PATH;
+    }
+
+    string langJSON = "";
+    if (Model.LST_USER_LANGUAGE != null)
+    {
+        int j = 1;
+        for (int i = 0; i < Model.LST_USER_LANGUAGE.Count; i++)
+        {
+            langJSON += "{\"LANGUAGE_ID\":\"" + Model.LST_USER_LANGUAGE[i].LANGUAGE_ID + "\", \"IS_READ\":\"" + Model.LST_USER_LANGUAGE[i].IS_READ + "\",\"IsNew\" : \"" + "true" + "\",\"IS_WRITE\":\"" + Model.LST_USER_LANGUAGE[i].IS_WRITE + "\",\"IS_SPEAK\":\"" + Model.LST_USER_LANGUAGE[i].IS_SPEAK + "\" ,\"USER_LANGUAGE_ID\":\"" + Model.LST_USER_LANGUAGE[i].USER_LANGUAGE_ID + "\",\"LANGUAGE_NAME\":\"" + Model.LST_USER_LANGUAGE[i].LANGUAGE_NAME + "\",\"SRNO\":\"" + j + "\"},";
+            j++;
+        }
+
+        langJSON = langJSON.TrimEnd(',');
+        langJSON = "[" + langJSON + "]";
+    }
+}
+
+@Scripts.Render("~/bundles/wizard")
+@Styles.Render("~/Content/wizard")
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+
+<script src="~/Content/js/mask/jquery.inputmask.js"></script>
+<script src="~/Content/js/mask/mask.js"></script>
+
+<script src="~/Content/js/underscore/underscore.js"></script>
+<script src="~/Content/js/Candidate_Details_Modal.js"></script>
+<script src="~/Content/js/AttachmentUpload.js"></script>
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+<script src="~/Content/js/chosen/chosen.jquery.js"></script>
+<style>
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        background-color: #FAFAFA;
+        border-color: #EEEEEE;
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #73879C;
+            background-color: #fff;
+        }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .panel-body .panel-body {
+        padding: 6px 5px;
+    }
+</style>
+
+
+@using (Html.BeginForm("", "", FormMethod.Get, new { @id = "formControl" }))
+{
+    @Html.AntiForgeryToken()
+   <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title" style="width:100%">
+                <div class="title_left" style="width:100%">
+                    <h3>
+                        View Candidate Details <a href="@Url.Action("CandidateSearch", "StatusSearch", new { id = 1 })" class="btn btn-primary pull-right" style="color: white;background-color: #337ab7;"><i class="fa fa-chevron-left"></i> Back </a>
+                    </h3>
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.REGISTRATION_NO)
+            @*@Html.HiddenFor(model => model.STATUS_ID)*@
+            @Html.HiddenFor(model => model.PASSPORT_ID)
+            @Html.HiddenFor(model => model.DRIVING_LICENCE_ID)
+            @Html.Hidden("USER_REQUIREMENT_ID")
+            @Html.Hidden("MEDICAL_ID")
+            @Html.Hidden("MOFA_ID")
+            @Html.Hidden("VISAENDORSEMENT_ID")
+            @Html.Hidden("EMIGRATION_ID")
+            @Html.Hidden("TICKET_ID")
+
+            <div class="clearfix"></div>
+            <div class="alert alert-success alert-dismissable" id="divSuccessMsg" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                Record Updated Successfully!!!
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="container demo">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-parent="#accordion">
+                                            <i class="fa fa-chevron-down alignright"></i>
+                                            <i class="fa fa-align-left"></i> Personal Details
+                                            <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="personalDetailsModalLink" data-target=".personal-details" title="Edit personal details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                        </a>
+
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-expanded="true" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="col-md-9 col-sm-9 details-panel">
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3 ">
+                                                    <label class="control-label">Registration No: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divREGISTRATION_NO">
+                                                    @Html.DisplayFor(model => model.REGISTRATION_NO, new { @class = "form-control" })
+
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Registration Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divREGISTRATION_DATE">
+                                                    @Html.DisplayFor(model => model.REGISTRATION_DATE, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Full Name: </label>
+                                                </div>
+                                                <div class="col-sm-9 col-md-9" id="divCANDIDATE_NAME">
+                                                    @Html.DisplayFor(model => model.Candidate_Name, new { @class = "form-control" })
+                                                </div>
+
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Phone No: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divContact_No">
+                                                    <ul style="margin-left:-25px;" id="ulContact">
+                                                        @foreach (var contact in Model.LST_USER_CONTACT)
+                                                        {
+                                                            <li>@contact.CONTACT_NO</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Email Address: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divUSER_EMAIL" style="word-wrap: break-word;">
+                                                    <ul style="margin-left:-25px;" id="ulEmail">
+                                                        @foreach (var email in Model.LST_USER_EMAIL)
+                                                        {
+                                                            <li>@email.USER_EMAIL</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Date of Birth: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDOB">
+                                                    @Html.DisplayFor(model => model.DATE_OF_BIRTH, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Age: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divCURRENT_AGE">
+                                                    @Html.DisplayFor(model => model.Age, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Father Name: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divFATHER_NAME">
+                                                    @Html.DisplayFor(model => model.FATHER_NAME, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Mother Name: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divMOTHER_NAME">
+                                                    @Html.DisplayFor(model => model.MOTHER_NAME, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Gender: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divGENDER_NAME">
+                                                    @Html.DisplayFor(model => model.GENDER_NAME, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Place of Birth: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divPLACE_OF_BIRTH">
+                                                    @Html.DisplayFor(model => model.PLACE_OF_BIRTH, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Marital Status: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divMARITAL_STATUS">
+                                                    @Html.DisplayFor(model => model.MARITAL_STATUS, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Nationality: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divNATIONALITY">
+                                                    @Html.DisplayFor(model => model.NATIONALITY, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Religion: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divRELIGION_NAME">
+                                                    @Html.DisplayFor(model => model.RELIGION_NAME, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Current Location: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divCURRENT_LOCATION">
+                                                    @Html.DisplayFor(model => model.CURRENT_LOCATION, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Passport Number: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divPASSPORT_NUMBER">
+                                                    @Html.DisplayFor(model => model.PASSPORT_NUMBER, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Place of Issue: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divPLACE_OF_ISSUE">
+                                                    @Html.DisplayFor(model => model.PLACE_OF_ISSUE, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Passport Issue Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDATE_OF_ISSUE">
+                                                    @Html.DisplayFor(model => model.DATE_OF_ISSUE, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for=" inputemail" class="control-label">Passport Expiry Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDATE_OF_EXPIRY">
+                                                    @Html.DisplayFor(model => model.DATE_OF_EXPIRY, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Emigration Clearance: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divEMIGRATION_CLEARANCE_REQUIRED">
+                                                    @if (Model.EMIGRATION_CLEARANCE_REQUIRED == true)
+                                                    {
+                                                        <label style="font-weight: 100;">Required</label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label style="font-weight: 100;">Not Required</label>
+                                                    }
+
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDATE_OF_EXPIRY">
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Driving License Number: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDRIVING_LICENCE_NUMBER">
+                                                    @Html.DisplayFor(model => model.DRIVING_LICENCE_NUMBER, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Driving Place of Issue: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDRIVING_PLACE_OF_ISSUE">
+                                                    @Html.DisplayFor(model => model.DRIVING_PLACE_OF_ISSUE, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Driving Issue Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDRIVING_DATE_OF_ISSUE">
+                                                    @Html.DisplayFor(model => model.DRIVING_DATE_OF_ISSUE, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Driving Expiry Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDRIVING_EXPIRY_DATE">
+                                                    @Html.DisplayFor(model => model.DRIVING_EXPIRY_DATE, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Vehicle Type: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divVEHICLE_TYPE">
+                                                    @Html.DisplayFor(model => model.VEHICLE_TYPE, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Language: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divLanguage">
+                                                    <ul style="margin-left:-25px;" id="ulLang">
+
+                                                        @foreach (var language in Model.LST_USER_LANGUAGE)
+                                                        {
+                                                            string read = string.Empty;
+                                                            string write = string.Empty;
+                                                            string speak = string.Empty;
+                                                            if (language.IS_READ == true) { read = "Read"; }
+                                                            if (language.IS_WRITE == true) { write = "Write"; }
+                                                            if (language.IS_SPEAK == true) { speak = "Speak"; }
+
+                                                            <li>@(language.LANGUAGE_NAME + "(" + speak + " " + read + " " + write + ")")</li>
+                                                        }
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Website: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 website" id="divWEBSITE">
+                                                    @Html.DisplayFor(model => model.WEBSITE, "", new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Skype: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 skype" id="divSKYPE">
+                                                    @Html.DisplayFor(model => model.SKYPE, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Personal Remark: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" id="divDRIVING_REMARK">
+                                                    @Html.DisplayFor(model => model.DRIVING_REMARK, "", new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Contact Remark: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 contactremark" id="divCONTACT_REMARK">
+                                                    @Html.DisplayFor(model => model.CONTACT_REMARK, "", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-3">
+                                                    <a class="btn btn-primary" href="@Url.Action("CandidateResumeDownload", "StatusSearch", new { registrationNo = Model.REGISTRATION_NO })">
+                                                        <i class="fa fa-download"></i> Download Resume
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (Model.FILE_PATH != null)
+                                        {
+                                            <div class="panel-body col-md-3 col-sm-3" style="padding-left: 50px;">
+                                                <div class="fileinput fileinput-exists image-div" data-provides="fileinput">
+                                                    <div class="fileinput-preview fileupload-exists thumbnail image-div" style="max-width: 200px; width:200px; max-height: 150px; line-height: 20px;">
+                                                        <img src="@imagepath" class="candidate-img" style="width: 200px; height: 150px;" alt="@Model.Candidate_Name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="panel-body col-md-3 col-sm-3" style="padding-left: 50px;">
+                                                <div class="fileinput fileinput-exists" data-provides="fileinput">
+                                                    <div class="fileinput-preview fileupload-exists thumbnail" id="imageUploadDiv" style="max-width: 200px; width:200px; max-height: 150px; line-height: 20px;">
+                                                        <img src="@noimagepath" class="candidate-img" style="width: 200px; height: 150px;" alt="@Model.Candidate_Name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @Html.HiddenFor(model => model.FILE_PATH)
+                                        <div class="panel-body col-md-12 col-sm-12">
+                                            <a class="btn btn-primary pull-right" data-toggle="modal" id="contact_details_modal_link" title="Edit contact details" style="color: white;background-color: #337ab7;"><i class="fa fa-edit"></i> Edit contact details </a>
+                                            <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th>Address</th>
+                                                        <th>Country</th>
+                                                        <th>State-City</th>
+                                                        <th>Village</th>
+                                                        <th>Pincode</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblAddDetails">
+                                                    @if (Model.LST_USER_ADDRESS.Count > 0)
+                                                    {
+                                                        foreach (var addressItem in Model.LST_USER_ADDRESS)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <span class="user-address">@(addressItem.ADDRESS_TYPE + "-" + addressItem.ADDRESS)</span>
+                                                                    <input type="hidden" class="add_type_id" value=@addressItem.USER_ADDRESS_ID />
+                                                                </td>
+                                                                <td>
+                                                                    @addressItem.USER_COUNTRY
+                                                                </td>
+                                                                <td>
+                                                                    @addressItem.USER_STATE - @addressItem.CITY_CODE
+                                                                </td>
+                                                                <td>
+                                                                    @addressItem.USER_VILLAGE
+                                                                </td>
+                                                                <td>
+                                                                    @addressItem.USER_PINCODE
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Current Status Details
+                                        <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="officialDetailsModalLink" data-target=".current-status" title="Edit official details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Availing For: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divAVAILING_TYPE">
+                                            @Html.DisplayFor(model => model.AVAILING_TYPE, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for=" inputemail" class="control-label">Source: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divSOURCE_NAME">
+                                            @Html.DisplayFor(model => model.SOURCE_NAME, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for="inputemail" class="control-label">Status: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divSTATUS_NAME">
+                                            @Html.DisplayFor(model => model.STATUS_NAME, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Post Applied For: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPOST_APPLIED_FOR">
+                                            @Html.DisplayFor(model => model.POST_APPLIED_FOR, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for=" inputemail" class="control-label">File No: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divFILE_NO">
+                                            @Html.DisplayFor(model => model.FILE_NO, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Requirement: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divREQUIREMENT">
+                                            @Html.DisplayFor(model => model.REQUIREMENT, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for=" inputemail" class="control-label">Visa No: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divVISA_NUMBER">
+                                            @Html.DisplayFor(model => model.VISA_NUMBER, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for="inputemail" class="control-label">Remark: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divREMARK">
+                                            @Html.DisplayFor(model => model.REMARK, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Certification Details
+                                        <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="certificationModalLink" title="Edit Certification details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        @*<a class="collapsed btn btn-info alignright" role="button" data-toggle="collapse" id="certificationModalLink" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <i class="fa fa-edit" data-toggle="modal" title="Edit certification details" style="color: white;background-color: #5bc0de; margin-top:-7px;"></i>Edit Certification Details
+                                            </a>*@
+                                        <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Certification</th>
+                                                    <th>Certification Level</th>
+                                                    <th>Institute</th>
+                                                    <th>Year of Passing</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblCertificationDetails">
+                                                @if (Model.LST_USER_CERTIFICATION.Count > 0)
+                                                {
+                                                    foreach (var cert in Model.LST_USER_CERTIFICATION)
+                                                    {
+                                                        <tr>
+                                                            <td>@cert.CERTIFICATION</td>
+                                                            <td>@cert.CERTIFICATION_LEVEL</td>
+                                                            <td>@cert.INSTITUTE</td>
+                                                            <td>@cert.YEAR_OF_PASSING</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingEleven">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Education Details
+                                        <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="educationModalLink" title="Edit Education details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Education</th>
+                                                    <th>Specialiazation</th>
+                                                    <th>University Name</th>
+                                                    <th>Year of Passing</th>
+                                                    <th>Is Highest Education</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblEducationDetails">
+                                                @if (Model.LST_USER_EDUCATION.Count > 0)
+                                                {
+                                                    foreach (var edu in Model.LST_USER_EDUCATION)
+                                                    {
+                                                        if (edu.EDUCATION_TYPE_ID != 0)
+                                                        {
+                                                        <tr>
+                                                            <td>
+                                                                @edu.EDUCATION_TYPE
+                                                                @Html.Hidden("USER_EDUCATION_ID", edu.USER_EDUCATION_ID, new { @id = "USER_EDUCATION_ID" })
+                                                            </td>
+                                                            <td>@edu.SPECIALIZATION_TYPE</td>
+                                                            <td>@edu.UNIVERSITY_ID</td>
+                                                            <td>@edu.UNIVERSITY_YEAR_OF_PASSING</td>
+                                                            <td>@(edu.IS_HIGHEST_QUALIFICATION == true ? "Yes" : "No")</td>
+                                                        </tr>
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label for="inputemail" class="control-label">Education Remark: </label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divEDUCATION_REMARK">
+                                            @Html.DisplayFor(model => model.EDUCATION_REMARK, "", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwelve">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Experience Details
+                                        <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="experienceModalLink" title="Edit Experience details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Company</th>
+                                                    <th>Role</th>
+                                                    <th>Industry</th>
+                                                    <th>Work Period</th>
+                                                    <th>State-City</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblWorkExpDetails">
+                                                @if (Model.LST_USER_EXPERIENCE.Count > 0)
+                                                {
+                                                    foreach (var industry in Model.LST_USER_EXPERIENCE)
+                                                    {
+                                                        if (industry.EXPERIENCE_ID != 0)
+                                                        {
+                                                        <tr>
+                                                            <td>@industry.COMPANY_NAME</td>
+                                                            <td>@industry.DESIGNATION</td>
+                                                            <td>@industry.INDUSTRY_TYPE</td>
+                                                            <td>@(Convert.ToDateTime(industry.WORK_PERIOD_FROM).ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture) + "-" + Convert.ToDateTime(industry.WORK_PERIOD_TO).ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                                            <td>@industry.STATE_NAME - @industry.WORK_CITY_CODE</td>
+                                                        </tr>
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="panel-body" id="divcall">
+                                    <div class="col-sm-3 col-md-3 ">
+                                        <label class="control-label"> Total Experience</label>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" id="divTOTAL_EXPERIENCE">
+                                        @Html.DisplayFor(model => model.TOTAL_WORK_EXPERIENCE, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <label class="control-label">Gulf Experience</label>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" id="divGULF_EXPERIENCE">
+                                        @Html.DisplayFor(model => model.TOTAL_GULF_EXPERIENCE, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-sm-3 col-md-3">
+                                        <label for="inputemail" class="control-label">Skills: </label>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" id="divSKILLS">
+                                        @Html.DisplayFor(model => model.SKILLS, "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <label for="inputemail" class="control-label">Experience Remark: </label>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" id="divWORK_REMARK">
+                                        @Html.DisplayFor(model => model.WORK_REMARK, "", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThirteen">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Document Details
+                                        <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="documentModalLink" title="Edit Document details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThirteen">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Document Type</th>
+                                                    <th>Document</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblDocumentDetails">
+                                                @if (Model.LST_USER_DOCUMENT.Count > 0)
+                                                {
+                                                    foreach (var doc in Model.LST_USER_DOCUMENT)
+                                                    {
+                                                        <tr>
+                                                            <td>@doc.DOCUMENT_TYPE_ID</td>
+                                                            <td>
+                                                                @{
+                                                                    string reportName = string.Empty;
+                                                                    string filepath = string.Empty;
+                                                                    if (!string.IsNullOrEmpty(doc.DOCUMENT_PATH))
+                                                                    {
+                                                                        reportName = doc.DOCUMENT_PATH.Substring(15);
+                                                                        filepath = Url.Content(Server.MapPath("~/Uploads/CandidateUploadedFiles/" + doc.DOCUMENT_PATH));
+                                                                    }
+                                                                }
+                                                                @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                                                            </td>
+                                                        </tr>
+                                                                        }
+                                                                    }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Requirement Details
+                                        <i class="btn btn-info fa fa-plus alignright" id="addRequirement" data-toggle="modal" data-target=".requirement-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
+                                    <table id="tblUserRequirement" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>Requirement No.</th>
+                                                <th>Requirement</th>
+                                                <th>Candidate Status</th>
+                                                <th>Current Status</th>
+                                                <th>Edit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyReq">
+                                            @if (Model.LST_USER_REQUIREMENT != null && Model.LST_USER_REQUIREMENT.Count > 0)
+                                            {
+                                                foreach (var item in Model.LST_USER_REQUIREMENT)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" id="hdnUserRequirementId" value="@item.USER_REQUIREMENT_ID" />
+                                                            <input type="hidden" id="hdnReqId" value="@item.REQUIREMENT_ID" />
+                                                            <input type="hidden" id="hdnCurrentStatus" value="@item.CURRENT_STATUS.ToString()" />
+                                                            <a class="requirement-link">@("R00" + item.REQUIREMENT_ID)</a>
+                                                        </td>
+                                                        <td>@item.REQUIREMENT</td>
+                                                        <td>@item.STATUS_NAME</td>
+                                                        <td>@(item.CURRENT_STATUS == true ? "Open" : "Close")</td>
+                                                        <td>
+                                                            <a class="editRequirement" data-toggle="modal" data-target=".requirement-status" id="@item.USER_REQUIREMENT_ID"><span class="glyphicon glyphicon-edit"></span></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-click-info panel panel-default" style="display:none;">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Medical Details
+                                        <i class="btn btn-info fa fa-edit alignright" id="medicalModalLink" data-toggle="modal" data-target=".medical-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Medical Status</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divMEDICAL_STATUS">
+                                            @Html.DisplayFor(model => model.Medical_Details.MedicalStatus, new { @id = "MEDICAL_STATUS", @class = "form-control", @placeholder = "Medical Status", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Medical Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divReportDate">
+                                            @Html.DisplayFor(model => model.Medical_Details.ReportDate, new { @id = "ReportDate", @class = "form-control", @placeholder = "Medical Date", @autocomplete = "off", @readonly = "readonly" })
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Doctor</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDoctorName">
+                                            @Html.DisplayFor(model => model.Medical_Details.DoctorName, new { @id = "DoctorName", @class = "form-control", @placeholder = "Doctor", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Token Number</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divTokenNumber">
+                                            @Html.DisplayFor(model => model.Medical_Details.TokenNumber, new { @id = "TokenNumber", @class = "form-control", @placeholder = "TokenNumber", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-click-info panel panel-default" style="display:none;">
+                            <div class="panel-heading" role="tab" id="headingSix">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> MOFA Details
+                                        <i class="btn btn-info fa fa-edit alignright" id="mofaModalLink" data-toggle="modal" data-target=".mofa-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Mofa No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divMOFA_NO">
+                                            @Html.DisplayFor(model => model.MOFA_Details.MofaNumber, new { @id = "MOFA_NO", @class = "form-control", @placeholder = "Mofa No", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Mofa Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divMOFA_DATE">
+                                            @Html.DisplayFor(model => model.MOFA_Details.MofaDate, new { @id = "MOFA_DATE", @class = "form-control", @placeholder = "Mofa Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Application No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divAPPLICATION_NO">
+                                            @Html.DisplayFor(model => model.MOFA_Details.ApplicationNumber, new { @id = "APPLICATION_NO", @class = "form-control", @placeholder = "Application No", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Application Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divAPPLICATION_DATE">
+                                            @Html.DisplayFor(model => model.MOFA_Details.ApplicationDate, new { @id = "APPLICATION_DATE", @class = "form-control", @placeholder = "Application Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Health No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divHealthNumber">
+                                            @Html.DisplayFor(model => model.MOFA_Details.HealthNumber, new { @id = "HealthNumber", @class = "form-control", @placeholder = "Health No", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Health Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divHealthDate">
+                                            @Html.DisplayFor(model => model.MOFA_Details.HealthDate, new { @id = "HealthDate", @class = "form-control", @placeholder = "Health Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">DD No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDDNumber">
+                                            @Html.DisplayFor(model => model.MOFA_Details.DDNumber, new { @id = "DDNumber", @class = "form-control", @placeholder = "DD No", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">DD Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDDDate">
+                                            @Html.DisplayFor(model => model.MOFA_Details.DDDate, new { @id = "DDDate", @class = "form-control", @placeholder = "DD Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-click-info panel panel-default" style="display:none;">
+                            <div class="panel-heading" role="tab" id="headingSeven">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Visa Endorsement Details
+                                        <i class="btn btn-info fa fa-edit alignright" id="visaModalLink" data-toggle="modal" data-target=".visa-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Visa Endorsement Status</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divVisaSubmissionStatus">
+                                            @Html.DisplayFor(model => model.VisaEndorsement_Details.VisaSubmissionStatus, new { @id = "VisaSubmissionStatus", @class = "form-control", @placeholder = "Visa Endorsement Status", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Submission Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divSubmissionDate">
+                                            @Html.DisplayFor(model => model.VisaEndorsement_Details.SubmissionDate, new { @id = "SubmissionDate", @class = "form-control", @placeholder = "Submission Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-click-info panel panel-default" style="display:none;">
+                            <div class="panel-heading" role="tab" id="headingEight">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Emigration Details
+                                        <i class="btn btn-info fa fa-edit alignright" id="emigrationModalLink" data-toggle="modal" data-target=".emigration-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Is ECR</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divIS_ECR">
+                                            @Html.DisplayFor(model => model.Emigration_Details.IS_ECR, new { @id = "IS_ECR", @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">FE NO</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divFE_NO">
+                                            @Html.DisplayFor(model => model.Emigration_Details.FE_NO, new { @id = "FE_NO", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">PT NO</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPT_NO">
+                                            @Html.DisplayFor(model => model.Emigration_Details.PT_NO, new { @id = "PT_NO", @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">DM NO</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDM_NO">
+                                            @Html.DisplayFor(model => model.Emigration_Details.DM_NO, new { @id = "DM_NO", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">DM Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDM_DATE">
+                                            @Html.DisplayFor(model => model.Emigration_Details.DM_DATE, new { @id = "DM_DATE", @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Policy NO</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPOLICY_NO">
+                                            @Html.DisplayFor(model => model.Emigration_Details.POLICY_NO, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Policy Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPOLICY_DATE">
+                                            @Html.DisplayFor(model => model.Emigration_Details.POLICY_DATE, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Policy Company Name</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPOLICY_COMPANYNAME">
+                                            @Html.DisplayFor(model => model.Emigration_Details.POLICY_COMPANYNAME, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Submission Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divSUBMISSION_DATE">
+                                            @Html.DisplayFor(model => model.Emigration_Details.SUBMISSION_DATE, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">EM No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divEMIGRATION_CLEARANCENO">
+                                            @Html.DisplayFor(model => model.Emigration_Details.EMIGRATION_CLEARANCENO, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">POE</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPOE">
+                                            @Html.DisplayFor(model => model.Emigration_Details.POE, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Remark</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divREMARK">
+                                            @Html.DisplayFor(model => model.Emigration_Details.REMARK, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-click-info panel panel-default" style="display:none;">
+                            <div class="panel-heading" role="tab" id="headingNine">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                        <i class="more-less fa fa-chevron-down"></i>
+                                        <i class="fa fa-align-left"></i> Travel Details
+                                        <i class="btn btn-info fa fa-edit alignright" id="ticketModalLink" data-toggle="modal" data-target=".travel-status" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                                <div class="panel-body">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Travel Status</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divTRAVEL_STATUS">
+                                            @Html.DisplayFor(model => model.Ticket_Details.TravelStatus, new { @id = "TRAVEL_STATUS", @class = "form-control", @placeholder = "Travel Status", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Travel Date</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divTRAVEL_DATE">
+                                            @Html.DisplayFor(model => model.Ticket_Details.DepartureDate, new { @id = "TRAVEL_DATE", @class = "form-control", @placeholder = "Travel Date", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">PNR No</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divPNR_NO">
+                                            @Html.DisplayFor(model => model.Ticket_Details.PnrNumber, new { @id = "PNR_NO", @class = "form-control", @placeholder = "PNR NO", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Airlines</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divAIRLINES">
+                                            @Html.DisplayFor(model => model.Ticket_Details.AirlinesName, new { @id = "AIRLINES", @class = "form-control", @placeholder = "Airlines", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-3 col-md-3 ">
+                                            <label class="control-label">Destination Place</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDESTINATION_PLACE">
+                                            @Html.DisplayFor(model => model.Ticket_Details.DestinationCity, new { @id = "DESTINATION_PLACE", @class = "form-control", @placeholder = "Destination Place", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <label class="control-label">Destination Time</label>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3" id="divDESTINATION_TIME">
+                                            @Html.DisplayFor(model => model.Ticket_Details.ArrivalTime, new { @id = "DESTINATION_TIME", @class = "form-control", @placeholder = "Destination Time", @autocomplete = "off", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- panel-group -->
+                </div><!-- container -->
+
+            </div>
+        </div>
+    </div>
+
+  <!-- /page content -->
+                                                                    }
+<!--++++++++++++++++++++--Modal for all panels--+++++++++++++-->
+<!--Modal for personal details-->
+<div class="modal fade personal-details" role="dialog" aria-hidden="true" id="divPopupPersonal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Personal Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12" style="margin-top:10px">
+                        <div class="col-md-9">
+                            <div id="candidateForm2" data-parsley-validate="" class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Full Name  <span class="required">*</span></label>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.FIRST_NAME, new { @id = "FIRST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "First Name", @autocomplete = "off", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger", @id = "ErrItem_FIRST_NAME" })
+                                    </div>
+                                    <div class="col-md-2 col-sm-2">
+                                        @Html.TextBoxFor(model => model.MIDDLE_NAME, new { @id = "MIDDLE_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Middle Name", @autocomplete = "off", @maxlength = "50" })
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.LAST_NAME, new { @id = "LAST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Last Name", @autocomplete = "off", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger", @id = "ErrItem_LAST_NAME" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Father Name</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.FATHER_NAME, new { @id = "FATHER_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Father Name", @autocomplete = "off", @maxlength = "80" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-4 col-sm-4">Mother Name</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.MOTHER_NAME, new { @id = "MOTHER_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Mother Name", @autocomplete = "off", @maxlength = "80" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Gender <span class="required">*</span>  </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.GENDER_CODE, ViewData["GetGender"] as SelectList, "", new { @id = "GENDER_CODE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Gender" })
+                                        @Html.ValidationMessageFor(model => model.GENDER_CODE, "", new { @class = "text-danger", @id = "ErrItem_GENDER_CODE" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date of Birth <span class="required">*</span> </label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DATE_OF_BIRTH, "{0:dd/MM/yyyy}", new { @id = "DATE_OF_BIRTH", @class = "form-control", @placeholder = "Date of Birth", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.DATE_OF_BIRTH, "", new { @class = "text-danger", @id = "ErrItem_DATE_OF_BIRTH" })
+                                        <span id="textBoxName"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Place of Birth <span class="required">*</span></label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.PLACE_OF_BIRTH, new { @id = "PLACE_OF_BIRTH", @class = "form-control", @placeholder = "Place of Birth", @autocomplete = "off", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(model => model.PLACE_OF_BIRTH, "", new { @class = "text-danger", @id = "ErrItem_PLACE_OF_BIRTH" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Martial Status</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.DropDownListFor(model => model.MARITAL_STATUS_ID, ViewData["GetMaritalStatus"] as SelectList, "", new { @id = "MARITAL_STATUS_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Marital Status" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Nationality <span class="required">*</span></label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.DropDownListFor(model => model.NATIONALITY_ID, ViewData["GetNationality"] as SelectList, "", new { @id = "NATIONALITY_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Nationality" })
+                                        @Html.ValidationMessageFor(model => model.NATIONALITY_ID, "", new { @class = "text-danger", @id = "ErrItem_NATIONALITY_ID" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Current Location <span class="required">*</span></label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.CURRENT_LOCATION, new { @id = "CURRENT_LOC", @class = "form-control", @placeholder = "Current Location", @autocomplete = "off", @maxlength = "20" })
+                                        @*@Html.DropDownListFor(model => model.CURRENT_LOCATION, ViewData["GetLocation"] as SelectList, Model.CURRENT_LOCATION, new { @id = "CURRENT_LOC", @class = "form-control", @autocomplete = "off" })*@
+                                        @Html.ValidationMessageFor(model => model.CURRENT_LOCATION, "", new { @class = "text-danger", @id = "ErrItem_CURRENT_LOCATION" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Religion<span class="required">*</span></label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.DropDownListFor(model => model.RELIGION_ID, ViewData["GetReligion"] as SelectList, "", new { @id = "RELIGION_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Religion" })
+                                        @Html.ValidationMessageFor(model => model.RELIGION_ID, "", new { @class = "text-danger", @id = "ErrItem_RELIGION_ID" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 col-sm-2"></div>
+                                    <div class="col-md-7 col-sm-7" style="padding-left: 27px;">
+                                        @Html.Partial("~/Views/Shared/_Language.cshtml")
+                                    </div>
+                                </div>
+                                <hr />
+                                <h4>Passport Details</h4>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Passport No</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.PASSPORT_NUMBER, new { @id = "PASSPORT_NUMBER", @class = "form-control", @placeholder = "Passport No", @autocomplete = "off", @maxlength = "20" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Place Of Issue</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.PLACE_OF_ISSUE, new { @id = "PLACE_OF_ISSUE", @class = "form-control", @placeholder = "Place of Issue", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.PLACE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_POI" })
+                                    </div>
+                                </div>
+                                <div class="form-group input-daterange">
+                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date of Issue </label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DATE_OF_ISSUE, "{0:dd/MM/yyyy}", new { @id = "DATE_OF_ISSUE", @class = "form-control", @placeholder = "Date of Issue", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.DATE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DOI" })
+                                    </div>
+                                </div>
+                                <div class="form-group input-daterange">
+                                    <label class="control-label col-md-4 col-sm-4" for="contactPerson">Date Of Expiry</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DATE_OF_EXPIRY, "{0:dd/MM/yyyy}", new { @id = "DATE_OF_EXPIRY", @class = "form-control", @placeholder = "Expiry Date", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.DATE_OF_EXPIRY, "", new { @class = "text-danger", @id = "ErrItem_DOE" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Emigration Clearance </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        @{
+                                            List<SelectListItem> listEmigration = new List<SelectListItem>();
+                                            listEmigration.Add(new SelectListItem
+                                            {
+                                                Text = "Required",
+                                                Value = "true"
+                                            });
+                                            listEmigration.Add(new SelectListItem
+                                            {
+                                                Text = "Not Required",
+                                                Value = "false"
+                                            });
+                                        }
+                                        @Html.DropDownListFor(model => model.EMIGRATION_CLEARANCE_REQUIRED, listEmigration, "", new { @id = "EMIGRATION_CLEARANCE_REQUIRED", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Emigration" })
+                                        @Html.ValidationMessageFor(model => model.EMIGRATION_CLEARANCE_REQUIRED, "", new { @class = "text-danger", @id = "ErrItem_EMIGRATION" })
+                                    </div>
+                                </div>
+                                <hr />
+                                <h4>Driving License Details</h4>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Driving License No</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DRIVING_LICENCE_NUMBER, new { @id = "DRIVING_LICENCE_NUMBER", @class = "form-control", @placeholder = "Driving License No.", @autocomplete = "off", @maxlength = "20" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Place Of Issue</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DRIVING_PLACE_OF_ISSUE, new { @id = "DRIVING_PLACE_OF_ISSUE", @class = "form-control", @placeholder = "Place of Issue", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.DRIVING_PLACE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DPOI" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4" for="contactperson">Date Of Issue</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DRIVING_DATE_OF_ISSUE, "{0:dd/MM/yyyy}", new { @id = "DRIVING_DATE_OF_ISSUE", @class = "form-control", @placeholder = "Date of Issue", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.DRIVING_DATE_OF_ISSUE, "", new { @class = "text-danger", @id = "ErrItem_DDOI" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4" for="contactperson">Date Of Expiry</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextBoxFor(model => model.DRIVING_EXPIRY_DATE, "{0:dd/MM/yyyy}", new { @id = "DRIVING_EXPIRY_DATE", @class = "date-picker form-control", @placeholder = "Expiry Date", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.DRIVING_EXPIRY_DATE, "", new { @class = "text-danger", @id = "ErrItem_DDOE" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Vehicle Type</label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        @Html.DropDownListFor(model => model.VEHICLE_TYPE_ID, ViewData["GetVehicleType"] as SelectList, "", new { @id = "VEHICLE_TYPE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Vehicle Type" })
+                                        @Html.ValidationMessageFor(model => model.VEHICLE_TYPE_ID, "", new { @class = "text-danger", @id = "ErrItem_VEHICLETYPE" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Remark</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.TextAreaFor(model => model.DRIVING_REMARK, new { @id = "DRIVING_REMARK", @class = " form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @*@if (Model.FILE_PATH != null)
+                                {*@
+                            <div class="fileinput fileinput-exists" data-provides="fileinput" id="divWithImg">
+                                <div class="fileinput-preview fileupload-exists thumbnail" style="width:200px; max-width: 200px; max-height: 150px; line-height: 20px;">
+                                    <img src="@imagepath" alt="@Model.Candidate_Name" class="agent-img" style="width:200px;height:150px;" />
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file" style="margin-left: 20px;"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..." id="SaveImageWithImg"></span>
+                                    <a href="#" class="btn btn-default fileinput-exists removeImg" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                            @*}
+
+                                else
+                                {*@
+                            <div class="fileinput fileinput-exists" data-provides="fileinput" id="divWithoutImg">
+                                <div class="fileinput-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px; width:200px;">
+                                    <img src="@noimagepath" id="emptyImg" class="agent-img" style="width:200px;height:150px;" />
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file" style="margin-left: 20px;">
+                                        <span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                        <input type="file" name="..." id="SaveImage">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists removeImg" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                            @*}*@
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="UpdatePersonalDetails" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- end personal Details----------->
+<!----- current-status--->
+<div class="modal fade current-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Current Status Details</h4>
+            </div>
+            <div class="modal-body" style="height:440px;width: 100%;">
+                <div id="candidateForm1" data-parsley-validate="" class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Availing For <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.AVAILING_TYPE_ID, ViewData["GetAvailingType"] as SelectList, "", new { @id = "AVAILING_TYPE_ID", @class = "form-control", @autocomplete = "off",@data_placeholder = "Select Availing For" })
+                            @Html.ValidationMessageFor(model => model.AVAILING_TYPE_ID, "", new { @class = "text-danger", @id = "ErrItem_AVAILING_TYPE_ID" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Source <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.SOURCE_ID, ViewData["GetSource"] as SelectList, "", new { @id = "SOURCE_ID", @class = "form-control", @autocomplete = "off",@data_placeholder= "Select Source" })
+                            @Html.ValidationMessageFor(model => model.SOURCE_ID, "", new { @class = "text-danger", @id = "ErrItem_SOURCE_ID" })
+                            &nbsp;
+                            <div id="divOtherSource" style="display:none;">
+                                @Html.DropDownListFor(model => model.OTHER_SOURCE, new SelectList(""), "Select Other Source", new { @id = "OTHER_SOURCE", @class = "form-control", @autocomplete = "off" })
+                            </div>
+                            <div id="divReferrer" style="display:none;">
+                                @Html.TextBoxFor(model => model.REFERRER_NAME, new { @id = "REFERRER_NAME", @class = "form-control", @placeholder = "Referrer Name", @autocomplete = "off", @maxlength = "20" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model=>model.STATUS_ID, ViewData["GetStatus"] as SelectList, "", new { @id = "STATUS_ID", @class = "form-control", @autocomplete = "off" ,@data_placeholder= "Select Status" })
+                            @Html.ValidationMessageFor(model => model.STATUS_ID, "", new { @class = "text-danger", @id = "ErrItem_STATUS_ID" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Post Applied For</label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.POST_APPLIED_FOR, new { @id = "POST_APPLIED_FOR", @class = "form-control", @placeholder = "Post Applied For", @autocomplete = "off", @maxlength = "50" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">File No.</label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextBoxFor(model => model.FILE_NO, new { @id = "FILE_NO", @class = "form-control", @placeholder = "File No", @autocomplete = "off", @maxlength = "20" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3">Requirement </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.REQUIREMENT_ID, ViewData["GetRequirementMaster"] as SelectList, "", new { @id = "REQUIREMENT_ID", @class = "form-control", @autocomplete = "off" ,@data_placeholder= "Select Reqirement" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3">Visa Number</label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownListFor(model => model.VISA_ID, ViewData["GetVisaMaster"] as SelectList, "", new { @id = "VISA_ID", @class = "form-control", @autocomplete = "off",@data_placeholder = "Select Visa Number" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Login Access </label>
+                        <div class="col-md-6 col-sm-6">
+                            @{
+                                List<SelectListItem> listLoginAccess = new List<SelectListItem>();
+                                    listLoginAccess.Add(new SelectListItem
+                                {
+                                    Text = "Yes",
+                                    Value = "true"
+                                });
+                                listLoginAccess.Add(new SelectListItem
+                                {
+                                    Text = "No",
+                                    Value = "false"
+                                });
+                            }
+                            @Html.DropDownListFor(model => model.LOGIN_ACCESS, listLoginAccess, "--Select Login Access--", new { @id = "LOGIN_ACCESS", @class = "form-control", @autocomplete = "off", @disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Remark</label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextAreaFor(model => model.REMARK, new { @id = "REMARK", @class = "form-control", @placeholder = "Remark", @autocomplete = "off", @maxlength = "1000" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitCandidateOfficialDetails">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- current-status--->
+<!--education modal-->
+<div class="modal fade education-details" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Education Details</h4>
+            </div>
+            <div class="modal-body" style="height:440px;width: 100%;">
+                <div id="candidatecertificationdetails" data-parsley-validate="" class="form-horizontal form-label-left">
+                    @Html.Partial("~/Views/Shared/_Education.cshtml")
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Remark</label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.TextAreaFor(model => model.EDUCATION_REMARK, new { @id = "EDUCATION_REMARK", @class = "date-picker form-control col-md-7 col-xs-12", @placeholder = "Remark", @maxlength = "1000", @tabindex = "67" })
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitEducationDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--education modal-->
+<!--certification modal-->
+<div class="modal fade certification-details" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Certification Details</h4>
+            </div>
+            <div class="modal-body" style="height:440px;width: 100%;">
+                <div id="candidatecertificationdetails" data-parsley-validate="" class="form-horizontal form-label-left">
+                    @Html.Partial("~/Views/Shared/_Certification.cshtml")
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitCertificationDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--certification modal-->
+<!--Address/Contact/Email Modal-->
+<div class="modal fade contact_details" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Contact Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <div id="candidatecontactdetails" data-parsley-validate="" class="form-horizontal form-label-left">
+                    @Html.Partial("~/Views/Shared/_Address.cshtml")
+                    @Html.Partial("~/Views/Shared/_Contact.cshtml")
+                    @Html.Partial("~/Views/Shared/_Email.cshtml")
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Website</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.WEBSITE, new { @id = "WEBSITE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Website", @autocomplete = "off" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Skype</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.SKYPE, new { @id = "SKYPE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Skype", @autocomplete = "off" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextAreaFor(model => model.CONTACT_REMARK, new { @id = "CONTACT_REMARK", @class = " form-control col-md-7 col-xs-12", @placeholder = "Remark", @autocomplete = "off" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitContactDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Address/Contact/Email Modal-->
+<!--Document Modal Start-->
+<div class="modal fade user-documents">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Document Details</h4>
+            </div>
+            <div class="modal-body" style="height:450px;width: 100%;">
+                <div data-parsley-validate="" class="form-horizontal form-label-left">
+                    @Html.Partial("~/Views/Shared/_Document.cshtml")
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitDocumentDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Document Modal End-->
+<!--Experience Modal Start-->
+<div class="modal fade user-experience">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Experience Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <div data-parsley-validate="" class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Career Status</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="btn-group" data-toggle="buttons" id="isExp">
+                                <label class="btn btn-default active">
+                                    <input type="radio" name="careerstatus" id="Experience" class="exp_careerstatus" value="true">
+                                    Experienced
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="careerstatus" class="exp_careerstatus" id="Fresher" value="false">
+                                    Fresher
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Partial("~/Views/Shared/_Experience.cshtml")
+
+                    <div class="form-group career">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Total Work Experience</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.TOTAL_WORK_EXPERIENCE, new { @id = "TOTAL_WORK_EXPERIENCE", @class = "form-control", @placeholder = "Total Work Experience", @autocomplete = "off", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group career">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Total Gulf Experience</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.TOTAL_GULF_EXPERIENCE, new { @id = "TOTAL_GULF_EXPERIENCE", @class = "form-control", @placeholder = "Total Gulf Experiemce", @autocomplete = "off", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Skills</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.SKILLS, new { @id = "SKILLS", @class = "form-control", @placeholder = "Skills", @autocomplete = "off" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextAreaFor(model => model.WORK_REMARK, new { @id = "WORK_REMARK", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitExpDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Experience Modal End-->
+<!----- Requirement-status--->
+<div class="modal fade requirement-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add/Edit Requirement</h4>
+            </div>
+            <div class="modal-body" style="height:150px;width: 100%;">
+                <div id="candidateForm1" data-parsley-validate="" class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Requirement<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownList("REQ_ID", ViewData["GetRequirementMaster"] as SelectList, "--Select Requirement--", new { @id = "REQ_ID", @class = "form-control", @autocomplete = "off" })
+                            @Html.ValidationMessage("REQ_ID", "", new { @class = "text-danger", @id = "ErrItem_REQUIREMENT_ID" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Current Status<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                            @{
+                                List<SelectListItem> lstCurrentStatus = new List<SelectListItem>();
+                            lstCurrentStatus.Add(new SelectListItem
+                                {
+                                    Text = "Open",
+                                    Value = "True"
+                                });
+                                lstCurrentStatus.Add(new SelectListItem
+                                {
+                                    Text = "Close",
+                                    Value = "False"
+                                });
+                            }
+                            @Html.DropDownList("Current_Status", lstCurrentStatus, "--Select Current Status--", new { @id = "Current_Status", @class = "form-control", @autocomplete = "off" })
+                            @Html.ValidationMessage("ErrItem_Current_Status", "", new { @class = "text-danger", @id = "ErrItem_Current_Status" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveRequirement">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- Requirement Status--->
+<!----- Medical Details--->
+<div class="modal fade medical-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Medical Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveMedical">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- Medical Details--->
+<!----- MOFA Details--->
+<div class="modal fade mofa-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">MOFA Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <div id="mofaForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveMOFA">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- Medical Details--->
+<!----- VISA Details--->
+<div class="modal fade visa-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">VISA Endorsement Details</h4>
+            </div>
+            <div class="modal-body" style="height:250px;width: 100%;">
+                <div id="visaForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveVISA">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- VISA Details--->
+<!----- Emigration Details--->
+<div class="modal fade emigration-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Emigration Details</h4>
+            </div>
+            <div class="modal-body" style="height:450px;width: 100%;">
+                <div id="emigrationForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveEmigration">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- Emigration Details--->
+<!----- Ticket Details--->
+<div class="modal fade ticket-status" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Ticket Details</h4>
+            </div>
+            <div class="modal-body" style="height:500px;width: 100%;">
+                <div id="ticketForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveTicket">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- Ticket Details--->
+@*For Progress Bar*@
+<div id="progressBar" style="margin: 0px; padding: 0px; position: fixed; right: 0px;
+                top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
+                opacity: .8; filter: alpha(opacity=70);display:none">
+    <p style="position: fixed; top: 20%; left: 30%; color: White;">
+        <img src="@Url.Content("~/Content/img/please_wait.gif")">
+    </p>
+</div>
+@*For Progress Bar [end]*@
+
+
+
+<script type="text/javascript">
+    var addressCollection = new Array();
+    var contactCollection = new Array();
+    var emailCollection = new Array();
+    var educationCollection = new Array();
+    var certificationCollection = new Array();
+    var experienceCollection = new Array();
+    var documentCollection = new Array();
+    var languageCollection = new Array();
+
+    function isAlphaNumeric() {
+        var charCode = event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) ||
+              (charCode >= 65 && charCode <= 90) ||
+              (charCode >= 97 && charCode <= 122) || charCode ==32)
+            return true;
+
+        return false;
+    }
+
+    function isDate(txtDate) {
+        var currVal = txtDate;
+        if (currVal == '')
+            return false;
+
+        //Declare Regex
+        var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+        var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+        if (dtArray == null)
+            return false;
+
+        //Checks for mm/dd/yyyy format.
+        dtMonth = dtArray[3];
+        dtDay = dtArray[1];
+        dtYear = dtArray[5];
+
+        if (dtMonth < 1 || dtMonth > 12)
+            return false;
+        else if (dtDay < 1 || dtDay > 31)
+            return false;
+        else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+            return false;
+        else if (dtMonth == 2) {
+            var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+            if (dtDay > 29 || (dtDay == 29 && !isleap))
+                return false;
+        }
+        return true;
+    }
+
+    var lstOfUserLanguage = '@ViewBag.UserLanguages';
+    languageCollection = (typeof languageCollection != 'undefined' && languageCollection instanceof Array) ? languageCollection : [];
+
+    if (lstOfUserLanguage != null && @langJSON.Length > 0) {
+        languageCollection = "@langJSON".replace(/&quot;/g, '\"');
+        languageCollection = JSON.parse(languageCollection);
+    }
+
+    //load personal detail partial view
+    $(document).on("click", "#personalDetailsModalLink", function () {
+        var urlPath = "@Url.Action("LoadCandidatePersonalDetails", "StatusSearch")";
+        $("#LANGUAGE_ID").chosen({ width: '380px' });
+        $("#divLang").attr("style", "margin-left: 42px;");
+        $("#SaveLanguage").attr("style", "margin-left: 200px;");
+        var registrationNo = $("#REGISTRATION_NO").val();
+        var filepath = $("#FILE_PATH").val();
+        if (filepath != "") {
+            $(".agent-img").attr("src", '/Uploads/CandidateUploadedFiles/' + filepath);
+            $("#divWithImg").show();
+            $("#divWithoutImg").hide();
+        }
+        else {
+            $(".agent-img").attr("src", '/Uploads/CandidateUploadedFiles/no_img.png');
+            $("#divWithImg").hide();
+            $("#divWithoutImg").show();
+        }
+        bindLanguageToModalPopUp(languageCollection);
+
+        $(".personal-details").modal("show");
+
+        @*$.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#GENDER_CODE").chosen({ width: '100%' });
+                    $("#MARITAL_STATUS_ID").chosen({ width: '100%' });
+                    $("#NATIONALITY_ID").chosen({ width: '100%' });
+                    //$("#CURRENT_LOC").chosen({ width: '100%' });
+                    $("#RELIGION_ID").chosen({ width: '100%' });
+                    $("#EMIGRATION_CLEARANCE_REQUIRED").chosen({ width: '100%' });
+                    $("#VEHICLE_TYPE_ID").chosen({ width: '100%' });
+                    $("#LANGUAGE_ID").chosen({ width: '100%' });
+                    bindPersonlaDetailsToModalPopup(data);
+                    if (data.LST_USER_LANGUAGE.length > 0) {
+                        bindLanguageToModalPopUp(data.LST_USER_LANGUAGE);
+                    }
+                    $(".personal-details").modal("show");
+                }
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });*@
+    });
+
+    function bindPersonlaDetailsToModalPopup(candidate) {
+
+        //Personal
+        $("#FIRST_NAME").val(candidate.FIRST_NAME);
+        $("#MIDDLE_NAME").val(candidate.MIDDLE_NAME);
+        $("#LAST_NAME").val(candidate.LAST_NAME);
+        $("#FATHER_NAME").val(candidate.FATHER_NAME);
+        $("#MOTHER_NAME").val(candidate.MOTHER_NAME);
+        $("#GENDER_CODE").val(candidate.GENDER_CODE).trigger('change');
+
+        $("#DATE_OF_BIRTH").val(ConvertJsonDate(candidate.DATE_OF_BIRTH));
+        $("#PLACE_OF_BIRTH").val(candidate.PLACE_OF_BIRTH);
+        $("#MARITAL_STATUS_ID").val(candidate.MARITAL_STATUS_ID).trigger('change');
+        $("#NATIONALITY_ID").val(candidate.NATIONALITY_ID).trigger('change');
+        $("#CURRENT_LOC").val(candidate.CURRENT_LOCATION);
+        $("#RELIGION_ID").val(candidate.RELIGION_ID).trigger('change');
+
+        //Passport details bind
+        $("#PLACE_OF_ISSUE").val(candidate.PLACE_OF_ISSUE);
+        $("#DATE_OF_ISSUE").val(ConvertJsonDate(candidate.DATE_OF_ISSUE));
+        $("#DATE_OF_EXPIRY").val(ConvertJsonDate(candidate.DATE_OF_EXPIRY));
+
+        var emigration = "false";
+        if (candidate.EMIGRATION_CLEARANCE_REQUIRED)
+            emigration = "true";
+        $("#EMIGRATION_CLEARANCE_REQUIRED").val(emigration).trigger('change');
+
+        //Driving Details
+        $("#DRIVING_LICENCE_NUMBER").val(candidate.DRIVING_LICENCE_NUMBER);
+        $("#DRIVING_PLACE_OF_ISSUE").val(candidate.DRIVING_PLACE_OF_ISSUE);
+        $("#DRIVING_DATE_OF_ISSUE").val(ConvertJsonDate(candidate.DRIVING_DATE_OF_ISSUE));
+        $("#DRIVING_EXPIRY_DATE").val(ConvertJsonDate(candidate.DRIVING_EXPIRY_DATE));
+        $("#VEHICLE_TYPE_ID").val(candidate.VEHICLE_TYPE_ID).trigger('change');
+        $("#DRIVING_REMARK").val(candidate.DRIVING_REMARK);
+
+        //File_Path
+        $("#FILE_PATH").val(candidate.FILE_PATH);
+    }
+
+    function ConvertJsonDate(date) {
+        if (date != null) {
+            var dateString = date.substr(6);
+            var currentTime = new Date(parseInt(dateString));
+            var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
+            var day = ("0" + (currentTime.getDate())).slice(-2);
+            var year = currentTime.getFullYear();
+            var date = day + "/" + month + "/" + year;
+            return date;
+        }
+        else
+            return "";
+    }
+
+    function bindLanguageToModalPopUp(language) {
+
+        $("#tbllanguage").empty();
+        var row_id=1;
+        var row = "";
+        for (var languageIndex = 0 ; languageIndex < language.length; languageIndex++) {
+            if(language[languageIndex].IsNew =="true" ||language[languageIndex].IsNew =="True"){
+                row += "<tr id ='tr_old_row_lang_" + row_id + "'><td>" + language[languageIndex].LANGUAGE_NAME + "</td>";
+
+                if (language[languageIndex].IS_READ =="True" || language[languageIndex].IS_READ ==true)
+                    row += "<td><input type='checkbox' checked=" + language[languageIndex].IS_READ + " disabled='true' /></td>";
+                else
+                    row += "<td><input type='checkbox' disabled='true'/></td>";
+
+                if (language[languageIndex].IS_WRITE=="True" || language[languageIndex].IS_WRITE==true)
+                    row += "<td><input type='checkbox' disabled='true' checked=" + language[languageIndex].IS_WRITE + "/></td>";
+                else
+                    row += "<td><input type='checkbox' disabled='true'/></td>";
+
+                if (language[languageIndex].IS_SPEAK=="True" || language[languageIndex].IS_SPEAK==true)
+                    row += "<td><input type='checkbox' disabled='true' checked=" + language[languageIndex].IS_SPEAK + " /></td>";
+                else
+                    row += "<td><input type='checkbox'disabled='true' /></td>";
+
+                row += '<td><a onclick="fnDeleteLanguage(' + row_id + ')" href="javascript:void()"> <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+                row_id++;
+            }
+        }
+        $("#tbllanguage").append(row);
+    }
+
+    //function bindLanguageToModalPopUp(language) {
+
+    //    languageCollection = [];
+
+    //    $("#tbllanguage").empty();
+    //    var row_id = 1;
+    //    var row = "";
+    //    for (var languageIndex = 0 ; languageIndex < language.length; languageIndex++) {
+    //        var addJson = { "LANGUAGE_ID": language[languageIndex].LANGUAGE_ID, "IS_READ": language[languageIndex].IS_READ, "IsNew": "true", "IS_WRITE": language[languageIndex].IS_WRITE, "IS_SPEAK": language[languageIndex].IS_SPEAK, "USER_LANGUAGE_ID": language[languageIndex].USER_LANGUAGE_ID };
+
+    //        row += "<tr id ='tr_old_row_lang_" + language[languageIndex].LANGUAGE_ID + "'><td >" + row_id + " </td><td>" + language[languageIndex].LANGUAGE_NAME + "</td>";
+
+    //        if (language[languageIndex].IS_READ)
+    //            row += "<td><input type='checkbox' checked=" + language[languageIndex].IS_READ + " /></td>";
+    //        else
+    //            row += "<td><input type='checkbox'/></td>";
+
+    //        if (language[languageIndex].IS_WRITE)
+    //            row += "<td><input type='checkbox' checked=" + language[languageIndex].IS_WRITE + "/></td>";
+    //        else
+    //            row += "<td><input type='checkbox' /></td>";
+
+    //        if (language[languageIndex].IS_SPEAK)
+    //            row += "<td><input type='checkbox' checked=" + language[languageIndex].IS_SPEAK + " /></td>";
+    //        else
+    //            row += "<td><input type='checkbox' /></td>";
+
+    //        row += '<td><a onclick="fnDeleteLanguage(' + language[languageIndex].LANGUAGE_ID + ')" href="javascript:void()"> <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+    //        row_id++;
+
+    //        languageCollection.push(addJson);
+    //    }
+
+    //    $("#tbllanguage").append(row);
+
+    //}
+
+    //load contact details partial view
+    $(document).on("click", "#contact_details_modal_link", function () {
+        $('#progressBar').show();
+        var urlPath = "@Url.Action("LoadContactDetailsPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+
+                bindContactDetails(data);
+                $('#progressBar').hide();
+                $(".contact_details").modal("show");
+            },
+            error: function (data) {
+                $('#progressBar').hide();
+                console.log(data);
+            }
+        });
+    });
+
+    function bindContactDetails(contact) {
+
+        $("#WEBSITE").val(contact.candidate.WEBSITE);
+        $("#SKYPE").val(contact.candidate.SKYPE);
+        $("#CONTACT_REMARK").val(contact.candidate.CONTACT_REMARK);
+
+        addressCollection = [];
+        contactCollection = [];
+        emailCollection = [];
+        $("#tblchild").empty();
+        $("#tblcontact").empty();
+        $("#tblemail").empty();
+
+        //Address Details Bind
+        var row = "";
+        var row_id = 0;
+        _.each(contact.candidate.LST_USER_ADDRESS, function (value) {
+            row_id = row_id + 1;
+            row += "<tr id ='tr_old_row_add_" + row_id + "'><td><span class='user-address'>" + value.ADDRESS_TYPE + "-" + value.ADDRESS + "</span></td><td>" + value.USER_COUNTRY + "</td><td>" + value.USER_STATE + "-" + value.CITY_CODE + "</td><td>" + value.USER_VILLAGE + "</td><td>" + value.USER_PINCODE + "</td> "
+            row += '<td><a onclick="fnDeleteRow(' + "'" + row_id + "'" + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+            var addJson = { "ADDRESS_TYPE_ID": value.ADDRESS_TYPE_ID, "ADDRESS": value.ADDRESS, "CITY_CODE": value.CITY_CODE, "USER_VILLAGE": value.USER_VILLAGE, "USER_PINCODE": value.USER_PINCODE, "COUNTRY_CODE": value.COUNTRY_CODE, "STATE_CODE": value.STATE_CODE, "IsNew": "true", "USER_ADDRESS_ID": value.USER_ADDRESS_ID, "SRNO": row_id };
+
+            addressCollection.push(addJson);
+        });
+        $("#tblchild").append(row);
+
+        //Contact Details Bind
+        var row = "";
+        var row_id = 1;
+        _.each(contact.candidate.LST_USER_CONTACT, function (value) {
+
+            row += "<tr id ='tr_old_row_cont_" + value.CONTACT_NO + "'><td >" + row_id + " </td><td>" + value.CONTACT_TYPE + "</td><td><span class='user-contact'>" + value.CONTACT_NO + "</td>";
+            row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_contact glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+            var addJson = { "CONTACT_TYPE_ID": value.CONTACT_TYPE_ID, "CONTACT_NO": value.CONTACT_NO, "IsNew": "true", "USER_CONTACT_ID": value.USER_CONTACT_ID };
+
+            contactCollection.push(addJson);
+            row_id++;
+        });
+        $("#tblcontact").append(row);
+
+        //Email Details Bind
+        var row = "";
+        var row_id = 1;
+        _.each(contact.candidate.LST_USER_EMAIL, function (value) {
+            row += "<tr id ='tr_old_row_email_" + value.USER_EMAIL + "'><td >" + row_id + " </td><td><span class='user-email'>" + value.USER_EMAIL + "</td>";
+            //row += '<td><a class="delete_email" onclick="fnDeleteEmail(' + value.USER_EMAIL + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+            row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_email glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+            var addJson = { "USER_EMAIL": value.USER_EMAIL, "IsNew": "true", "USER_EMAIL_ID": value.USER_EMAIL_ID };
+
+            emailCollection.push(addJson);
+            row_id++;
+        });
+        $("#tblemail").append(row);
+
+    }
+
+    //load official details view
+
+    $(document).on("click", "#officialDetailsModalLink", function () {
+        var urlPath = "@Url.Action("LoadCandidatePersonalDetails", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+
+        var source = ($("#SOURCE_ID").val() + ":" + $("#OTHER_SOURCE").val() + ";" + $("#REFERRER_NAME").val());
+        $("#AVAILING_TYPE_ID").trigger("chosen:updated", source).change();
+        $(".current-status").modal("show");
+
+        @*$.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+
+
+                var source = (data.SOURCE_ID + ":" + data.OTHER_SOURCE + ";" + data.REFERRER_NAME);
+                $("#SOURCE_ID").val(data.SOURCE_ID).trigger("chosen:updated");
+                $("#OTHER_SOURCE").val(data.OTHER_SOURCE).trigger("chosen:updated");
+                $("#REFERRER_NAME").val(data.REFERRER_NAME);
+                $("#AVAILING_TYPE_ID").val(data.AVAILING_TYPE_ID).trigger("chosen:updated", source).change();
+
+                $("#OTHER_SOURCE").val(data.OTHER_SOURCE).trigger("chosen:updated");
+                $("#REFERRER_NAME").val(data.REFERRER_NAME);
+                $("#USER_STATUS_ID").val(data.STATUS_ID).trigger("chosen:updated");
+                $("#POST_APPLIED_FOR").val(data.POST_APPLIED_FOR);
+                $("#FILE_NO").val(data.FILE_NO);
+                $("#VISA_ID").val(data.VISA_ID).trigger("chosen:updated");
+                $("#REQUIREMENT_ID").val(data.REQUIREMENT_ID).trigger("chosen:updated");
+                $("#LOGIN_ACCESS").val("false").trigger("chosen:updated");
+                $("#REMARK").val(data.REMARK);
+
+                $(".current-status").modal("show");
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });*@
+    });
+
+    //GetSource
+    $("#AVAILING_TYPE_ID").change(function (e, value) {
+        var sourceid = $("#SOURCE_ID").val();
+        $("#SOURCE_ID").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetSourceByAvailingType","Candidate")', // we are calling json method
+            dataType: 'json',
+            data: { availTypeID: $("#AVAILING_TYPE_ID").val() },
+            dataType: "json",
+            async: true,
+            success: function (states) {
+                if (states == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+
+                //$("#SOURCE_ID").append('<option value="0">--Select Source--</option>');
+                $.each(states.selectList, function (i, state) {
+                    $("#SOURCE_ID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                });
+                //var sourceid = value.substr(0, value.indexOf(":"));
+                //var othersource = value.substr(value.indexOf(":") + 1);
+
+                //$("#SOURCE_ID").val(sourceid).trigger("chosen:updated").change();
+
+                var availingtype = $("#AVAILING_TYPE_ID").val();
+                if (availingtype == "1") {
+                    $("#SOURCE_ID").val("1").trigger("chosen:updated").change();
+                }
+                else if (availingtype == "4" || availingtype == "3") {
+                    $("#SOURCE_ID").val("8").trigger("chosen:updated").change();
+                }
+                else if (availingtype == "2") {
+                    $("#SOURCE_ID").val("6").trigger("chosen:updated").change();
+                }
+
+                //$("#SOURCE_ID").trigger("chosen:updated");
+            },
+            error: function (ex) {
+                $("#SOURCE_ID").append('<option >--Select Source--</option>');
+            }
+        });
+        return false;
+    });
+
+    //GetOtherSource
+    $("#SOURCE_ID").change(function (e, value) {
+        $("#divReferrer").css("display", "none");
+        $("#divOtherSource").css("display", "none");
+        var source = $("#SOURCE_ID").val();
+        if (source == "5" || source == "8") {
+            var referrer = $("#REFERRER_NAME").val();
+            $("#REFERRER_NAME").val(referrer);
+            $("#divReferrer").css("display", "block");
+            $("#divOtherSource").css("display", "none");
+        }
+        else if (source == "2" || source == "3" || source == "4" || source == "6") {
+            @*var othersource = '@ViewBag.OtherSource';
+            $("#OTHER_SOURCE").val(othersource).trigger("chosen:updated");*@
+            var othersource = '@ViewBag.OtherSource';
+
+            $("#divOtherSource").css("display", "block");
+            $("#divReferrer").css("display", "none");
+            $("#OTHER_SOURCE").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetOtherSourceBySource", "Candidate")', // we are calling json method
+                dataType: 'json',
+                data: { sourceId: $("#SOURCE_ID").val() },
+                dataType: "json",
+                async: true,
+                success: function (states) {
+                    if (states == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    $("#OTHER_SOURCE").append('<option value="0">Select Other Source</option>');
+                    $.each(states.selectList, function (i, state) {
+                        $("#OTHER_SOURCE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+
+                    $("#OTHER_SOURCE").val(othersource).trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#OTHER_SOURCE").append('<option >Select Other Source</option>');
+                }
+            });
+            return false;
+        }
+    });
+
+    //load certification partial view
+    $(document).on("click", "#certificationModalLink", function () {
+        var urlPath = "@Url.Action("LoadCertificationPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                //$("#CERTIFICATION_ID").select2({ width: '100%' });
+                if (data != null) {
+                    certificationCollection = [];
+                    $("#tblcertification").empty();
+
+                    var row = "";
+                    var row_id = 1;
+                    _.each(data, function (value) {
+                        if (value.CERTIFICATION_ID != null && value.CERTIFICATION_ID != "") {
+                            row += "<tr id ='tr_old_row_cert_" + value.CERTIFICATION_ID + "'><td>" + row_id + " </td><td>" + value.CERTIFICATION + "</td><td>" + value.CERTIFICATION_LEVEL + "</td><td>" + value.INSTITUTE + "</td><td class='yearOfPassing'>" + value.YEAR_OF_PASSING + "</td>";
+                            row += '<td><a onclick="fnDeleteCertification(' + value.CERTIFICATION_ID + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                            var addJson = { "CERTIFICATION_ID": value.CERTIFICATION_ID, "CERTIFICATION": value.CERTIFICATION, "OTHER_CERTIFICATION": "", "IsNew": "true", "CERTIFICATION_LEVEL": value.CERTIFICATION_LEVEL, "INSTITUTE": value.INSTITUTE, "YEAR_OF_PASSING": value.YEAR_OF_PASSING, "USER_CERTIFICATION_ID": value.USER_CERTIFICATION_ID };
+
+                            certificationCollection.push(addJson);
+                            row_id++;
+                        }
+                    });
+
+                    $("#tblcertification").append(row);
+                    $(".certification-details").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    //load education partial view
+    $(document).on("click", "#educationModalLink", function () {
+        var urlPath = "@Url.Action("LoadEducationPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                //$("#EDUCATION_TYPE_ID").select2({ width: '100%' });
+                //$("#SPECIALIZATION_TYPE_ID").select2({ width: '100%' });
+                if (data != null) {
+                    educationCollection = [];
+                    $("#tbleducation").empty();
+
+                    var row = "";
+                    var row_id = 1;
+                    _.each(data, function (value) {
+                        if (value.EDUCATION_TYPE_ID != 0) {
+                            var highestqual = "No";
+                            if (value.IS_HIGHEST_QUALIFICATION == true)
+                                highestqual = "Yes";
+                            row += "<tr id ='tr_old_row_edu_" + value.EDUCATION_TYPE_ID + "'><td >" + row_id + " </td><td>" + value.EDUCATION_TYPE + "</td><td>" + value.SPECIALIZATION_TYPE + "</td><td>" + value.UNIVERSITY_ID + "</td><td>" + value.UNIVERSITY_YEAR_OF_PASSING + "</td><td>" + highestqual + "</td>";
+                            row += '<td><a onclick="fnDeleteEducation(' + value.EDUCATION_TYPE_ID + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                            var addJson = { "EDUCATION_TYPE_ID": value.EDUCATION_TYPE_ID, "SPECIALIZATION_TYPE_ID": value.SPECIALIZATION_TYPE_ID, "IsNew": "true", "UNIVERSITY_ID": value.UNIVERSITY_ID, "UNIVERSITY_YEAR_OF_PASSING": value.UNIVERSITY_YEAR_OF_PASSING, "IS_HIGHEST_QUALIFICATION": value.IS_HIGHEST_QUALIFICATION, "USER_EDUCATION_ID": value.USER_EDUCATION_ID };
+
+                            educationCollection.push(addJson);
+                            row_id++;
+                        }
+                    });
+
+                    $("#tbleducation").append(row);
+                    $(".education-details").modal("show");
+                }
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+
+        function toggleIcon(e) {
+            $(e.target)
+                .prev('.panel-heading')
+                .find(".more-less")
+                .toggleClass('glyphicon-plus glyphicon-minus');
+        }
+        $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+        $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+    });
+
+
+    //Load Document Partial View
+    $(document).on("click", "#documentModalLink", function () {
+        var urlPath = "@Url.Action("LoadDocumentsPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    documentCollection = [];
+                    $("#tbldoc").empty();
+
+                    var row = "";
+                    var row_id = 1;
+                    _.each(data.LST_USER_DOCUMENT, function (value) {
+                        if (value.DOCUMENT_TYPE_ID != null) {
+                            row += "<tr id ='tr_old_row_doc_" + row_id + "'><td >" + row_id + " </td><td>" + value.DOCUMENT_TYPE_ID + "</td><td class='document-path'>" + value.DOCUMENT_PATH + "</td>";
+                            row += '<td><a class="deleteDocument" href="javascript:void()"> <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                            var addJson = { "DOCUMENT_TYPE_ID": value.DOCUMENT_TYPE_ID, "DOCUMENT_PATH": value.DOCUMENT_PATH, "IsNew": "true", "DOCUMENT_ID": value.DOCUMENT_ID };
+
+                            documentCollection.push(addJson);
+                            row_id++;
+                        }
+                    });
+
+                    $("#tbldoc").append(row);
+                    $(".user-documents").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+
+    });
+
+    //Load Experience Partial View
+    $(document).on("click", "#experienceModalLink", function () {
+        var urlPath = "@Url.Action("LoadExpPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                
+                $(".user-experience").modal("show");
+                $("#WORK_PERIOD_FROM").datepicker({
+                    maxDate: "-1D",
+                    changeMonth: true,
+                    changeYear: true, yearRange: "-70:+0",
+                    numberOfMonths: 1,
+                    dateFormat: "dd/mm/yy",
+                    onClose: function (selectedDate) {
+                        $("#WORK_PERIOD_TO").datepicker("option", "minDate", selectedDate);
+                    }
+                });
+                $("#WORK_PERIOD_TO").datepicker({
+                    maxDate: "D",
+                    changeMonth: true,
+                    changeYear: true, yearRange: "-70:+10",
+                    numberOfMonths: 1,
+                    dateFormat: "dd/mm/yy",
+                    onClose: function (selectedDate) {
+                        $("#WORK_PERIOD_FROM").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
+
+                if (data != null) {
+                    experienceCollection = [];
+                    $("#tblwork").empty();
+
+                    if (data.LST_USER_EXPERIENCE.length > 0) {
+                        $('#Experience').attr('checked', 'checked');
+                    }
+
+                    var row = "";
+                    var row_id = 1;
+                    _.each(data.LST_USER_EXPERIENCE, function (value) {
+                        if (value.USER_COMPANY_NAME != null && value.USER_COMPANY_NAME != "") {
+
+                            row += "<tr id ='tr_old_row_exp_" + row_id + "'><td data-companyId = " + value.USER_COMPANY_NAME + ">" + value.COMPANY_NAME + "</td><td>" + value.DESIGNATION + "</td>";
+                            row += "<td>" + value.INDUSTRY_TYPE + "</td><td data-work-period-from = " + ConvertJsonDate(value.WORK_PERIOD_FROM) + ">" + ConvertJsonDate(value.WORK_PERIOD_FROM) + "-" + ConvertJsonDate(value.WORK_PERIOD_TO) + "</td>";
+                            row += "<td>" + value.STATE_NAME + "-" + value.WORK_CITY_CODE + "</td>";
+                            row += '<td><a onclick="fnDeleteExperience(' + row_id + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                            var addJson = { "EXPERIENCE_ID": value.EXPERIENCE_ID, "USER_COMPANY_NAME": value.USER_COMPANY_NAME, "INDUSTRY_ID": value.INDUSTRY_ID, "IsNew": "true", "DESIGNATION_ID": value.DESIGNATION_ID, "WORK_PERIOD_FROM": convertJSDate(ConvertJsonDate(value.WORK_PERIOD_FROM)), "WORK_PERIOD_TO": convertJSDate(ConvertJsonDate(value.WORK_PERIOD_TO)), "WORK_CITY_CODE": value.WORK_CITY_CODE, "WORK_STATE_CODE": value.WORK_STATE_CODE, "IS_CURRENT_COMPANY": value.IS_CURRENT_STATUS, "OTHER_COMPANY": "", "COUNTRY_CODE": value.COUNTRY_CODE, "OTHER_DESIGNATION": "", "SRNO": row_id };
+
+                            experienceCollection.push(addJson);
+                            row_id++;
+
+                            $('#TOTAL_WORK_EXPERIENCE').val(value.TOTAL_WORK_EXPERIENCE);
+                            $('#TOTAL_GULF_EXPERIENCE').val(value.TOTAL_GULF_EXPERIENCE);
+                            $('#SKILLS').val(value.SKILLS);
+                            $('#WORK_REMARK').val(value.WORK_REMARK);
+                        }
+                    });
+
+                    $("#tblwork").append(row);
+                }
+                else {
+                    $('#TOTAL_WORK_EXPERIENCE').val("");
+                    $('#TOTAL_GULF_EXPERIENCE').val("");
+                    $('#SKILLS').val("");
+                    $('#WORK_REMARK').val("");
+                }
+
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+
+    });
+
+    $(document).on("click", ".requirement-link", function () {
+        var urlPath = "@Url.Action("GetProcessDetails", "StatusSearch")";
+        var userRequirementId = $(this).closest('tr').find('#hdnUserRequirementId').val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { userRequirementId: userRequirementId },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                $("#USER_REQUIREMENT_ID").val(userRequirementId);
+                //Mofa Details
+                if (data.mofa.length > 0) {
+                    $("#divMOFA_NO").html(data.mofa[0].MofaNumber);
+                    $("#divMOFA_DATE").html(ConvertJsonDate(data.mofa[0].MofaDate));
+                    $("#divAPPLICATION_NO").html(data.mofa[0].ApplicationNumber);
+                    $("#divAPPLICATION_DATE").html(ConvertJsonDate(data.mofa[0].ApplicationDate));
+                    $("#divHealthNumber").html(data.mofa[0].HealthNumber);
+                    $("#divHealthDate").html(ConvertJsonDate(data.mofa[0].HealthDate));
+                    $("#divDDNumber").html(data.mofa[0].DDNumber);
+                    $("#divDDDate").html(ConvertJsonDate(data.mofa[0].DDDate));
+                    $("#MOFA_ID").val(data.mofa[0].MofaID);
+                }
+                else {
+                    $("#divMOFA_NO").html("");
+                    $("#divMOFA_DATE").html("");
+                    $("#divAPPLICATION_NO").html("");
+                    $("#divAPPLICATION_DATE").html("");
+                    $("#divHealthNumber").html("");
+                    $("#divHealthDate").html("");
+                    $("#divDDNumber").html("");
+                    $("#divDDDate").html("");
+                }
+
+                //Medical Details
+                if (data.medical.length > 0) {
+                    $("#divMEDICAL_STATUS").html(data.medical[0].STATUS_NAME);
+                    $("#divReportDate").html(ConvertJsonDate(data.medical[0].CheckupDate));
+                    $("#divDoctorName").html(data.medical[0].DoctorName);
+                    $("#divTokenNumber").html(data.medical[0].TokenNumber);
+                    $("#MEDICAL_ID").val(data.medical[0].MedicalId);
+                }
+                else {
+                    $("#divMEDICAL_STATUS").html("");
+                    $("#divReportDate").html("");
+                    $("#divDoctorName").html("");
+                    $("#divTokenNumber").html("");
+                }
+
+                //Visa Endorsement Details
+                if (data.visa.length > 0) {
+                    $("#divVisaSubmissionStatus").html(data.visa[0].VisaSubmissionStatus);
+                    $("#divSubmissionDate").html(ConvertJsonDate(data.visa[0].SubmissionDate));
+                    $("#VISAENDORSEMENT_ID").val(data.visa[0].VisaEndorsementId);
+                }
+                else {
+                    $("#divVisaSubmissionStatus").html("");
+                    $("#divSubmissionDate").html("");
+                }
+
+                //Emigration Details
+                if (data.emigration.length > 0) {
+                    $("#EMIGRATION_ID").val(data.emigration[0].EMIGRATION_ID);
+                    $("#divFE_NO").html(data.emigration[0].FE_NO);
+                    $("#divPT_NO").html(data.emigration[0].PT_NO);
+                    $("#divDM_NO").html(data.emigration[0].DM_NO);
+                    $("#divDM_DATE").html(ConvertJsonDate(data.emigration[0].DM_DATE));
+                    $("#divPOLICY_NO").html(data.emigration[0].POLICY_NO);
+                    $("#divPOLICY_DATE").html(ConvertJsonDate(data.emigration[0].POLICY_DATE));
+                    $("#divPOLICY_COMPANYNAME").html(data.emigration[0].POLICY_COMPANYNAME);
+                    $("#divSUBMISSION_DATE").html(ConvertJsonDate(data.emigration[0].SUBMISSION_DATE));
+                    $("#divEMIGRATION_CLEARANCENO").html(data.emigration[0].EMIGRATION_CLEARANCENO);
+                    $("#divPOE").html(data.emigration[0].POE);
+                    $("#divREMARK").html(data.emigration[0].REMARK);
+                    var isecr = data.emigration[0].IS_ECR;
+                    if (isecr == true)
+                        $("#divIS_ECR").html("Yes");
+                    else
+                        $("#divIS_ECR").html("No");
+                }
+                else {
+                    $("#divFE_NO").html("");
+                    $("#divPT_NO").html("");
+                    $("#divDM_NO").html("");
+                    $("#divDM_DATE").html("");
+                    $("#divPOLICY_NO").html("");
+                    $("#divPOLICY_DATE").html("");
+                    $("#divPOLICY_COMPANYNAME").html("");
+                    $("#divSUBMISSION_DATE").html("");
+                    $("#divEMIGRATION_CLEARANCENO").html("");
+                    $("#divPOE").html("");
+                    $("#divREMARK").html("");
+                }
+
+                //Travel Details
+                if (data.ticket.length > 0) {
+                    $("#divTRAVEL_STATUS").html(data.ticket[0].TravelStatus);
+                    $("#divTRAVEL_DATE").html(ConvertJsonDate(data.ticket[0].DepartureDate));
+                    $("#divPNR_NO").html(data.ticket[0].PnrNumber);
+                    $("#divAIRLINES").html(data.ticket[0].AirlinesName);
+                    $("#divDESTINATION_PLACE").html(data.ticket[0].DestinationCity);
+                    $("#divDESTINATION_TIME").html(data.ticket[0].ArrivalTime);
+                    $("#TICKET_ID").val(data.ticket[0].TicketID);
+                }
+                else {
+                    $("#divTRAVEL_STATUS").html("");
+                    $("#divTRAVEL_DATE").html("");
+                    $("#divPNR_NO").html("");
+                    $("#divAIRLINES").html("");
+                    $("#divDESTINATION_PLACE").html("");
+                    $("#divDESTINATION_TIME").html("");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+
+        $(".table-click-info").slideDown("slow");
+    });
+
+    $(document).on('click', '.editRequirement', function () {
+        $('#REQ_ID').chosen({ width: '100%' });
+        $('#Current_Status').chosen({ width: '100%' });
+
+        var userRequirementId = $(this).closest('tr').find('#hdnUserRequirementId').val();
+        var reqId = $(this).closest('tr').find('#hdnReqId').val();
+        var candidateStatus = $(this).closest('tr').find('#hdnCurrentStatus').val();
+        $("#USER_REQUIREMENT_ID").val(userRequirementId);
+        $("#REQ_ID").val(reqId);
+        $("#Current_Status").val(candidateStatus);
+        $("#ErrItem_REQUIREMENT_ID").text("");
+        $("#ErrItem_Current_Status").text("");
+    });
+
+    //on add requirement click
+    $(document).on("click", "#addRequirement", function () {
+        $('#REQ_ID').chosen({ width: '100%' });
+        $('#Current_Status').chosen({ width: '100%' });
+
+        $("#REQ_ID").val("");
+        $("#Current_Status").val("");
+        $("#USER_REQUIREMENT_ID").val("");
+        $("#ErrItem_REQUIREMENT_ID").text("");
+        $("#ErrItem_Current_Status").text("");
+
+        $(".requirement-status").modal("show");
+    });
+
+    $(document).on("click", "#btnSaveRequirement", function () {
+        var status = false;
+        var hdreqid;
+        $("#tblUserRequirement tr").each(function () {
+            var curstatus = $(this).find('#hdnCurrentStatus').val();
+            var reqid = $(this).find('#hdnReqId').val();
+            if (curstatus == "True") {
+                status = true;
+                hdreqid = reqid;
+                return status;
+            }
+        });
+
+        var isStepValid = true;
+
+        var reqid = $("#REQ_ID").val();
+        if (reqid == "" || reqid == "0") {
+            $("#ErrItem_REQUIREMENT_ID").text("Please select Requirement.");
+            isStepValid = false;
+        }
+        else
+            $("#ErrItem_REQUIREMENT_ID").text("");
+
+        var curstatus = $("#Current_Status").val();
+        if (curstatus == "" || curstatus == "0") {
+            $("#ErrItem_Current_Status").text("Please select Status.");
+            isStepValid = false;
+        }
+        else
+            $("#ErrItem_Current_Status").text("");
+
+        if (!isStepValid) {
+            return false;
+        }
+
+        if (status && hdreqid != reqid) {
+            $("#ErrItem_REQUIREMENT_ID").text("You cannot add new requirement. First close existing requirement then add new requirement.");
+            return false;
+        }
+        else
+            $("#ErrItem_REQUIREMENT_ID").text("");
+
+        $.ajax({
+            url: "@Url.Action("AddUpdateUserRequirement", "StatusSearch")",
+            type: "POST",
+            data: { userRequirementId: $("#USER_REQUIREMENT_ID").val(), regno: $("#REGISTRATION_NO").val(), requirementid: $("#REQ_ID").val(), candidateStatus: $("#STATUS_ID").val(), status: $("#Current_Status").val() },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                var trHTML = '';
+                $.each(data, function (i, item) {
+                    var sta = "Close";
+                    var curstatus = "False";
+                    var status = data[i].CURRENT_STATUS;
+                    if (status == true) {
+                        sta = "Open"
+                        curstatus = "True";
+                    }
+
+                    trHTML += '<tr>' +
+                        '<td>' +
+                        '<input id="hdnUserRequirementId" name="hdnUserRequirementId" type="hidden" value=' + data[i].USER_REQUIREMENT_ID + '>' +
+                        '<input id="hdnReqId" name="hdnReqId" type="hidden" value=' + data[i].REQUIREMENT_ID + '>' +
+                        '<input id="hdnCurrentStatus" name="hdnCurrentStatus" type="hidden" value=' + curstatus + '>' +
+                        '<a class="requirement-link">R00' + data[i].REQUIREMENT_ID + '</a></td>' +
+                        '<td>' + data[i].REQUIREMENT + '</td>' +
+                        '<td>' + data[i].STATUS_NAME + '</td>' +
+                        '<td>' + sta + '</td>' +
+                        //'<td><a onclick="fneditReq(' + data[i].USER_REQUIREMENT_ID + ',' + data[i].REQUIREMENT_ID + ',' + curstatus + ')" href="javascript:void()" data-toggle="modal" data-target=".requirement-status" id=' + data[i].USER_REQUIREMENT_ID + ' class="editRequirement"><span class="glyphicon glyphicon-edit"></span></a></td>' +
+                        '<td><a data-toggle="modal" data-target=".requirement-status" id=' + data[i].USER_REQUIREMENT_ID + ' class="editRequirement"><span class="glyphicon glyphicon-edit"></span></a></td>' +
+
+                        '</tr>';
+                });
+                $('#tbodyReq').html("");
+                $('#tbodyReq').append(trHTML);
+                $(".requirement-status").modal("hide");
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    //Load Medical modal
+    $(document).on("click", "#medicalModalLink", function () {
+        var urlPath = "@Url.Action("LoadMedicalDetails", "StatusSearch")";
+        var id = $("#MEDICAL_ID").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { id: id },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#medicalForm").html(data);
+                    $(".medical-status").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+
+    });
+
+    $(document).on("change", "#txtUploadFile", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "Medical");
+    });
+
+    //Load MOFA modal
+    $(document).on("click", "#mofaModalLink", function () {
+        var urlPath = "@Url.Action("LoadMofaDetails", "StatusSearch")";
+        var id = $("#MOFA_ID").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { id: id },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#mofaForm").html(data);
+                    $(".mofa-status").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    $(document).on("change", "#txtmofaFile", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "MOFA");
+    });
+
+    //Load VISA Endorsement modal
+    $(document).on("click", "#visaModalLink", function () {
+        var urlPath = "@Url.Action("LoadVisaDetails", "StatusSearch")";
+        var id = $("#VISAENDORSEMENT_ID").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { id: id },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#visaForm").html(data);
+                    $(".visa-status").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    $(document).on("change", "#visaendorsementFile", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "VISA_ENDORSEMENT");
+    });
+
+    //Load Emigration modal
+    $(document).on("click", "#emigrationModalLink", function () {
+        var urlPath = "@Url.Action("LoadEmigrationDetails", "StatusSearch")";
+        var id = $("#EMIGRATION_ID").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { id: id },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#emigrationForm").html(data);
+                    $(".emigration-status").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    $(document).on("change", "#policyFile", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "Emigration_Policy");
+    });
+
+    $(document).on("change", "#emigrationFile", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "Emigration_emigration");
+    });
+
+    //Load Ticket modal
+    $(document).on("click", "#ticketModalLink", function () {
+        var urlPath = "@Url.Action("LoadTicketDetails", "StatusSearch")";
+        var id = $("#TICKET_ID").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { id: id },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data == "SessionTimeout") {
+                    window.location.href = '@Url.Action("LogOut", "Login")';
+                }
+                if (data != null) {
+                    $("#ticketForm").html(data);
+                    $(".ticket-status").modal("show");
+                }
+            },
+
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    $(document).on("change", "#txtticketReport", function (e) {
+        var file = e.target.files;
+        var path = UploadAttachment(file, "Ticket");
+    });
+
+    //$(document).on("change", "#SaveImage", function (e) {
+    //    var file = e.target.files;
+    //    var path = UploadAttachment(file, "Candidate");
+    //});
+
+    function UploadAttachment(file, uploadFrom) {
+        var path = "";
+        if (file.length > 0) {
+            var isvalid = checkImagefile(file);
+            if (isvalid) {
+                var data = new FormData();
+
+                // Add the uploaded image content to the form data collection
+                data.append("UploadedImage", file[0]);
+                data.append("UploadFrom", uploadFrom);
+
+                // Make Ajax request with the contentType = false, and procesDate = false
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadImageFile", "StatusSearch")',
+                    contentType: false,
+                    processData: false,
+                    data: data
+                });
+
+                ajaxRequest.done(function (xhr, textStatus) {
+                    if (xhr == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    // Do other operation
+                    path = xhr;
+                    if (uploadFrom == "Medical") {
+                        $("#ReportPath").val(path);
+                    }
+                    else if (uploadFrom == "MOFA") {
+                        $("#MofaFilePath").val(path);
+                    }
+                    else if (uploadFrom == "Ticket") {
+                        $("#ticketReportPath").val(path);
+                    }
+                    else if (uploadFrom == "Candidate") {
+                        $("#FILE_PATH").val(path);
+                    }
+                    else if (uploadFrom == "Emigration_Policy") {
+                        $("#POLICY_ATTACHMENT").val(path);
+                    }
+                    else if (uploadFrom == "Emigration_emigration") {
+                        $("#EMIGRATION_ATTACHMENT").val(path);
+                    }
+                    else if (uploadFrom == "VISA_ENDORSEMENT") {
+                        $("#VisaEndorsementFilePath").val(path);
+                    }
+                });
+            }
+        }
+        else {
+            path = "";
+            if (uploadFrom == "Medical") {
+                $("#ReportPath").val(path);
+            }
+            else if (uploadFrom == "MOFA") {
+                $("#MofaFilePath").val(path);
+            }
+            else if (uploadFrom == "Ticket") {
+                $("#ticketReportPath").val(path);
+            }
+            else if (uploadFrom == "Candidate") {
+                $("#FILE_PATH").val(path);
+            }
+            else if (uploadFrom == "Emigration_Policy") {
+                $("#POLICY_ATTACHMENT").val(path);
+            }
+            else if (uploadFrom == "Emigration_emigration") {
+                $("#EMIGRATION_ATTACHMENT").val(path);
+            }
+            else if (uploadFrom == "VISA_ENDORSEMENT") {
+                $("#VisaEndorsementFilePath").val(path);
+            }
+        }
+    }
+
+    function convertJSDate(_date) {
+        var dsplit = _date.split("/");
+        d = new Date(dsplit[2], dsplit[1] - 1, dsplit[0]);
+        return d;
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#GENDER_CODE").chosen({ width: '100%' });
+        $("#MARITAL_STATUS_ID").chosen({ width: '100%' });
+        $("#NATIONALITY_ID").chosen({ width: '100%' });
+        $("#RELIGION_ID").chosen({ width: '100%' });
+        $("#EMIGRATION_CLEARANCE_REQUIRED").chosen({ width: '100%' });
+        $("#VEHICLE_TYPE_ID").chosen({ width: '100%' });
+
+        $("#AVAILING_TYPE_ID").chosen({ width: '100%' });
+        $("#SOURCE_ID").chosen({ width: '100%' });
+        $("#STATUS_ID").chosen({ width: '100%' });
+        $("#VISA_ID").chosen({ width: '100%' });
+        $("#REQUIREMENT_ID").chosen({ width: '100%' });
+        $("#OTHER_SOURCE").chosen({ width: '100%' });
+        $("#LOGIN_ACCESS").chosen({ width: '100%' });
+    
+
+        $("#SaveImage").change(function (e) {
+            var file = e.target.files;
+            var path = UploadAttachment(file, "Candidate");
+        });
+
+        $("#SaveImageWithImg").change(function (e) {
+            var file = e.target.files;
+            var path = UploadAttachment(file, "Candidate");
+        });
+
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+
+    });
+
+</script>
+<style>
+    .modal-body {
+        display: inline-block;
+        overflow-y: auto;
+    }
+
+    .requirement-link {
+        cursor: pointer;
+    }
+    /* Important part */
+    .modal-dialog {
+        overflow-y: initial !important;
+    }
+</style>

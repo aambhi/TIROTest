@@ -1,0 +1,185 @@
+﻿@{
+    string certJSON = "";
+    var userCertification = new List<TIROERP.Core.Model.UserCertification>();
+
+    if (ViewBag.GetCertificationDetails != null)
+    {
+        userCertification = ViewBag.GetCertificationDetails as List<TIROERP.Core.Model.UserCertification>;
+        //string educationJSON = "";
+
+        if (userCertification != null) 
+        { 
+            for (int i = 0; i < userCertification.Count; i++)
+            {
+                certJSON += "{\"CERTIFICATION_ID\": \"" + userCertification[i].CERTIFICATION_ID + "\",\"CERTIFICATION\":\"" + userCertification[i].CERTIFICATION + "\", \"OTHER_CERTIFICATION\":\"" + userCertification[i].OTHER_CERTIFICATION + "\",\"IsNew\":\"" + true + "\",\"CERTIFICATION_LEVEL\":\"" + userCertification[i].CERTIFICATION_LEVEL + "\" ,\"INSTITUTE\":\"" + userCertification[i].INSTITUTE + "\",\"YEAR_OF_PASSING\":\"" + userCertification[i].YEAR_OF_PASSING + "\",\"USER_CERTIFICATION_ID\": \"" + userCertification[i].USER_CERTIFICATION_ID + "\"},";
+
+            }
+
+            certJSON = certJSON.TrimEnd(',');
+            certJSON = "[" + certJSON + "]";
+        }
+    }
+}
+<script type="text/javascript">
+    var lstOfUserEdu = '@ViewBag.GetCertificationDetails';
+    certificationCollection = (typeof certificationCollection != 'undefined' && certificationCollection instanceof Array) ? certificationCollection : [];
+    if (lstOfUserEdu != null && @certJSON.Length > 0) {
+        certificationCollection = "@certJSON".replace(/&quot;/g, '\"');
+        certificationCollection = JSON.parse(certificationCollection);
+    }
+</script>
+
+<div class="groupCertification">
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Certification">Certification</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("CERTIFICATION_ID", ViewData["GetCertification"] as SelectList, "Select Certification", new { @id = "CERTIFICATION_ID", @class = "form-control col-md-10 auto-custom", @autocomplete = "off" })
+                @Html.TextBox("OTHER_CERTIFICATION", "", new { @id = "OTHER_CERTIFICATION", @class = "form-control col-md-7 col-xs-12", @placeholder = "Other Certification", @autocomplete = "off", @style = "display:none;" })
+                @Html.ValidationMessage("CERTIFICATION_ID", "", new { @class = "text-danger", @id = "Err_CERTIFICATION" })
+                <div class="" id="autocomplete-container" style="position: relative; float: left; width: 400px;"></div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <button type="button" class="addCertification addButton" id="SaveCertification"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Level">Level</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("CERTIFICATION_LEVEL", "", new { @id = "CERTIFICATION_LEVEL", @class = " form-control col-md-7 col-xs-12", @style = "float: left;", @placeholder = "Certification level", @autocomplete = "off", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Insititue">Insititue</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("INSTITUTE", "", new { @id = "INSTITUTE", @class = " form-control col-md-7 col-xs-12", @style = "float: left;", @placeholder = "Institute Name", @autocomplete = "off", @maxlength = "50" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Passing">Year of Passing</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("YEAR_OF_PASSING", "", new { @id = "YEAR_OF_PASSING", @class = "date-picker form-control col-md-7 col-xs-12", @style = "float: left;", @placeholder = "Year of Passing", @autocomplete = "off", @maxlength = "4", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>ID</th>
+                        <th>Certification</th>
+                        <th>Certification Level</th>
+                        <th>Institute</th>
+                        <th>Year of Passing</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tblcertification">
+                        @if (userCertification != null && userCertification.Count > 0)
+                        {
+
+                            foreach (var certificationItem in userCertification)
+                            {
+                                <tr id='tr_old_row_cert_@certificationItem.CERTIFICATION_ID'>
+                                    <td>
+                                        @certificationItem.CERTIFICATION_ID
+                                        <input type="hidden" class="cert_type_id" value=@certificationItem.USER_CERTIFICATION_ID />
+                                    </td>
+                                    <td>
+                                        @certificationItem.CERTIFICATION
+                                    </td>
+                                    <td>@certificationItem.CERTIFICATION_LEVEL</td>
+                                    <td>@certificationItem.INSTITUTE</td>
+                                    <td class="yearOfPassing">@certificationItem.YEAR_OF_PASSING</td>
+                                    <td><a onclick="fnDeleteCertification(@certificationItem.CERTIFICATION_ID)" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CERTIFICATION_ID").select2();
+
+        $("#CERTIFICATION_ID").change(function () {
+            var compname = $("#CERTIFICATION_ID option:selected").text();
+            if (compname == "Other") {
+                $("#OTHER_CERTIFICATION").css("display", "block");
+            }
+            else {
+                $("#OTHER_CERTIFICATION").css("display", "none");
+            }
+        });
+
+        $("#SaveCertification").click(function (e) {
+            var isStepValid = true;
+
+            var CERTIFICATION = $("#CERTIFICATION_ID").val();
+
+
+            if (CERTIFICATION == "" || CERTIFICATION == "0") {
+                $("#Err_CERTIFICATION").text("Please select Certification");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_CERTIFICATION").text("");
+            }
+
+
+            if (isStepValid) {
+                var row_id = $('#tblcertification').children().length + 1
+                var row = "";
+                row += "<tr id ='tr_old_row_cert_" + $("#CERTIFICATION_ID option:selected").val() + "'><td>" + row_id + " </td><td>" + $("#CERTIFICATION_ID option:selected").text() + "</td><td>" + $("#CERTIFICATION_LEVEL").val() + "</td><td>" + $("#INSTITUTE").val() + "</td><td class='yearOfPassing'>" + $("#YEAR_OF_PASSING").val() + "</td>";
+                row += '<td><a onclick="fnDeleteCertification(' + $("#CERTIFICATION_ID option:selected").val() + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tblcertification").append(row);
+
+                var addJson = { "CERTIFICATION_ID": CERTIFICATION,"CERTIFICATION": $("#CERTIFICATION_ID option:selected").text(), "OTHER_CERTIFICATION": $("#OTHER_CERTIFICATION").val(), "IsNew": "true", "CERTIFICATION_LEVEL": $("#CERTIFICATION_LEVEL").val(), "INSTITUTE": $("#INSTITUTE").val(), "YEAR_OF_PASSING": $("#YEAR_OF_PASSING").val(),"USER_CERTIFICATION_ID":"0" };
+                var exists = !!_.where(certificationCollection, { "CERTIFICATION": CERTIFICATION }).length;
+                if (!exists)
+                    certificationCollection.push(addJson);
+                else {
+                    var contact = $.grep(certificationCollection, function (e) { return e.CERTIFICATION == CERTIFICATION; });
+                    if (contact && contact.length == 1) {
+                        contact[0].IsNew = 'false';
+                    }
+                }
+
+                $("#CERTIFICATION_LEVEL").val('');
+                $("#YEAR_OF_PASSING").val('');
+                $("#INSTITUTE").val('');
+                $('#CERTIFICATION').val('').trigger('change')
+                $("#OTHER_CERTIFICATION").val('');
+                $("#OTHER_CERTIFICATION").css("display", "none");
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    function fnDeleteCertification(certification) {
+        var deleteCertRow = $('#tr_old_row_cert_' + certification);
+        var yearOfPass = deleteCertRow.find('.yearOfPassing').text();
+        deleteCertRow.remove();
+        debugger;
+        var cert = $.grep(certificationCollection, function (e) { return (e.CERTIFICATION_ID == certification && e.YEAR_OF_PASSING == yearOfPass); });
+        if (cert && cert.length == 1) {
+            cert[0].IsNew = 'false';
+        }
+    }
+</script>
+

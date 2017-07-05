@@ -1,0 +1,58 @@
+﻿@model TIROERP.Core.Model.EducationType
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Country Master </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-inline">
+
+                                <div class="col-md-10" style="margin-top:10px;">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3"> EDUCATION TYPE <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.EDUCATION_TYPE, new { @id = "EDUCATION_TYPE", @class = "form-control  col-md-3", @autocomplete = "off", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(model => model.EDUCATION_TYPE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10" style="margin-top:10px;">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(model => model.EDUCATION_TYPE_ID)
+                            </form>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

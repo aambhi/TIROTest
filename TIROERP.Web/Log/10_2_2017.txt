@@ -1,0 +1,20 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C120170014
+ Action: GetCandidateDetails
+ Error Message: Encountered end tag "div" with no matching start tag.  Are your start/end tags properly balanced?
+
+ Inner Exception: Encountered end tag "div" with no matching start tag.  Are your start/end tags properly balanced?
+
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCertificationPartialView?registrationNo=C120170014
+ Action: LoadCertificationPartialView
+ Error Message: The data reader is incompatible with the specified 'TIROERPModel.PROC_GET_CERTIFICATION_DETAILS_Result'. A member of the type, 'CERTIFICATION', does not have a corresponding column in the data reader with the same name.
+ Inner Exception: The data reader is incompatible with the specified 'TIROERPModel.PROC_GET_CERTIFICATION_DETAILS_Result'. A member of the type, 'CERTIFICATION', does not have a corresponding column in the data reader with the same name.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

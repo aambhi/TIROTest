@@ -1,0 +1,20 @@
+==================================================================
+DateTime24/06/2017 12:25:08
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C620170018
+ Action: GetCandidateDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime24/06/2017 12:49:51
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C620170018
+ Action: GetCandidateDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

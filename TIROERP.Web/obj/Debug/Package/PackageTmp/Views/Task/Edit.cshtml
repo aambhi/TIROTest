@@ -1,0 +1,106 @@
+﻿@model TIROERP.Core.Model.TaskMaster
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var taskFollowup = ViewBag.TaskFollowUp;
+}
+@using (Html.BeginForm("Edit", "Task", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Task Master</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <form class="form-inline">
+                                @Html.HiddenFor(x => x.TASK_ID)
+                                @Html.HiddenFor(x => x.CREATED_BY)
+                                @Html.HiddenFor(x => x.CREATED_DATE)
+                                @Html.HiddenFor(x => x.TASK_ASSIGNED_TO)
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtName">
+                                        Task <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBoxFor(model => model.TASK_NAME, new { @id = "TASK_NAME", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "100", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtPercentage">
+                                        Percentage <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBoxFor(model => model.PERC_COMPLETED, new { @id = "PERC_COMPLETED", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "100", @type = "number" })
+                                        @*<input type="number" id="PERC_COMPLETED" name="txtPercentage" min="0" max="100" required="required" class="form-control col-md-7 col-xs-12">*@
+
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Comment<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.TASK_COMMENT, new { @id = "TASK_COMMENT", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "200" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+
+                            </form>
+                            <br />
+                        </div>
+
+
+                        <h4>Recent Activities </h4>
+                        <ul class="messages">
+                            @foreach (var Task in taskFollowup)
+                            {
+                                <li>
+                                    @*<p class="month">@Task.CREATED_DATE.ToShortTimeString() </p>*@
+                                    <div class="message_date">
+                                        <h3 class="date text-info">@(Task.CREATED_DATE.Day + " " + Task.CREATED_DATE.ToShortTimeString())</h3>
+                                        <p class="month">@Task.CREATED_DATE.ToString("MMM")</p>
+                                        <p class="month">@Task.CREATED_DATE.Year</p>
+                                    </div>
+                                    <div class="message_wrapper">
+                                        <h4 class="heading">@Task.CREATED_BY</h4>
+                                        <blockquote class="message">@Task.TASK_COMMENT</blockquote>
+                                        <br />
+
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar"
+                                                 data-transitiongoal="@Task.PERC_COMPLETED" style="width:@Task.PERC_COMPLETED.ToString()%;">
+                                            </div>
+                                        </div>
+                                        <small>@Task.PERC_COMPLETED % Complete</small>
+
+                                    </div>
+                                </li>
+
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+
+}
+

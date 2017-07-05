@@ -1,0 +1,123 @@
+﻿@model TIROERP.Core.Model.Policy
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render(("~/bundles/select2"))
+@Styles.Render("~/Content/select2")
+
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+
+@*Number event*@
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#PolicyDate").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+       
+    });
+</script>
+
+
+@using (Html.BeginForm("Edit", "Policy", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Policy</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+                                @Html.HiddenFor(model => model.POLICYID)
+                                @Html.HiddenFor(model => model.USER_REQUIREMENT_ID)
+                                @Html.HiddenFor(model => model.CreatedBy)
+                                @Html.HiddenFor(model => model.CreatedDate)
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Policy <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyNumber, new { @id = "Policy", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.PolicyNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Date <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyDate, "{0:dd-MMM-yyyy}", new { @id = "PolicyDate", @class = "form-control  date-picker", @placeholder = "Policy Date", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.PolicyDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Fees <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyFees, new { @id = "PolicyFees", @class = "form-control  date-picker", @type = "number", @placeholder = "Policy Fees", @autocomplete = "off", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+                                        @Html.ValidationMessageFor(model => model.PolicyFees, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.PolicyRemark, new { @id = "PolicyRemark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveRequirement">Submit</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Cancel", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

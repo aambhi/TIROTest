@@ -1,0 +1,20 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/Update
+ Action: Update
+ Error Message: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_TBL_MEDICAL_TBL_USER_REQUIREMENT". The conflict occurred in database "ArbabTravelsERP", table "dbo.TBL_USER_REQUIREMENT", column 'USER_REQUIREMENT_ID'.
+The statement has been terminated.
+ Inner Exception: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_TBL_MEDICAL_TBL_USER_REQUIREMENT". The conflict occurred in database "ArbabTravelsERP", table "dbo.TBL_USER_REQUIREMENT", column 'USER_REQUIREMENT_ID'.
+The statement has been terminated.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMedicalDetails?id=2
+ Action: LoadMedicalDetails
+ Error Message: Procedure or function PROC_GET_ALL_PROCESS has too many arguments specified.
+ Inner Exception: Procedure or function PROC_GET_ALL_PROCESS has too many arguments specified.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

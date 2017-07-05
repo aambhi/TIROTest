@@ -1,0 +1,20 @@
+==================================================================
+DateTime11/05/2017 00:55:25
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime11/05/2017 00:55:25
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

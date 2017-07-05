@@ -1,0 +1,261 @@
+﻿@model IEnumerable<TIROERP.Core.Model.CandidateSearch>
+@{
+    ViewBag.Title = "CandidateSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int userTypeId = @ViewBag.UserTtypeId;
+}
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/mask/mask.js"></script>
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    $(document).ready(function () {
+        $("#CONTACT_NO").mask("999-999-999-99999");
+        //Date Picker
+        $("#DOB").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+
+        $('.resetpassword').click(function () {
+            var registrationNo = $(this).attr('id');
+            $("#hdnRegistrationNo").val(registrationNo);
+            $("#Password").val("");
+            $("#RetypePassword").val("");
+            $(".current-status").modal("show");
+        })
+
+        $('#submitDetails').click(function () {
+            var password = $("#Password").val();
+            var confirmPassword = $("#RetypePassword").val();
+            if (password.length < 5) {
+                $("#Err_Password").html("Passwords should be greater than 5 characters.");
+                return false;
+            }
+            else
+                $("#Err_Password").html("");
+
+            if (confirmPassword.length < 5) {
+                $("#Err_RetypePassword").html("Passwords should be greater than 5 characters.");
+                return false;
+            }
+            else
+                $("#Err_RetypePassword").html("");
+
+            if (password != confirmPassword) {
+                $("#Err_RetypePassword").html("Passwords do not match.");
+                return false;
+            }
+            else
+                $("#Err_ReTypePassword").html("");
+
+           var urlPath = "@Url.Action("ResetPassword", "StatusSearch")";
+            var registrationNo = $("#hdnRegistrationNo").val();
+            var password = $("#Password").val();
+            $(".current-status").modal("show");
+            $.ajax({
+                url: urlPath,
+                type: "POST",
+                data: { registrationNo: registrationNo, password: password },
+                success: function (data) {
+                    if (data == true) {
+                        $("#divSuccessMsg").html("Password Changed Successfully.");
+                        $("#divSuccessMsg").show();
+                        $("#divErrorMsg").hide();
+                        $(".current-status").modal("hide");
+                    }
+                    else {
+                        $("#divErrorMsg").html("Password not Changed.");
+                        $("#divErrorMsg").show();
+                        $("#divSuccessMsg").hide();
+                        $(".current-status").modal("hide");
+                    }
+                },
+                error: function (data) {
+                    $("#divErrorMsg").html("Password not Changed.");
+                    $("#divErrorMsg").show();
+                    $("#divSuccessMsg").hide();
+                    $(".current-status").modal("hide");
+                }
+            });
+        })
+    });
+</script>
+
+@using (Html.BeginForm("CandidateSearch", "StatusSearch", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Employee Search</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            @Html.ActionLink("Add New Employee", "Create", "Candidate", new { @id = 2 }, new { @class = "btn btn-primary" })
+                            <div class="clearfix"></div>
+                            @if (ViewData["Success"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    @ViewData["Success"]
+                                </div>
+                            }
+                            <div class="alert alert-success alert-dismissable" id="divSuccessMsg" style="display:none;">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+
+                            </div>
+                            <div class="alert alert-error alert-dismissable" id="divErrorMsg" style="display:none;">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+
+                            </div>
+
+                        </div>
+                        <div id="step-5">
+                            <div id="candidateForm5" data-parsley-validate class="form-horizontal form-label-left">
+                                @Html.Hidden("hdnRegistrationNo")
+                                <div class="groupCompany career" id="divCandidate">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Contact No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("CONTACT_NO", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Contact No.", @autocomplete = "off", @onkeypress = "return isNumberKey(event)" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Name</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("NAME", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Name", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">DOB</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("DOB", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Date of Birth", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Registration No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("REGISTRATION_NO", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Registration No", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    @Html.Hidden("USER_TYPE_ID", @userTypeId)
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary" title="Search" name="SubmitButton" id="SubmitButton" value="Submit">Search</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Reset", "CandidateSearch", new { @id = 2 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="x_content">
+                                <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th>Registration No.</th>
+                                            <th>Candidate Name</th>
+                                            <th>Contact No</th>
+                                            <th>Date of Birth</th>
+                                            <th>Reset Password</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var candidate in Model)
+                                        {
+                                        <tr>
+                                            <td>@Html.ActionLink(candidate.REGISTRATION_NO, "GetEmployeeDetails", new { registrationNo = Convert.ToString(candidate.REGISTRATION_NO) }, new { @class = "btn btn-primary btn-xs" })</td>
+                                            <td>@Html.DisplayFor(modelItem => candidate.NAME)</td>
+                                            <td>@Html.DisplayFor(modelItem => candidate.CONTACT_NO)</td>
+                                            <td>@Convert.ToDateTime(candidate.DOB).ToString("dd/MMM/yyyy")</td>
+                                            <td>
+                                                <a href="#" target="_self" class="resetpassword" id="@candidate.REGISTRATION_NO">Reset Password</a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("DeleteEmployee", "StatusSearch", new { registrationNo = candidate.REGISTRATION_NO  })"><span class="glyphicon glyphicon-trash"></span></a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade current-status" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Reset Password</h4>
+                </div>
+                <div class="modal-body" style="height:240px;width: 100%;">
+                    <div id="candidateForm1" data-parsley-validate="" class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">Password</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBox("Password", "", new { @id = "Password", @class = "form-control", @placeholder = "Password", @autocomplete = "off", @maxlength = "20", @type = "password" })
+                                @Html.ValidationMessage("Err_Password", new { @class = "text-danger", @id = "Err_Password" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">Confirm Password</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBox("RetypePassword", "", new { @id = "RetypePassword", @class = "form-control", @placeholder = "Confirm Password", @autocomplete = "off", @maxlength = "20", @type = "password" })
+                                @Html.ValidationMessage("Err_RetypePassword", new { @class = "text-danger", @id = "Err_RetypePassword" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitDetails">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

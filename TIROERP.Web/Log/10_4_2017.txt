@@ -1,0 +1,710 @@
+==================================================================
+DateTime10-Apr-17 10:53:51 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 10:53:51 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 10:53:51 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 13
+ Error Message: 05-Mar-14 12:00:00 AM
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 10:53:52 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 14
+ Error Message: 12-Dec-16 12:00:00 AM
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 11:28:54 AM
+ Controller: Ticket
+ URL: http://localhost:50130/Ticket?success=Record Created Successfully!!!
+ Action: Index
+ Error Message: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime10-Apr-17 11:30:29 AM
+ Controller: Ticket
+ URL: http://localhost:50130/Ticket
+ Action: Index
+ Error Message: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.Boolean' type to the 'System.String' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime10-Apr-17 2:59:57 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 2:59:57 PM
+ Inner Exception: 09-Jun-17 2:59:57 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:00:12 PM
+ Controller: Visa
+ URL: http://localhost:50130/Visa
+ Action: Index
+ Error Message: The specified cast from a materialized 'System.DateTime' type to the 'System.String' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.DateTime' type to the 'System.String' type is not valid.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:00:41 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:00:38 PM
+ Inner Exception: 09-Jun-17 3:00:39 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:01:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:00:38 PM
+ Inner Exception: 09-Jun-17 3:00:39 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:01:45 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:01:47 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:36 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 14/04/2017
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:36 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 14-Apr-17 12:00:00 AM
+ Inner Exception: 13-Jun-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:36 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 14-Apr-17 12:00:00 AM
+ Inner Exception: 13-Jun-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:37 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:37 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 13/07/2017
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 13-Jul-17 12:00:00 AM
+ Inner Exception: 11-Sep-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 13-Jul-17 12:00:00 AM
+ Inner Exception: 11-Sep-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:02:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:23 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:08:23 PM
+ Inner Exception: 09-Jun-17 3:08:23 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:23 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:23 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:29 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:08:29 PM
+ Inner Exception: 09-Jun-17 3:08:29 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:29 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:29 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:33 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:33 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:08:33 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:03 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:03 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:03 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:38 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:38 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:09:38 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:11:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:11:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:11:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:13:53 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:13:53 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:13:53 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:17 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:14:17 PM
+ Inner Exception: 09-Jun-17 3:14:17 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:17 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:17 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04/04/2019
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 03-Jun-19 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 03-Jun-19 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:25 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:31 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04/04/2019
+ Inner Exception: 19/05/2017
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:31 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 19-May-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:31 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 19-May-17 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:31 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:31 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04/04/2019
+ Inner Exception: 19/05/2019
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 19-May-19 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 04-Apr-19 12:00:00 AM
+ Inner Exception: 19-May-19 12:00:00 AM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:42 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:45 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX repository
+ Error Message: 10-Apr-17 3:14:45 PM
+ Inner Exception: 09-Jun-17 3:14:45 PM
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:45 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after execution
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10-Apr-17 3:14:45 PM
+ Controller: VISA
+ URL: 
+ Action: INDEX
+ Error Message: after binding
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 15:57:57
+ Controller: Visa
+ URL: http://localhost:50130/Visa
+ Action: Index
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime10/04/2017 18:39:58
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 18:39:58
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 18:42:51
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 18:42:51
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 18:45:09
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime10/04/2017 18:45:09
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

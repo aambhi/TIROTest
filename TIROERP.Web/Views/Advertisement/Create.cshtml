@@ -1,0 +1,115 @@
+﻿@model TIROERP.Core.Model.Advertisement
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker" rel="stylesheet" />
+<script src="~/bundles/datepicker"></script>
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#REQUIREMENT_ID").chosen();
+
+        $("#advDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+    });
+</script>
+
+@using (Html.BeginForm("Create", "Advertisement", FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Advertisement </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-inline">
+
+                                <div class="form-group">
+                                    <label for="paper_name" class="control-label col-md-3 col-sm-3">Paper Name <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PAPER_NAME, new { @id = "paper_name", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "100" })
+                                        @Html.ValidationMessageFor(model => model.PAPER_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="agency_name" class="control-label col-md-3 col-sm-3">Agency Name <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.AD_AGENCY_NAME, new { @id = "agency_name", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "100" })
+                                        @Html.ValidationMessageFor(model => model.AD_AGENCY_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Expense" class="control-label col-md-3 col-sm-3">Expense<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.EXPENSES, new { @id = "Expense", @class = "form-control  col-md-7 col-xs-12", @type = "number" })
+                                        @Html.ValidationMessageFor(model => model.EXPENSES, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Requirement" class="control-label col-md-3 col-sm-3">Requirement/s </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownList("REQUIREMENT_ID", (IEnumerable<SelectListItem>)ViewBag.Requirements, "", htmlAttributes: new { @id = "REQUIREMENT_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Requirement" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="advDate" class="control-label col-md-3 col-sm-3">Date<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" id="advDate" name="ADV_DATE" class="form-control" placeholder="Enter Date" style="width:30%;" autocomplete="off" />
+                                        @Html.ValidationMessageFor(model => model.ADV_DATE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="advFile" class="control-label col-md-3 col-sm-3">Upload File</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="file" draggable="auto" id="advFile" name="advFile" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </form>
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

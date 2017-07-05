@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIRO</title>
+
+    @Styles.Render("~/bundles/gentelella")
+    @Scripts.Render("~/bundles/gentelellajs")
+
+</head>
+@using TIROERP.Core.Model;
+
+@{
+    string username = Convert.ToString(((UserLoginResult)Session["UserDetails"]).NAME);
+    string user_profile_image = Convert.ToString(((UserLoginResult)Session["UserDetails"]).USER_IMAGE_PATH);
+    string open_task = Convert.ToString(((UserLoginResult)Session["UserDetails"]).OPEN_TASK);
+}
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div id="menu-bar-container" class="left_col scroll-view" tabindex="5000" style="overflow:hidden;">
+                    <div class="menu-bar">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="@Url.Action("Index","Dashboard")" style="color: #ECF0F1 !important;" class="site_title user-profile">
+                                <img src="~/Content/img/logo.png" style="background-color:white;width: 43px;height: auto;" /> <span>TIRO</span>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- sidebar menu -->
+                        @Html.Action("ChildMenuLayout", "ChildMenuLayout")
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!--Menu bar will be imported over here-->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="@Url.Content(user_profile_image)" alt="">@username
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    @*<li><a href="javascript:;"> Profile</a></li>*@
+                                    <li><a href="@Url.Action("LogOut","Login")"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="">
+                                <a href="@Url.Action("Index","Task")" class="dropdown-toggle info-number" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">@open_task</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            @RenderBody()
+
+
+        </div>
+    </div>
+    @*@RenderSection("scripts", required: false)*@
+</body>
+
+</html>

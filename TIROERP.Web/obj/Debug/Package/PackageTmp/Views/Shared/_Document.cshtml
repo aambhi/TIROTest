@@ -1,0 +1,206 @@
+﻿@{
+    string documentJSON = "";
+    var userDocument = new List<TIROERP.Core.Model.UserDocument>();
+
+    if (ViewBag.UserDocumentDetails != null)
+    {
+        userDocument = ViewBag.UserDocumentDetails as List<TIROERP.Core.Model.UserDocument>;
+
+        if (userDocument != null)
+        {
+            for (int i = 0; i < userDocument.Count; i++)
+            {
+                documentJSON += "{\"DOCUMENT_TYPE_ID\":\"" + userDocument[i].DOCUMENT_TYPE_ID + "\", \"DOCUMENT_PATH\":\"" + userDocument[i].DOCUMENT_PATH + "\",\"IsNew\" : \"" + true + "\",\"DOCUMENT_ID\":\"" + userDocument[i].DOCUMENT_ID + "\"},";
+            }
+
+            documentJSON = documentJSON.TrimEnd(',');
+            documentJSON = "[" + documentJSON + "]";
+        }
+    }
+}
+
+
+<script type="text/javascript">
+    var lstOfUserDocuments = '@ViewBag.UserDocumentDetails';
+    documentCollection = (typeof documentCollection != 'undefined' && documentCollection instanceof Array) ? documentCollection : [];
+    if (lstOfUserDocuments != null && @documentJSON.Length > 0) {
+        documentCollection = "@documentJSON".replace(/&quot;/g, '\"');
+        documentCollection = JSON.parse(documentCollection);
+    }
+</script>
+
+<div class="groupDocuments">
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-4 col-sm-4">Document Type </label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("DOCUMENT_TYPE_ID", "", new { @id = "DOCUMENT_TYPE_ID", @class = "form-control col-md-10 document-custom", @style = "float: left;", @placeholder = "Document Type", @tabindex = "86" })
+                @Html.ValidationMessage("Err_DOCUMENT_TYPE_ID", "", new { @class = "text-danger", @id = "Err_DOCUMENT_TYPE_ID" })
+                <div class="" id="document-container" style="position: relative; float: left; width: 400px;"></div>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <button type="button" class="addDocuments addButton" id="SaveDoc" tabindex="88"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-4 col-sm-4">Attach Document</label>
+            <div class="col-md-6 col-sm-6">
+                <div class="fileinput fileinput-new" data-provides="fileinput" id="divFileInput">
+                    <span class="btn btn-default btn-file" style="margin-left:0px;"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." id="DOCUMENT_PATH" tabindex="87"></span>
+                    <span class="fileinput-filename" id="spanfile"></span>
+                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                </div>
+                @Html.ValidationMessage("DOCUMENT_PATH", "", new { @class = "text-danger", @id = "Err_DOCUMENT_PATH" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>ID</th>
+                        <th>Document Type</th>
+                        <th>Document</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tbldoc">
+                        @if (userDocument != null && userDocument.Count > 0)
+                        {
+                            foreach (var documentItem in userDocument)
+                            {
+                                <tr id='tr_old_row_doc_@documentItem.DOCUMENT_ID'>
+                                    <td>
+                                        @documentItem.DOCUMENT_ID
+                                    </td>
+                                    <td>
+                                        @documentItem.DOCUMENT_TYPE_ID
+                                    </td>
+                                    <td class="document-path">
+                                        @documentItem.DOCUMENT_PATH
+                                    </td>
+                                    <td>
+                                        <a class="deleteDocument" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SaveDoc").click(function (e) {
+            var isStepValid = true;
+
+            if ($('#DOCUMENT_PATH').val() == "") {
+                $("#Err_DOCUMENT_PATH").text("Please upload Document");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_DOCUMENT_PATH").text("");
+            }
+
+            if ($('#DOCUMENT_TYPE_ID').val() == "") {
+                $("#Err_DOCUMENT_TYPE_ID").text("Please select Document");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_DOCUMENT_TYPE_ID").text("");
+            }
+
+
+            if (isStepValid) {
+                $('#progressBar').show();
+                var data = new FormData();
+                var files = $("#DOCUMENT_PATH").get(0).files;
+
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+
+                    var maxfilesize = 4;
+
+                    var size = GetFileSize(files[0].size);
+                    if (size > maxfilesize) {
+                        $("#Err_DOCUMENT_PATH").text("You can upload file up to " + maxfilesize + " MB");
+                        return false;
+                    }
+
+                    data.append("UploadedImage", files[0]);
+                }
+
+                data.append($("#DOCUMENT_TYPE_ID").val(), "Doctype");
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UploadFile","Candidate")', // we are calling json method
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    dataType: "json",
+                    async: true,
+                    success: function (data) {
+                        if (data == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $('#progressBar').hide();
+                        var filename = data.substring(data.indexOf('_') + 1);
+
+                        var row_id = $('#tbldoc').children().length + 1
+                        var row = "";
+                        row += "<tr id ='tr_old_row_doc_" + row_id + "'><td >" + row_id + " </td><td>" + $("#DOCUMENT_TYPE_ID").val() + "</td><td class='document-path'>" + filename + "</td>";
+                        row += '<td><a class="deleteDocument" href="javascript:void()"> <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                        $("#tbldoc").append(row);
+
+                        var addJson = { "DOCUMENT_TYPE_ID": $('#DOCUMENT_TYPE_ID').val(), "DOCUMENT_PATH": data, "IsNew": "true","DOCUMENT_ID":"0" };
+                        var exists = !!_.where(documentCollection, { "DOCUMENT_TYPE_ID": DOCUMENT_TYPE_ID }).length;
+                        if (!exists)
+                            documentCollection.push(addJson);
+                        else {
+                            var contact = $.grep(documentCollection, function (e) { return e.DOCUMENT_TYPE_ID == DOCUMENT_TYPE_ID; });
+                            if (contact && contact.length == 1) {
+                                contact[0].IsNew = 'false';
+                            }
+                        }
+
+                        $("#DOCUMENT_TYPE_ID").val('');
+                        $("#DOCUMENT_PATH").val('');
+                        $("#spanfile").text('');
+                        $("#DOCUMENT_PATH").attr('name', '');
+                        $("#divFileInput").attr('class', 'fileinput fileinput-new');
+                    },
+                    error: function (ex) {
+                        $('#progressBar').hide();
+                    }
+                });
+                return false;
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+        //remove document
+        $(document).on("click",".deleteDocument",function() {
+
+            var deletedRow = $(this).closest("tr").find(".document-path").text();
+            $(this).closest("tr").remove();
+            debugger;
+            var docs = $.grep(documentCollection, function (e) { return e.DOCUMENT_PATH.includes(deletedRow); });
+            if (docs && docs.length == 1) {
+                docs[0].IsNew = 'false';
+            }
+        });
+    });
+</script>

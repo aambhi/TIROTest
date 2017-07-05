@@ -1,0 +1,104 @@
+==================================================================
+DateTime15/05/2017 00:55:43
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Candidate\Create.cshtml(134): error CS0746: Invalid anonymous type member declarator. Anonymous type members must be declared with a member assignment, simple name or member access.
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Candidate\Create.cshtml(134): error CS0746: Invalid anonymous type member declarator. Anonymous type members must be declared with a member assignment, simple name or member access.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime15/05/2017 01:00:51
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime15/05/2017 01:01:29
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 01:01:29
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 01:23:49
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Candidate\Create.cshtml(134): error CS0746: Invalid anonymous type member declarator. Anonymous type members must be declared with a member assignment, simple name or member access.
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Candidate\Create.cshtml(134): error CS0746: Invalid anonymous type member declarator. Anonymous type members must be declared with a member assignment, simple name or member access.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime15/05/2017 01:52:19
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 01:52:19
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 02:42:29
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 6
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 02:42:29
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE 1
+ Error Message: create 7
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime15/05/2017 23:05:36
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'availTypeID' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSourceByAvailingType(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

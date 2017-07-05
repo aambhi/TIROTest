@@ -1,0 +1,40 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMofaDetails?id=
+ Action: LoadMofaDetails
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMofaDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMofaDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMofaDetails?id=
+ Action: LoadMofaDetails
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMofaDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMofaDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadVisaDetails?id=
+ Action: LoadVisaDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadVisaDetails?id=
+ Action: LoadVisaDetails
+ Error Message: The model item passed into the dictionary is of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.VisaEndorsement]', but this dictionary requires a model item of type 'TIROERP.Core.Model.VisaEndorsement'.
+ Inner Exception: The model item passed into the dictionary is of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.VisaEndorsement]', but this dictionary requires a model item of type 'TIROERP.Core.Model.VisaEndorsement'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

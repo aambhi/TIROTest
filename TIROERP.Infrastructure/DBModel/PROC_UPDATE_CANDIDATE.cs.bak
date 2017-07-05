@@ -1,0 +1,29 @@
+﻿using EntityFrameworkExtras.EF6;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TIROERP.Infrastructure.DBModel;
+
+namespace TIROERP.Infrastructure.DBModel
+{
+    [StoredProcedure("PROC_UPDATE_CANDIDATE")]
+    public class PROC_UPDATE_CANDIDATE
+    {
+        [StoredProcedureParameter(System.Data.SqlDbType.Udt, ParameterName = "USER_DETAIL")]
+        public List<UDT_USER_DETAILS> UDT_USER_DETAIL { get; set; }
+
+        [StoredProcedureParameter(System.Data.SqlDbType.VarChar, ParameterName = "CONDITIONAL_OPERATOR")]
+        public string Conditional_Operator { get; set; }
+
+        [StoredProcedureParameter(System.Data.SqlDbType.Udt, ParameterName = "USER_PASSPORT")]
+        public List<UDT_USER_PASSPORT> UDT_USER_PASSPORT { get; set; }
+
+        [StoredProcedureParameter(System.Data.SqlDbType.Udt, ParameterName = "USER_DRIVING")]
+        public List<UDT_USER_DRIVING> UDT_USER_DRIVING { get; set; }
+
+        [StoredProcedureParameter(System.Data.SqlDbType.Udt, ParameterName = "USER_EDUCATION")]
+        public List<UDT_USER_EDUCATION> UDT_USER_EDUCATION { get; set; }
+    }
+}

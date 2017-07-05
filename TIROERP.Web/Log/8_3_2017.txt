@@ -1,0 +1,9 @@
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: An error occurred while preparing the command definition. See the inner exception for details.
+ Inner Exception: An error occurred while preparing the command definition. See the inner exception for details.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

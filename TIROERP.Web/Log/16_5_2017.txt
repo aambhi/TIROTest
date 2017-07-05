@@ -1,0 +1,40 @@
+==================================================================
+DateTime16/05/2017 15:13:17
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: The data reader returned by the store data provider does not have enough columns for the query requested.
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime16/05/2017 18:25:11
+ Controller: Visa
+ URL: http://localhost:50130/Visa/Edit/23
+ Action: Edit
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime16/05/2017 18:25:56
+ Controller: Visa
+ URL: http://localhost:50130/Visa/Edit/23
+ Action: Edit
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime16/05/2017 18:28:08
+ Controller: Visa
+ URL: http://localhost:50130/Visa/Delete/23
+ Action: Delete
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Visa\Delete.cshtml(73): error CS1061: 'Visa' does not contain a definition for 'INDIAN_FORMAT_RECIEVED_DATE' and no extension method 'INDIAN_FORMAT_RECIEVED_DATE' accepting a first argument of type 'Visa' could be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Visa\Delete.cshtml(73): error CS1061: 'Visa' does not contain a definition for 'INDIAN_FORMAT_RECIEVED_DATE' and no extension method 'INDIAN_FORMAT_RECIEVED_DATE' accepting a first argument of type 'Visa' could be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================

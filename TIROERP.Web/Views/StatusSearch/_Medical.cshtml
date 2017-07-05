@@ -1,0 +1,131 @@
+﻿@model TIROERP.Core.Model.Medical
+@{
+    string reportName = string.Empty;
+    string filepath = string.Empty;
+    string ReportPath = string.Empty;
+    if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.ReportPath))
+        {
+            ReportPath = Model.ReportPath;
+            reportName = Model.ReportPath.Substring(15);
+            filepath = Url.Content(Server.MapPath("~/Uploads/MedicalUploadedFiles/" + Model.ReportPath));
+        }
+    }
+}
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#DoctorID").select2({ width: '100%' });
+
+        $("#ReportDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#CheckupDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $(document).on("click", ".removeFile", function () {
+
+            $(this).parent().remove();
+
+            //var appendHtml = '<div class="col-md-6 col-sm-6">';
+            //appendHtml += '<input type="file" draggable="auto" id="medicalFile" name="medicalFile" />';
+            //appendHtml += '</div>';
+            $(".fileGroup").hide();
+            $(".fileadd").show();
+            $("#ReportPath").val('');
+        });
+
+        var file = '@reportName';
+        if (file == null || file == "") {
+            $(".fileadd").show();
+        }
+    });
+</script>
+<form action="" method="post" enctype="multipart/form-data">
+    <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+        @Html.HiddenFor(model => model.MedicalId)
+        @Html.HiddenFor(model => model.USER_REQUIREMENT_ID, new { @id = "MedicalUserReqId" })
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedDate)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Doctor <span class="required">*</span> </label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownListFor(model => model.DoctorID, (IEnumerable<SelectListItem>)ViewBag.GetDoctor, "Select Doctor", htmlAttributes: new { @id = "DoctorID", @class = "form-control", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.DoctorID, "", new { @class = "text-danger", @id = "Err_DoctorID" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Check-up Date<span class="required">*</span> </label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBoxFor(model => model.CheckupDate, "{0:dd-MMM-yyyy}", new { @id = "CheckupDate", @class = "form-control  date-picker", @placeholder = "CheckUp Date", @autocomplete = "off", @maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.CheckupDate, "", new { @class = "text-danger", @id = "Err_CheckupDate" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Token No</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBoxFor(model => model.TokenNumber, new { @id = "TokenNumber", @class = "form-control  date-picker", @placeholder = "Token No", @autocomplete = "off", @maxlength = "10" })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">
+                Report Date
+            </label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBoxFor(model => model.ReportDate, "{0:dd-MMM-yyyy}", new { @id = "ReportDate", @class = "form-control  date-picker", @placeholder = "Report Date", @autocomplete = "off", @maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.ReportDate, "", new { @class = "text-danger", @id = "Err_ReportDate" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span> </label>
+            <div class="col-md-6 col-sm-6">
+                Fit @Html.RadioButtonFor(model => model.MedicalStatus, "19", false)
+                UnFit @Html.RadioButtonFor(model => model.MedicalStatus, "20", false)
+                Awaiting @Html.RadioButtonFor(model => model.MedicalStatus, "21", false)
+                @Html.ValidationMessageFor(model => model.MedicalStatus, "", new { @class = "text-danger", @id = "Err_MedicalStatus" })
+            </div>
+        </div>
+
+
+        @if (@ReportPath != null && ReportPath != "")
+        {
+            <div class="form-group fileGroup">
+                <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Report</label>
+                <div class="col-md-6 col-sm-6 addPadding file-name">
+                    @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                    <span class="glyphicon glyphicon-remove removeFile remove-part" title="Delete"></span>
+                </div>
+            </div>
+        }
+
+        <div class="form-group fileadd" style="display:none;">
+            <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+            <div>
+                <input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" />
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.ReportPath)
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextAreaFor(model => model.Remark, new { @id = "Remark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+            </div>
+        </div>
+
+
+    </div>
+</form>

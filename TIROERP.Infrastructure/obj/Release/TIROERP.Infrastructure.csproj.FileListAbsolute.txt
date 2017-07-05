@@ -1,0 +1,14 @@
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\TIROERP.Infrastructure.dll.config
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\TIROERP.Infrastructure.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\TIROERP.Infrastructure.pdb
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFramework.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFramework.SqlServer.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFrameworkExtras.EF6.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\TIROERP.Core.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\TIROERP.Core.pdb
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFramework.xml
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFramework.SqlServer.xml
+F:\Project Works\TIRO\TIROERP.Infrastructure\bin\Release\EntityFrameworkExtras.EF6.pdb
+F:\Project Works\TIRO\TIROERP.Infrastructure\obj\Release\TIROERP.Infrastructure.csprojResolveAssemblyReference.cache
+F:\Project Works\TIRO\TIROERP.Infrastructure\obj\Release\TIROERP.Infrastructure.dll
+F:\Project Works\TIRO\TIROERP.Infrastructure\obj\Release\TIROERP.Infrastructure.pdb

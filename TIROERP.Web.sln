@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIROERP.Web", "TIROERP.Web\TIROERP.Web.csproj", "{A273091A-542A-4C86-80F7-8493948784F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIROERP.Web.Tests", "TIROERP.Web.Tests\TIROERP.Web.Tests.csproj", "{A6CB2DE9-7D41-4990-BB2F-69485AE3CB82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIROERP.Core", "TIROERP.Core\TIROERP.Core.csproj", "{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIROERP.Infrastructure", "TIROERP.Infrastructure\TIROERP.Infrastructure.csproj", "{7C702A41-365D-48B9-B0A9-05BBC5DA6157}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A273091A-542A-4C86-80F7-8493948784F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A273091A-542A-4C86-80F7-8493948784F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A273091A-542A-4C86-80F7-8493948784F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A273091A-542A-4C86-80F7-8493948784F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CB2DE9-7D41-4990-BB2F-69485AE3CB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CB2DE9-7D41-4990-BB2F-69485AE3CB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CB2DE9-7D41-4990-BB2F-69485AE3CB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CB2DE9-7D41-4990-BB2F-69485AE3CB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C702A41-365D-48B9-B0A9-05BBC5DA6157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C702A41-365D-48B9-B0A9-05BBC5DA6157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C702A41-365D-48B9-B0A9-05BBC5DA6157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C702A41-365D-48B9-B0A9-05BBC5DA6157}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://aambhi.visualstudio.com/
+		SccProjectUniqueName0 = TIROERP.Core\\TIROERP.Core.csproj
+		SccProjectName0 = TIROERP.Core
+		SccAuxPath0 = https://aambhi.visualstudio.com
+		SccLocalPath0 = TIROERP.Core
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

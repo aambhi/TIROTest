@@ -1,0 +1,137 @@
+﻿@model TIROERP.Core.Model.Policy
+@{
+    ViewBag.Title = "Policy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render(("~/bundles/select2"))
+@Styles.Render("~/Content/select2")
+
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+
+@*Number event*@
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#USER_REQUIREMENT_ID").select2();
+
+        $("#PolicyDate").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#USER_REQUIREMENT_ID").change(function (e) {
+            $("#CandidateName").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCandidateName","Policy")', // we are calling json method
+                data: { userRequirementId: $("#USER_REQUIREMENT_ID").val() },
+                success: function (d) {
+                    $("#CandidateName").val(d);
+                },
+                error: function (ex) {
+                    $("#CandidateName").empty();
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+@using (Html.BeginForm("Policy", "Policy", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Policy</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Policy Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- Tabs -->
+                            <br />
+                            <div id="policyForm" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport Number <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.DropDownListFor(model => model.USER_REQUIREMENT_ID, (IEnumerable<SelectListItem>)ViewBag.GetPassportNo, "Select Passport", htmlAttributes: new { @id = "USER_REQUIREMENT_ID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.USER_REQUIREMENT_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Policy <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyNumber, new { @id = "Policy", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.PolicyNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Date <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyDate, new { @id = "PolicyDate", @class = "form-control  date-picker", @placeholder = "Policy Date", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.PolicyDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Fees <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PolicyFees, new { @id = "PolicyFees", @class = "form-control  date-picker", @type = "number", @placeholder = "Policy Fees", @autocomplete = "off", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+                                        @Html.ValidationMessageFor(model => model.PolicyFees, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.PolicyRemark, new { @id = "PolicyRemark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveRequirement">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- End SmartWizard Content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /page content -->
+}

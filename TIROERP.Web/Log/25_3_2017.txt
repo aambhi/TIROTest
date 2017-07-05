@@ -1,0 +1,66 @@
+==================================================================
+DateTime25-Mar-17 1:50:06 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime25-Mar-17 1:50:49 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime25-Mar-17 1:51:40 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================
+==================================================================
+DateTime25-Mar-17 1:51:47 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 1
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime25-Mar-17 1:51:48 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 2
+ User: C320170009
+ UserIP: 
+==================================================================
+==================================================================
+DateTime25-Mar-17 3:43:00 PM
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: C:\Users\Ambi\AppData\Local\Temp\Temporary ASP.NET Files\root\b9a2fec2\476eda69\App_Web_create.cshtml.e5cf9c51.uyr-m4bs.0.cs(5309): error CS1513: } expected
+ Inner Exception: C:\Users\Ambi\AppData\Local\Temp\Temporary ASP.NET Files\root\b9a2fec2\476eda69\App_Web_create.cshtml.e5cf9c51.uyr-m4bs.0.cs(5309): error CS1513: } expected
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================

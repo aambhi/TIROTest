@@ -1,0 +1,2054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArbabTravelsERPModelStoreContainer" CdmEntityContainer="ArbabTravelsERPEntities">
+    <EntitySetMapping Name="TBL_AD_MEDIUM_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_AD_MEDIUM_MASTER">
+        <MappingFragment StoreEntitySet="TBL_AD_MEDIUM_MASTER">
+          <ScalarProperty Name="AD_MEDIUM_ID" ColumnName="AD_MEDIUM_ID" />
+          <ScalarProperty Name="AD_MEDIUM_TYPE" ColumnName="AD_MEDIUM_TYPE" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ADDRESS_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ADDRESS_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_ADDRESS_TYPE_MASTER">
+          <ScalarProperty Name="ADDRESS_TYPE_ID" ColumnName="ADDRESS_TYPE_ID" />
+          <ScalarProperty Name="ADDRESS_TYPE" ColumnName="ADDRESS_TYPE" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="TYPE_FOR" ColumnName="TYPE_FOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ADVERTISEMENT_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ADVERTISEMENT_MASTER">
+        <MappingFragment StoreEntitySet="TBL_ADVERTISEMENT_MASTER">
+          <ScalarProperty Name="ADV_ID" ColumnName="ADV_ID" />
+          <ScalarProperty Name="PAPER_NAME" ColumnName="PAPER_NAME" />
+          <ScalarProperty Name="AD_AGENCY_NAME" ColumnName="AD_AGENCY_NAME" />
+          <ScalarProperty Name="EXPENSES" ColumnName="EXPENSES" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="ADV_DATE" ColumnName="ADV_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_AIRLINES_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_AIRLINES_MASTER">
+        <MappingFragment StoreEntitySet="TBL_AIRLINES_MASTER">
+          <ScalarProperty Name="AirlinesId" ColumnName="AirlinesId" />
+          <ScalarProperty Name="AirlinesName" ColumnName="AirlinesName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ALLOWANCE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ALLOWANCE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_ALLOWANCE_MASTER">
+          <ScalarProperty Name="ALLOWANCE_ID" ColumnName="ALLOWANCE_ID" />
+          <ScalarProperty Name="ALLOWANCE_NAME" ColumnName="ALLOWANCE_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ALLOWANCE_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ALLOWANCE_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_ALLOWANCE_TYPE_MASTER">
+          <ScalarProperty Name="ALLOWANCE_TYPE_ID" ColumnName="ALLOWANCE_TYPE_ID" />
+          <ScalarProperty Name="ALLOWANCE_TYPE" ColumnName="ALLOWANCE_TYPE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_AVAILING_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_AVAILING_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_AVAILING_TYPE_MASTER">
+          <ScalarProperty Name="AVAILING_TYPE_ID" ColumnName="AVAILING_TYPE_ID" />
+          <ScalarProperty Name="AVAILING_TYPE" ColumnName="AVAILING_TYPE" />
+          <ScalarProperty Name="TYPE_ORDER" ColumnName="TYPE_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CAREER_STATUS_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CAREER_STATUS_MASTER">
+        <MappingFragment StoreEntitySet="TBL_CAREER_STATUS_MASTER">
+          <ScalarProperty Name="CAREER_STATUS_ID" ColumnName="CAREER_STATUS_ID" />
+          <ScalarProperty Name="CAREER_STATUS_TYPE" ColumnName="CAREER_STATUS_TYPE" />
+          <ScalarProperty Name="STATUS_ORDER" ColumnName="STATUS_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CERTIFICATION_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CERTIFICATION_MASTER">
+        <MappingFragment StoreEntitySet="TBL_CERTIFICATION_MASTER">
+          <ScalarProperty Name="CERTIFICATION_ID" ColumnName="CERTIFICATION_ID" />
+          <ScalarProperty Name="CERTIFICATION_NAME" ColumnName="CERTIFICATION_NAME" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CITY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CITY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_CITY_MASTER">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_COMPANY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_COMPANY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_COMPANY_MASTER">
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CONNECTED_TICKETDETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CONNECTED_TICKETDETAILS">
+        <MappingFragment StoreEntitySet="TBL_CONNECTED_TICKETDETAILS">
+          <ScalarProperty Name="ConnectTicketID" ColumnName="ConnectTicketID" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="PnrNumber" ColumnName="PnrNumber" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+          <ScalarProperty Name="DepartureCityCode" ColumnName="DepartureCityCode" />
+          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+          <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DestinationCityCode" ColumnName="DestinationCityCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CONTACT_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CONTACT_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_CONTACT_TYPE_MASTER">
+          <ScalarProperty Name="CONTACT_TYPE_ID" ColumnName="CONTACT_TYPE_ID" />
+          <ScalarProperty Name="CONTACT_TYPE" ColumnName="CONTACT_TYPE" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_COUNTRY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_COUNTRY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_COUNTRY_MASTER">
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CURRENCY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_CURRENCY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_CURRENCY_MASTER">
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="CURRENCY_NAME" ColumnName="CURRENCY_NAME" />
+          <ScalarProperty Name="CURRENCY_SYMBOL" ColumnName="CURRENCY_SYMBOL" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DESIGNATION_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_DESIGNATION_MASTER">
+        <MappingFragment StoreEntitySet="TBL_DESIGNATION_MASTER">
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="DESIGNATION_NAME" ColumnName="DESIGNATION_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_EDUCATION_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_EDUCATION_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_EDUCATION_TYPE_MASTER">
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_EMAIL_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_EMAIL_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_EMAIL_TYPE_MASTER">
+          <ScalarProperty Name="EMAIL_TYPE_ID" ColumnName="EMAIL_TYPE_ID" />
+          <ScalarProperty Name="EMAIL_TYPE" ColumnName="EMAIL_TYPE" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_EMIGRATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_EMIGRATION">
+        <MappingFragment StoreEntitySet="TBL_EMIGRATION">
+          <ScalarProperty Name="EMIGRATION_ID" ColumnName="EMIGRATION_ID" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="FE_NO" ColumnName="FE_NO" />
+          <ScalarProperty Name="PT_NO" ColumnName="PT_NO" />
+          <ScalarProperty Name="DM_NO" ColumnName="DM_NO" />
+          <ScalarProperty Name="DM_DATE" ColumnName="DM_DATE" />
+          <ScalarProperty Name="POLICY_NO" ColumnName="POLICY_NO" />
+          <ScalarProperty Name="POLICY_DATE" ColumnName="POLICY_DATE" />
+          <ScalarProperty Name="POLICY_AMOUNT" ColumnName="POLICY_AMOUNT" />
+          <ScalarProperty Name="POLICY_COMPANYNAME" ColumnName="POLICY_COMPANYNAME" />
+          <ScalarProperty Name="POLICY_ATTACHMENT" ColumnName="POLICY_ATTACHMENT" />
+          <ScalarProperty Name="SUBMISSION_DATE" ColumnName="SUBMISSION_DATE" />
+          <ScalarProperty Name="EMIGRATION_CLEARANCENO" ColumnName="EMIGRATION_CLEARANCENO" />
+          <ScalarProperty Name="EMIGRATION_ATTACHMENT" ColumnName="EMIGRATION_ATTACHMENT" />
+          <ScalarProperty Name="POE" ColumnName="POE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="IS_ECR" ColumnName="IS_ECR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ERROR_LOG">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ERROR_LOG">
+        <MappingFragment StoreEntitySet="TBL_ERROR_LOG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PAGE_NAME" ColumnName="PAGE_NAME" />
+          <ScalarProperty Name="PAGE_URL" ColumnName="PAGE_URL" />
+          <ScalarProperty Name="METHOD_NAME" ColumnName="METHOD_NAME" />
+          <ScalarProperty Name="ERROR_MESSAGE" ColumnName="ERROR_MESSAGE" />
+          <ScalarProperty Name="INNER_EXCEPTION_MESSAGE" ColumnName="INNER_EXCEPTION_MESSAGE" />
+          <ScalarProperty Name="USER_IP" ColumnName="USER_IP" />
+          <ScalarProperty Name="USER_CODE" ColumnName="USER_CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_GENDER_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_GENDER_MASTER">
+        <MappingFragment StoreEntitySet="TBL_GENDER_MASTER">
+          <ScalarProperty Name="GENDER_CODE" ColumnName="GENDER_CODE" />
+          <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
+          <ScalarProperty Name="GENDER_ORDER" ColumnName="GENDER_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_INDUSTRY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_INDUSTRY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_INDUSTRY_MASTER">
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_INTERVIEW">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_INTERVIEW">
+        <MappingFragment StoreEntitySet="TBL_INTERVIEW">
+          <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+          <ScalarProperty Name="Company_ID" ColumnName="Company_ID" />
+          <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+          <ScalarProperty Name="RequirementID" ColumnName="RequirementID" />
+          <ScalarProperty Name="InterviewModeId" ColumnName="InterviewModeId" />
+          <ScalarProperty Name="InterviewDate" ColumnName="InterviewDate" />
+          <ScalarProperty Name="InterviewVenue" ColumnName="InterviewVenue" />
+          <ScalarProperty Name="InterviewExpenses" ColumnName="InterviewExpenses" />
+          <ScalarProperty Name="InterviewRemark" ColumnName="InterviewRemark" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_INTERVIEW_MODE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_INTERVIEW_MODE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_INTERVIEW_MODE_MASTER">
+          <ScalarProperty Name="INTERVIEW_MODE_ID" ColumnName="INTERVIEW_MODE_ID" />
+          <ScalarProperty Name="INTERVIEW_MODE" ColumnName="INTERVIEW_MODE" />
+          <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_LANGUAGE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_LANGUAGE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_LANGUAGE_MASTER">
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="LANGUAGE_NAME" ColumnName="LANGUAGE_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MARITAL_STATUS_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_MARITAL_STATUS_MASTER">
+        <MappingFragment StoreEntitySet="TBL_MARITAL_STATUS_MASTER">
+          <ScalarProperty Name="MARITAL_STATUS_ID" ColumnName="MARITAL_STATUS_ID" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+          <ScalarProperty Name="MARITAL_STATUS_ORDER" ColumnName="MARITAL_STATUS_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MEDICAL">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_MEDICAL">
+        <MappingFragment StoreEntitySet="TBL_MEDICAL">
+          <ScalarProperty Name="MedicalId" ColumnName="MedicalId" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="CheckupDate" ColumnName="CheckupDate" />
+          <ScalarProperty Name="TokenNumber" ColumnName="TokenNumber" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="MedicalStatus" ColumnName="MedicalStatus" />
+          <ScalarProperty Name="ReportPath" ColumnName="ReportPath" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MEDICAL_STATUS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_MEDICAL_STATUS">
+        <MappingFragment StoreEntitySet="TBL_MEDICAL_STATUS">
+          <ScalarProperty Name="MedicalStatusID" ColumnName="MedicalStatusID" />
+          <ScalarProperty Name="MedicalStatus" ColumnName="MedicalStatus" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MOFA">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_MOFA">
+        <MappingFragment StoreEntitySet="TBL_MOFA">
+          <ScalarProperty Name="MofaID" ColumnName="MofaID" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="MofaNumber" ColumnName="MofaNumber" />
+          <ScalarProperty Name="MofaDate" ColumnName="MofaDate" />
+          <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="HealthNumber" ColumnName="HealthNumber" />
+          <ScalarProperty Name="HealthDate" ColumnName="HealthDate" />
+          <ScalarProperty Name="DDNumber" ColumnName="DDNumber" />
+          <ScalarProperty Name="DDDate" ColumnName="DDDate" />
+          <ScalarProperty Name="MofaFilePath" ColumnName="MofaFilePath" />
+          <ScalarProperty Name="MofaRemark" ColumnName="MofaRemark" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_PASSPORT_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_PASSPORT_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_PASSPORT_DETAILS">
+          <ScalarProperty Name="PASSPORT_ID" ColumnName="PASSPORT_ID" />
+          <ScalarProperty Name="REGISTATION_NUMBER" ColumnName="REGISTATION_NUMBER" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="DATE_OF_ISSUE" ColumnName="DATE_OF_ISSUE" />
+          <ScalarProperty Name="PLACE_OF_ISSUE" ColumnName="PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_EXPIRY" ColumnName="DATE_OF_EXPIRY" />
+          <ScalarProperty Name="EMIGRATION_CLEARANCE_REQUIRED" ColumnName="EMIGRATION_CLEARANCE_REQUIRED" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_POLICY">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_POLICY">
+        <MappingFragment StoreEntitySet="TBL_POLICY">
+          <ScalarProperty Name="POLICYID" ColumnName="POLICYID" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="Policy" ColumnName="Policy" />
+          <ScalarProperty Name="PolicyDate" ColumnName="PolicyDate" />
+          <ScalarProperty Name="PolicyFees" ColumnName="PolicyFees" />
+          <ScalarProperty Name="PolicyRemark" ColumnName="PolicyRemark" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_PREFIX_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_PREFIX_MASTER">
+        <MappingFragment StoreEntitySet="TBL_PREFIX_MASTER">
+          <ScalarProperty Name="PREFIX_ID" ColumnName="PREFIX_ID" />
+          <ScalarProperty Name="PREFIX" ColumnName="PREFIX" />
+          <ScalarProperty Name="PREFIX_ORDER" ColumnName="PREFIX_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REGISTRATION_COUNTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REGISTRATION_COUNTER">
+        <MappingFragment StoreEntitySet="TBL_REGISTRATION_COUNTER">
+          <ScalarProperty Name="COUNTER_ID" ColumnName="COUNTER_ID" />
+          <ScalarProperty Name="COUNTER_FOR" ColumnName="COUNTER_FOR" />
+          <ScalarProperty Name="COUNTER_PREFIX" ColumnName="COUNTER_PREFIX" />
+          <ScalarProperty Name="CURRENT_VALUE" ColumnName="CURRENT_VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_RELIGION_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_RELIGION_MASTER">
+        <MappingFragment StoreEntitySet="TBL_RELIGION_MASTER">
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="RELIGION_NAME" ColumnName="RELIGION_NAME" />
+          <ScalarProperty Name="RELIGION_ORDER" ColumnName="RELIGION_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_ALLOWANCE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_ALLOWANCE">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_ALLOWANCE">
+          <ScalarProperty Name="REQUIREMENT_ALLOWANCE_ID" ColumnName="REQUIREMENT_ALLOWANCE_ID" />
+          <ScalarProperty Name="ALLOWANCE_ID" ColumnName="ALLOWANCE_ID" />
+          <ScalarProperty Name="REQUIRMENT_ID" ColumnName="REQUIRMENT_ID" />
+          <ScalarProperty Name="IS_INCLUDED" ColumnName="IS_INCLUDED" />
+          <ScalarProperty Name="IS_ALLOWANCE" ColumnName="IS_ALLOWANCE" />
+          <ScalarProperty Name="ALLOWANCE_AMOUNT" ColumnName="ALLOWANCE_AMOUNT" />
+          <ScalarProperty Name="IS_NOT_APPLICABLE" ColumnName="IS_NOT_APPLICABLE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="ALLOWANCE_TYPE_ID" ColumnName="ALLOWANCE_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_DETAILS">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="RECIEVED_DATE" ColumnName="RECIEVED_DATE" />
+          <ScalarProperty Name="NO_OF_OPENINGS" ColumnName="NO_OF_OPENINGS" />
+          <ScalarProperty Name="EXPERIENCE" ColumnName="EXPERIENCE" />
+          <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="INTERVIEW_MODE_ID" ColumnName="INTERVIEW_MODE_ID" />
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+          <ScalarProperty Name="POSTING_PLACE" ColumnName="POSTING_PLACE" />
+          <ScalarProperty Name="CURRENCY_TYPE_ID" ColumnName="CURRENCY_TYPE_ID" />
+          <ScalarProperty Name="BASIC_RANGE" ColumnName="BASIC_RANGE" />
+          <ScalarProperty Name="OVERTIME" ColumnName="OVERTIME" />
+          <ScalarProperty Name="TRIP_PER_YEAR" ColumnName="TRIP_PER_YEAR" />
+          <ScalarProperty Name="CONTACT_PERIOD" ColumnName="CONTACT_PERIOD" />
+          <ScalarProperty Name="WORKING_HOURS" ColumnName="WORKING_HOURS" />
+          <ScalarProperty Name="LEAVES_PER_YEAR" ColumnName="LEAVES_PER_YEAR" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="EXPERIENCE_FROM" ColumnName="EXPERIENCE_FROM" />
+          <ScalarProperty Name="EXPERIENCE_TO" ColumnName="EXPERIENCE_TO" />
+          <ScalarProperty Name="AGE_FROM" ColumnName="AGE_FROM" />
+          <ScalarProperty Name="AGE_TO" ColumnName="AGE_TO" />
+          <ScalarProperty Name="BASIC_SALARY_RANGE_TO" ColumnName="BASIC_SALARY_RANGE_TO" />
+          <ScalarProperty Name="BASIC_SALARY_RANGE_FROM" ColumnName="BASIC_SALARY_RANGE_FROM" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_GENDER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_GENDER">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_GENDER">
+          <ScalarProperty Name="REQUIREMENT_GENDER_ID" ColumnName="REQUIREMENT_GENDER_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_LANGUAGE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_LANGUAGE">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_LANGUAGE">
+          <ScalarProperty Name="REQUIREMENT_LANGUAGE_ID" ColumnName="REQUIREMENT_LANGUAGE_ID" />
+          <ScalarProperty Name="REQUIRMENT_ID" ColumnName="REQUIRMENT_ID" />
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="CAN_READ" ColumnName="CAN_READ" />
+          <ScalarProperty Name="CAN_WRITE" ColumnName="CAN_WRITE" />
+          <ScalarProperty Name="CAN_SPEAK" ColumnName="CAN_SPEAK" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_RELIGION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_RELIGION">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_RELIGION">
+          <ScalarProperty Name="REQUIREMENT_RELIIGION_ID" ColumnName="REQUIREMENT_RELIIGION_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIRMENT_CERTIFICATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIRMENT_CERTIFICATION">
+        <MappingFragment StoreEntitySet="TBL_REQUIRMENT_CERTIFICATION">
+          <ScalarProperty Name="REQIREMENT_CERTIFICATION_ID" ColumnName="REQIREMENT_CERTIFICATION_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="CERTIFICATION_ID" ColumnName="CERTIFICATION_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIRMENT_EDUCATION_TYPE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIRMENT_EDUCATION_TYPE">
+        <MappingFragment StoreEntitySet="TBL_REQUIRMENT_EDUCATION_TYPE">
+          <ScalarProperty Name="REQIREMENT_EDUCATION_TYPE_ID" ColumnName="REQIREMENT_EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIRMENT_INDUSTRY">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIRMENT_INDUSTRY">
+        <MappingFragment StoreEntitySet="TBL_REQUIRMENT_INDUSTRY">
+          <ScalarProperty Name="REQIREMENT_INDUSTRY_ID" ColumnName="REQIREMENT_INDUSTRY_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIRMENT_SPECIALIZATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIRMENT_SPECIALIZATION">
+        <MappingFragment StoreEntitySet="TBL_REQUIRMENT_SPECIALIZATION">
+          <ScalarProperty Name="REQIREMENT_SPECIALIZATION_ID" ColumnName="REQIREMENT_SPECIALIZATION_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_RESUME_VIEW">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_RESUME_VIEW">
+        <MappingFragment StoreEntitySet="TBL_RESUME_VIEW">
+          <ScalarProperty Name="RESUME_VIEW_ID" ColumnName="RESUME_VIEW_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="VIEWED_BY" ColumnName="VIEWED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ROLE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_ROLE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_ROLE_MASTER">
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="ROLE_TYPE" ColumnName="ROLE_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_SOURCE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_SOURCE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_SOURCE_MASTER">
+          <ScalarProperty Name="SOURCE_ID" ColumnName="SOURCE_ID" />
+          <ScalarProperty Name="SOURCE_NAME" ColumnName="SOURCE_NAME" />
+          <ScalarProperty Name="SOURCE_ORDER" ColumnName="SOURCE_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_SPECIALIZATION_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_SPECIALIZATION_MASTER">
+        <MappingFragment StoreEntitySet="TBL_SPECIALIZATION_MASTER">
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE" ColumnName="SPECIALIZATION_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_STATE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_STATE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_STATE_MASTER">
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_STATUS_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_STATUS_MASTER">
+        <MappingFragment StoreEntitySet="TBL_STATUS_MASTER">
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="STATUS_ORDER" ColumnName="STATUS_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_TASK_FOLLOWUP">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_TASK_FOLLOWUP">
+        <MappingFragment StoreEntitySet="TBL_TASK_FOLLOWUP">
+          <ScalarProperty Name="TASK_FOLLOWUP_ID" ColumnName="TASK_FOLLOWUP_ID" />
+          <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
+          <ScalarProperty Name="TASK_COMMENT" ColumnName="TASK_COMMENT" />
+          <ScalarProperty Name="PERC_COMPLETED" ColumnName="PERC_COMPLETED" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_TASK_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_TASK_MASTER">
+        <MappingFragment StoreEntitySet="TBL_TASK_MASTER">
+          <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
+          <ScalarProperty Name="TASK_NAME" ColumnName="TASK_NAME" />
+          <ScalarProperty Name="TASK_ASSIGNED_TO" ColumnName="TASK_ASSIGNED_TO" />
+          <ScalarProperty Name="PERC_COMPLETED" ColumnName="PERC_COMPLETED" />
+          <ScalarProperty Name="TASK_COMMENT" ColumnName="TASK_COMMENT" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_TICKET">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_TICKET">
+        <MappingFragment StoreEntitySet="TBL_TICKET">
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="AirlinesID" ColumnName="AirlinesID" />
+          <ScalarProperty Name="OtherAirlines" ColumnName="OtherAirlines" />
+          <ScalarProperty Name="IsDirect" ColumnName="IsDirect" />
+          <ScalarProperty Name="PnrNumber" ColumnName="PnrNumber" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+          <ScalarProperty Name="DepartureCityCode" ColumnName="DepartureCityCode" />
+          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+          <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="DestinationCityCode" ColumnName="DestinationCityCode" />
+          <ScalarProperty Name="ArivalDate" ColumnName="ArivalDate" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="ReportPath" ColumnName="ReportPath" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_UNIVERSITY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_UNIVERSITY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_UNIVERSITY_MASTER">
+          <ScalarProperty Name="UNIVERSITY_ID" ColumnName="UNIVERSITY_ID" />
+          <ScalarProperty Name="UNIVERSITY_NAME" ColumnName="UNIVERSITY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_ADDRESS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_ADDRESS">
+        <MappingFragment StoreEntitySet="TBL_USER_ADDRESS">
+          <ScalarProperty Name="USER_ADDRESS_ID" ColumnName="USER_ADDRESS_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="ADDRESS_TYPE_ID" ColumnName="ADDRESS_TYPE_ID" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="USER_VILLAGE" ColumnName="USER_VILLAGE" />
+          <ScalarProperty Name="USER_PINCODE" ColumnName="USER_PINCODE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_CERTIFICATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_CERTIFICATION">
+        <MappingFragment StoreEntitySet="TBL_USER_CERTIFICATION">
+          <ScalarProperty Name="USER_CERTIFICATION_ID" ColumnName="USER_CERTIFICATION_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CERTIFICATION" ColumnName="CERTIFICATION" />
+          <ScalarProperty Name="CERTIFICATION_LEVEL" ColumnName="CERTIFICATION_LEVEL" />
+          <ScalarProperty Name="INSTITUTE" ColumnName="INSTITUTE" />
+          <ScalarProperty Name="YEAR_OF_PASSING" ColumnName="YEAR_OF_PASSING" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_CONTACTS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_CONTACTS">
+        <MappingFragment StoreEntitySet="TBL_USER_CONTACTS">
+          <ScalarProperty Name="USER_CONTACT_ID" ColumnName="USER_CONTACT_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CONTACT_TYPE_ID" ColumnName="CONTACT_TYPE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_USER_DETAILS">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+          <ScalarProperty Name="AVAILING_TYPE_ID" ColumnName="AVAILING_TYPE_ID" />
+          <ScalarProperty Name="SOURCE_ID" ColumnName="SOURCE_ID" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="VISIT_NUMBER" ColumnName="VISIT_NUMBER" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="LOGIN_ACCESS" ColumnName="LOGIN_ACCESS" />
+          <ScalarProperty Name="LOGIN_PASSWORD" ColumnName="LOGIN_PASSWORD" />
+          <ScalarProperty Name="USER_IMAGE_PATH" ColumnName="USER_IMAGE_PATH" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="IS_EXPERIENCED" ColumnName="IS_EXPERIENCED" />
+          <ScalarProperty Name="WEBSITE" ColumnName="WEBSITE" />
+          <ScalarProperty Name="SKYPE" ColumnName="SKYPE" />
+          <ScalarProperty Name="CONTACT_REMARK" ColumnName="CONTACT_REMARK" />
+          <ScalarProperty Name="EDUCATION_REMARK" ColumnName="EDUCATION_REMARK" />
+          <ScalarProperty Name="WORK_REMARK" ColumnName="WORK_REMARK" />
+          <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+          <ScalarProperty Name="CIVILIAN_NO" ColumnName="CIVILIAN_NO" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CLIENT_DESIGNATION" ColumnName="CLIENT_DESIGNATION" />
+          <ScalarProperty Name="CLIENT_INDUSTRY_ID" ColumnName="CLIENT_INDUSTRY_ID" />
+          <ScalarProperty Name="REFERENCE" ColumnName="REFERENCE" />
+          <ScalarProperty Name="GAMCA_NO" ColumnName="GAMCA_NO" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="OTHER_SOURCE" ColumnName="OTHER_SOURCE" />
+          <ScalarProperty Name="REFERRER_NAME" ColumnName="REFERRER_NAME" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="TOTAL_GULF_EXPERIENCE" ColumnName="TOTAL_GULF_EXPERIENCE" />
+          <ScalarProperty Name="SKILLS" ColumnName="SKILLS" />
+          <ScalarProperty Name="CLINIC_NAME" ColumnName="CLINIC_NAME" />
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="POST_APPLIED_FOR" ColumnName="POST_APPLIED_FOR" />
+          <ScalarProperty Name="FILE_NO" ColumnName="FILE_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_DOCUMENT_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_DOCUMENT_MASTER">
+        <MappingFragment StoreEntitySet="TBL_USER_DOCUMENT_MASTER">
+          <ScalarProperty Name="DOCUMENT_TYPE_ID" ColumnName="DOCUMENT_TYPE_ID" />
+          <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
+          <ScalarProperty Name="DOCUMENT_PATH" ColumnName="DOCUMENT_PATH" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_DOCUMENTS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_DOCUMENTS">
+        <MappingFragment StoreEntitySet="TBL_USER_DOCUMENTS">
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="DOCUMENT_TYPE_ID" ColumnName="DOCUMENT_TYPE_ID" />
+          <ScalarProperty Name="DOCUMENT_PATH" ColumnName="DOCUMENT_PATH" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_DRIVING_LICENCE_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_DRIVING_LICENCE_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_USER_DRIVING_LICENCE_DETAILS">
+          <ScalarProperty Name="DRIVING_LICENCE_ID" ColumnName="DRIVING_LICENCE_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="DRIVING_LICENCE_NUMBER" ColumnName="DRIVING_LICENCE_NUMBER" />
+          <ScalarProperty Name="PLACE_OF_ISSUE" ColumnName="PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_ISSUE" ColumnName="DATE_OF_ISSUE" />
+          <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+          <ScalarProperty Name="VEHICLE_TYPE_ID" ColumnName="VEHICLE_TYPE_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_EDUCATION_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_EDUCATION_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_USER_EDUCATION_DETAILS">
+          <ScalarProperty Name="USER_EDUCATION_ID" ColumnName="USER_EDUCATION_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE_ID" ColumnName="SPECIALIZATION_TYPE_ID" />
+          <ScalarProperty Name="UNIVERSITY_ID" ColumnName="UNIVERSITY_ID" />
+          <ScalarProperty Name="UNIVERSITY_YEAR_OF_PASSING" ColumnName="UNIVERSITY_YEAR_OF_PASSING" />
+          <ScalarProperty Name="IS_HIGHEST_QUALIFICATION" ColumnName="IS_HIGHEST_QUALIFICATION" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_EMAIL_ADDRESS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_EMAIL_ADDRESS">
+        <MappingFragment StoreEntitySet="TBL_USER_EMAIL_ADDRESS">
+          <ScalarProperty Name="USER_EMAIL_ID" ColumnName="USER_EMAIL_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_EXPERIENCE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_EXPERIENCE">
+        <MappingFragment StoreEntitySet="TBL_USER_EXPERIENCE">
+          <ScalarProperty Name="EXPERIENCE_ID" ColumnName="EXPERIENCE_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="USER_COMPANY_NAME" ColumnName="USER_COMPANY_NAME" />
+          <ScalarProperty Name="IS_CURRENT_COMPANY" ColumnName="IS_CURRENT_COMPANY" />
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="WORK_PERIOD_FROM" ColumnName="WORK_PERIOD_FROM" />
+          <ScalarProperty Name="WORK_PERIOD_TO" ColumnName="WORK_PERIOD_TO" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_LANGUAGE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_LANGUAGE">
+        <MappingFragment StoreEntitySet="TBL_USER_LANGUAGE">
+          <ScalarProperty Name="USER_LANGUAGE_ID" ColumnName="USER_LANGUAGE_ID" />
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="IS_READ" ColumnName="IS_READ" />
+          <ScalarProperty Name="IS_WRITE" ColumnName="IS_WRITE" />
+          <ScalarProperty Name="IS_SPEAK" ColumnName="IS_SPEAK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_MENU_MAPPING">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_MENU_MAPPING">
+        <MappingFragment StoreEntitySet="TBL_USER_MENU_MAPPING">
+          <ScalarProperty Name="USER_MENU_ID" ColumnName="USER_MENU_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_PERSONAL_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_PERSONAL_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_USER_PERSONAL_DETAILS">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FATHER_NAME" ColumnName="FATHER_NAME" />
+          <ScalarProperty Name="MOTHER_NAME" ColumnName="MOTHER_NAME" />
+          <ScalarProperty Name="GENDER_CODE" ColumnName="GENDER_CODE" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PLACE_OF_BIRTH" ColumnName="PLACE_OF_BIRTH" />
+          <ScalarProperty Name="MARITAL_STATUS_ID" ColumnName="MARITAL_STATUS_ID" />
+          <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_REGISTRATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_REGISTRATION">
+        <MappingFragment StoreEntitySet="TBL_USER_REGISTRATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REG_MONTH" ColumnName="REG_MONTH" />
+          <ScalarProperty Name="REG_YEAR" ColumnName="REG_YEAR" />
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+          <ScalarProperty Name="CURRENT_COUNTER" ColumnName="CURRENT_COUNTER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_REQUIREMENT">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_REQUIREMENT">
+        <MappingFragment StoreEntitySet="TBL_USER_REQUIREMENT">
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="CANDIDATE_STATUS" ColumnName="CANDIDATE_STATUS" />
+          <ScalarProperty Name="CURRENT_STATUS" ColumnName="CURRENT_STATUS" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_TYPE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_TYPE">
+        <MappingFragment StoreEntitySet="TBL_USER_TYPE">
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+          <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_VISA_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_USER_VISA_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_USER_VISA_DETAILS">
+          <ScalarProperty Name="USER_VISA_ID" ColumnName="USER_VISA_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_VEHICLE_TYPE">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_VEHICLE_TYPE">
+        <MappingFragment StoreEntitySet="TBL_VEHICLE_TYPE">
+          <ScalarProperty Name="VEHICLE_TYPE_ID" ColumnName="VEHICLE_TYPE_ID" />
+          <ScalarProperty Name="VEHICLE_TYPE" ColumnName="VEHICLE_TYPE" />
+          <ScalarProperty Name="VEHICLE_ORDER" ColumnName="VEHICLE_ORDER" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_VISA_ENDORSEMENT">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_VISA_ENDORSEMENT">
+        <MappingFragment StoreEntitySet="TBL_VISA_ENDORSEMENT">
+          <ScalarProperty Name="VisaEndorsementId" ColumnName="VisaEndorsementId" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+          <ScalarProperty Name="SubmissionStatusID" ColumnName="SubmissionStatusID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="VisaEndorsementFilePath" ColumnName="VisaEndorsementFilePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_VISA_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_VISA_MASTER">
+        <MappingFragment StoreEntitySet="TBL_VISA_MASTER">
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CIVILIAN_NUMBER" ColumnName="CIVILIAN_NUMBER" />
+          <ScalarProperty Name="VISA_NUMBER" ColumnName="VISA_NUMBER" />
+          <ScalarProperty Name="PLACE_OF_ENDORSEMENT" ColumnName="PLACE_OF_ENDORSEMENT" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+          <ScalarProperty Name="RECIEVED_DATE" ColumnName="RECIEVED_DATE" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="PURPOSE" ColumnName="PURPOSE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_VISA_SUBMISSION_STATUS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_VISA_SUBMISSION_STATUS">
+        <MappingFragment StoreEntitySet="TBL_VISA_SUBMISSION_STATUS">
+          <ScalarProperty Name="VisaSubmissionStatusID" ColumnName="VisaSubmissionStatusID" />
+          <ScalarProperty Name="SubmissionStatus" ColumnName="SubmissionStatus" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_BRANCH_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_BRANCH_MASTER">
+        <MappingFragment StoreEntitySet="TBL_BRANCH_MASTER">
+          <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+          <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_LMS_MENU">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_LMS_MENU">
+        <MappingFragment StoreEntitySet="TBL_LMS_MENU">
+          <ScalarProperty Name="LMS_MENU_ID" ColumnName="LMS_MENU_ID" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+          <ScalarProperty Name="MENU_URL" ColumnName="MENU_URL" />
+          <ScalarProperty Name="PARENT_MENU_ID" ColumnName="PARENT_MENU_ID" />
+          <ScalarProperty Name="IS_PARENT" ColumnName="IS_PARENT" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="PAGE_NAME" ColumnName="PAGE_NAME" />
+          <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+          <ScalarProperty Name="MENU_ICON" ColumnName="MENU_ICON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_NATIONALITY_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_NATIONALITY_MASTER">
+        <MappingFragment StoreEntitySet="TBL_NATIONALITY_MASTER">
+          <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+          <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_PORTAL_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_PORTAL_MASTER">
+        <MappingFragment StoreEntitySet="TBL_PORTAL_MASTER">
+          <ScalarProperty Name="PORTAL_ID" ColumnName="PORTAL_ID" />
+          <ScalarProperty Name="PORTAL_NAME" ColumnName="PORTAL_NAME" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_STATUS_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_STATUS_MASTER">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_STATUS_MASTER">
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="STATUS_VAL" ColumnName="STATUS_VAL" />
+          <ScalarProperty Name="STATUS_ORDER" ColumnName="STATUS_ORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIREMENT_TYPE_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIREMENT_TYPE_MASTER">
+        <MappingFragment StoreEntitySet="TBL_REQUIREMENT_TYPE_MASTER">
+          <ScalarProperty Name="REQUIREMENT_TYPE_ID" ColumnName="REQUIREMENT_TYPE_ID" />
+          <ScalarProperty Name="REQUIREMENT_TYPE" ColumnName="REQUIREMENT_TYPE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_REQUIRMENT_DESIGNATION">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_REQUIRMENT_DESIGNATION">
+        <MappingFragment StoreEntitySet="TBL_REQUIRMENT_DESIGNATION">
+          <ScalarProperty Name="REQIREMENT_DESGNATION_ID" ColumnName="REQIREMENT_DESGNATION_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_SAVE_TO_FOLDER_DETAILS">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.TBL_SAVE_TO_FOLDER_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_SAVE_TO_FOLDER_DETAILS">
+          <ScalarProperty Name="FOLDER_ID" ColumnName="FOLDER_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="FOLDER_NAME" ColumnName="FOLDER_NAME" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tmp_TBL_TASK_MASTER">
+      <EntityTypeMapping TypeName="ArbabTravelsERPModel.Tmp_TBL_TASK_MASTER">
+        <MappingFragment StoreEntitySet="Tmp_TBL_TASK_MASTER">
+          <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
+          <ScalarProperty Name="TASK_NAME" ColumnName="TASK_NAME" />
+          <ScalarProperty Name="TASK_ASSIGNED_TO" ColumnName="TASK_ASSIGNED_TO" />
+          <ScalarProperty Name="PERC_COMPLETED" ColumnName="PERC_COMPLETED" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION" FunctionImportName="FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION_Result">
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="CERTIFICATION_TYPE" ColumnName="CERTIFICATION_TYPE" />
+          <ScalarProperty Name="LANGUAGES" ColumnName="LANGUAGES" />
+          <ScalarProperty Name="GENDERS" ColumnName="GENDERS" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="RELIGIONS" ColumnName="RELIGIONS" />
+          <ScalarProperty Name="INDUSTRY" ColumnName="INDUSTRY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_REQUIREMENT_INDUSTRY_TYPE" FunctionImportName="FUNC_REQUIREMENT_INDUSTRY_TYPE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_REQUIREMENT_INDUSTRY_TYPE_Result">
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_USER_contact" FunctionImportName="FUNC_USER_contact">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_USER_contact_Result">
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_USER_CONTACTS" FunctionImportName="FUNC_USER_CONTACTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_USER_CONTACTS_Result">
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_USER_EMAIL_ADDRESS" FunctionImportName="FUNC_USER_EMAIL_ADDRESS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_USER_EMAIL_ADDRESS_Result">
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.FUNC_USER_HIGHEST_EDUCATION" FunctionImportName="FUNC_USER_HIGHEST_EDUCATION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.FUNC_USER_HIGHEST_EDUCATION_Result">
+          <ScalarProperty Name="HIGHEST_EDUCATION" ColumnName="HIGHEST_EDUCATION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="ArbabTravelsERPModel.Store.Split" FunctionImportName="Split">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.Split_Result">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_COUNTRY_STATE_CITY" FunctionName="ArbabTravelsERPModel.Store.GET_COUNTRY_STATE_CITY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.GET_COUNTRY_STATE_CITY_Result">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_DESIGNATION_BYINDUSTRY" FunctionName="ArbabTravelsERPModel.Store.GET_DESIGNATION_BYINDUSTRY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.GET_DESIGNATION_BYINDUSTRY_Result">
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="DESIGNATION_NAME" ColumnName="DESIGNATION_NAME" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_SPECIALIZATION_BYEDUCATION" FunctionName="ArbabTravelsERPModel.Store.GET_SPECIALIZATION_BYEDUCATION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.GET_SPECIALIZATION_BYEDUCATION_Result">
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE" ColumnName="SPECIALIZATION_TYPE" />
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_ADD_DELETE_MENU_FOR_USERTYPE" FunctionName="ArbabTravelsERPModel.Store.PROC_ADD_DELETE_MENU_FOR_USERTYPE" />
+    <FunctionImportMapping FunctionImportName="PROC_ADVERTIZEMENT_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_ADVERTIZEMENT_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_ALL_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_ALL_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_CANDIDATE_RESUME_DOWNLOAD" FunctionName="ArbabTravelsERPModel.Store.PROC_CANDIDATE_RESUME_DOWNLOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_CANDIDATE_RESUME_DOWNLOAD_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+          <ScalarProperty Name="Candidate_Name" ColumnName="Candidate_Name" />
+          <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
+          <ScalarProperty Name="RELIGION_NAME" ColumnName="RELIGION_NAME" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="PLACE_OF_ISSUE" ColumnName="PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_ISSUE" ColumnName="DATE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_EXPIRY" ColumnName="DATE_OF_EXPIRY" />
+          <ScalarProperty Name="EMIGRATION_CLEARANCE_REQUIRED" ColumnName="EMIGRATION_CLEARANCE_REQUIRED" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PLACE_OF_BIRTH" ColumnName="PLACE_OF_BIRTH" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="TOTAL_GULF_EXPERIENCE" ColumnName="TOTAL_GULF_EXPERIENCE" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="POST_APPLIED_FOR" ColumnName="POST_APPLIED_FOR" />
+          <ScalarProperty Name="DRIVING_LICENCE_NUMBER" ColumnName="DRIVING_LICENCE_NUMBER" />
+          <ScalarProperty Name="DRIVING_PLACE_OF_ISSUE" ColumnName="DRIVING_PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_DATE_OF_ISSUE" ColumnName="DRIVING_DATE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_EXPIRY_DATE" ColumnName="DRIVING_EXPIRY_DATE" />
+          <ScalarProperty Name="VEHICLE_TYPE" ColumnName="VEHICLE_TYPE" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_CANDIDATE_STATUS_SEARCH" FunctionName="ArbabTravelsERPModel.Store.PROC_CANDIDATE_STATUS_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_CANDIDATE_STATUS_SEARCH_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FATHER_NAME" ColumnName="FATHER_NAME" />
+          <ScalarProperty Name="MOTHER_NAME" ColumnName="MOTHER_NAME" />
+          <ScalarProperty Name="GENDER_CODE" ColumnName="GENDER_CODE" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PLACE_OF_BIRTH" ColumnName="PLACE_OF_BIRTH" />
+          <ScalarProperty Name="MARITAL_STATUS_ID" ColumnName="MARITAL_STATUS_ID" />
+          <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="PASSPORT_ID" ColumnName="PASSPORT_ID" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="PLACE_OF_ISSUE" ColumnName="PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_ISSUE" ColumnName="DATE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_EXPIRY" ColumnName="DATE_OF_EXPIRY" />
+          <ScalarProperty Name="EMIGRATION_CLEARANCE_REQUIRED" ColumnName="EMIGRATION_CLEARANCE_REQUIRED" />
+          <ScalarProperty Name="DRIVING_LICENCE_NUMBER" ColumnName="DRIVING_LICENCE_NUMBER" />
+          <ScalarProperty Name="DRIVING_PLACE_OF_ISSUE" ColumnName="DRIVING_PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_DATE_OF_ISSUE" ColumnName="DRIVING_DATE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_EXPIRY_DATE" ColumnName="DRIVING_EXPIRY_DATE" />
+          <ScalarProperty Name="VEHICLE_TYPE_ID" ColumnName="VEHICLE_TYPE_ID" />
+          <ScalarProperty Name="DRIVING_REMARK" ColumnName="DRIVING_REMARK" />
+          <ScalarProperty Name="DRIVING_LICENCE_ID" ColumnName="DRIVING_LICENCE_ID" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="AVAILING_TYPE_ID" ColumnName="AVAILING_TYPE_ID" />
+          <ScalarProperty Name="SOURCE_ID" ColumnName="SOURCE_ID" />
+          <ScalarProperty Name="OTHER_SOURCE" ColumnName="OTHER_SOURCE" />
+          <ScalarProperty Name="REFERRER_NAME" ColumnName="REFERRER_NAME" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="POST_APPLIED_FOR" ColumnName="POST_APPLIED_FOR" />
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="LOGIN_ACCESS" ColumnName="LOGIN_ACCESS" />
+          <ScalarProperty Name="FILE_NO" ColumnName="FILE_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_CANDIDATE_STATUS_SEARCH_1" FunctionName="ArbabTravelsERPModel.Store.PROC_CANDIDATE_STATUS_SEARCH_1" />
+    <FunctionImportMapping FunctionImportName="PROC_CERTIFICATION_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_CERTIFICATION_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_CHECKDUPLICATE_USER" FunctionName="ArbabTravelsERPModel.Store.PROC_CHECKDUPLICATE_USER" />
+    <FunctionImportMapping FunctionImportName="PROC_COMPANY_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_COMPANY_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_DASHBOARD" FunctionName="ArbabTravelsERPModel.Store.PROC_DASHBOARD" />
+    <FunctionImportMapping FunctionImportName="PROC_DOCUMENT_DOWNLOAD" FunctionName="ArbabTravelsERPModel.Store.PROC_DOCUMENT_DOWNLOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_DOCUMENT_DOWNLOAD_Result">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="VISA_NUMBER" ColumnName="VISA_NUMBER" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="PASSPORT_NO" ColumnName="PASSPORT_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_FETCH_ALL_MASTERS" FunctionName="ArbabTravelsERPModel.Store.PROC_FETCH_ALL_MASTERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_FETCH_ALL_MASTERS_Result">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_ADVERTISEMENT_DATA" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_ADVERTISEMENT_DATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_ADVERTISEMENT_DATA_Result">
+          <ScalarProperty Name="ADV_ID" ColumnName="ADV_ID" />
+          <ScalarProperty Name="PAPER_NAME" ColumnName="PAPER_NAME" />
+          <ScalarProperty Name="AD_AGENCY_NAME" ColumnName="AD_AGENCY_NAME" />
+          <ScalarProperty Name="EXPENSES" ColumnName="EXPENSES" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="ADV_DATE" ColumnName="ADV_DATE" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="REQUIREMENT" ColumnName="REQUIREMENT" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_AGENT_NAME" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_AGENT_NAME">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_AGENT_NAME_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="AGENT_NAME" ColumnName="AGENT_NAME" />
+          <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_ALL_CITIES" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_ALL_CITIES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_ALL_CITIES_Result">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_ALL_PROCESS" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_ALL_PROCESS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_ALL_PROCESS_Result">
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="CheckupDate" ColumnName="CheckupDate" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="CANDIDATE_NAME" ColumnName="CANDIDATE_NAME" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="MedicalId" ColumnName="MedicalId" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="TokenNumber" ColumnName="TokenNumber" />
+          <ScalarProperty Name="MedicalStatus" ColumnName="MedicalStatus" />
+          <ScalarProperty Name="ReportPath" ColumnName="ReportPath" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_ALL_STATES" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_ALL_STATES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_ALL_STATES_Result">
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_CANDIDATE_NAME_BASED_ON_PASPPORT_NO" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_CANDIDATE_NAME_BASED_ON_PASPPORT_NO" />
+    <FunctionImportMapping FunctionImportName="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="RECIEVED_DATE" ColumnName="RECIEVED_DATE" />
+          <ScalarProperty Name="NO_OF_OPENINGS" ColumnName="NO_OF_OPENINGS" />
+          <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+          <ScalarProperty Name="INTERVIEW_MODE_ID" ColumnName="INTERVIEW_MODE_ID" />
+          <ScalarProperty Name="POSTING_PLACE" ColumnName="POSTING_PLACE" />
+          <ScalarProperty Name="CURRENCY_TYPE_ID" ColumnName="CURRENCY_TYPE_ID" />
+          <ScalarProperty Name="OVERTIME" ColumnName="OVERTIME" />
+          <ScalarProperty Name="TRIP_PER_YEAR" ColumnName="TRIP_PER_YEAR" />
+          <ScalarProperty Name="CONTACT_PERIOD" ColumnName="CONTACT_PERIOD" />
+          <ScalarProperty Name="WORKING_HOURS" ColumnName="WORKING_HOURS" />
+          <ScalarProperty Name="LEAVES_PER_YEAR" ColumnName="LEAVES_PER_YEAR" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="EXPERIENCE_FROM" ColumnName="EXPERIENCE_FROM" />
+          <ScalarProperty Name="EXPERIENCE_TO" ColumnName="EXPERIENCE_TO" />
+          <ScalarProperty Name="AGE_FROM" ColumnName="AGE_FROM" />
+          <ScalarProperty Name="AGE_TO" ColumnName="AGE_TO" />
+          <ScalarProperty Name="BASIC_SALARY_RANGE_TO" ColumnName="BASIC_SALARY_RANGE_TO" />
+          <ScalarProperty Name="BASIC_SALARY_RANGE_FROM" ColumnName="BASIC_SALARY_RANGE_FROM" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="GENDER_CODES" ColumnName="GENDER_CODES" />
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+          <ScalarProperty Name="CERTIFICATION_ID" ColumnName="CERTIFICATION_ID" />
+          <ScalarProperty Name="ALLOWANCE_ID" ColumnName="ALLOWANCE_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_LAYOUT_MENU" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_LAYOUT_MENU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_LAYOUT_MENU_Result">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="PARENT_MENU_ID" ColumnName="PARENT_MENU_ID" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+          <ScalarProperty Name="MENU_URL" ColumnName="MENU_URL" />
+          <ScalarProperty Name="CHANNEL_USER_TYPE_ID" ColumnName="CHANNEL_USER_TYPE_ID" />
+          <ScalarProperty Name="PAGE_NAME" ColumnName="PAGE_NAME" />
+          <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CHANNEL_CODE" ColumnName="CHANNEL_CODE" />
+          <ScalarProperty Name="MENU_ICON" ColumnName="MENU_ICON" />
+          <ScalarProperty Name="PAGE_URL" ColumnName="PAGE_URL" />
+          <ScalarProperty Name="PARENT_MENU_NAME" ColumnName="PARENT_MENU_NAME" />
+          <ScalarProperty Name="IS_PARENT" ColumnName="IS_PARENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_MENU_BY_SELECTED_USER" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_MENU_BY_SELECTED_USER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_MENU_BY_SELECTED_USER_Result">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+          <ScalarProperty Name="MENU_URL" ColumnName="MENU_URL" />
+          <ScalarProperty Name="PAGE_URL" ColumnName="PAGE_URL" />
+          <ScalarProperty Name="IS_PARENT" ColumnName="IS_PARENT" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="PARENT_MENU" ColumnName="PARENT_MENU" />
+          <ScalarProperty Name="PARENT_MENU_TITLE" ColumnName="PARENT_MENU_TITLE" />
+          <ScalarProperty Name="USER_TYPE_MENU_ID" ColumnName="USER_TYPE_MENU_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_PASSPORT_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_PASSPORT_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_PASSPORT_DETAILS_Result">
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_PROCESS_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_PROCESS_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_PROCESS_DETAILS_Result">
+          <ScalarProperty Name="MofaID" ColumnName="MofaID" />
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="MofaNumber" ColumnName="MofaNumber" />
+          <ScalarProperty Name="MofaDate" ColumnName="MofaDate" />
+          <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="HealthNumber" ColumnName="HealthNumber" />
+          <ScalarProperty Name="HealthDate" ColumnName="HealthDate" />
+          <ScalarProperty Name="DDNumber" ColumnName="DDNumber" />
+          <ScalarProperty Name="DDDate" ColumnName="DDDate" />
+          <ScalarProperty Name="MofaFilePath" ColumnName="MofaFilePath" />
+          <ScalarProperty Name="MofaRemark" ColumnName="MofaRemark" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GET_REQUIREMENT" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_REQUIREMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_REQUIREMENT_Result">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="REQUIREMENT" ColumnName="REQUIREMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GETUSER_BYUSERTYPE" FunctionName="ArbabTravelsERPModel.Store.PROC_GETUSER_BYUSERTYPE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GETUSER_BYUSERTYPE_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_INSERT_TICKET_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_INSERT_TICKET_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_INTERVIEW_STATUS" FunctionName="ArbabTravelsERPModel.Store.PROC_INTERVIEW_STATUS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_INTERVIEW_STATUS_Result">
+          <ScalarProperty Name="INTERVIEWSTATUS" ColumnName="INTERVIEWSTATUS" />
+          <ScalarProperty Name="INTERVIEWDATE" ColumnName="INTERVIEWDATE" />
+          <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+          <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_MANAGE_USERS" FunctionName="ArbabTravelsERPModel.Store.PROC_MANAGE_USERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_MANAGE_USERS_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="EMPLOYEE_NAME" ColumnName="EMPLOYEE_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_MENU" FunctionName="ArbabTravelsERPModel.Store.PROC_MENU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_MENU_Result">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+          <ScalarProperty Name="MENU_URL" ColumnName="MENU_URL" />
+          <ScalarProperty Name="PAGE_NAME" ColumnName="PAGE_NAME" />
+          <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+          <ScalarProperty Name="PAGE_URL" ColumnName="PAGE_URL" />
+          <ScalarProperty Name="IS_PARENT" ColumnName="IS_PARENT" />
+          <ScalarProperty Name="PARENT_MENU_ID" ColumnName="PARENT_MENU_ID" />
+          <ScalarProperty Name="PARENT_MENU_NAME" ColumnName="PARENT_MENU_NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_PEOPLE_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_PEOPLE_MASTER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_PEOPLE_MASTER_Result">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_PORTAL_SEARCH" FunctionName="ArbabTravelsERPModel.Store.PROC_PORTAL_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_PORTAL_SEARCH_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="USER_IMAGE_PATH" ColumnName="USER_IMAGE_PATH" />
+          <ScalarProperty Name="CANDIDATE_NAME" ColumnName="CANDIDATE_NAME" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
+          <ScalarProperty Name="SOURCE_NAME" ColumnName="SOURCE_NAME" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="VIEWED" ColumnName="VIEWED" />
+          <ScalarProperty Name="VIEWED_BY" ColumnName="VIEWED_BY" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="HIGHEST_EDUCATION" ColumnName="HIGHEST_EDUCATION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_POWER_SEARCH" FunctionName="ArbabTravelsERPModel.Store.PROC_POWER_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_POWER_SEARCH_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="USER_IMAGE_PATH" ColumnName="USER_IMAGE_PATH" />
+          <ScalarProperty Name="CANDIDATE_NAME" ColumnName="CANDIDATE_NAME" />
+          <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="SOURCE_NAME" ColumnName="SOURCE_NAME" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE1" ColumnName="TOTAL_WORK_EXPERIENCE1" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="VIEWED" ColumnName="VIEWED" />
+          <ScalarProperty Name="VIEWED_BY" ColumnName="VIEWED_BY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_DETAILS_INSERT" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_DETAILS_INSERT" />
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_DETAILS_LIST" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_DETAILS_LIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_REQUIREMENT_DETAILS_LIST_Result">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="EXPERIENCE" ColumnName="EXPERIENCE" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="BASIC_SALARY" ColumnName="BASIC_SALARY" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="CERTIFICATION_TYPE" ColumnName="CERTIFICATION_TYPE" />
+          <ScalarProperty Name="GENDERS" ColumnName="GENDERS" />
+          <ScalarProperty Name="LANGUAGES" ColumnName="LANGUAGES" />
+          <ScalarProperty Name="RELIGIONS" ColumnName="RELIGIONS" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="POSTING_PLACE" ColumnName="POSTING_PLACE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_DETAILS_UPDATE" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_DETAILS_UPDATE" />
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_MASTER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_REQUIREMENT_MASTER_Result">
+          <ScalarProperty Name="ALLOWANCE_ID" ColumnName="ALLOWANCE_ID" />
+          <ScalarProperty Name="ALLOWANCE_NAME" ColumnName="ALLOWANCE_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_SEARCH" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_REQUIREMENT_SEARCH_Result">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="OPENING_DATE" ColumnName="OPENING_DATE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="NO_OF_OPENINGS" ColumnName="NO_OF_OPENINGS" />
+          <ScalarProperty Name="INTERVIEW_MODE" ColumnName="INTERVIEW_MODE" />
+          <ScalarProperty Name="EXPERIENCE" ColumnName="EXPERIENCE" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="BASIC_SALARY" ColumnName="BASIC_SALARY" />
+          <ScalarProperty Name="OVERTIME" ColumnName="OVERTIME" />
+          <ScalarProperty Name="CONTACT_PERIOD" ColumnName="CONTACT_PERIOD" />
+          <ScalarProperty Name="WORKING_HOURS" ColumnName="WORKING_HOURS" />
+          <ScalarProperty Name="LEAVES_PER_YEAR" ColumnName="LEAVES_PER_YEAR" />
+          <ScalarProperty Name="TRIP_PER_YEAR" ColumnName="TRIP_PER_YEAR" />
+          <ScalarProperty Name="POSTING_PLACE" ColumnName="POSTING_PLACE" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="CERTIFICATION_TYPE" ColumnName="CERTIFICATION_TYPE" />
+          <ScalarProperty Name="GENDERS" ColumnName="GENDERS" />
+          <ScalarProperty Name="LANGUAGES" ColumnName="LANGUAGES" />
+          <ScalarProperty Name="RELIGIONS" ColumnName="RELIGIONS" />
+          <ScalarProperty Name="VISA_NUMBER" ColumnName="VISA_NUMBER" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+          <ScalarProperty Name="COMPANY_NAME_ID" ColumnName="COMPANY_NAME_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_REQUIREMENT_SEARCH_RESULT" FunctionName="ArbabTravelsERPModel.Store.PROC_REQUIREMENT_SEARCH_RESULT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_REQUIREMENT_SEARCH_RESULT_Result">
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_SELECT_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_SELECT_MASTER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_SELECT_MASTER_Result">
+          <ScalarProperty Name="AvAILING_TYPE_ID" ColumnName="AvAILING_TYPE_ID" />
+          <ScalarProperty Name="AvAILING_TYPE" ColumnName="AvAILING_TYPE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+          <ScalarProperty Name="CANDIDATE_NAME" ColumnName="CANDIDATE_NAME" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_CANDIDATE" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_CANDIDATE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_CANDIDATE_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+          <ScalarProperty Name="CANDIDATE_NAME" ColumnName="CANDIDATE_NAME" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS_Result">
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="CERTIFICATION" ColumnName="CERTIFICATION" />
+          <ScalarProperty Name="CERTIFICATION_LEVEL" ColumnName="CERTIFICATION_LEVEL" />
+          <ScalarProperty Name="INSTITUTE" ColumnName="INSTITUTE" />
+          <ScalarProperty Name="YEAR_OF_PASSING" ColumnName="YEAR_OF_PASSING" />
+          <ScalarProperty Name="USER_CERTIFICATION_ID" ColumnName="USER_CERTIFICATION_ID" />
+          <ScalarProperty Name="CERTIFICATION_ID" ColumnName="CERTIFICATION_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS_Result">
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE" ColumnName="SPECIALIZATION_TYPE" />
+          <ScalarProperty Name="UNIVERSITY_ID" ColumnName="UNIVERSITY_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="UNIVERSITY_YEAR_OF_PASSING" ColumnName="UNIVERSITY_YEAR_OF_PASSING" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="USER_EDUCATION_ID" ColumnName="USER_EDUCATION_ID" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE_ID" ColumnName="SPECIALIZATION_TYPE_ID" />
+          <ScalarProperty Name="IS_HIGHEST_QUALIFICATION" ColumnName="IS_HIGHEST_QUALIFICATION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS_Result">
+          <ScalarProperty Name="ADDRESS_TYPE_ID" ColumnName="ADDRESS_TYPE_ID" />
+          <ScalarProperty Name="ADDRESS_TYPE" ColumnName="ADDRESS_TYPE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="USER_VILLAGE" ColumnName="USER_VILLAGE" />
+          <ScalarProperty Name="USER_PINCODE" ColumnName="USER_PINCODE" />
+          <ScalarProperty Name="USER_ADDRESS_ID" ColumnName="USER_ADDRESS_ID" />
+          <ScalarProperty Name="USER_STATE" ColumnName="USER_STATE" />
+          <ScalarProperty Name="USER_COUNTRY" ColumnName="USER_COUNTRY" />
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS_Result">
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+          <ScalarProperty Name="DOCUMENT_TYPE_ID" ColumnName="DOCUMENT_TYPE_ID" />
+          <ScalarProperty Name="DOCUMENT_PATH" ColumnName="DOCUMENT_PATH" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS_Result">
+          <ScalarProperty Name="EXPERIENCE_ID" ColumnName="EXPERIENCE_ID" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="INDUSTRY_ID" ColumnName="INDUSTRY_ID" />
+          <ScalarProperty Name="DESIGNATION_ID" ColumnName="DESIGNATION_ID" />
+          <ScalarProperty Name="WORK_CITY_CODE" ColumnName="WORK_CITY_CODE" />
+          <ScalarProperty Name="IS_CURRENT_COMPANY" ColumnName="IS_CURRENT_COMPANY" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="INDUSTRY_TYPE" ColumnName="INDUSTRY_TYPE" />
+          <ScalarProperty Name="WORK_PERIOD_FROM" ColumnName="WORK_PERIOD_FROM" />
+          <ScalarProperty Name="WORK_PERIOD_TO" ColumnName="WORK_PERIOD_TO" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="USER_COMPANY_NAME" ColumnName="USER_COMPANY_NAME" />
+          <ScalarProperty Name="TOTAL_WORK_EXPERIENCE" ColumnName="TOTAL_WORK_EXPERIENCE" />
+          <ScalarProperty Name="TOTAL_GULF_EXPERIENCE" ColumnName="TOTAL_GULF_EXPERIENCE" />
+          <ScalarProperty Name="SKILLS" ColumnName="SKILLS" />
+          <ScalarProperty Name="WORK_REMARK" ColumnName="WORK_REMARK" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FATHER_NAME" ColumnName="FATHER_NAME" />
+          <ScalarProperty Name="MOTHER_NAME" ColumnName="MOTHER_NAME" />
+          <ScalarProperty Name="GENDER_CODE" ColumnName="GENDER_CODE" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="PLACE_OF_BIRTH" ColumnName="PLACE_OF_BIRTH" />
+          <ScalarProperty Name="MARITAL_STATUS_ID" ColumnName="MARITAL_STATUS_ID" />
+          <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+          <ScalarProperty Name="CURRENT_LOCATION" ColumnName="CURRENT_LOCATION" />
+          <ScalarProperty Name="RELIGION_ID" ColumnName="RELIGION_ID" />
+          <ScalarProperty Name="PASSPORT_ID" ColumnName="PASSPORT_ID" />
+          <ScalarProperty Name="PASSPORT_NUMBER" ColumnName="PASSPORT_NUMBER" />
+          <ScalarProperty Name="PLACE_OF_ISSUE" ColumnName="PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_ISSUE" ColumnName="DATE_OF_ISSUE" />
+          <ScalarProperty Name="DATE_OF_EXPIRY" ColumnName="DATE_OF_EXPIRY" />
+          <ScalarProperty Name="EMIGRATION_CLEARANCE_REQUIRED" ColumnName="EMIGRATION_CLEARANCE_REQUIRED" />
+          <ScalarProperty Name="DRIVING_LICENCE_NUMBER" ColumnName="DRIVING_LICENCE_NUMBER" />
+          <ScalarProperty Name="DRIVING_PLACE_OF_ISSUE" ColumnName="DRIVING_PLACE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_DATE_OF_ISSUE" ColumnName="DRIVING_DATE_OF_ISSUE" />
+          <ScalarProperty Name="DRIVING_EXPIRY_DATE" ColumnName="DRIVING_EXPIRY_DATE" />
+          <ScalarProperty Name="VEHICLE_TYPE_ID" ColumnName="VEHICLE_TYPE_ID" />
+          <ScalarProperty Name="DRIVING_REMARK" ColumnName="DRIVING_REMARK" />
+          <ScalarProperty Name="DRIVING_LICENCE_ID" ColumnName="DRIVING_LICENCE_ID" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="AVAILING_TYPE_ID" ColumnName="AVAILING_TYPE_ID" />
+          <ScalarProperty Name="SOURCE_ID" ColumnName="SOURCE_ID" />
+          <ScalarProperty Name="OTHER_SOURCE" ColumnName="OTHER_SOURCE" />
+          <ScalarProperty Name="REFERRER_NAME" ColumnName="REFERRER_NAME" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="POST_APPLIED_FOR" ColumnName="POST_APPLIED_FOR" />
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="LOGIN_ACCESS" ColumnName="LOGIN_ACCESS" />
+          <ScalarProperty Name="FILE_NO" ColumnName="FILE_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS_Result">
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="REQUIREMENT" ColumnName="REQUIREMENT" />
+          <ScalarProperty Name="CANDIDATE_STATUS" ColumnName="CANDIDATE_STATUS" />
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="CURRENT_STATUS" ColumnName="CURRENT_STATUS" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_TASK_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_TASK_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_UPDATE_CANDIDATE" FunctionName="ArbabTravelsERPModel.Store.PROC_UPDATE_CANDIDATE" />
+    <FunctionImportMapping FunctionImportName="PROC_UPDATE_USER_STATUS" FunctionName="ArbabTravelsERPModel.Store.PROC_UPDATE_USER_STATUS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_ADDRESS_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_ADDRESS_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_ADDUPDATE_REQUIREMENT" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_ADDUPDATE_REQUIREMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_USER_ADDUPDATE_REQUIREMENT_Result">
+          <ScalarProperty Name="USER_REQUIREMENT_ID" ColumnName="USER_REQUIREMENT_ID" />
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="REQUIREMENT_ID" ColumnName="REQUIREMENT_ID" />
+          <ScalarProperty Name="REQUIREMENT" ColumnName="REQUIREMENT" />
+          <ScalarProperty Name="CANDIDATE_STATUS" ColumnName="CANDIDATE_STATUS" />
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="CURRENT_STATUS" ColumnName="CURRENT_STATUS" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_USER_CERTIFICATION_LICENCE_VISA_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_CERTIFICATION_LICENCE_VISA_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_EDUCATION_WORK_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_EDUCATION_WORK_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_GETMASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_GETMASTER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_USER_GETMASTER_Result">
+          <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+          <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_USER_INSERT" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_INSERT" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_LOGIN_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_LOGIN_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_USER_LOGIN_DETAILS_Result">
+          <ScalarProperty Name="REGISTRATION_NO" ColumnName="REGISTRATION_NO" />
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+          <ScalarProperty Name="USER_IMAGE_PATH" ColumnName="USER_IMAGE_PATH" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_USER_PERSONAL_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_PERSONAL_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_USER_VISA_DETAILS" FunctionName="ArbabTravelsERPModel.Store.PROC_USER_VISA_DETAILS" />
+    <FunctionImportMapping FunctionImportName="PROC_VISA_GETALLVISA" FunctionName="ArbabTravelsERPModel.Store.PROC_VISA_GETALLVISA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_VISA_GETALLVISA_Result">
+          <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+          <ScalarProperty Name="CIVILIAN_NO" ColumnName="CIVILIAN_NO" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="INDIAN_FORMAT_EXPIRY_DATE" ColumnName="INDIAN_FORMAT_EXPIRY_DATE" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+          <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+          <ScalarProperty Name="INDIAN_FORMAT_ISSUE_DATE" ColumnName="INDIAN_FORMAT_ISSUE_DATE" />
+          <ScalarProperty Name="PLACE_OF_ENDORSEMENT" ColumnName="PLACE_OF_ENDORSEMENT" />
+          <ScalarProperty Name="PURPOSE" ColumnName="PURPOSE" />
+          <ScalarProperty Name="RECIEVED_DATE" ColumnName="RECIEVED_DATE" />
+          <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="VISA_NUMBER" ColumnName="VISA_NUMBER" />
+          <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+          <ScalarProperty Name="CREATED_BY1" ColumnName="CREATED_BY1" />
+          <ScalarProperty Name="CREATED_DATE1" ColumnName="CREATED_DATE1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_VISA_MASTER" FunctionName="ArbabTravelsERPModel.Store.PROC_VISA_MASTER" />
+    <FunctionImportMapping FunctionImportName="PROC_GET_ALL_SPECIALIZATIONS" FunctionName="ArbabTravelsERPModel.Store.PROC_GET_ALL_SPECIALIZATIONS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbabTravelsERPModel.PROC_GET_ALL_SPECIALIZATIONS_Result1">
+          <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+          <ScalarProperty Name="SPECIALIZATION_TYPE" ColumnName="SPECIALIZATION_TYPE" />
+          <ScalarProperty Name="EDUCATION_TYPE_ID" ColumnName="EDUCATION_TYPE_ID" />
+          <ScalarProperty Name="EDUCATION_TYPE" ColumnName="EDUCATION_TYPE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

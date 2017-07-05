@@ -1,0 +1,237 @@
+﻿
+@{
+    string educationJSON = "";
+    var userEducation = new List<TIROERP.Core.Model.UserEducation>();
+
+    if (ViewBag.EducationDetails != null)
+    {
+        userEducation = ViewBag.EducationDetails as List<TIROERP.Core.Model.UserEducation>;
+        //string educationJSON = "";
+
+        if (userEducation != null)
+        {
+            for (int i = 0; i < userEducation.Count; i++)
+            {
+                educationJSON += "{\"EDUCATION_TYPE_ID\":\"" + userEducation[i].EDUCATION_TYPE_ID.Value + "\", \"SPECIALIZATION_TYPE_ID\":\"" + userEducation[i].SPECIALIZATION_TYPE_ID + "\",\"IsNew\":\"" + true + "\",\"UNIVERSITY_ID\":\"" + userEducation[i].UNIVERSITY_ID + "\" ,\"UNIVERSITY_YEAR_OF_PASSING\":\"" + userEducation[i].UNIVERSITY_YEAR_OF_PASSING + "\",\"IS_HIGHEST_QUALIFICATION\":\"" + (userEducation[i].IS_HIGHEST_QUALIFICATION == null ? false : (userEducation[i].IS_HIGHEST_QUALIFICATION.Value == true) ? true : false) + "\",\"USER_EDUCATION_ID\":\"" + userEducation[i].USER_EDUCATION_ID + "\"},";
+
+            }
+
+            educationJSON = educationJSON.TrimEnd(',');
+            educationJSON = "[" + educationJSON + "]";
+        }
+    }
+}
+
+<script type="text/javascript">
+    var lstOfUserEdu = '@ViewBag.EducationDetails';
+    educationCollection = (typeof educationCollection != 'undefined' && educationCollection instanceof Array) ? educationCollection : [];
+    if( lstOfUserEdu != null && @educationJSON.Length > 0) {
+
+        educationCollection = "@educationJSON".replace(/&quot;/g, '\"');
+        educationCollection = JSON.parse(educationCollection);
+    }
+</script>
+<div class="groupAddress">
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Education">Education</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("EDUCATION_TYPE_ID", ViewData["GetEducationSpeciaization"] as SelectList, "", new { @id = "EDUCATION_TYPE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Education", @tabindex = "55" })
+                @Html.ValidationMessage("EDUCATION_TYPE_ID", "", new { @class = "text-danger", @id = "Err_EDUCATION_TYPE_ID" })
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <button type="button" class="addAddress addButton" id="SaveEducation" tabindex="60"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Specialization">Specialization</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.DropDownList("SPECIALIZATION_TYPE_ID", new SelectList(""), "", new { @id = "SPECIALIZATION_TYPE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Specialization", @tabindex = "56" })
+                @Html.ValidationMessage("SPECIALIZATION_TYPE_ID", "", new { @class = "text-danger", @id = "Err_SPECIALIZATION_TYPE_ID" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="University">University</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("UNIVERSITY_NAME", "", new { @id = "UNIVERSITY_NAME", @class = " form-control col-md-7 col-xs-12", @placeholder = "University", @autocomplete = "off", @maxlength = "70", @tabindex = "57" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Passing">Year of Passing</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("UNIVERSITY_YEAR_OF_PASSING", "", new { @id = "UNIVERSITY_YEAR_OF_PASSING", @class = " form-control col-md-7 col-xs-12", @placeholder = "YYYY", @autocomplete = "off", @maxlength = "4", @onkeypress = "return isNumberKey(event)", @tabindex = "58" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-3 col-sm-3" for="Passing">Is Highest Education</label>
+            <div class="col-xs-1 col-xs-1">
+                <input type="checkbox" id="IS_HIGHEST_QUALIFICATION" class="form-control" tabindex="59"/>
+                @*@Html.CheckBox("IS_HIGHEST_QUALIFICATION", new { @id = "IS_HIGHEST_QUALIFICATION", @class = " form-control col-md-7 col-xs-12", @autocomplete = "off" })*@
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>ID</th>
+                        <th>Education</th>
+                        <th>Specialization</th>
+                        <th>University</th>
+                        <th>Year of Passing</th>
+                        <th>Is Highest Education</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tbleducation">
+                        @if (userEducation != null && userEducation.Count > 0)
+                        {
+
+                            foreach (var educationItem in userEducation)
+                            {
+                                <tr id='tr_old_row_edu_@educationItem.EDUCATION_TYPE_ID'>
+                                    <td>
+                                        @educationItem.EDUCATION_TYPE_ID
+                                        @Html.Hidden("USER_EDUCATION_ID", educationItem.USER_EDUCATION_ID, new { @id = "user_type_id" })
+                                    </td>
+                                    <td>@educationItem.EDUCATION_TYPE</td>
+                                    <td>@educationItem.SPECIALIZATION_TYPE</td>
+                                    <td>@educationItem.UNIVERSITY_ID</td>
+                                    <td>@educationItem.UNIVERSITY_YEAR_OF_PASSING</td>
+                                    <td>@(educationItem.IS_HIGHEST_QUALIFICATION == null ? "No" : "Yes")</td>
+                                    <td><a onclick="fnDeleteEducation(@educationItem.EDUCATION_TYPE_ID)" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#EDUCATION_TYPE_ID').chosen({width: "100%"});
+        $('#SPECIALIZATION_TYPE_ID').chosen({width: "100%"});
+
+        //$("#IS_HIGHEST_QUALIFICATION").focusout(function () {
+        //    $("#SaveEducation").focus();
+        //});
+
+        //GetSpecialization
+        $("#EDUCATION_TYPE_ID").change(function (e) {
+
+            $("#SPECIALIZATION_TYPE_ID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSpecializationByEducation","Candidate")', // we are calling json method
+                dataType: 'json',
+                data: { educationId: $("#EDUCATION_TYPE_ID").val() },
+                async: true,
+                success: function (states) {
+                    if (states == "SessionTimeout") {
+                        window.location.href = '@Url.Action("LogOut", "Login")';
+                    }
+                    $("#SPECIALIZATION_TYPE_ID").append('<option value="0">--Select Specialization--</option>');
+                    $.each(states.selectList, function (i, state) {
+                        $("#SPECIALIZATION_TYPE_ID").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                    $("#SPECIALIZATION_TYPE_ID").trigger("chosen:updated");
+                },
+                error: function (ex) {
+                    $("#SPECIALIZATION_TYPE_ID").append('<option >--Select Specialization--</option>');
+                }
+            });
+            return false;
+        });
+
+        $("#SaveEducation").click(function (e) {
+            var isStepValid = true;
+
+            var EDUCATION_TYPE_ID = $("#EDUCATION_TYPE_ID").val();
+            var SPECIALIZATION_TYPE_ID = $("#SPECIALIZATION_TYPE_ID").val();
+            var UNIVERSITY_NAME = $("#UNIVERSITY_NAME").val();
+            var UNIVERSITY_YEAR_OF_PASSING = $("#UNIVERSITY_YEAR_OF_PASSING").val();
+            var IS_HIGHEST_QUALIFICATION = $('input[id=IS_HIGHEST_QUALIFICATION]:checked').val();
+
+            var highQual=false;
+            if (IS_HIGHEST_QUALIFICATION == "on") {
+                IS_HIGHEST_QUALIFICATION = "Yes";
+                highQual=true;
+            }
+            else {
+                IS_HIGHEST_QUALIFICATION = "No";
+            }
+
+
+            if (EDUCATION_TYPE_ID == "") {
+                $("#Err_EDUCATION_TYPE_ID").text("Please select Education");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_EDUCATION_TYPE_ID").text("");
+            }
+
+            if (SPECIALIZATION_TYPE_ID == "" || SPECIALIZATION_TYPE_ID == "0") {
+                $("#Err_SPECIALIZATION_TYPE_ID").text("Please select Specialization");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_SPECIALIZATION_TYPE_ID").text("");
+            }
+
+            if (isStepValid) {
+                var row_id = $('#tbleducation').children().length + 1
+                var row = "";
+                row += "<tr id ='tr_old_row_edu_" + EDUCATION_TYPE_ID + "'><td >" + row_id + " </td><td>" + $("#EDUCATION_TYPE_ID option:selected").text() + "</td><td>" + $("#SPECIALIZATION_TYPE_ID option:selected").text() + "</td><td>" + $("#UNIVERSITY_NAME").val() + "</td><td>" + UNIVERSITY_YEAR_OF_PASSING + "</td><td>" + IS_HIGHEST_QUALIFICATION + "</td>";
+                row += '<td><a onclick="fnDeleteEducation(' + EDUCATION_TYPE_ID + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tbleducation").append(row);
+
+                var addJson = { "EDUCATION_TYPE_ID": EDUCATION_TYPE_ID, "SPECIALIZATION_TYPE_ID": SPECIALIZATION_TYPE_ID, "IsNew": "true", "UNIVERSITY_ID": $("#UNIVERSITY_NAME").val(), "UNIVERSITY_YEAR_OF_PASSING": UNIVERSITY_YEAR_OF_PASSING, "IS_HIGHEST_QUALIFICATION": highQual,"USER_EDUCATION_ID": "0" };
+                var exists = !!_.where(educationCollection, { "EDUCATION_TYPE_ID": EDUCATION_TYPE_ID }).length;
+                if (!exists)
+                    educationCollection.push(addJson);
+                else {
+                    var contact = $.grep(educationCollection, function (e) { return e.EDUCATION_TYPE_ID == EDUCATION_TYPE_ID; });
+                    if (contact && contact.length == 1) {
+                        contact[0].IsNew = 'false';
+                    }
+                }
+
+                $("#IS_HIGHEST_QUALIFICATION").attr('checked', false);
+                $("#UNIVERSITY_YEAR_OF_PASSING").val('');
+                $('#EDUCATION_TYPE_ID').val('').trigger("chosen:updated");
+                $('#SPECIALIZATION_TYPE_ID').val('').trigger("chosen:updated");
+                $("#UNIVERSITY_NAME").val('');
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    function fnDeleteEducation(education_type_id) {
+        $('#tr_old_row_edu_' + education_type_id).remove();
+
+        var eduRow = $.grep(educationCollection, function (e) { return e.EDUCATION_TYPE_ID == education_type_id; });
+        if (eduRow && eduRow.length == 1) {
+            eduRow[0].IsNew = 'false';
+        };
+    }
+</script>

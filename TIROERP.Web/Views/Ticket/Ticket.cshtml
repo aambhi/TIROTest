@@ -1,0 +1,608 @@
+﻿@model TIROERP.Core.Model.Ticket
+@{
+    ViewBag.Title = "Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/chosen")
+@Styles.Render("~/Content/chosen")
+
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+<script src="~/Content/js/mask/jquery.inputmask.js"></script>
+<script src="~/Content/js/mask/mask.js"></script>
+<script src="~/Content/js/Process/TicketValidation.js"></script>
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#USER_REQUIREMENT_ID").chosen();
+        $("#AirlinesID").chosen();
+        $("#DepartureCountryCode").chosen();
+        $("#DepartureCityCode").chosen();
+        $("#DestinationCountryCode").chosen();
+        $("#DestinationCityCode").chosen();
+
+        $("#DepartureTime").mask('00:00');
+        $("#ArrivalTime").mask('00:00');
+        $("#Conn_DepartureTime").mask('00:00');
+        $("#Conn_ArrivalTime").mask('00:00');
+
+        $("#DepartureDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        })
+        .on("change", function () {
+            $("#ArivalDate").datepicker("option", "minDate", $("#DepartureDate").val());
+        });
+
+        $("#ArivalDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        })
+         .on("change", function () {
+             $("#DepartureDate").datepicker("option", "maxDate", $("#ArivalDate").val());
+         });
+
+        $("#Conn_DepartureDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        })
+        .on("change", function () {
+            $("#Conn_ArivalDate").datepicker("option", "minDate", $("#Conn_DepartureDate").val());
+        });
+
+        $("#Conn_ArivalDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        })
+         .on("change", function () {
+             $("#Conn_DepartureDate").datepicker("option", "maxDate", $("#Conn_ArivalDate").val());
+         });
+
+        $("#USER_REQUIREMENT_ID").change(function (e) {
+            $("#CandidateName").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCandidateName", "Ticket")', // we are calling json method
+                data: { userRequirementId: $("#USER_REQUIREMENT_ID").val() },
+                success: function (d) {
+                    $("#CandidateName").val(d);
+                },
+                error: function (ex) {
+                    $("#CandidateName").empty();
+                }
+            });
+            return false;
+        });
+
+        $("#OtherAir").change(function (e) {
+            debugger;
+            var otherAirlines = $('input[name=chkOtherAirlines]:checked').val();
+            if (otherAirlines == "on") {
+                $("#divOtherLines").css("display", "block");
+            }
+            else {
+                $("#divOtherLines").css("display", "none");
+            }
+        });
+
+        function DestinationCity(countryCode, callFrom) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDestinationCityByCountryCode")', // we are calling json method
+                dataType: 'json',
+                data: { Country_code: countryCode },
+                success: function (states) {
+                    if (callFrom == 1) {
+                        $("#DestinationCityCode").append('<option value="0">Select Destination City</option>');
+                        $.each(states, function (i, state) {
+                            $("#DestinationCityCode").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                        });
+                        $("#DestinationCityCode").trigger("chosen:updated");
+                    }
+                    else if (callFrom == 2) {
+                        $("#DepartureCityCode").append('<option value="0">Select Departure City</option>');
+                        $.each(states, function (i, state) {
+                            $("#DepartureCityCode").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                        });
+                        $("#DepartureCityCode").trigger("chosen:updated");
+                    }
+                    else if (callFrom == 3) {
+                        $("#Conn_DepartureCityCode").append('<option value="0">Select Departure City</option>');
+                        $.each(states, function (i, state) {
+                            $("#Conn_DepartureCityCode").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                        });
+                        $("#Conn_DepartureCityCode").trigger("chosen:updated");
+                    }
+                    else if (callFrom == 4) {
+                        $("#Conn_DestinationCityCode").append('<option value="0">Select Destination City</option>');
+                        $.each(states, function (i, state) {
+                            $("#Conn_DestinationCityCode").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                        });
+                        $("#Conn_DestinationCityCode").trigger("chosen:updated");
+                    }
+                }
+            });
+            return false;
+        }
+
+        //Dropdownlist Selectedchange event for Destination Country Code
+        $("#DestinationCountryCode").change(function () {
+            $("#DestinationCityCode").empty();
+            DestinationCity($("#DestinationCountryCode").val(), 1);
+        });
+
+        //Dropdownlist Selectedchange event for Departure Country Code
+        $("#DepartureCountryCode").change(function () {
+            $("#DepartureCityCode").empty();
+            DestinationCity($("#DepartureCountryCode").val(), 2);
+        });
+
+        //Dropdownlist Selectedchange event for Departure Country Code
+        $("#Conn_DepartureCountryCode").change(function () {
+            $("#Conn_DepartureCityCode").empty();
+            DestinationCity($("#Conn_DepartureCountryCode").val(), 3);
+        });
+
+        //Dropdownlist Selectedchange event for Destination Country Code
+        $("#Conn_DestinationCountryCode").change(function () {
+            $("#Conn_DestinationCityCode").empty();
+            DestinationCity($("#Conn_DestinationCountryCode").val(), 4);
+        });
+
+        //Change event of Direct/Conn
+        $(".direct_conn").change(function () {
+
+            var IS_EXPERIENCED = $('input[Id=IsDirect]:checked').val();
+            if (IS_EXPERIENCED == "D") {
+                $("#typeConnected").css("display", "none");
+            }
+            else {
+                $("#typeConnected").css("display", "block");
+                $("#Conn_DepartureCountryCode").trigger("chosen:updated");
+                $("#Conn_DepartureCityCode").trigger("chosen:updated");
+                $("#Conn_DestinationCountryCode").trigger("chosen:updated");
+                $("#Conn_DestinationCityCode").trigger("chosen:updated");
+            }
+        });
+
+        $("#SameAsAbove").change(function () {
+
+            var sameasabove = $('input[id=SameAsAbove]:checked').val();
+            if (sameasabove == "on") {
+                $("#Conn_PnrNumber").val($("#PnrNumber").val());
+                $("#Conn_TicketNumber").val($("#TicketNumber").val());
+                $("#Conn_FlightNumber").val($("#FlightNumber").val());
+
+                var connStatus = $('input[Id=IsBooked]:checked').val();
+                if (connStatus == "B") {
+                    $('input[id=Conn_IsBooked][value="' + connStatus + '"]').prop('checked', true);
+                }
+                else if (connStatus == "C") {
+                    $('input[id=Conn_IsBooked][value="' + connStatus + '"]').prop('checked', true);
+                }
+                $("#Conn_DepartureCountryCode").val($("#DepartureCountryCode").val());
+                DestinationCity($("#Conn_DepartureCountryCode").val(), 3);
+                var condepCityCode = $("#DepartureCityCode").val();
+                if (condepCityCode != null && condepCityCode != '') {
+                    $("#Conn_DepartureCityCode").empty();
+                    DestinationCity($("#DepartureCountryCode").val(), 2);
+                    $("#Conn_DepartureCityCode").val(condepCityCode);
+                    $("#Conn_DepartureCityCode").trigger("chosen:updated");
+                }
+                $("#Conn_DepartureDate").val($("#DepartureDate").val());
+                $("#Conn_DepartureTime").val($("#DepartureTime").val());
+                $("#Conn_DestinationCountryCode").val($("#DestinationCountryCode").val());
+                DestinationCity($("#Conn_DestinationCountryCode").val(), 4);
+                var condesCityCode = $("#DestinationCityCode").val();
+                if (condesCityCode != null && condesCityCode != '') {
+                    $("#Conn_DestinationCityCode").empty();
+                    DestinationCity($("#DepartureCountryCode").val(), 2);
+                    $("#Conn_DestinationCityCode").val(condesCityCode);
+                    $("#Conn_DestinationCityCode").trigger("chosen:updated");
+                }
+                $("#Conn_ArivalDate").val($("#ArivalDate").val());
+                $("#Conn_ArrivalTime").val($("#ArrivalTime").val());
+                $("#Conn_DepartureCountryCode").trigger("chosen:updated");
+                $("#Conn_DestinationCountryCode").trigger("chosen:updated");
+            }
+            else {
+                $("#Conn_PnrNumber").val('');
+                $("#Conn_TicketNumber").val('');
+                $("#Conn_FlightNumber").val('');
+
+                $('input[id=Conn_IsBooked]').prop('checked', false);
+
+                $("#Conn_DepartureCountryCode").val('');
+                $("#Conn_DepartureCityCode").empty();
+                $("#Conn_DepartureDate").val('');
+                $("#Conn_DepartureTime").val('');
+                $("#Conn_DestinationCountryCode").val('');
+                $("#Conn_DestinationCityCode").empty();
+                $("#Conn_ArivalDate").val('');
+                $("#Conn_ArrivalTime").val('');
+                $("#Conn_DepartureCountryCode").trigger("chosen:updated");
+                $("#Conn_DestinationCountryCode").trigger("chosen:updated");
+                $("#Conn_DepartureCityCode").trigger("chosen:updated");
+                $("#Conn_DestinationCityCode").trigger("chosen:updated");
+            }
+
+        });
+
+
+        var depCityCode = $("#DepartureCityCode").val();
+        if (depCityCode != null && depCityCode != '') {
+            $("#DepartureCityCode").empty();
+            DestinationCity($("#DepartureCountryCode").val(), 2);
+            $("#DepartureCityCode").val(depCityCode);
+            $("#DepartureCityCode").trigger("chosen:updated");
+        }
+
+        var desCityCode = $("#DestinationCityCode").val();
+        if (desCityCode != null && desCityCode != '') {
+            $("#DestinationCityCode").empty();
+            DestinationCity($("#DepartureCountryCode").val(), 2);
+            $("#DestinationCityCode").val(desCityCode);
+            $("#DestinationCityCode").trigger("chosen:updated");
+        }
+
+        var condepCityCode = $("#Conn_DepartureCityCode").val();
+        if (condepCityCode != null && condepCityCode != '') {
+            $("#Conn_DepartureCityCode").empty();
+            DestinationCity($("#DepartureCountryCode").val(), 2);
+            $("#Conn_DepartureCityCode").val(condepCityCode);
+            $("#Conn_DepartureCityCode").trigger("chosen:updated");
+        }
+
+        var condesCityCode = $("#Conn_DestinationCityCode").val();
+        if (condesCityCode != null && condesCityCode != '') {
+            $("#Conn_DestinationCityCode").empty();
+            DestinationCity($("#DepartureCountryCode").val(), 2);
+            $("#Conn_DestinationCityCode").val(condesCityCode);
+            $("#Conn_DestinationCityCode").trigger("chosen:updated");
+        }
+
+
+    });
+</script>
+
+
+@using (Html.BeginForm("Ticket", "Ticket", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Ticket</h3>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Ticket Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- Tabs -->
+                            <br />
+
+                            <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport Number <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.DropDownListFor(model => model.USER_REQUIREMENT_ID, (IEnumerable<SelectListItem>)ViewBag.GetPassportDetails, "Select Passport", new { @id = "USER_REQUIREMENT_ID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.USER_REQUIREMENT_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("CandidateName", null, new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Airlines <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownList("AirlinesID", (IEnumerable<SelectListItem>)ViewBag.GetAirlineDetails, "Select Airline", new { @id = "AirlinesID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.AirlinesID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">If Other</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="checkbox" class="flat" id="OtherAir" name="chkOtherAirlines">
+                                        <div id="divOtherLines" style="display:none;">
+                                            @Html.TextBoxFor(model => model.OtherAirlines, new { @id = "OtherAirlines", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Other Airlines", @autocomplete = "off", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Type <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-default active">
+                                                @Html.RadioButtonFor(model => model.IsDirect, "D", new { @class = "direct_conn", @name = "direct", @checked = true })
+                                                Direct
+                                            </label>
+                                            <label class="btn btn-default">
+                                                @Html.RadioButtonFor(model => model.IsDirect, "C", new { @class = "direct_conn", @name = "direct", @id = "directConn" })
+                                                Connected
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">PNR No. <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PnrNumber, new { @id = "PnrNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "PNR No", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.PnrNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Ticket No</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.TicketNumber, new { @id = "TicketNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Ticket No", @autocomplete = "off", @maxlength = "20" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Flight No</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.FlightNumber, new { @id = "FlightNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Flight No", @autocomplete = "off", @maxlength = "20" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        Booked
+                                        @Html.RadioButtonFor(model => model.IsBooked, "B", new { @checked = "checked" }) Cancelled
+                                        @Html.RadioButtonFor(model => model.IsBooked, "C")
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Departure Country <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownList("DepartureCountryCode", (IEnumerable<SelectListItem>)ViewBag.GetCountry, "Select Country", new { @id = "DepartureCountryCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.DepartureCountryCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Departure City <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.DepartureCityCode, new SelectList(""), "Select Departure City", new { @id = "DepartureCityCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.DepartureCityCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Departure Date<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.DepartureDate, new { @id = "DepartureDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Departure Time <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 bootstrap-timepicker timepicker">
+                                        @Html.TextBoxFor(model => model.DepartureTime, new { @id = "DepartureTime", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Departure Time", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Destination Country <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownList("DestinationCountryCode", (IEnumerable<SelectListItem>)ViewBag.GetCountry, "Select Country", new { @id = "DestinationCountryCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.DestinationCountryCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Destination City <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.DestinationCityCode, new SelectList(""), "Select Destination City", new { @id = "DestinationCityCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.DestinationCityCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Arrival Date<span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.ArivalDate, new { @id = "ArivalDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.ArivalDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Arrival Time <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 bootstrap-timepicker timepicker">
+                                        @Html.TextBoxFor(model => model.ArrivalTime, new { @id = "ArrivalTime", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Arrival Time", @autocomplete = "off", @maxlength = "20" })
+                                        @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+
+                                <div id="typeConnected" style="display:none;">
+                                    <div class="groupAddress"><h4>Connected Flight Details</h4></div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Same as Above</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="checkbox" class="flat" id="SameAsAbove">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">PNR No. <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => model.Conn_PnrNumber, new { @id = "Conn_PnrNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "PNR No", @autocomplete = "off", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(model => model.Conn_PnrNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Ticket No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => model.Conn_TicketNumber, new { @id = "Conn_TicketNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Ticket No", @autocomplete = "off", @maxlength = "20" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Flight No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => model.Conn_FlightNumber, new { @id = "Conn_FlightNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Flight No", @autocomplete = "off", @maxlength = "20" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            Booked
+                                            @Html.RadioButtonFor(model => model.Conn_IsBooked, "B") Cancelled
+                                            @Html.RadioButtonFor(model => model.Conn_IsBooked, "C")
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Departure Country <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownList("Conn_DepartureCountryCode", (IEnumerable<SelectListItem>)ViewBag.GetCountry, "Select Departure Country", new { @id = "Conn_DepartureCountryCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DepartureCountryCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Departure City <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownListFor(model => model.Conn_DepartureCityCode, new SelectList(""), "Select Departure City", new { @id = "Conn_DepartureCityCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DepartureCityCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Departure Date<span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => model.Conn_DepartureDate, new { @id = "Conn_DepartureDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DepartureDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Departure Time <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6 bootstrap-timepicker timepicker">
+                                            @Html.TextBoxFor(model => model.Conn_DepartureTime, new { @id = "Conn_DepartureTime", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Departure Time", @autocomplete = "off", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DepartureTime, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Destination Country <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownList("Conn_DestinationCountryCode", (IEnumerable<SelectListItem>)ViewBag.GetCountry, "Select Destination Country", new { @id = "Conn_DestinationCountryCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DestinationCountryCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Destination City <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownListFor(model => model.Conn_DestinationCityCode, new SelectList(""), "Select Destination City", new { @id = "Conn_DestinationCityCode", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.Conn_DestinationCityCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Arrival Date<span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => model.Conn_ArivalDate, new { @id = "Conn_ArivalDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(model => model.Conn_ArivalDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Arrival Time <span class="required">*</span> </label>
+                                        <div class="col-md-6 col-sm-6 bootstrap-timepicker timepicker">
+                                            @Html.TextBoxFor(model => model.Conn_ArrivalTime, new { @id = "Conn_ArrivalTime", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Arrival Time", @autocomplete = "off", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(model => model.Conn_ArrivalTime, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="ticketReport" id="ticketReport" style="width: 100%;" />
+                                            @Html.HiddenFor(model => model.ReportPath)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.Remark, new { @id = "Remark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveRequirement">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- End SmartWizard Content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+}

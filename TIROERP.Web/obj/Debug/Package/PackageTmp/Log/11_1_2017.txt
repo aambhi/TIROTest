@@ -1,0 +1,31 @@
+DashBoard
+http://localhost:50130/DashBoard
+Index
+String was not recognized as a valid DateTime.
+String was not recognized as a valid DateTime.
+ADMIN
+
+DashBoard
+http://localhost:50130/DashBoard
+Index
+String was not recognized as a valid DateTime.
+String was not recognized as a valid DateTime.
+ADMIN
+
+==================================================================
+DashBoard
+http://localhost:50130/DashBoard
+Index
+String was not recognized as a valid DateTime.
+String was not recognized as a valid DateTime.
+ADMIN
+==================================================================
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard
+ Action: Index
+ Error Message: String was not recognized as a valid DateTime.
+ Inner Exception: String was not recognized as a valid DateTime.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

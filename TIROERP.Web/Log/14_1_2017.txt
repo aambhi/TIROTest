@@ -1,0 +1,64 @@
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create
+ Action: Create
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: candidate
+ URL: http://localhost:50130/candidate/create/1
+ Action: create
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: candidate
+ URL: http://localhost:50130/candidate/GetDesignationByIndustry
+ Action: GetDesignationByIndustry
+ Error Message: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'industryId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetDesignationByIndustry(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create
+ Action: Create
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Create(Int32, System.String)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: candidate
+ URL: http://localhost:50130/candidate/GetSpecializationByEducation
+ Action: GetSpecializationByEducation
+ Error Message: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'educationId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult GetSpecializationByEducation(Int32)' in 'TIROERP.Web.Controllers.CandidateController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: candidate
+ URL: http://localhost:50130/candidate/people/3
+ Action: people
+ Error Message: There is no ViewData item of type 'IEnumerable<SelectListItem>' that has the key 'CURRENT_LOCATION'.
+ Inner Exception: There is no ViewData item of type 'IEnumerable<SelectListItem>' that has the key 'CURRENT_LOCATION'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

@@ -1,0 +1,11 @@
+==================================================================
+DateTime25/05/2017 00:27:44
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

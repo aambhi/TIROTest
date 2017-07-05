@@ -1,0 +1,102 @@
+==================================================================
+DateTime21/06/2017 12:11:58
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: String or binary data would be truncated.
+The statement has been terminated.
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime21/06/2017 12:16:50
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: String or binary data would be truncated.
+The statement has been terminated.
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime21/06/2017 13:16:53
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/DuplicateCheck?FIRST_NAME=Ambi&LAST_NAME=Cand+1&DATE_OF_BIRTH=Wed+May+22+1991+00:00:00+GMT%2B0530+(India+Standard+Time)&PLACE_OF_BIRTH=Mumbai&USER_TYPE_ID=1
+ Action: DuplicateCheck
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 13:43:47
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/DuplicateCheck?FIRST_NAME=Ahmad&LAST_NAME=Ansari&USER_TYPE_ID=3
+ Action: DuplicateCheck
+ Error Message: An error occurred while executing the command definition. See the inner exception for details.
+ Inner Exception: Error converting data type datetime2 to datetime.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 13:53:09
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/DuplicateCheck?FIRST_NAME=Ahmad&LAST_NAME=Ansari&DATE_OF_BIRTH=&PLACE_OF_BIRTH=&USER_TYPE_ID=3
+ Action: DuplicateCheck
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 21:03:20
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/DuplicateCheck?companyName=K620170005&jobTitle=SE
+ Action: DuplicateCheck
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 21:13:43
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/DuplicateCheck?companyName=K620170005&jobTitle=SE
+ Action: DuplicateCheck
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 21:17:24
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/DuplicateCheck?companyName=K620170005&jobTitle=SE
+ Action: DuplicateCheck
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 21:57:15
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/EditRequirementDetails?requirementID=103
+ Action: EditRequirementDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime21/06/2017 21:57:49
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/EditRequirementDetails?requirementID=103
+ Action: EditRequirementDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

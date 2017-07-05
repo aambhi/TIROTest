@@ -1,0 +1,150 @@
+﻿@{
+    string mailJSON = "";
+    var userEmail = new List<TIROERP.Core.Model.UserEmail>();
+
+    if (ViewBag.UserEmail != null)
+    {
+        userEmail = ViewBag.UserEmail as List<TIROERP.Core.Model.UserEmail>;
+
+        if (userEmail != null)
+        {
+            for (int i = 0; i < userEmail.Count; i++)
+            {
+                mailJSON += "{\"USER_EMAIL\":\"" + userEmail[i].USER_EMAIL + "\",\"IsNew\" : \"" + true + "\",\"USER_EMAIL_ID\":\"" + userEmail[i].USER_EMAIL_ID + "\" },";
+            }
+
+            mailJSON = mailJSON.TrimEnd(',');
+            mailJSON = "[" + mailJSON + "]";
+        }
+    }
+}
+
+<script type="text/javascript">
+    var lstOfUserEmailAddress = '@ViewBag.UserEmail';
+    emailCollection = (typeof emailCollection != 'undefined' && emailCollection instanceof Array) ? emailCollection : [];
+    if (lstOfUserEmailAddress != null && @mailJSON.Length > 0) {
+        emailCollection = "@mailJSON".replace(/&quot;/g, '\"');
+        emailCollection = JSON.parse(emailCollection);
+    }
+</script>
+<div class="groupEmail">
+    <div class="form-group">
+        <div class="row">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3">Email Address</label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBox("USER_EMAIL", "", new { @id = "USER_EMAIL", @class = " form-control col-md-7 col-xs-12", @placeholder = "Email ID", @autocomplete = "off", @tabindex = "50" })
+                @Html.ValidationMessage("USER_EMAIL", "", new { @class = "text-danger", @id = "Err_USER_EMAIL" })
+                <span class="fa fa-envelope-o form-control-feedback right" aria-hidden="true"></span>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="addButton addEmailButton" id="SaveEmail"tabindex="51"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>ID</th>
+                        <th>Email ID</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tblemail">
+                        @if (userEmail != null && userEmail.Count > 0)
+                        {
+                            foreach (var emailItem in userEmail)
+                            {
+                        <tr id='tr_old_row_email_@emailItem.USER_EMAIL'>
+                            <td>
+                                @emailItem.USER_EMAIL_ID
+                            </td>
+                            <td>
+                                @emailItem.USER_EMAIL
+                            </td>
+                            <td><a class="delete_email" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td>
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function validateEmail(sEmail) {
+        var filter = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (filter.test(sEmail)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $(document).ready(function () {
+
+        $("#SaveEmail").click(function (e) {
+
+            var isStepValid = true;
+
+            var USER_EMAIL = $("#USER_EMAIL").val();
+
+            if (USER_EMAIL == "") {
+                $("#Err_USER_EMAIL").text("Please enter Email Id");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_USER_EMAIL").text("");
+            }
+
+            if (!validateEmail(USER_EMAIL)) {
+                $("#Err_USER_EMAIL").text("Please enter valid Email Id");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_USER_EMAIL").text("");
+            }
+
+            if (isStepValid) {
+                var row_id = $('#tblemail').children().length + 1
+
+                var row = "";
+                row += "<tr id ='tr_old_row_email_" + USER_EMAIL + "'><td >" + row_id + " </td><td><span class='user-email'>" + USER_EMAIL + "</td>";
+                row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_email glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tblemail").append(row);
+
+                var addJson = { "USER_EMAIL": USER_EMAIL, "IsNew": "true","USER_EMAIL_ID":"0" };
+                var exists = !!_.where(emailCollection, { "USER_EMAIL": USER_EMAIL }).length;
+                if (!exists)
+                    emailCollection.push(addJson);
+                else {
+                    var email = $.grep(emailCollection, function (e) { return e.USER_EMAIL == USER_EMAIL; });
+                    if (email && email.length == 1) {
+                        email[0].IsNew = 'false';
+                    }
+                }
+
+                $("#USER_EMAIL").val("");
+            }
+            else {
+                return isStepValid;
+            }
+        });
+
+        $(document).on("click",".delete_email",function() {
+
+            var deletedRowId = $(this).closest("tr").attr("id");
+            var emailToBeDeleted = deletedRowId.substr(deletedRowId.lastIndexOf('_') + 1);
+            $(this).closest("tr").remove();
+
+            var email = $.grep(emailCollection, function (e) { return (e.USER_EMAIL == emailToBeDeleted) });
+            if (email && email.length ==1) {
+                email[0].IsNew = 'false';
+            }
+        });
+    });
+</script>

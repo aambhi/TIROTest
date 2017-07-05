@@ -1,0 +1,85 @@
+﻿@model TIROERP.Core.Model.VisaEndorsement
+@{
+    string reportName = string.Empty;
+    string filepath = string.Empty;
+    string ReportPath = string.Empty;
+    if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.VisaEndorsementFilePath))
+        {
+            ReportPath = Model.VisaEndorsementFilePath;
+            reportName = Model.VisaEndorsementFilePath.Substring(15);
+            filepath = Url.Content(Server.MapPath("~/Uploads/VisaEndorsementUploadedFiles/" + Model.VisaEndorsementFilePath));
+        }
+    }
+}
+<script src="~/Content/js/Process/VisaEndorsement.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SubmissionStatusID").select2({ width: '100%' });
+
+        $("#SubmissionDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $(document).on("click", ".removeFile", function () {
+
+            $(this).parent().remove();
+
+            $(".fileGroup").hide();
+            $(".fileadd").show();
+            $("#VisaEndorsementFilePath").val('');
+        });
+
+        var file = '@reportName';
+        if (file == null || file == "") {
+            $(".fileadd").show();
+        }
+    });
+</script>
+<form action="" method="post" enctype="multipart/form-data">
+    <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+        @Html.HiddenFor(model => model.VisaEndorsementId)
+        @Html.HiddenFor(model => model.USER_REQUIREMENT_ID, new { @id = "VisaUserReqId" })
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedDate)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Submission Date<span class="required">*</span> </label>
+            <div class="col-md-6 col-sm-6">
+                @Html.TextBoxFor(model => model.SubmissionDate, "{0:dd-MMM-yyyy}", new { @id = "SubmissionDate", @class = "form-control  date-picker", @placeholder = "Submission Date", @autocomplete = "off", @maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.SubmissionDate, "", new { @class = "text-danger", @id = "Err_SubmissionDate" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Submission Status <span class="required">*</span> </label>
+            <div class="col-md-6 col-sm-6">
+
+                @Html.DropDownList("SubmissionStatusID", (IEnumerable<SelectListItem>)ViewBag.GetSubmissionDetails, "Select Submission Status", new { @id = "SubmissionStatusID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.SubmissionStatusID, "", new { @class = "text-danger", @id = "Err_SubmissionStatusID" })
+            </div>
+        </div>
+        @if (ReportPath != null && ReportPath != "")
+        {
+            <div class="form-group fileGroup">
+                <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Report</label>
+                <div class="col-md-6 col-sm-6 addPadding file-name">
+                    @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                    <span class="glyphicon glyphicon-remove removeFile remove-part" title="Delete"></span>
+                </div>
+            </div>
+
+        }
+
+        <div class="form-group fileadd" style="display:none;">
+            <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+            <div>
+                <input type="file" name="visaendorsementFile" id="visaendorsementFile" />
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.VisaEndorsementFilePath)
+    </div>
+</form>

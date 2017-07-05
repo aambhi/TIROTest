@@ -1,0 +1,95 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement?userRequirementId=4&regno=C120170014&requirementid=&candidateStatus=&status=1
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'requirementid' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'requirementid' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement?userRequirementId=&regno=C120170014&requirementid=43&candidateStatus=17&status=True
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement?userRequirementId=&regno=C120170014&requirementid=50&candidateStatus=17&status=True
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/AddUpdateUserRequirement
+ Action: AddUpdateUserRequirement
+ Error Message: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userRequirementId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.JsonResult AddUpdateUserRequirement(Int32, System.String, Int32, Int32, Boolean)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetProcessDetails?userRequirementId=6
+ Action: GetProcessDetails
+ Error Message: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Mofa]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Candidate]'.
+ Inner Exception: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Mofa]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Candidate]'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetProcessDetails?userRequirementId=4
+ Action: GetProcessDetails
+ Error Message: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ Inner Exception: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetProcessDetails?userRequirementId=5
+ Action: GetProcessDetails
+ Error Message: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Medical]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.VisaEndorsement]'.
+ Inner Exception: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.Medical]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.VisaEndorsement]'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

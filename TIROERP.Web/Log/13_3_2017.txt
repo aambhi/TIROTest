@@ -1,0 +1,40 @@
+==================================================================
+ Controller: task
+ URL: http://localhost:50130/task/Edit/1
+ Action: Edit
+ Error Message: The parameters dictionary contains a null entry for parameter 'taskId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Edit(Int32)' in 'TIROERP.Web.Controllers.TaskController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'taskId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Edit(Int32)' in 'TIROERP.Web.Controllers.TaskController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: task
+ URL: http://localhost:50130/task/Edit?taskId=1
+ Action: Edit
+ Error Message: The model item passed into the dictionary is of type 'System.Linq.Enumerable+WhereSelectListIterator`2[TIROERP.Core.Model.TaskMaster,TIROERP.Core.Model.TaskMaster]', but this dictionary requires a model item of type 'TIROERP.Core.Model.TaskMaster'.
+ Inner Exception: The model item passed into the dictionary is of type 'System.Linq.Enumerable+WhereSelectListIterator`2[TIROERP.Core.Model.TaskMaster,TIROERP.Core.Model.TaskMaster]', but this dictionary requires a model item of type 'TIROERP.Core.Model.TaskMaster'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: task
+ URL: http://localhost:50130/task/Edit?taskId=1
+ Action: Edit
+ Error Message: The model item passed into the dictionary is of type 'System.Linq.Enumerable+WhereSelectListIterator`2[TIROERP.Core.Model.TaskMaster,TIROERP.Core.Model.TaskMaster]', but this dictionary requires a model item of type 'TIROERP.Core.Model.TaskMaster'.
+ Inner Exception: The model item passed into the dictionary is of type 'System.Linq.Enumerable+WhereSelectListIterator`2[TIROERP.Core.Model.TaskMaster,TIROERP.Core.Model.TaskMaster]', but this dictionary requires a model item of type 'TIROERP.Core.Model.TaskMaster'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: DashBoard
+ URL: http://localhost:50130/DashBoard
+ Action: Index
+ Error Message: Value cannot be null or empty.
+Parameter name: linkText
+ Inner Exception: Value cannot be null or empty.
+Parameter name: linkText
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

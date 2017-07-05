@@ -1,0 +1,421 @@
+﻿@model TIROERP.Core.Model.RequirementSearchViewModel
+@{
+    ViewBag.Title = "ViewRequirementDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string house = string.Empty;
+    string food = string.Empty;
+    string medical = string.Empty;
+    string travel = string.Empty;
+
+    foreach (var allowance in Model.reqAllowance)
+    {
+        if (allowance.ALLOWANCE_TYPE == "HOUSE")
+        {
+            if (allowance.ALLOWANCE_NAME == "Allowance")
+            {
+                house = allowance.ALLOWANCE_NAME + " | Allowance: " + (allowance.ALLOWANCE_AMOUNT > 0 ? allowance.ALLOWANCE_AMOUNT : 0);
+            }
+            else
+            {
+                house = allowance.ALLOWANCE_NAME;
+            }
+
+        }
+        else if (allowance.ALLOWANCE_TYPE == "FOOD")
+        {
+            if (allowance.ALLOWANCE_NAME == "Allowance")
+            {
+                food = allowance.ALLOWANCE_NAME + " | Allowance: " + (allowance.ALLOWANCE_AMOUNT > 0 ? allowance.ALLOWANCE_AMOUNT : 0);
+            }
+            else
+            {
+                food = allowance.ALLOWANCE_NAME;
+            }
+        }
+        else if (allowance.ALLOWANCE_TYPE == "MEDICAL")
+        {
+            if (allowance.ALLOWANCE_NAME == "Allowance")
+            {
+                medical = allowance.ALLOWANCE_NAME + " | Allowance: " + (allowance.ALLOWANCE_AMOUNT > 0 ? allowance.ALLOWANCE_AMOUNT : 0);
+            }
+            else
+            {
+                medical = allowance.ALLOWANCE_NAME;
+            }
+        }
+        else if (allowance.ALLOWANCE_TYPE == "TRAVEL")
+        {
+            if (allowance.ALLOWANCE_NAME == "Allowance")
+            {
+                travel = allowance.ALLOWANCE_NAME + " | Allowance: " + (allowance.ALLOWANCE_AMOUNT > 0 ? allowance.ALLOWANCE_AMOUNT : 0);
+            }
+            else
+            {
+                travel = allowance.ALLOWANCE_NAME;
+            }
+        }
+    }
+}
+
+
+@using (Html.BeginForm("StatusSearch", "StatusSearch", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { @id = "formControl" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title" style="width:100%">
+                <div class="title_left" style="width:100%">
+                    @*<h3>View Requirement Details<a class="btn btn-primary pull-right" style="color: white;background-color: #337ab7;"><i class="fa fa-chevron-left"></i> Back </a></h3>*@
+                    <h3>
+                        View Requirement Details
+                        <a href="@Url.Action("RequirementSearch", "RequirementSearch", new { })" class="btn btn-primary pull-right" style="color: white;background-color: #337ab7;"><i class="fa fa-chevron-left"></i> Back </a>
+                        @*@Html.ActionLink("Back", "RequirementSearch", "RequirementSearch", new { }, new { @class = "btn btn-primary pull-right", @style = "color: white;background-color: #337ab7;" })*@
+                        @*<a class="btn btn-primary pull-right" style="color: white;background-color: #337ab7;"><i class="fa fa-chevron-left"></i> Back </a>*@
+                    </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="container demo">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-parent="#accordion">
+                                            <i class="fa fa-chevron-down alignright"></i>
+                                            <i class="fa fa-align-left"></i>Requirement Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-expanded="true" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="panel-body" id="divcall">
+                                            <div class="col-sm-3 col-md-2 ">
+                                                <label class="control-label">Date of Entry</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.OPENING_DATE, new { @id = "OPENING_DATE", @class = "form-control", @autocomplete = "off" })
+
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Visa No</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <div>@Html.DisplayFor(model => model.VISA_NUMBER, new { @id = "VISA_NUMBER", @class = "form-control", @autocomplete = "off" })</div>
+                                                <div>Issue Date:@Html.DisplayFor(model => model.ISSUE_DATE, new { @id = "ISSUE_DATE", @class = "form-control", @autocomplete = "off" })</div>
+                                                <div>Expiry Date:@Html.DisplayFor(model => model.EXPIRY_DATE, new { @id = "EXPIRY_DATE", @class = "form-control", @autocomplete = "off" })</div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Company Name</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.COMPANY_NAME, new { @id = "COMPANY_NAME", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label for=" inputemail" class="control-label">Contact Person</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.CONTACT_PERSON, "", new { @id = "CONTACT_PERSON", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">No of Opening</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.NO_OF_OPENINGS, new { @id = "NO_OF_OPENINGS", @class = "form-control", @placeholder = "Phone No", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label for=" inputemail" class="control-label">Mode Of Interview</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.INTERVIEW_MODE, "", new { @id = "INTERVIEW_MODE", @class = "form-control", @placeholder = "Email Address", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Gender</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.GENDERS, new { @id = "GENDER_NAME", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Age</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.AGE, new { @id = "AGE", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Religion</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.RELIGION, new { @id = "RELIGION", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Languages</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.LANGUAGES, new { @id = "LANGUAGES", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="divcall">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Job Title</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.JOB_TITLE, new { @id = "JOB_TITLE", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Job Description</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.JOB_DESCRIPTION, new { @id = "JOB_DESCRIPTION", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+
+                                        </div>
+                                        <div class="panel-body" id="divcall">
+                                            <div class="col-sm-3 col-md-2 ">
+                                                <label class="control-label"> Posting Place</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.POSTING_PLACE, new { @id = "POSTING_PLACE", @class = "form-control", @autocomplete = "off" })
+
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Basic Salary</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.BASIC_SALARY, new { @id = "BASIC_SALARY", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="more-less fa fa-chevron-down"></i>
+                                            <i class="fa fa-align-left"></i> Industry, Education & Certification Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Industry</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.INDUSTRY_TYPE, new { @id = "INDUSTRY_TYPE", @class = "form-control", @placeholder = "Date of Birth", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label for=" inputemail" class="control-label">Designation</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.DESIGNATION, "", new { @id = "ROLE", @class = "form-control", @placeholder = "Age", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Education</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.EDUCATION_TYPE, new { @id = "EDUCATION", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label for=" inputemail" class="control-label">Specialization</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.SPECIALIZATION, "", new { @id = "SPECIALIZATION", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Certification</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.CERTIFICATION_TYPE, new { @id = "CERTIFICATION", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Experience</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.EXPERIENCE, new { @id = "EXPERIENCE", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <i class="more-less fa fa-chevron-down"></i>
+                                            <i class="fa fa-align-left"></i> Allowance Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Housing</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @house
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Food</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @food
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Travelling</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @travel
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Medical</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @medical
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFive">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <i class="more-less fa fa-chevron-down"></i>
+                                            <i class="fa fa-align-left"></i> Other Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                    <div class="panel-body">
+
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Overtime</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.OVERTIME, new { @id = "OVERTIME", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Trip per Year</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.TRIP_PER_YEAR, new { @id = "TRIP_PER_YEAR", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Contract Period</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.CONTACT_PERIOD, new { @id = "CONTACT_PERIOD", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Working Hours</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-2 ">
+                                                @Html.DisplayFor(model => model.WORKING_HOURS, new { @id = "WORKING_HOURS", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Leaves</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.LEAVES_PER_YEAR, new { @id = "LEAVES_PER_YEAR", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                            </div>
+                                            <div class="col-sm-3 col-md-2 ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingSix">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            <i class="more-less fa fa-chevron-down"></i>
+                                            <i class="fa fa-align-left"></i> Requirement Processed Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                    <div class="panel-body">
+                                        <div class="panel-body" id="divcall">
+                                            <div class="col-sm-3 col-md-2 ">
+                                                <label class="control-label">Total no of CV Sourced</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.cVDetails.CV_SOURCED, new { @id = "CV_SOURCED", @class = "form-control", @autocomplete = "off" })
+
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">Shortlisted</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.cVDetails.SHORTLISTED, new { @id = "SHORTLISTED", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Selected</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.cVDetails.SELECTED, new { @id = "SELECTED", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                <label class="control-label">In Process</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.cVDetails.INPROCESS, new { @id = "INPROCESS", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-3 col-md-2">
+                                                <label class="control-label">Mobilized</label>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                                @Html.DisplayFor(model => model.cVDetails.MOBILIZED, new { @id = "MOBILIZED", @class = "form-control", @autocomplete = "off" })
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                            </div>
+                                            <div class="col-sm-3 col-md-3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

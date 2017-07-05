@@ -1,0 +1,51 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/CandidateSearch
+ Action: CandidateSearch
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: statusSearch
+ URL: http://localhost:50130/statusSearch/CandidateSearch/1
+ Action: CandidateSearch
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/CandidateSearch/1
+ Action: CandidateSearch
+ Error Message: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'userTypeId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult CandidateSearch(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: statusSearch
+ URL: http://localhost:50130/statusSearch/CandidateSearch/3
+ Action: CandidateSearch
+ Error Message: Cannot implicitly convert type 'int' to 'string'
+ Inner Exception: Cannot implicitly convert type 'int' to 'string'
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: statusSearch
+ URL: http://localhost:50130/statusSearch/CandidateSearch/1
+ Action: CandidateSearch
+ Error Message: Cannot implicitly convert type 'int' to 'string'
+ Inner Exception: Cannot implicitly convert type 'int' to 'string'
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

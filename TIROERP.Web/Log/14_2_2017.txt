@@ -1,0 +1,9 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCertificationPartialView?registrationNo=C220170002
+ Action: LoadCertificationPartialView
+ Error Message: An error occurred while executing the command definition. See the inner exception for details.
+ Inner Exception: An error occurred while executing the command definition. See the inner exception for details.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

@@ -1,0 +1,18 @@
+==================================================================
+ Controller: ChildMenuLayout
+ URL: http://localhost:50130/Medical/Create
+ Action: ChildMenuLayout
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: 
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C120170014
+ Action: GetCandidateDetails
+ Error Message: There is no ViewData item of type 'IEnumerable<SelectListItem>' that has the key 'REQUIREMENT_ID'.
+ Inner Exception: There is no ViewData item of type 'IEnumerable<SelectListItem>' that has the key 'REQUIREMENT_ID'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

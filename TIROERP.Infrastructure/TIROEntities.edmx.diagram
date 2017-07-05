@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e886c7dcd63f42dab52a45e2c9f2dafc" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="TIROERPModel.TBL_AD_MEDIUM_MASTER" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ADDRESS_TYPE_MASTER" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ALLOWANCE_MASTER" Width="1.5" PointX="3.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ALLOWANCE_TYPE_MASTER" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_AVAILING_TYPE_MASTER" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CAREER_STATUS_MASTER" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_COMPANY_MASTER" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CONNECTED_TICKETDETAILS" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CONTACT_TYPE_MASTER" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CURRENCY_MASTER" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_EDUCATION_TYPE_MASTER" Width="1.5" PointX="5.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_EMAIL_TYPE_MASTER" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ERROR_LOG" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_GENDER_MASTER" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_INDUSTRY_MASTER" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_INTERVIEW" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_INTERVIEW_MODE_MASTER" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_LANGUAGE_MASTER" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_MARITAL_STATUS_MASTER" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_MEDICAL_STATUS" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_PASSPORT_DETAILS" Width="1.5" PointX="7.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_PREFIX_MASTER" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REGISTRATION_COUNTER" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_RELIGION_MASTER" Width="1.5" PointX="9.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_ALLOWANCE" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_GENDER" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_LANGUAGE" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_RELIGION" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIRMENT_EDUCATION_TYPE" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIRMENT_INDUSTRY" Width="1.5" PointX="18.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIRMENT_SPECIALIZATION" Width="1.5" PointX="18.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_RESUME_VIEW" Width="1.5" PointX="18.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ROLE_MASTER" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_SOURCE_MASTER" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_SPECIALIZATION_MASTER" Width="1.5" PointX="13.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_STATUS_MASTER" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_TASK_FOLLOWUP" Width="1.5" PointX="5.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_TASK_MASTER" Width="1.5" PointX="20.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_UNIVERSITY_MASTER" Width="1.5" PointX="15.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_ADDRESS" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_CERTIFICATION" Width="1.5" PointX="7.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_CONTACTS" Width="1.5" PointX="9.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_DOCUMENT_MASTER" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_DRIVING_LICENCE_DETAILS" Width="1.5" PointX="22.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_EDUCATION_DETAILS" Width="1.5" PointX="22.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_EMAIL_ADDRESS" Width="1.5" PointX="22.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_EXPERIENCE" Width="1.5" PointX="22.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_LANGUAGE" Width="1.5" PointX="17.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_MENU_MAPPING" Width="1.5" PointX="19.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_PERSONAL_DETAILS" Width="1.5" PointX="22.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_REGISTRATION" Width="1.5" PointX="11.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_TYPE" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_VISA_DETAILS" Width="1.5" PointX="24.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_VEHICLE_TYPE" Width="1.5" PointX="5.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_VISA_MASTER" Width="1.5" PointX="7.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_VISA_SUBMISSION_STATUS" Width="1.5" PointX="24.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_BRANCH_MASTER" Width="1.5" PointX="24.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_LMS_MENU" Width="1.5" PointX="24.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_NATIONALITY_MASTER" Width="1.5" PointX="24.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_PORTAL_MASTER" Width="1.5" PointX="24.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_TYPE_MASTER" Width="1.5" PointX="15.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_SAVE_TO_FOLDER_DETAILS" Width="1.5" PointX="17.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIROERPModel.Tmp_TBL_TASK_MASTER" Width="1.5" PointX="19.75" PointY="25.75" IsExpanded="true" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER" ManuallyRouted="false" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER" ManuallyRouted="false" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_COUNTRY_MASTER" Width="1.5" PointX="10.375" PointY="26.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_AIRLINES_MASTER" Width="1.5" PointX="27.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CERTIFICATION_MASTER" Width="1.5" PointX="12.375" PointY="26.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_DESIGNATION_MASTER" Width="1.5" PointX="17" PointY="28.625" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_DETAILS" Width="2" PointX="0.75" PointY="16.125" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_INTERVIEW_TBL_USER_DETAILS" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIRMENT_CERTIFICATION" Width="1.5" PointX="27.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_MEDICAL" Width="1.5" PointX="27.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_MOFA" Width="1.5" PointX="27.375" PointY="11.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_POLICY" Width="1.5" PointX="27.375" PointY="16.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_TICKET" Width="1.5" PointX="27.375" PointY="20.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_VISA_ENDORSEMENT" Width="1.5" PointX="22.375" PointY="27.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_REQUIREMENT" Width="2.25" PointX="6" PointY="29.875" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_MEDICAL_TBL_USER_REQUIREMENT" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_MOFA_TBL_USER_REQUIREMENT" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_POLICY_TBL_USER_REQUIREMENT" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_TICKET_TBL_USER_REQUIREMENT" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_EMIGRATION" Width="1.5" PointX="9" PointY="30.375" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_ADVERTISEMENT_MASTER" Width="1.5" PointX="24.375" PointY="27.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_REQUIREMENT_DETAILS" Width="1.5" PointX="4.75" PointY="16.375" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_CITY_MASTER" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_STATE_MASTER" Width="1.5" PointX="26.375" PointY="27.75" />
+        <EntityTypeShape EntityType="TIROERPModel.TBL_USER_DOCUMENTS" Width="1.5" PointX="3.5" PointY="26.375" />
+        <AssociationConnector Association="TIROERPModel.FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

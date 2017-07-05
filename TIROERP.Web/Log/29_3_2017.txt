@@ -1,0 +1,21 @@
+==================================================================
+DateTime29-Mar-17 1:08:41 AM
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: EXCEPTION OCCURED 1
+ Inner Exception: 17-Jun-15 12:00:00 AM
+ User: 15-Dec-16 12:00:00 AM
+ UserIP: 
+==================================================================
+==================================================================
+DateTime29-Mar-17 1:09:07 AM
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: Value cannot be null.
+Parameter name: source
+ User: 
+ UserIP: 
+==================================================================

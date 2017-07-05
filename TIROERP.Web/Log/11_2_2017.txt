@@ -1,0 +1,45 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C120170014
+ Action: GetCandidateDetails
+ Error Message: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.UserLanguage]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.UserEducation]'.
+ Inner Exception: Unable to cast object of type 'System.Collections.Generic.List`1[TIROERP.Core.Model.UserLanguage]' to type 'System.Collections.Generic.List`1[TIROERP.Core.Model.UserEducation]'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadCandidatePersonalDetails?registrationNo=C120170014
+ Action: LoadCandidatePersonalDetails
+ Error Message: The cast to value type 'System.Int32' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
+ Inner Exception: The cast to value type 'System.Int32' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================
+==================================================================
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Shared\_Certification.cshtml(14): error CS1061: 'UserCertification' does not contain a definition for 'CERTIFICATION_NAME' and no extension method 'CERTIFICATION_NAME' accepting a first argument of type 'UserCertification' could be found (are you missing a using directive or an assembly reference?)
+ User: ADMIN
+ UserIP: 127.0.0.1
+==================================================================

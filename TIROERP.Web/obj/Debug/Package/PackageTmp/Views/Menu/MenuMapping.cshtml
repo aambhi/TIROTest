@@ -1,0 +1,161 @@
+﻿@model TIROERP.Core.Model.MenuModel
+
+@{
+    ViewBag.Title = "MenuMapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render(("~/bundles/select2"))
+@Styles.Render("~/Content/select2")
+
+@*For Progress Bar*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#USER_TYPE_ID').select2();
+        $('#formControl').submit(function () {
+            // submit the form
+            //if ($(this).valid())
+            {
+                $('#progressBar').show();
+            }
+        });
+    });
+</script>
+@*For Progress Bar [END]*@
+
+@using (Html.BeginForm("MenuMapping", "Menu", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Menu Mapping</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit Menu</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            @if (ViewBag.Success != null)
+                            {
+                                <div class="alert alert-dismissable alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    @ViewBag.Success
+                                </div>
+                            }
+                            else if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-dismissable alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    @ViewBag.Error
+                                </div>
+                            }
+
+
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Select Employee <b class="text-danger">*</b></label>
+                                <div class="col-lg-10">
+                                    @Html.DropDownListFor(model => model.USER_TYPE_ID, ViewData["GetUserType"] as SelectList, "--Select Employee--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.USER_TYPE_ID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <table class="table grid-table"></table>
+
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label"></label>
+                                <div class="col-lg-10">
+                                    <button type="submit" name="btnSubmit" id="btnSubmit" class="btn btn-primary" title="Submit" value="Submit">Submit</button>
+                                    <div class="btn btn-default">
+                                        @Html.ActionLink("Reset", "MenuMapping")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*Mapping Menu by Channel Wise *@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Dropdownlist init event
+            $("#USER_TYPE_ID").change(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetBindGridForMenu")', // we are calling json method
+                    dataType: 'json',
+                    data: { SEL_USER_TYPE: $("#USER_TYPE_ID").val() },
+                    success: function (data) {
+                        var row = "", itemcount = "0";
+                        row = "<thead><tr><th class=grid-header>Menu Name</th><th class=grid-header>Menu Title</th><th class=grid-header>Menu URL</th><th class=grid-header></th></tr></thead><tbody>";
+                        if (data != "") {
+                            console.log(data);
+                            $.each(data, function (index, item) {
+                                //alert(item.IS_CHANNEL_MENU);
+                                row += "<tr class=grid-row><td class=grid-cell>";
+                                if (!item.IS_PARENT)
+                                    row += " :- " + item.MENU_NAME;
+                                else
+                                    row += "<b>" + item.MENU_NAME + "</b>";
+
+                                row += "<input type='hidden' name='hdnMenu_ID" + index + "' value='" + item.Menu_ID + "' />";
+
+                                row += "<td class=grid-cell>" + item.MENU_TITLE + "</td>";
+
+                                row += "<td class=grid-cell>" + item.MENU_URL + "</td>";
+                                if (!item.IS_PARENT)
+                                    if (item.IS_CHANNEL_MENU != 0)
+                                        if (item.USER_TYPE_MENU_ID != 0)
+                                            row += "<td class=grid-cell><input type=checkbox name=chksel" + index + " id=chksel" + index + " checked='true'></input><label for=chksel" + item.Menu_ID + "></label></td>";
+                                        else
+                                            row += "<td class=grid-cell><input type=checkbox name=chksel" + index + " id=chksel" + index + "></input><label for=chksel" + item.Menu_ID + "></label></td>";
+                                    else
+                                        row += "<td class=grid-cell><input type=checkbox name=chksel" + index + " id=chksel" + index + " disabled='disabled'></input><label for=chksel" + item.Menu_ID + "></label></td>";
+                                else
+                                    row += "<td class=grid-cell><input type=checkbox name=chksel" + index + " id=chksel" + index + " style='display:none;'></input></td>";
+
+                                row += "</tr>";
+
+                                itemcount = index;
+                            });
+                            row += "</tbody>";
+
+                            row += "<input type='hidden' name='hdnrowcount' id='hdnrowcount' value='" + itemcount + "' />";
+                        }
+                        else {
+                            row += "<tr><td class=grid-cell colspan=4>There are no items to display</td></tr>";
+                        }
+                        $(".grid-table").html(row);
+
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve User Type.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+    @*Mapping Menu by Channel Wise [end] *@
+
+    @*For Progress Bar*@
+    <div id="progressBar" style="margin: 0px; padding: 0px; position: fixed; right: 0px;
+                top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
+                opacity: .8; filter: alpha(opacity=70);display:none">
+        <p style="position: fixed; top: 20%; left: 30%; color: White;">
+            <img src="@Url.Content("~/Content/img/please_wait.gif")">
+        </p>
+    </div>
+    @*For Progress Bar [end]*@
+}

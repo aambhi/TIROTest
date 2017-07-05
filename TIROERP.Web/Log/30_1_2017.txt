@@ -1,0 +1,9 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C120170014
+ Action: GetCandidateDetails
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\StatusSearch\GetCandidateDetails.cshtml(370): error CS1501: No overload for method 'DisplayTextFor' takes 2 arguments
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\StatusSearch\GetCandidateDetails.cshtml(370): error CS1501: No overload for method 'DisplayTextFor' takes 2 arguments
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

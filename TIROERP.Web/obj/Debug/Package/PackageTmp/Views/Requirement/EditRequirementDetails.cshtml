@@ -1,0 +1,873 @@
+﻿@model TIROERP.Core.Model.RequirementModel
+@{
+    ViewBag.Title = "CreateReq";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+
+@*Number event*@
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    function isDecimalNumber(key) {
+        //getting key code of pressed key
+        var keycode = (key.which) ? key.which : key.keyCode;
+        //comparing pressed keycodes
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+        else {
+            var parts = key.srcElement.value.split('.');
+            if (parts.length > 1 && keycode == 46)
+                return false;
+            return true;
+        }
+    }
+
+    function isAlphabets() {
+        var charCode = event.keyCode;
+        if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32)
+            return true;
+        else
+            return false;
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#INDUSTRY").chosen();
+        $("#DESIGNATION").chosen();
+        $("#COMPANY_ID").chosen();
+        $("#CONTACT_PERSON").chosen();
+        $("#STATUS").chosen();
+        $("#EDUCATION").chosen();
+        $("#SPECIALIZATION").chosen();
+
+        $("#CERTIFICATION").chosen();
+        $("#GENDER").chosen();
+        $("#RELIGION").chosen();
+        $("#LANGUAGE_ID").chosen();
+        $("#MODE_OF_INTERVIEW").chosen();
+
+        $("#CURRENCY").chosen();
+        $("#SELECTD_HOUSE_ALLOWANCE").chosen();
+        $("#SELECTD_FOOD_ALLOWANCE").chosen();
+        $("#SELECTD_TRAVEL_ALLOWANCE").chosen();
+        $("#SELECTD_MEDICAL_ALLOWANCE").chosen();
+
+        var company = $("#COMPANY_ID").val();
+        if (company != "" && company != "undefined") {
+            $('#CONTACT_PERSON').prop("disabled", true).trigger("chosen:updated");
+        }
+        var client = $("#CONTACT_PERSON").val();
+        if (client != "" && client != "undefined") {
+            $('#COMPANY_ID').prop("disabled", true).trigger("chosen:updated");
+        }
+
+        var housing = $("#SELECTD_HOUSE_ALLOWANCE").val();
+        if (housing == "2") {
+            $("#housingOptionTemplate").show();
+        }
+
+        var food = $("#SELECTD_FOOD_ALLOWANCE").val();
+        if (food == "2") {
+            $("#foodOptionTemplate").show();
+        }
+
+        var travelling = $("#SELECTD_TRAVEL_ALLOWANCE").val();
+        if (travelling == "2") {
+            $("#travelOptionTemplate").show();
+        }
+
+        var medical = $("#SELECTD_MEDICAL_ALLOWANCE").val();
+        if (medical == "2") {
+            $("#medicalOptionTemplate").show();
+        }
+
+        $("#COMPANY_ID").change(function () {
+            var company = $("#COMPANY_ID").val();
+            if (company != "" && company != "undefined") {
+                $('#CONTACT_PERSON').prop("disabled", true).trigger("chosen:updated");
+            }
+            else {
+                $('#CONTACT_PERSON').prop("disabled", false).trigger("chosen:updated");
+            }
+        });
+
+        $("#CONTACT_PERSON").change(function (e) {
+            var agent = $("#CONTACT_PERSON").val();
+            if (agent != "" && agent != "undefined") {
+                $('#COMPANY_ID').prop("disabled", true).trigger("chosen:updated");
+            }
+            else {
+                $('#COMPANY_ID').prop("disabled", false).trigger("chosen:updated");
+            }
+        });
+
+        $("#SELECTD_HOUSE_ALLOWANCE").change(function (e) {
+            var housing = $("#SELECTD_HOUSE_ALLOWANCE").val();
+
+            if (housing == "2") {
+                $("#housingOptionTemplate").show();
+            }
+            else {
+                $('#housingOptionTemplate').hide();
+            }
+
+            var housingDetails = (housing == '') ? '' : housing + ',' + $('#housingTypeId').val();
+            $('#housingTypeDetails').val('')
+            $('#housingTypeDetails').val(housingDetails);
+        });
+
+        $("#SELECTD_FOOD_ALLOWANCE").change(function (e) {
+            var housing = $("#SELECTD_FOOD_ALLOWANCE").val();
+            if (housing == "2") {
+                $("#foodOptionTemplate").show();
+            }
+            else {
+                $('#foodOptionTemplate').hide();
+            }
+
+            var foodDetails = (housing == '') ? '' : housing + ',' + $('#foodTypeId').val();
+            $('#foodTypeDetails').val('')
+            $('#foodTypeDetails').val(foodDetails);
+        });
+
+        $("#SELECTD_TRAVEL_ALLOWANCE").change(function (e) {
+            var housing = $("#SELECTD_TRAVEL_ALLOWANCE").val();
+            if (housing == "2") {
+                $("#travelOptionTemplate").show();
+            }
+            else {
+                $('#travelOptionTemplate').hide();
+            }
+            var foodDetails = (housing == '') ? '' : housing + ',' + $('#travelTypeId').val();
+            $('#travelTypeDetails').val('');
+            $('#travelTypeDetails').val(foodDetails);
+        });
+
+        $("#SELECTD_MEDICAL_ALLOWANCE").change(function (e) {
+            var housing = $("#SELECTD_MEDICAL_ALLOWANCE").val();
+            if (housing == "2") {
+                $("#medicalOptionTemplate").show();
+            }
+            else {
+                $('#medicalOptionTemplate').hide();
+            }
+            var medicalDetails = (housing == '') ? '' : housing + ',' + $('#medicalTypeId').val();
+            $('#medicalTypeDetails').val('');
+            $('#medicalTypeDetails').val(medicalDetails);
+        });
+
+
+        $("#INDUSTRY").change(function (e) {
+            var industry = $("#INDUSTRY").val();
+            $("#DESIGNATION").empty().trigger("chosen:updated");
+
+            if (industry != null) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetRoleByIndustry")', // we are calling json method
+                    dataType: 'json',
+                    data: { Industry_Ids: industry },
+                    success: function (states) {
+                        if (states == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $("#DESIGNATION").append('<option >--Select Designation--</option>');
+                        $.each(states, function (i, state) {
+                            $("#DESIGNATION").append('<option value="' + state.DESIGNATION_ID + '">' + state.DESIGNATION_NAME + '</option>');
+                        }); // here we are adding option for States
+                        $("#DESIGNATION").val('').trigger("chosen:updated");
+
+                    },
+                    error: function (ex) {
+                        $("#DESIGNATION").append('<option >--Select Designation--</option>');
+                    }
+                });
+                return false;
+            }
+        });
+
+
+        $("#EDUCATION").change(function (e) {
+            $("#SPECIALIZATION").empty().trigger("chosen:updated");
+            var education = $("#EDUCATION").val();
+            if (education != null) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSpecializationByEducation")', // we are calling json method
+                    dataType: 'json',
+                    data: { Education_Ids: education },
+                    success: function (states) {
+                        if (states == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        $("#SPECIALIZATION").append('<option value="0">--Select Specialization--</option>');
+                        $.each(states, function (i, state) {
+                            $("#SPECIALIZATION").append('<option value="' + state.SPECIALIZATION_ID + '">' + state.SPECIALIZATION_TYPE + '</option>');
+                        }); // here we are adding option for States
+                        $("#SPECIALIZATION").val('').trigger("chosen:updated");
+                    },
+                    error: function (ex) {
+                        $("#SPECIALIZATION").append('<option >--Select Specialization--</option>');
+                    }
+                });
+                return false;
+            }
+        });
+
+
+        $("#SaveRequirement").click(function (e) {
+            var compname = $("#COMPANY_ID").val();
+            var contact = $("#CONTACT_PERSON").val();
+            var isValid = true;
+
+            if ((compname && compname.length > 0) || (contact && contact.length > 0)) {
+                $("#lblContact").text("");
+                $("#lblCompName").text("");
+
+            } else {
+                if (contact == "" || contact == null) {
+                    $("#lblContact").text("Please select Contact Person");
+                    isValid = false;
+                }
+                if (compname == "" || compname == null) {
+                    $("#lblCompName").text("Please select Company");
+                    isValid = false;
+                }
+            }
+
+            var status = $("#STATUS").val();
+            if (status == "" || status == null) {
+                $("#lblStatus").text("Please select Status");
+                isValid = false;
+            }
+            else {
+                $("#lblStatus").text("");
+            }
+
+            var open = $("#NO_OF_OPENING").val();
+            if (open == "" || open == null) {
+                $("#lblNoopen").text("Please enter No of Opening");
+                isValid = false;
+            }
+            else {
+                if (open == "0") {
+                    $("#lblNoopen").text("No of Opening should be greater than Zero");
+                    isValid = false;
+                }
+                else
+                    $("#lblNoopen").text("");
+            }
+
+            var gender = $("#GENDER").val();
+            if (gender == "" || gender == null) {
+                $("#lblGender").text("Please select Gender");
+                isValid = false;
+            }
+            else {
+                $("#lblGender").text("");
+            }
+
+            var religion = $("#RELIGION").val();
+            if (religion == "" || religion == null) {
+                $("#lblReligion").text("Please select Religion");
+                isValid = false;
+            }
+            else {
+                $("#lblReligion").text("");
+            }
+
+            var CURRENCY = $("#CURRENCY").val();
+            if (CURRENCY == "" || CURRENCY == null) {
+                $("#lblCurrency").text("Please select Currency");
+                isValid = false;
+            }
+            else {
+                $("#lblCurrency").text("");
+            }
+
+            var SALARY_FROM = $("#SALARY_FROM").val();
+            if (SALARY_FROM == "" || SALARY_FROM == null) {
+                $("#lblSalFrom").text("Please enter Basic Salary from");
+                isValid = false;
+            }
+            else {
+                $("#lblSalFrom").text("");
+            }
+
+            var SALARY_TO = $("#SALARY_TO").val();
+            if (SALARY_TO == "" || SALARY_TO == null) {
+                $("#lblSalTo").text("Please enter Basic Salary To");
+                isValid = false;
+            }
+            else {
+                $("#lblSalTo").text("");
+            }
+
+            var salFrom = parseInt($('#SALARY_FROM').val(), 10);
+            var salTo = parseInt($('#SALARY_TO').val(), 10);
+            if (salFrom > salTo) {
+                $("#lblSalTo").text("Basic Salary To cannot be less than Basic Salary from");
+                isValid = false;
+            }
+            else {
+                $("#lblSalTo").text("");
+            }
+
+            //Check Experience Calculation
+            var min = $('#EXPERIENCE_FROM').val();
+            var max = $('#EXPERIENCE_TO').val();
+
+            if (min == "")
+                min = 0;
+            if (max == "")
+                max = 0;
+
+            var minExp = parseFloat(min, 10);
+            var maxExp = parseFloat(max, 10);
+            if (minExp > maxExp) {
+                $("#lblExperience").text("Max experience cannot be less than Min Experience.");
+                isValid = false;
+            }
+            else {
+                $("#lblExperience").text("");
+            }
+
+            //Check Age Calculation
+            var nAge = $('#AGE_FROM').val();
+            var mAge = $('#AGE_TO').val();
+
+            if (nAge == "")
+                nAge = 0;
+            if (mAge == "")
+                mAge = 0;
+
+            var minAge = parseInt(nAge, 10);
+            var maxAge = parseInt(mAge, 10);
+            if (minAge > maxAge) {
+                $("#lblAge").text("Max Age cannot be less than Min Age.");
+                isValid = false;
+            }
+            else {
+                $("#lblAge").text("");
+            }
+
+            if (isValid == false) {
+                return false;
+            }
+            else {
+                $("body").scrollTop(0);
+                //Duplication Check
+                var status = true;
+                var urlLink = '@Url.Action("DuplicateCheck", "Requirement")';
+                $.ajax({
+                    contentType: "application/json",
+                    type: 'GET',
+                    url: urlLink,
+                    traditional: true,
+                    data: {
+                        "companyName": $("#COMPANY_ID").val(),
+                        "contactPerson": $("#CONTACT_PERSON").val(),
+                        "jobTitle": $("#JOB_TITLE").val()
+                    },
+                    dataType: "json",
+                    async: true,
+                    success: function (d) {
+                        if (d == "SessionTimeout") {
+                            window.location.href = '@Url.Action("LogOut", "Login")';
+                        }
+                        if (d) {
+                            $("#divDupError").html("Record Already Exists.");
+                            $("#divDupError").show();
+                            $("#divPostSuccessMsg").hide();
+                        }
+                        else {
+                            $("#divDupError").hide();
+                            $('#requirmentForm').submit();
+                        }
+                    },
+                    error: function (ex) {
+                        $("#divDupError").hide();
+                        $("#divPostSuccessMsg").hide();
+                    }
+                });
+            }
+        });
+
+        if ($('#hdnLanguageIds').val() != '' && $('#hdnLanguageIds').val() != undefined) {
+            GenerateLanguageDiv();
+        }
+        function GetLanguageById(id) {
+            var language = ''
+            var languageOption = $('#LANGUAGE_ID >option');
+            languageOption.each(function (value) {
+                if (value == id)
+                    language = this.text;
+            })
+            return language;
+        }
+        function GenerateLanguageDiv() {
+            var hdnLanguageArr = $('#hdnLanguageIds').val().split('|');
+            var div = '';
+            hdnLanguageArr.forEach(function (value, index) {
+                var lanArr = value.split(',');
+                var isRead = (lanArr[1] == '1') ? 'Yes' : 'NO';
+                var isWrite = (lanArr[2] == '1') ? 'Yes' : 'NO';
+                var isSpeak = (lanArr[3] == '1') ? 'Yes' : 'NO';
+                var langId = lanArr[0] + ',' + lanArr[1] + ',' + lanArr[2] + ',' + lanArr[3] + ',' + lanArr[4];
+                div += "<tr><td>" + (lanArr[4]) + "</td><td>" + isRead + "</td><td>" + isWrite + "</td><td>" + isSpeak + "</td><td><a href='#' data-languageId='" + langId + "' class='lnkDelete'><span aria-hidden='true' class='glyphicon glyphicon-trash' title='Delete'></span></a></td></tr>";
+            })
+            $("#tbllanguage tbody").append(div);
+        }
+
+        var langObj = [];
+        $("#SaveLanguage").click(function (e) {
+            var LANGUAGE_ID = $("#LANGUAGE_ID").val();
+            var Language = $("#LANGUAGE_ID option:selected").text();
+            var IS_READ = $('#IS_READ').prop('checked');
+            var IS_WRITE = $('#IS_WRITE').prop('checked');
+            var IS_SPEAK = $("#IS_SPEAK").prop('checked');
+            if (LANGUAGE_ID == "" || LANGUAGE_ID == null) {
+                alert("Please select Language");
+                $("#LANGUAGE_ID").focus();
+                return false;
+            }
+            if (IS_READ == false && IS_WRITE == false && IS_SPEAK == false) {
+                alert("Please select Language source");
+                $("#IS_READ").focus();
+                return false;
+            }
+            var hdnLanguageArr = [];
+            $.each($('#hdnLanguageIds').val().split('|'), function (key, value) {
+                hdnLanguageArr.push(value.split(',')[0]);
+            });
+
+            var readBool = (IS_READ == true) ? '1' : '0';
+            var writeBool = (IS_WRITE == true) ? '1' : '0';
+            var speakBool = (IS_SPEAK == true) ? '1' : '0';
+            var latestId = LANGUAGE_ID + ',' + readBool + ',' + writeBool + ',' + speakBool + ',' + Language;
+            if ($.inArray(LANGUAGE_ID, hdnLanguageArr) != -1) {
+                alert("Please enter correct Language Details.Record already exists");
+
+            } else {
+                var ids = $('#hdnLanguageIds').val();
+                $('#hdnLanguageIds').val((ids == '') ? latestId : ids + '|' + latestId)
+                var readDiv = (IS_READ == true) ? 'Yes' : 'No';
+                var writeDiv = (IS_WRITE == true) ? 'Yes' : 'No';
+                var speakDiv = (IS_SPEAK == true) ? 'Yes' : 'No';
+                var serialNo = $('#tbllanguage tbody tr').length + 1;
+                var div = "<tr><td>" + Language + "</td><td>" + readDiv + "</td><td>" + writeDiv + "</td><td>" + speakDiv + "</td><td><a href='#' data-languageId='" + latestId + "' class='lnkDelete'><span aria-hidden='true' class='glyphicon glyphicon-trash' title='Delete'></span></a></td></tr>";
+                $("#tbllanguage tbody").append(div);
+            }
+            $("#LANGUAGE_ID").val('').trigger("chosen:updated");
+            $("#IS_READ").prop('checked', false);
+            $("#IS_WRITE").prop('checked', false);
+            $("#IS_SPEAK").prop('checked', false);
+
+            return false;
+        });
+        $("#tbllanguage").on("click", ".lnkDelete", function (e) {
+            var languageIds = $('#hdnLanguageIds').val();
+            var languageIdsArr = languageIds.split('|');
+            var rowId = $(this).attr("data-languageId");
+            var lang = $.grep(languageIdsArr, function (e) { return e != rowId; });
+            $('#hdnLanguageIds').val(lang.join('|'));
+            $(this).parent().parent().remove();
+            e.preventDefault();
+        });
+
+    });
+</script>
+
+
+
+@using (Html.BeginForm("UpdateReq", "Requirement", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "requirmentForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title" style="width:100%">
+                <div class="title_left" style="width:100%">
+                    <h3>
+                        Edit Requirement Details
+                        @Html.ActionLink("Back", "RequirementSearch", "RequirementSearch", new { }, new { @class = "btn btn-primary pull-right", @style = "color: white;background-color: #337ab7;" })
+                    </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="alert alert-danger alert-dismissable" id="divDupError" style="display:none;">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                            </div>
+                            <!-- Tabs -->
+                            <br />
+                            <div id="requirementForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                                @Html.HiddenFor(model => model.REQUIREMENT_ID, new { id = "REQUIREMENT_ID", name = "REQUIREMENT_ID" })
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Requirement Id <span class="required"></span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @string.Format("R00{0}", @Model.REQUIREMENT_ID)
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Company Name <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.COMPANY_ID, ViewData["GetCompany"] as SelectList, "Select Company", new { @id = "COMPANY_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Company", @tabindex = "1" })
+                                        @Html.ValidationMessageFor(model => model.COMPANY_ID, "", new { @class = "text-danger", @id = "lblCompName" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-md-3 col-sm-3">Contact Person <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.CONTACT_PERSON, ViewData["GetClient"] as SelectList, "Select Contact Person", new { @id = "CONTACT_PERSON", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Contact Person", @tabindex = "2" })
+                                        @Html.ValidationMessageFor(model => model.CONTACT_PERSON, "", new { @class = "text-danger", @id = "lblContact" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group groupAddress">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Status <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        @Html.DropDownListFor(model => model.STATUS_ID, ViewData["GetStatus"] as SelectList, "", new { @id = "STATUS", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Status", @tabindex = "3" })
+                                        @Html.ValidationMessageFor(model => model.IS_ACTIVE, "", new { @class = "text-danger", @id = "lblStatus" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Number of Openings <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.NO_OF_OPENINGS, new { @id = "NO_OF_OPENING", @class = "form-control  col-md-7 col-xs-12", @placeholder = "No of Opening", @autocomplete = "off", @maxlength = "3", @onkeypress = "return isNumberKey(event)", @tabindex = "4" })
+                                        @Html.ValidationMessageFor(model => model.NO_OF_OPENINGS, "", new { @class = "text-danger", @id = "lblNoopen" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Industry </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.ListBoxFor(model => model.INDUSTRY, ViewData["GetIndustry"] as SelectList, new { @id = "INDUSTRY", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Industry", @tabindex = "5" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Designation </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @if (ViewData["GetDesignation"] != null)
+                                            {
+                                        @Html.ListBoxFor(model => model.DESIGNATION, ViewData["GetDesignation"] as SelectList, new { @id = "DESIGNATION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Designation", @tabindex = "6" })
+                                        }
+                                            else
+                                            {
+                                                @Html.ListBoxFor(model => model.DESIGNATION, new SelectList(""), new { @id = "DESIGNATION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Designation" })
+                                            }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Education </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.ListBoxFor(model => model.EDUCATION, ViewData["GetEducation"] as SelectList, new { @id = "EDUCATION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Education", @tabindex = "7" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Specialization </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @if (ViewData["GetSpecialization"] != null)
+                                            {
+                                        @Html.ListBoxFor(model => model.SPECIALIZATION, ViewData["GetSpecialization"] as SelectList, new { @id = "SPECIALIZATION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Specialization", @tabindex = "8" })
+                                        }
+                                            else
+                                            {
+                                                @Html.ListBoxFor(model => model.SPECIALIZATION, new SelectList(""), new { @id = "SPECIALIZATION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Specialization" })
+                                            }
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Certification</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.ListBoxFor(model => model.CERTIFICATION, ViewData["GetCertification"] as SelectList, new { @id = "CERTIFICATION", @class = "form-control col-md-10 auto-custom", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Certification", @tabindex = "9" })
+                                        @*<input type="text" class="form-control" name="certification[]" />*@
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Experience</label>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.EXPERIENCE_FROM, new { @id = "EXPERIENCE_FROM", @class = "form-control", @placeholder = "Min", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isDecimalNumber(event)", @tabindex = "10" })
+                                        @Html.ValidationMessageFor(model => model.EXPERIENCE_FROM, "", new { @class = "text-danger", @id = "lblExperience" })
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.EXPERIENCE_TO, new { @id = "EXPERIENCE_TO", @class = "form-control", @placeholder = "Max", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isDecimalNumber(event)", @tabindex = "11" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Job Title</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.JOB_TITLE, new { @id = "JOB_TITLE", @class = "form-control", @placeholder = "Job Title", @autocomplete = "off", @maxlength = "50", @tabindex = "12" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Job Description</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextAreaFor(model => model.JOB_DESCRIPTION, new { @id = "JOB_DESCRIPTION", @class = "form-control", @placeholder = "Job Description", @autocomplete = "off", @maxlength = "1000", @tabindex = "13" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group groupAddress">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Gender <span class="required">*</span>  </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.ListBoxFor(model => model.GENDERS, ViewData["GetGender"] as SelectList, new { @id = "GENDER", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Gender", @tabindex = "14" })
+                                        @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger", @id = "lblGender" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Age</label>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.AGE_FROM, new { @id = "AGE_FROM", @class = "form-control", @placeholder = "From", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "15" })
+                                        @Html.ValidationMessageFor(model => model.AGE_FROM, "", new { @class = "text-danger", @id = "lblAge" })
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.AGE_TO, new { @id = "AGE_TO", @class = "form-control", @placeholder = "To", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "16" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Religion<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.ListBoxFor(model => model.RELIGIONS, ViewData["GetReligion"] as SelectList, new { @id = "RELIGION", @class = "form-control", @autocomplete = "off", @multiple = "multiple", @data_placeholder = "Select Religion", @tabindex = "17" })
+                                        @Html.ValidationMessageFor(model => model.RELIGIONS, "", new { @class = "text-danger", @id = "lblReligion" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle-name" class="col-xs-3 control-label">Languages</label>
+                                    <div class="col-md-5 col-sm-5">
+                                        @Html.DropDownListFor(model => model.LANGUAGE, ViewData["GetLanguage"] as SelectList, "", new { @id = "LANGUAGE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Language", @tabindex = "18" })
+                                        <input type="hidden" id="hdnLanguageIds" name="hdnLanguageIds" value="@ViewBag.hdnLanguageIds" />
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <button type="button" class="addAddress addButton" id="SaveLanguage" tabindex="22"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Read</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.CheckBoxFor(model => model.IS_READ, new { @id = "IS_READ", @autocomplete = "off", @tabindex = "19" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Write</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.CheckBoxFor(model => model.IS_WRITE, new { @id = "IS_WRITE", @autocomplete = "off", @tabindex = "20" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Speak</label>
+                                    <div class="col-md-8 col-sm-8">
+                                        @Html.CheckBoxFor(model => model.IS_SPEAK, new { @id = "IS_SPEAK", @autocomplete = "off", @tabindex = "21" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 col-sm-3"></div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <table class="table table-bordered table-striped" style="padding-right: 10em" cellspacing="0" width="10%" border="1" height="10px" id="tbllanguage">
+                                            <thead>
+                                                <tr>
+                                                    @*<th>
+                                                            ID
+                                                        </th>*@
+                                                    <th>
+                                                        Language
+                                                    </th>
+                                                    <th>
+                                                        Read
+                                                    </th>
+                                                    <th>
+                                                        Write
+                                                    </th>
+                                                    <th>
+                                                        Speak
+                                                    </th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Mode Of Interview </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.INTERVIEW_MODE_ID, ViewData["GetModeOfInterview"] as SelectList, "", new { @id = "MODE_OF_INTERVIEW", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Mode of Interview", @tabindex = "23" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle-name" class="col-xs-3 control-label">Posting Place</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.POSTING_PLACE, new { @id = "POSTING_PLACE", @class = "form-control", @placeholder = "Posting Place", @autocomplete = "off", @maxlength = "20", @tabindex = "24", @onkeypress = "return isAlphabets(event)" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="col-xs-3 control-label">Currency <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.CURRENCY_TYPE_ID, ViewData["GetCurrency"] as SelectList, "", new { @id = "CURRENCY", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Currency", @tabindex = "25" })
+                                        @Html.ValidationMessageFor(model => model.CURRENCY_TYPE_ID, "", new { @class = "text-danger", @id = "lblCurrency" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label" for="contactPerson">Basic Salary Range <span class="required">*</span> </label>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.BASIC_SALARY_RANGE_FROM, new { @id = "SALARY_FROM", @class = "form-control", @placeholder = "From", @autocomplete = "off", @maxlength = "20", @onkeypress = "return isNumberKey(event)", @tabindex = "26" })
+                                        @Html.ValidationMessageFor(model => model.BASIC_SALARY_RANGE_FROM, "", new { @class = "text-danger", @id = "lblSalFrom" })
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.TextBoxFor(model => model.BASIC_SALARY_RANGE_TO, new { @id = "SALARY_TO", @class = "form-control", @placeholder = "To", @autocomplete = "off", @maxlength = "20", @onkeypress = "return isNumberKey(event)", @tabindex = "27" })
+                                        @Html.ValidationMessageFor(model => model.BASIC_SALARY_RANGE_TO, "", new { @class = "text-danger", @id = "lblSalTo" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Housing </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.SELECTD_HOUSE_ALLOWANCE, ViewData["GetAllowance"] as SelectList, "", new { @id = "SELECTD_HOUSE_ALLOWANCE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Housing Allowance", @tabindex = "28" })
+                                    </div>
+                                </div>
+                                <!-- The option field template containing an option field and a Remove button -->
+                                <div class="form-group" id="housingOptionTemplate" style="display: none;">
+                                    <div class="col-xs-offset-3 col-xs-5">
+                                        @Html.TextBoxFor(model => model.HOUSING_ALLOWANCE, new { @id = "HOUSING_ALLOWANCE", @class = "form-control", @placeholder = "Housing Allowance", @autocomplete = "off", @maxlength = "7", @onkeypress = "return isDecimalNumber(event)", @tabindex = "29" })
+                                    </div>
+                                </div>
+
+                                <input type="hidden" value='@ViewData["FOOD"]' id="foodTypeId" name="foodTypeId" />
+                                <input type="hidden" value='@ViewData["MEDICAL"]' id="medicalTypeId" name="medicalTypeId" />
+                                <input type="hidden" value='@ViewData["HOUSE"]' id="housingTypeId" name="housingTypeId" />
+                                <input type="hidden" value='@ViewData["TRAVEL"]' id="travelTypeId" name="travelTypeId" />
+
+                                <input type="hidden" id="foodTypeDetails" name="foodTypeDetails" value="@ViewBag.foodTypeDetails" />
+                                <input type="hidden" id="medicalTypeDetails" name="medicalTypeDetails" value="@ViewBag.medicalTypeDetails" />
+                                <input type="hidden" id="housingTypeDetails" name="housingTypeDetails" value="@ViewBag.housingTypeDetails" />
+                                <input type="hidden" id="travelTypeDetails" name="travelTypeDetails" value="@ViewBag.travelTypeDetails" />
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Food </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.SELECTD_FOOD_ALLOWANCE, ViewData["GetAllowance"] as SelectList, "", new { @id = "SELECTD_FOOD_ALLOWANCE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Food Allowance", @tabindex = "30" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="foodOptionTemplate" style="display: none;">
+                                    <div class="col-xs-offset-3 col-xs-5">
+                                        @Html.TextBoxFor(model => model.FOOD_ALLOWANCE, new { @id = "FOOD_ALLOWANCE", @class = "form-control", @placeholder = "Food Allowance", @autocomplete = "off", @maxlength = "7", @onkeypress = "return isDecimalNumber(event)", @tabindex = "31" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Traveling </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.SELECTD_TRAVEL_ALLOWANCE, ViewData["GetAllowance"] as SelectList, "", new { @id = "SELECTD_TRAVEL_ALLOWANCE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Traveling Allowance", @tabindex = "32" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="travelOptionTemplate" style="display: none;">
+                                    <div class="col-xs-offset-3 col-xs-5">
+                                        @Html.TextBoxFor(model => model.TRAVELLING_ALLOWANCE, new { @id = "TRAVELLING_ALLOWANCE", @class = "form-control", @placeholder = "Traveling Allowance", @autocomplete = "off", @maxlength = "7", @onkeypress = "return isDecimalNumber(event)", @tabindex = "33" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Medical </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.SELECTD_MEDICAL_ALLOWANCE, ViewData["GetAllowance"] as SelectList, "", new { @id = "SELECTD_MEDICAL_ALLOWANCE", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Medical Allowance", @tabindex = "34" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="medicalOptionTemplate" style="display: none;">
+                                    <div class="col-xs-offset-3 col-xs-5">
+                                        @Html.TextBoxFor(model => model.MEDICAL_ALLOWANCE, new { @id = "MEDICAL_ALLOWANCE", @class = "form-control", @placeholder = "Medical Allowance", @autocomplete = "off", @maxlength = "7", @onkeypress = "return isDecimalNumber(event)", @tabindex = "35" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Overtime </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.OVERTIME, new { @id = "OVERTIME", @class = "form-control", @placeholder = "Overtime", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "36" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Trip Per Year </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.TRIP_PER_YEAR, new { @id = "TRIP_PER_YEAR", @class = "form-control", @placeholder = "Years", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "38" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label" for="ContractPeriod">Contract Period</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.CONTACT_PERIOD, new { @id = "CONTRACT_PERIOD", @class = "form-control", @placeholder = "Years", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "39" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label" for="workingHours">Working Hours </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.WORKING_HOURS, new { @id = "WORKING_HOURS", @class = "form-control", @placeholder = "Working Hours", @autocomplete = "off", @maxlength = "5", @onkeypress = "return isDecimalNumber(event)", @tabindex = "40" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label" for="contactPerson">Leaves </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.LEAVES_PER_YEAR, new { @id = "LEAVES", @class = "form-control", @placeholder = "Leaves", @autocomplete = "off", @maxlength = "2", @onkeypress = "return isNumberKey(event)", @tabindex = "41" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.REMARK, new { @id = "REMARK", @class = "form-control", @placeholder = "Remark", @autocomplete = "off", @maxlength = "200", @tabindex = "42" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-success" id="SaveRequirement" tabindex="43">Submit</button>
+                                    <div class="btn btn-default">
+                                        @Html.ActionLink("Cancel", "RequirementSearch", "RequirementSearch", new { @tabindex = "44" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

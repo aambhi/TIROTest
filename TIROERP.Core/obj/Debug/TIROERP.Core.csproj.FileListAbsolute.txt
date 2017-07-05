@@ -1,0 +1,10 @@
+F:\Project Works\TestProjectAngular\TIRO\TIROERP.Web\TIROERP.Core\bin\Debug\TIROERP.Core.dll
+F:\Project Works\TestProjectAngular\TIRO\TIROERP.Web\TIROERP.Core\bin\Debug\TIROERP.Core.pdb
+F:\Project Works\TestProjectAngular\TIRO\TIROERP.Web\TIROERP.Core\obj\Debug\TIROERP.Core.dll
+F:\Project Works\TestProjectAngular\TIRO\TIROERP.Web\TIROERP.Core\obj\Debug\TIROERP.Core.pdb
+F:\Project Works\TestProjectAngular\TIRO\TIROERP.Web\TIROERP.Core\obj\Debug\TIROERP.Core.csprojResolveAssemblyReference.cache
+F:\Project Works\TIRO\TIROERP.Core\bin\Debug\TIROERP.Core.dll
+F:\Project Works\TIRO\TIROERP.Core\bin\Debug\TIROERP.Core.pdb
+F:\Project Works\TIRO\TIROERP.Core\obj\Debug\TIROERP.Core.dll
+F:\Project Works\TIRO\TIROERP.Core\obj\Debug\TIROERP.Core.pdb
+F:\Project Works\TIRO\TIROERP.Core\obj\Debug\TIROERP.Core.csprojResolveAssemblyReference.cache

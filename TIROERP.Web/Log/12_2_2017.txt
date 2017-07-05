@@ -1,0 +1,9 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadContactDetailsPartialView?registrationNo=C220170002
+ Action: LoadContactDetailsPartialView
+ Error Message: Could not find stored procedure 'dbo.PROC_USER_CONTACT_DETAILS'.
+ Inner Exception: Could not find stored procedure 'dbo.PROC_USER_CONTACT_DETAILS'.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

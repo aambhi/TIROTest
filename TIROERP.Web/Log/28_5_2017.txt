@@ -1,0 +1,20 @@
+==================================================================
+DateTime28/05/2017 00:51:39
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/CreateReq
+ Action: CreateReq
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Requirement\CreateReq.cshtml(447): error CS1525: Invalid expression term ','
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Requirement\CreateReq.cshtml(447): error CS1525: Invalid expression term ','
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime28/05/2017 00:51:48
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/CreateReq
+ Action: CreateReq
+ Error Message: F:\Project Works\TIRO\TIROERP.Web\Views\Requirement\CreateReq.cshtml(447): error CS1525: Invalid expression term ','
+ Inner Exception: F:\Project Works\TIRO\TIROERP.Web\Views\Requirement\CreateReq.cshtml(447): error CS1525: Invalid expression term ','
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

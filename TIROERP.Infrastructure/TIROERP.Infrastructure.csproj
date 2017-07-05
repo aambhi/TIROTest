@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C702A41-365D-48B9-B0A9-05BBC5DA6157}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TIROERP.Infrastructure</RootNamespace>
+    <AssemblyName>TIROERP.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFrameworkExtras.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkExtras.EF6.1.0.0\lib\net45\EntityFrameworkExtras.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBModel\proc_Insert_Ticket_Details.cs" />
+    <Compile Include="DBModel\PROC_UPDATE_CANDIDATE.cs" />
+    <Compile Include="DBModel\PROC_USER_INSERT.cs" />
+    <Compile Include="DBModel\UDT_PROCESS.cs" />
+    <Compile Include="DBModel\UDT_TICKET_DETAILS.cs" />
+    <Compile Include="DBModel\UDT_USER_ADDRESS.cs" />
+    <Compile Include="DBModel\UDT_USER_CERTIFICATION.cs" />
+    <Compile Include="DBModel\UDT_USER_CONTACT.cs" />
+    <Compile Include="DBModel\UDT_USER_DETAILS.cs" />
+    <Compile Include="DBModel\UDT_USER_DOCUMENT.cs" />
+    <Compile Include="DBModel\UDT_USER_DRIVING.cs" />
+    <Compile Include="DBModel\UDT_USER_EDUCATION.cs" />
+    <Compile Include="DBModel\UDT_USER_EMAIL.cs" />
+    <Compile Include="DBModel\UDT_USER_EXPERIENCE.cs" />
+    <Compile Include="DBModel\UDT_USER_LANGUAGE.cs" />
+    <Compile Include="DBModel\UDT_USER_PASSPORT.cs" />
+    <Compile Include="GET_COUNTRY_STATE_CITY_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GET_DESIGNATION_BYINDUSTRY_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GET_SPECIALIZATION_BYEDUCATION_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_ALL_MASTER_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_CANDIDATE_STATUS_SEARCH_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_CANDIDATE_STATUS_SEARCH_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_CHECK_DUPLICATEREQUIREMENT_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_DOCUMENT_DOWNLOAD_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GETUSER_BYUSERTYPE_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GETUSER_BYUSERTYPE_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result3.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result4.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ADVERTISEMENT_DATA_Result5.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_AGENT_NAME_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_AGENT_NAME_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ALL_CITIES_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ALL_CITIES_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ALL_SPECIALIZATIONS_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ALL_STATES_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_ALL_STATES_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_CERTIFICATION_DETAILS_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result3.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result4.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_EDUCATION_DETAILS_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_LAYOUT_MENU_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_MENU_BY_SELECTED_USER_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_PASSPORT_DETAILS_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_PASSPORT_DETAILS_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_PASSPORT_DETAILS_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_PASSPORT_DETAILS_Result3.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_REQUIREMENT_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GET_REQUIREMENT_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT1_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result3.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result4.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_REQUIREMENT_SEARCH_RESULT_Result5.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_STATUS_SEARCH_CANDIDATE_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_STATUS_SEARCH_CANDIDATE_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_STATUS_SEARCH_CANDIDATE_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_STATUS_SEARCH_CANDIDATE_Result3.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_STATUS_SEARCH_CANDIDATE_Result4.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_ADDUPDATE_REQUIREMENT_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_ADDUPDATE_REQUIREMENT_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_ADDUPDATE_REQUIREMENT_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_LOGIN_DETAILS_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_LOGIN_DETAILS_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_USER_LOGIN_DETAILS_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_VISA_GETALLVISA_Result.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_VISA_GETALLVISA_Result1.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_VISA_GETALLVISA_Result2.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AdvertisementRepository.cs" />
+    <Compile Include="Repository\AgentRepository.cs" />
+    <Compile Include="Repository\AirlineRepository.cs" />
+    <Compile Include="Repository\CandidateRepository.cs" />
+    <Compile Include="Repository\CertificationRepository.cs" />
+    <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\ClientRepository.cs" />
+    <Compile Include="Repository\CompanyRepository.cs" />
+    <Compile Include="Repository\CountryRepository.cs" />
+    <Compile Include="Repository\DashboardRepository.cs" />
+    <Compile Include="Repository\DesignationRepository.cs" />
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\EducationRepository.cs" />
+    <Compile Include="Repository\EmigrationRepository.cs" />
+    <Compile Include="Repository\IndustryRepository.cs" />
+    <Compile Include="Repository\InterviewRepository.cs" />
+    <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Repository\MedicalRepository.cs" />
+    <Compile Include="Repository\MenuRepository.cs" />
+    <Compile Include="Repository\MofaRepository.cs" />
+    <Compile Include="Repository\PolicyRepository.cs" />
+    <Compile Include="Repository\RequirementRepository.cs" />
+    <Compile Include="Repository\SpecializationRepository.cs" />
+    <Compile Include="Repository\StateRepository.cs" />
+    <Compile Include="Repository\StatusSearchRepository.cs" />
+    <Compile Include="Repository\TaskRepository.cs" />
+    <Compile Include="Repository\TicketRepository.cs" />
+    <Compile Include="Repository\VisaEndorsementRepository.cs" />
+    <Compile Include="Repository\VisaRepository.cs" />
+    <Compile Include="TBL_ADDRESS_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_ADVERTISEMENT_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_AD_MEDIUM_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_AIRLINES_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_ALLOWANCE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_ALLOWANCE_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_AVAILING_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_BRANCH_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CAREER_STATUS_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CERTIFICATION_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CITY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_COMPANY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CONNECTED_TICKETDETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CONTACT_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_COUNTRY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_CURRENCY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_DESIGNATION_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_EDUCATION_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_EMAIL_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_EMIGRATION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_ERROR_LOG.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_GENDER_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_INDUSTRY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_INTERVIEW.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_INTERVIEW_MODE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_LANGUAGE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_LMS_MENU.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_MARITAL_STATUS_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_MEDICAL.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_MEDICAL_STATUS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_MOFA.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_NATIONALITY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_PASSPORT_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_POLICY.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_PORTAL_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_PREFIX_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REGISTRATION_COUNTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_RELIGION_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_ALLOWANCE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_GENDER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_LANGUAGE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_RELIGION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIREMENT_TYPE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIRMENT_CERTIFICATION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIRMENT_EDUCATION_TYPE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIRMENT_INDUSTRY.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_REQUIRMENT_SPECIALIZATION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_RESUME_VIEW.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_ROLE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_SAVE_TO_FOLDER_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_SOURCE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_SPECIALIZATION_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_STATE_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_STATUS_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_TASK_FOLLOWUP.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_TASK_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_TICKET.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_UNIVERSITY_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_ADDRESS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_CERTIFICATION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_CONTACTS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_DOCUMENTS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_DOCUMENT_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_DRIVING_LICENCE_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_EDUCATION_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_EMAIL_ADDRESS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_EXPERIENCE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_LANGUAGE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_MENU_MAPPING.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_PERSONAL_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_REGISTRATION.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_REQUIREMENT.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_TYPE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_USER_VISA_DETAILS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_VEHICLE_TYPE.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_VISA_ENDORSEMENT.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_VISA_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TBL_VISA_SUBMISSION_STATUS.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIROEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIROEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIROEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIROEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIROEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Tmp_TBL_TASK_MASTER.cs">
+      <DependentUpon>TIROEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\CommonRepository.cs" />
+    <Compile Include="Utilities\MultipleResultSets.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TIROERP.Core\TIROERP.Core.csproj">
+      <Project>{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}</Project>
+      <Name>TIROERP.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="TIROEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TIROEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="TIROEntities.edmx.diagram">
+      <DependentUpon>TIROEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TIROEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TIROEntities.Context.cs</LastGenOutput>
+      <DependentUpon>TIROEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="TIROEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TIROEntities.edmx</DependentUpon>
+      <LastGenOutput>TIROEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

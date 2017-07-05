@@ -1,0 +1,12 @@
+==================================================================
+DateTime27-Mar-17 3:48:47 PM
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C320160011
+ Action: GetCandidateDetails
+ Error Message: Value cannot be null or empty.
+Parameter name: linkText
+ Inner Exception: Value cannot be null or empty.
+Parameter name: linkText
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================

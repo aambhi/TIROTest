@@ -1,0 +1,72 @@
+﻿@model TIROERP.Core.Model.UserLogin
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arbab</title>
+
+<!-- Bootstrap core CSS -->
+
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<!-- Custom styling plus plugins -->
+<link href="~/Content/css/custom.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    Session["UserDetails"] = null;
+    <body style="background:#F7F7F7;">
+
+        <div class="center">
+            <a class="hiddenanchor" id="toregister"></a>
+            <a class="hiddenanchor" id="tologin"></a>
+            <div id="wrapper">
+                <div id="login" class="animate form">
+                    <div class="login_content">
+                        <form>
+                            <h1>Login Form</h1>
+                            <div>
+                                @Html.TextBoxFor(model => model.User_Code, new { @class = "form-control", @placeholder = "Username", @autocomplete = "off", @maxlength = 20 })
+
+                            </div>
+                            <br />
+                            <div>
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @autocomplete = "off", @maxlength = 20, @type = "password" })
+                            </div>
+                            <br />
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <div class="center">
+                                <button type="submit" id="btnSubmit" class="btn btn-primary" title="Submit" value="Submit">LogIn</button>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="separator">
+                                <div class="clearfix"></div>
+                                <br />
+                                <div>
+                                    <h2>
+                                        <img src="~/Content/img/newlogog.png" alt="ARBAB TRAVEL SERVICES" />
+                                        ARBAB TRAVEL SERVICES
+                                    </h2>
+                                    <p>©2017 All Rights Reserved.</p>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- form -->
+                    </div>
+                    <!-- content -->
+                </div>
+
+            </div>
+        </div>
+    </body>
+
+}

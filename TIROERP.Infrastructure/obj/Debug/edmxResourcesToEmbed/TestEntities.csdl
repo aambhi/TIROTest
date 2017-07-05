@@ -1,0 +1,2702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArbabTravelsERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION_Result">
+    <Property Name="SPECIALIZATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EDUCATION_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CERTIFICATION_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LANGUAGES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GENDERS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DESIGNATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RELIGIONS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="INDUSTRY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="FUNC_REQUIREMENT_INDUSTRY_TYPE_Result">
+    <Property Name="INDUSTRY_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="FUNC_USER_contact_Result">
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="FUNC_USER_CONTACTS_Result">
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="FUNC_USER_EMAIL_ADDRESS_Result">
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="user_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="FUNC_USER_HIGHEST_EDUCATION_Result">
+    <Property Name="HIGHEST_EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="Split_Result">
+    <Property Name="Item" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <EntityType Name="TBL_AD_MEDIUM_MASTER">
+    <Key>
+      <PropertyRef Name="AD_MEDIUM_ID" />
+    </Key>
+    <Property Name="AD_MEDIUM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AD_MEDIUM_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_ADDRESS_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="ADDRESS_TYPE_ID" />
+    </Key>
+    <Property Name="ADDRESS_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADDRESS_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TYPE_FOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_ADVERTISEMENT_MASTER">
+    <Key>
+      <PropertyRef Name="ADV_ID" />
+    </Key>
+    <Property Name="ADV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PAPER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AD_AGENCY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EXPENSES" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="FILE_PATH" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADV_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_AIRLINES_MASTER">
+    <Key>
+      <PropertyRef Name="AirlinesId" />
+    </Key>
+    <Property Name="AirlinesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AirlinesName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_ALLOWANCE_MASTER">
+    <Key>
+      <PropertyRef Name="ALLOWANCE_ID" />
+    </Key>
+    <Property Name="ALLOWANCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ALLOWANCE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_REQUIREMENT_ALLOWANCE" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER" FromRole="TBL_ALLOWANCE_MASTER" ToRole="TBL_REQUIREMENT_ALLOWANCE" />
+  </EntityType>
+  <EntityType Name="TBL_ALLOWANCE_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+    </Key>
+    <Property Name="ALLOWANCE_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ALLOWANCE_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <NavigationProperty Name="TBL_REQUIREMENT_ALLOWANCE" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER" FromRole="TBL_ALLOWANCE_TYPE_MASTER" ToRole="TBL_REQUIREMENT_ALLOWANCE" />
+  </EntityType>
+  <EntityType Name="TBL_AVAILING_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="AVAILING_TYPE_ID" />
+    </Key>
+    <Property Name="AVAILING_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AVAILING_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TYPE_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_CAREER_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="CAREER_STATUS_ID" />
+    </Key>
+    <Property Name="CAREER_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAREER_STATUS_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STATUS_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_CERTIFICATION_MASTER">
+    <Key>
+      <PropertyRef Name="CERTIFICATION_ID" />
+    </Key>
+    <Property Name="CERTIFICATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CERTIFICATION_NAME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_CITY_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CITY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="STATE_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="CITY_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TBL_COMPANY_MASTER">
+    <Key>
+      <PropertyRef Name="COMPANY_ID" />
+    </Key>
+    <Property Name="COMPANY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANY_NAME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTACT_PERSON" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_CONNECTED_TICKETDETAILS">
+    <Key>
+      <PropertyRef Name="ConnectTicketID" />
+    </Key>
+    <Property Name="ConnectTicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketID" Type="Int32" />
+    <Property Name="PnrNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TicketNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FlightNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsBooked" Type="Boolean" />
+    <Property Name="IsCancelled" Type="Boolean" />
+    <Property Name="DepartureCityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DepartureDate" Type="DateTime" Precision="0" />
+    <Property Name="DepartureTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+    <Property Name="ArrivalTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DestinationCityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_CONTACT_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="CONTACT_TYPE_ID" />
+    </Key>
+    <Property Name="CONTACT_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CONTACT_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_COUNTRY_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TBL_CURRENCY_MASTER">
+    <Key>
+      <PropertyRef Name="CURRENCY_ID" />
+    </Key>
+    <Property Name="CURRENCY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CURRENCY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CURRENCY_SYMBOL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_DESIGNATION_MASTER">
+    <Key>
+      <PropertyRef Name="DESIGNATION_ID" />
+    </Key>
+    <Property Name="DESIGNATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="INDUSTRY_ID" Type="Int32" Nullable="false" />
+    <Property Name="DESIGNATION_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_INDUSTRY_MASTER" Relationship="Self.FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER" FromRole="TBL_DESIGNATION_MASTER" ToRole="TBL_INDUSTRY_MASTER" />
+  </EntityType>
+  <EntityType Name="TBL_EDUCATION_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="EDUCATION_TYPE_ID" />
+    </Key>
+    <Property Name="EDUCATION_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EDUCATION_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_EMAIL_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="EMAIL_TYPE_ID" />
+    </Key>
+    <Property Name="EMAIL_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EMAIL_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="TBL_EMIGRATION">
+    <Key>
+      <PropertyRef Name="EMIGRATION_ID" />
+    </Key>
+    <Property Name="EMIGRATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" />
+    <Property Name="FE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PT_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DM_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DM_DATE" Type="DateTime" Precision="3" />
+    <Property Name="POLICY_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POLICY_DATE" Type="DateTime" Precision="3" />
+    <Property Name="POLICY_AMOUNT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="POLICY_COMPANYNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="POLICY_ATTACHMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SUBMISSION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="EMIGRATION_CLEARANCENO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMIGRATION_ATTACHMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="POE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ECR" Type="Boolean" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT" FromRole="TBL_EMIGRATION" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_ERROR_LOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PAGE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PAGE_URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="METHOD_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ERROR_MESSAGE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="INNER_EXCEPTION_MESSAGE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="USER_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_CODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_GENDER_MASTER">
+    <Key>
+      <PropertyRef Name="GENDER_CODE" />
+    </Key>
+    <Property Name="GENDER_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="GENDER_NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GENDER_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_INDUSTRY_MASTER">
+    <Key>
+      <PropertyRef Name="INDUSTRY_ID" />
+    </Key>
+    <Property Name="INDUSTRY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="INDUSTRY_TYPE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_DESIGNATION_MASTER" Relationship="Self.FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER" FromRole="TBL_INDUSTRY_MASTER" ToRole="TBL_DESIGNATION_MASTER" />
+  </EntityType>
+  <EntityType Name="TBL_INTERVIEW">
+    <Key>
+      <PropertyRef Name="InterviewID" />
+    </Key>
+    <Property Name="InterviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_ID" Type="Int32" />
+    <Property Name="Agent_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RequirementID" Type="Int32" />
+    <Property Name="InterviewModeId" Type="Int32" Nullable="false" />
+    <Property Name="InterviewDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InterviewVenue" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="InterviewExpenses" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="InterviewRemark" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TBL_INTERVIEW_MODE_MASTER" Relationship="Self.FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER" FromRole="TBL_INTERVIEW" ToRole="TBL_INTERVIEW_MODE_MASTER" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS" FromRole="TBL_INTERVIEW" ToRole="TBL_REQUIREMENT_DETAILS" />
+    <NavigationProperty Name="TBL_USER_DETAILS" Relationship="Self.FK_TBL_INTERVIEW_TBL_USER_DETAILS" FromRole="TBL_INTERVIEW" ToRole="TBL_USER_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_INTERVIEW_MODE_MASTER">
+    <Key>
+      <PropertyRef Name="INTERVIEW_MODE_ID" />
+    </Key>
+    <Property Name="INTERVIEW_MODE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="INTERVIEW_MODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TBL_INTERVIEW" Relationship="Self.FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER" FromRole="TBL_INTERVIEW_MODE_MASTER" ToRole="TBL_INTERVIEW" />
+  </EntityType>
+  <EntityType Name="TBL_LANGUAGE_MASTER">
+    <Key>
+      <PropertyRef Name="LANGUAGE_ID" />
+    </Key>
+    <Property Name="LANGUAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LANGUAGE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_MARITAL_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="MARITAL_STATUS_ID" />
+    </Key>
+    <Property Name="MARITAL_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MARITAL_STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MARITAL_STATUS_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_MEDICAL">
+    <Key>
+      <PropertyRef Name="MedicalId" />
+    </Key>
+    <Property Name="MedicalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="DoctorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CheckupDate" Type="DateTime" Precision="0" />
+    <Property Name="TokenNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ReportDate" Type="DateTime" Precision="0" />
+    <Property Name="MedicalStatus" Type="Int32" />
+    <Property Name="ReportPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_MEDICAL_TBL_USER_REQUIREMENT" FromRole="TBL_MEDICAL" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_MEDICAL_STATUS">
+    <Key>
+      <PropertyRef Name="MedicalStatusID" />
+    </Key>
+    <Property Name="MedicalStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedicalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_MOFA">
+    <Key>
+      <PropertyRef Name="MofaID" />
+    </Key>
+    <Property Name="MofaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" />
+    <Property Name="MofaNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MofaDate" Type="DateTime" Precision="0" />
+    <Property Name="ApplicationNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationDate" Type="DateTime" Precision="0" />
+    <Property Name="HealthNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="HealthDate" Type="DateTime" Precision="0" />
+    <Property Name="DDNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DDDate" Type="DateTime" Precision="0" />
+    <Property Name="MofaFilePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MofaRemark" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_MOFA_TBL_USER_REQUIREMENT" FromRole="TBL_MOFA" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_PASSPORT_DETAILS">
+    <Key>
+      <PropertyRef Name="PASSPORT_ID" />
+    </Key>
+    <Property Name="PASSPORT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSPORT_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_OF_ISSUE" Type="DateTime" Precision="0" />
+    <Property Name="PLACE_OF_ISSUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_OF_EXPIRY" Type="DateTime" Precision="0" />
+    <Property Name="EMIGRATION_CLEARANCE_REQUIRED" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_POLICY">
+    <Key>
+      <PropertyRef Name="POLICYID" />
+    </Key>
+    <Property Name="POLICYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="Policy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyDate" Type="DateTime" Precision="0" />
+    <Property Name="PolicyFees" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PolicyRemark" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_POLICY_TBL_USER_REQUIREMENT" FromRole="TBL_POLICY" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_PREFIX_MASTER">
+    <Key>
+      <PropertyRef Name="PREFIX_ID" />
+    </Key>
+    <Property Name="PREFIX_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PREFIX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PREFIX_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Int32" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_REGISTRATION_COUNTER">
+    <Key>
+      <PropertyRef Name="COUNTER_ID" />
+    </Key>
+    <Property Name="COUNTER_ID" Type="Int32" Nullable="false" />
+    <Property Name="COUNTER_FOR" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COUNTER_PREFIX" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CURRENT_VALUE" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_RELIGION_MASTER">
+    <Key>
+      <PropertyRef Name="RELIGION_ID" />
+    </Key>
+    <Property Name="RELIGION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RELIGION_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RELIGION_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_ALLOWANCE">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_ALLOWANCE_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_ALLOWANCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ALLOWANCE_ID" Type="Int32" />
+    <Property Name="REQUIRMENT_ID" Type="Int32" />
+    <Property Name="IS_INCLUDED" Type="Boolean" />
+    <Property Name="IS_ALLOWANCE" Type="Boolean" />
+    <Property Name="ALLOWANCE_AMOUNT" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="IS_NOT_APPLICABLE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ALLOWANCE_TYPE_ID" Type="Int32" />
+    <NavigationProperty Name="TBL_ALLOWANCE_MASTER" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER" FromRole="TBL_REQUIREMENT_ALLOWANCE" ToRole="TBL_ALLOWANCE_MASTER" />
+    <NavigationProperty Name="TBL_ALLOWANCE_TYPE_MASTER" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER" FromRole="TBL_REQUIREMENT_ALLOWANCE" ToRole="TBL_ALLOWANCE_TYPE_MASTER" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_ALLOWANCE" ToRole="TBL_REQUIREMENT_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_DETAILS">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANY_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RECIEVED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="NO_OF_OPENINGS" Type="Int32" />
+    <Property Name="EXPERIENCE" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="JOB_DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="AGE" Type="Int32" />
+    <Property Name="RELIGION_ID" Type="Int32" />
+    <Property Name="INTERVIEW_MODE_ID" Type="Int32" />
+    <Property Name="SPECIALIZATION_ID" Type="Int32" />
+    <Property Name="POSTING_PLACE" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CURRENCY_TYPE_ID" Type="Int32" />
+    <Property Name="BASIC_RANGE" Type="Int32" />
+    <Property Name="OVERTIME" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TRIP_PER_YEAR" Type="Int32" />
+    <Property Name="CONTACT_PERIOD" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="WORKING_HOURS" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="LEAVES_PER_YEAR" Type="Int32" />
+    <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="EXPERIENCE_FROM" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="EXPERIENCE_TO" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AGE_FROM" Type="Int32" />
+    <Property Name="AGE_TO" Type="Int32" />
+    <Property Name="BASIC_SALARY_RANGE_TO" Type="Int32" />
+    <Property Name="BASIC_SALARY_RANGE_FROM" Type="Int32" />
+    <Property Name="CONTACT_PERSON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="JOB_TITLE" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_INTERVIEW" Relationship="Self.FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_INTERVIEW" />
+    <NavigationProperty Name="TBL_REQUIREMENT_ALLOWANCE" Relationship="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_REQUIREMENT_ALLOWANCE" />
+    <NavigationProperty Name="TBL_REQUIREMENT_GENDER" Relationship="Self.FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_REQUIREMENT_GENDER" />
+    <NavigationProperty Name="TBL_REQUIREMENT_LANGUAGE" Relationship="Self.FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_REQUIREMENT_LANGUAGE" />
+    <NavigationProperty Name="TBL_REQUIREMENT_RELIGION" Relationship="Self.FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_REQUIREMENT_RELIGION" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_DETAILS" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_GENDER">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_GENDER_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_GENDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER" FromRole="TBL_REQUIREMENT_GENDER" ToRole="TBL_REQUIREMENT_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_LANGUAGE">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_LANGUAGE_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_LANGUAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIRMENT_ID" Type="Int32" />
+    <Property Name="LANGUAGE_ID" Type="Int32" />
+    <Property Name="CAN_READ" Type="Boolean" />
+    <Property Name="CAN_WRITE" Type="Boolean" />
+    <Property Name="CAN_SPEAK" Type="Boolean" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_LANGUAGE" ToRole="TBL_REQUIREMENT_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_RELIGION">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_RELIIGION_ID" />
+    </Key>
+    <Property Name="REQUIREMENT_RELIIGION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="RELIGION_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS" FromRole="TBL_REQUIREMENT_RELIGION" ToRole="TBL_REQUIREMENT_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_CERTIFICATION">
+    <Key>
+      <PropertyRef Name="REQIREMENT_CERTIFICATION_ID" />
+    </Key>
+    <Property Name="REQIREMENT_CERTIFICATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="CERTIFICATION_ID" Type="Int32" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_EDUCATION_TYPE">
+    <Key>
+      <PropertyRef Name="REQIREMENT_EDUCATION_TYPE_ID" />
+    </Key>
+    <Property Name="REQIREMENT_EDUCATION_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="EDUCATION_TYPE_ID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_INDUSTRY">
+    <Key>
+      <PropertyRef Name="REQIREMENT_INDUSTRY_ID" />
+    </Key>
+    <Property Name="REQIREMENT_INDUSTRY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="INDUSTRY_ID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_SPECIALIZATION">
+    <Key>
+      <PropertyRef Name="REQIREMENT_SPECIALIZATION_ID" />
+    </Key>
+    <Property Name="REQIREMENT_SPECIALIZATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="SPECIALIZATION_ID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_RESUME_VIEW">
+    <Key>
+      <PropertyRef Name="RESUME_VIEW_ID" />
+    </Key>
+    <Property Name="RESUME_VIEW_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VIEWED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_ROLE_MASTER">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROLE_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_SOURCE_MASTER">
+    <Key>
+      <PropertyRef Name="SOURCE_ID" />
+    </Key>
+    <Property Name="SOURCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOURCE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOURCE_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_SPECIALIZATION_MASTER">
+    <Key>
+      <PropertyRef Name="SPECIALIZATION_ID" />
+    </Key>
+    <Property Name="SPECIALIZATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EDUCATION_TYPE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPECIALIZATION_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_STATE_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="STATE_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="STATE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TBL_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="STATUS_ID" />
+    </Key>
+    <Property Name="STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS_ORDER" Type="Int32" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_TASK_FOLLOWUP">
+    <Key>
+      <PropertyRef Name="TASK_FOLLOWUP_ID" />
+    </Key>
+    <Property Name="TASK_FOLLOWUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TASK_ID" Type="Int32" />
+    <Property Name="TASK_COMMENT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PERC_COMPLETED" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_TASK_MASTER">
+    <Key>
+      <PropertyRef Name="TASK_ID" />
+    </Key>
+    <Property Name="TASK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TASK_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TASK_ASSIGNED_TO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PERC_COMPLETED" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="TASK_COMMENT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_TICKET">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="TicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="AirlinesID" Type="Int32" />
+    <Property Name="OtherAirlines" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsDirect" Type="Boolean" />
+    <Property Name="PnrNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TicketNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FlightNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsBooked" Type="Boolean" />
+    <Property Name="IsCancelled" Type="Boolean" />
+    <Property Name="DepartureCityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DepartureDate" Type="DateTime" Precision="0" />
+    <Property Name="DepartureTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DestinationCityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ArivalDate" Type="DateTime" Precision="0" />
+    <Property Name="ArrivalTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ReportPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="createdBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_TICKET_TBL_USER_REQUIREMENT" FromRole="TBL_TICKET" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_UNIVERSITY_MASTER">
+    <Key>
+      <PropertyRef Name="UNIVERSITY_ID" />
+    </Key>
+    <Property Name="UNIVERSITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UNIVERSITY_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_USER_ADDRESS">
+    <Key>
+      <PropertyRef Name="USER_ADDRESS_ID" />
+    </Key>
+    <Property Name="USER_ADDRESS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS_TYPE_ID" Type="Int32" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CITY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="USER_VILLAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_PINCODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="STATE_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_CERTIFICATION">
+    <Key>
+      <PropertyRef Name="USER_CERTIFICATION_ID" />
+    </Key>
+    <Property Name="USER_CERTIFICATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CERTIFICATION" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CERTIFICATION_LEVEL" Type="Int32" />
+    <Property Name="INSTITUTE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="YEAR_OF_PASSING" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_USER_CONTACTS">
+    <Key>
+      <PropertyRef Name="USER_CONTACT_ID" />
+    </Key>
+    <Property Name="USER_CONTACT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_TYPE_ID" Type="Int32" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DETAILS">
+    <Key>
+      <PropertyRef Name="REGISTRATION_NO" />
+    </Key>
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USER_TYPE_ID" Type="Int32" Nullable="false" />
+    <Property Name="AVAILING_TYPE_ID" Type="Int32" />
+    <Property Name="SOURCE_ID" Type="Int32" />
+    <Property Name="STATUS_ID" Type="Int32" />
+    <Property Name="VISIT_NUMBER" Type="Int32" />
+    <Property Name="REQUIREMENT_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LOGIN_ACCESS" Type="Boolean" Nullable="false" />
+    <Property Name="LOGIN_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_IMAGE_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="REMARK" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_EXPERIENCED" Type="Boolean" />
+    <Property Name="WEBSITE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SKYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_REMARK" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="EDUCATION_REMARK" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="WORK_REMARK" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="BRANCH_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CIVILIAN_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CLIENT_DESIGNATION" Type="Int32" />
+    <Property Name="CLIENT_INDUSTRY_ID" Type="Int32" />
+    <Property Name="REFERENCE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GAMCA_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OTHER_SOURCE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="REFERRER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMPANY_NAME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="DESIGNATION_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="INDUSTRY_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL_WORK_EXPERIENCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL_GULF_EXPERIENCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SKILLS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CLINIC_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VISA_ID" Type="Int32" />
+    <Property Name="POST_APPLIED_FOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_INTERVIEW" Relationship="Self.FK_TBL_INTERVIEW_TBL_USER_DETAILS" FromRole="TBL_USER_DETAILS" ToRole="TBL_INTERVIEW" />
+    <NavigationProperty Name="TBL_USER_DOCUMENTS" Relationship="Self.FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS" FromRole="TBL_USER_DETAILS" ToRole="TBL_USER_DOCUMENTS" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS" FromRole="TBL_USER_DETAILS" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DOCUMENT_MASTER">
+    <Key>
+      <PropertyRef Name="DOCUMENT_TYPE_ID" />
+    </Key>
+    <Property Name="DOCUMENT_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOCUMENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOCUMENT_PATH" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DOCUMENTS">
+    <Key>
+      <PropertyRef Name="DOCUMENT_ID" />
+    </Key>
+    <Property Name="DOCUMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT_TYPE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT_PATH" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_USER_DETAILS" Relationship="Self.FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS" FromRole="TBL_USER_DOCUMENTS" ToRole="TBL_USER_DETAILS" />
+  </EntityType>
+  <EntityType Name="TBL_USER_DRIVING_LICENCE_DETAILS">
+    <Key>
+      <PropertyRef Name="DRIVING_LICENCE_ID" />
+    </Key>
+    <Property Name="DRIVING_LICENCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DRIVING_LICENCE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PLACE_OF_ISSUE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_OF_ISSUE" Type="DateTime" Precision="0" />
+    <Property Name="EXPIRY_DATE" Type="DateTime" Precision="0" />
+    <Property Name="VEHICLE_TYPE_ID" Type="Int32" />
+    <Property Name="REMARK" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EDUCATION_DETAILS">
+    <Key>
+      <PropertyRef Name="USER_EDUCATION_ID" />
+    </Key>
+    <Property Name="USER_EDUCATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EDUCATION_TYPE_ID" Type="Int32" />
+    <Property Name="SPECIALIZATION_TYPE_ID" Type="Int32" />
+    <Property Name="UNIVERSITY_ID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="UNIVERSITY_YEAR_OF_PASSING" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="IS_HIGHEST_QUALIFICATION" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EMAIL_ADDRESS">
+    <Key>
+      <PropertyRef Name="USER_EMAIL_ID" />
+    </Key>
+    <Property Name="USER_EMAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="USER_EMAIL" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_EXPERIENCE">
+    <Key>
+      <PropertyRef Name="EXPERIENCE_ID" />
+    </Key>
+    <Property Name="EXPERIENCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USER_COMPANY_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_CURRENT_COMPANY" Type="Boolean" />
+    <Property Name="DESIGNATION_ID" Type="Int32" />
+    <Property Name="INDUSTRY_ID" Type="Int32" />
+    <Property Name="CITY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL_WORK_EXPERIENCE" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="REMARK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="WORK_PERIOD_FROM" Type="DateTime" Precision="3" />
+    <Property Name="WORK_PERIOD_TO" Type="DateTime" Precision="3" />
+    <Property Name="STATE_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_LANGUAGE">
+    <Key>
+      <PropertyRef Name="USER_LANGUAGE_ID" />
+    </Key>
+    <Property Name="USER_LANGUAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LANGUAGE_ID" Type="Int32" Nullable="false" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_READ" Type="Boolean" Nullable="false" />
+    <Property Name="IS_WRITE" Type="Boolean" Nullable="false" />
+    <Property Name="IS_SPEAK" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_MENU_MAPPING">
+    <Key>
+      <PropertyRef Name="USER_MENU_ID" />
+    </Key>
+    <Property Name="USER_MENU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MENU_ID" Type="Int32" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="USER_TYPE_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_USER_PERSONAL_DETAILS">
+    <Key>
+      <PropertyRef Name="REGISTRATION_NO" />
+    </Key>
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MIDDLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FATHER_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="MOTHER_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="3" />
+    <Property Name="PLACE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MARITAL_STATUS_ID" Type="Int32" />
+    <Property Name="NATIONALITY_ID" Type="Int32" />
+    <Property Name="CURRENT_LOCATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RELIGION_ID" Type="Int32" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_REGISTRATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REG_MONTH" Type="Int32" />
+    <Property Name="REG_YEAR" Type="Int32" />
+    <Property Name="USER_TYPE_ID" Type="Int32" />
+    <Property Name="CURRENT_COUNTER" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_USER_REQUIREMENT">
+    <Key>
+      <PropertyRef Name="USER_REQUIREMENT_ID" />
+    </Key>
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CANDIDATE_STATUS" Type="Int32" Nullable="false" />
+    <Property Name="CURRENT_STATUS" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TBL_EMIGRATION" Relationship="Self.FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_EMIGRATION" />
+    <NavigationProperty Name="TBL_MEDICAL" Relationship="Self.FK_TBL_MEDICAL_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_MEDICAL" />
+    <NavigationProperty Name="TBL_MOFA" Relationship="Self.FK_TBL_MOFA_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_MOFA" />
+    <NavigationProperty Name="TBL_POLICY" Relationship="Self.FK_TBL_POLICY_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_POLICY" />
+    <NavigationProperty Name="TBL_REQUIREMENT_DETAILS" Relationship="Self.FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_REQUIREMENT_DETAILS" />
+    <NavigationProperty Name="TBL_TICKET" Relationship="Self.FK_TBL_TICKET_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_TICKET" />
+    <NavigationProperty Name="TBL_USER_DETAILS" Relationship="Self.FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_USER_DETAILS" />
+    <NavigationProperty Name="TBL_VISA_ENDORSEMENT" Relationship="Self.FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT" FromRole="TBL_USER_REQUIREMENT" ToRole="TBL_VISA_ENDORSEMENT" />
+  </EntityType>
+  <EntityType Name="TBL_USER_TYPE">
+    <Key>
+      <PropertyRef Name="USER_TYPE_ID" />
+    </Key>
+    <Property Name="USER_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_VISA_DETAILS">
+    <Key>
+      <PropertyRef Name="USER_VISA_ID" />
+    </Key>
+    <Property Name="USER_VISA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VISA_ID" Type="Int32" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_VEHICLE_TYPE">
+    <Key>
+      <PropertyRef Name="VEHICLE_TYPE_ID" />
+    </Key>
+    <Property Name="VEHICLE_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VEHICLE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VEHICLE_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_ENDORSEMENT">
+    <Key>
+      <PropertyRef Name="VisaEndorsementId" />
+    </Key>
+    <Property Name="VisaEndorsementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_REQUIREMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SubmissionDate" Type="DateTime" Precision="0" />
+    <Property Name="SubmissionStatusID" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="VisaEndorsementFilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_USER_REQUIREMENT" Relationship="Self.FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT" FromRole="TBL_VISA_ENDORSEMENT" ToRole="TBL_USER_REQUIREMENT" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_MASTER">
+    <Key>
+      <PropertyRef Name="VISA_ID" />
+    </Key>
+    <Property Name="VISA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIVILIAN_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VISA_NUMBER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PLACE_OF_ENDORSEMENT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ISSUE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EXPIRY_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RECIEVED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FILE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="REMARK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="PURPOSE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_VISA_SUBMISSION_STATUS">
+    <Key>
+      <PropertyRef Name="VisaSubmissionStatusID" />
+    </Key>
+    <Property Name="VisaSubmissionStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubmissionStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_BRANCH_MASTER">
+    <Key>
+      <PropertyRef Name="BRANCH_CODE" />
+      <PropertyRef Name="BRANCH_NAME" />
+    </Key>
+    <Property Name="BRANCH_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BRANCH_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_LMS_MENU">
+    <Key>
+      <PropertyRef Name="LMS_MENU_ID" />
+    </Key>
+    <Property Name="LMS_MENU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MENU_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MENU_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MENU_URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PARENT_MENU_ID" Type="Int32" />
+    <Property Name="IS_PARENT" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="REMARK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PAGE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTROLLER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MENU_ICON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_NATIONALITY_MASTER">
+    <Key>
+      <PropertyRef Name="NATIONALITY_ID" />
+    </Key>
+    <Property Name="NATIONALITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NATIONALITY" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_PORTAL_MASTER">
+    <Key>
+      <PropertyRef Name="PORTAL_ID" />
+    </Key>
+    <Property Name="PORTAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PORTAL_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_STATUS_MASTER">
+    <Key>
+      <PropertyRef Name="STATUS_ID" />
+      <PropertyRef Name="STATUS_NAME" />
+    </Key>
+    <Property Name="STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STATUS_VAL" Type="Boolean" />
+    <Property Name="STATUS_ORDER" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIREMENT_TYPE_MASTER">
+    <Key>
+      <PropertyRef Name="REQUIREMENT_TYPE_ID" />
+      <PropertyRef Name="REQUIREMENT_TYPE" />
+      <PropertyRef Name="IS_ACTIVE" />
+      <PropertyRef Name="CREATED_DATE" />
+    </Key>
+    <Property Name="REQUIREMENT_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TBL_REQUIRMENT_DESIGNATION">
+    <Key>
+      <PropertyRef Name="REQIREMENT_DESGNATION_ID" />
+    </Key>
+    <Property Name="REQIREMENT_DESGNATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUIREMENT_ID" Type="Int32" />
+    <Property Name="DESIGNATION_ID" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_SAVE_TO_FOLDER_DETAILS">
+    <Key>
+      <PropertyRef Name="FOLDER_ID" />
+      <PropertyRef Name="REGISTRATION_NO" />
+      <PropertyRef Name="FOLDER_NAME" />
+    </Key>
+    <Property Name="FOLDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTRATION_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FOLDER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Tmp_TBL_TASK_MASTER">
+    <Key>
+      <PropertyRef Name="TASK_ID" />
+    </Key>
+    <Property Name="TASK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TASK_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TASK_ASSIGNED_TO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PERC_COMPLETED" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER">
+    <End Role="TBL_ALLOWANCE_MASTER" Type="Self.TBL_ALLOWANCE_MASTER" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ALLOWANCE_MASTER">
+        <PropertyRef Name="ALLOWANCE_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="ALLOWANCE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER">
+    <End Role="TBL_ALLOWANCE_TYPE_MASTER" Type="Self.TBL_ALLOWANCE_TYPE_MASTER" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ALLOWANCE_TYPE_MASTER">
+        <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="ALLOWANCE_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER">
+    <End Role="TBL_INDUSTRY_MASTER" Type="Self.TBL_INDUSTRY_MASTER" Multiplicity="1" />
+    <End Role="TBL_DESIGNATION_MASTER" Type="Self.TBL_DESIGNATION_MASTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_INDUSTRY_MASTER">
+        <PropertyRef Name="INDUSTRY_ID" />
+      </Principal>
+      <Dependent Role="TBL_DESIGNATION_MASTER">
+        <PropertyRef Name="INDUSTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="0..1" />
+    <End Role="TBL_EMIGRATION" Type="Self.TBL_EMIGRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_EMIGRATION">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER">
+    <End Role="TBL_INTERVIEW_MODE_MASTER" Type="Self.TBL_INTERVIEW_MODE_MASTER" Multiplicity="1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_INTERVIEW_MODE_MASTER">
+        <PropertyRef Name="INTERVIEW_MODE_ID" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="InterviewModeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="RequirementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_INTERVIEW_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_INTERVIEW" Type="Self.TBL_INTERVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_INTERVIEW">
+        <PropertyRef Name="Agent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MEDICAL_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_MEDICAL" Type="Self.TBL_MEDICAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_MEDICAL">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MOFA_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="0..1" />
+    <End Role="TBL_MOFA" Type="Self.TBL_MOFA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_MOFA">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_POLICY_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_POLICY" Type="Self.TBL_POLICY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_POLICY">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_ALLOWANCE" Type="Self.TBL_REQUIREMENT_ALLOWANCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_ALLOWANCE">
+        <PropertyRef Name="REQUIRMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_GENDER" Type="Self.TBL_REQUIREMENT_GENDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_GENDER">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_LANGUAGE" Type="Self.TBL_REQUIREMENT_LANGUAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_LANGUAGE">
+        <PropertyRef Name="REQUIRMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_REQUIREMENT_RELIGION" Type="Self.TBL_REQUIREMENT_RELIGION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_REQUIREMENT_RELIGION">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS">
+    <End Role="TBL_REQUIREMENT_DETAILS" Type="Self.TBL_REQUIREMENT_DETAILS" Multiplicity="1" />
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_REQUIREMENT_DETAILS">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_TICKET_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_TICKET" Type="Self.TBL_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_TICKET">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="0..1" />
+    <End Role="TBL_USER_DOCUMENTS" Type="Self.TBL_USER_DOCUMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_USER_DOCUMENTS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS">
+    <End Role="TBL_USER_DETAILS" Type="Self.TBL_USER_DETAILS" Multiplicity="1" />
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_DETAILS">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Principal>
+      <Dependent Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="REGISTRATION_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT">
+    <End Role="TBL_USER_REQUIREMENT" Type="Self.TBL_USER_REQUIREMENT" Multiplicity="1" />
+    <End Role="TBL_VISA_ENDORSEMENT" Type="Self.TBL_VISA_ENDORSEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER_REQUIREMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Principal>
+      <Dependent Role="TBL_VISA_ENDORSEMENT">
+        <PropertyRef Name="USER_REQUIREMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArbabTravelsERPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_AD_MEDIUM_MASTER" EntityType="Self.TBL_AD_MEDIUM_MASTER" />
+    <EntitySet Name="TBL_ADDRESS_TYPE_MASTER" EntityType="Self.TBL_ADDRESS_TYPE_MASTER" />
+    <EntitySet Name="TBL_ADVERTISEMENT_MASTER" EntityType="Self.TBL_ADVERTISEMENT_MASTER" />
+    <EntitySet Name="TBL_AIRLINES_MASTER" EntityType="Self.TBL_AIRLINES_MASTER" />
+    <EntitySet Name="TBL_ALLOWANCE_MASTER" EntityType="Self.TBL_ALLOWANCE_MASTER" />
+    <EntitySet Name="TBL_ALLOWANCE_TYPE_MASTER" EntityType="Self.TBL_ALLOWANCE_TYPE_MASTER" />
+    <EntitySet Name="TBL_AVAILING_TYPE_MASTER" EntityType="Self.TBL_AVAILING_TYPE_MASTER" />
+    <EntitySet Name="TBL_CAREER_STATUS_MASTER" EntityType="Self.TBL_CAREER_STATUS_MASTER" />
+    <EntitySet Name="TBL_CERTIFICATION_MASTER" EntityType="Self.TBL_CERTIFICATION_MASTER" />
+    <EntitySet Name="TBL_CITY_MASTER" EntityType="Self.TBL_CITY_MASTER" />
+    <EntitySet Name="TBL_COMPANY_MASTER" EntityType="Self.TBL_COMPANY_MASTER" />
+    <EntitySet Name="TBL_CONNECTED_TICKETDETAILS" EntityType="Self.TBL_CONNECTED_TICKETDETAILS" />
+    <EntitySet Name="TBL_CONTACT_TYPE_MASTER" EntityType="Self.TBL_CONTACT_TYPE_MASTER" />
+    <EntitySet Name="TBL_COUNTRY_MASTER" EntityType="Self.TBL_COUNTRY_MASTER" />
+    <EntitySet Name="TBL_CURRENCY_MASTER" EntityType="Self.TBL_CURRENCY_MASTER" />
+    <EntitySet Name="TBL_DESIGNATION_MASTER" EntityType="Self.TBL_DESIGNATION_MASTER" />
+    <EntitySet Name="TBL_EDUCATION_TYPE_MASTER" EntityType="Self.TBL_EDUCATION_TYPE_MASTER" />
+    <EntitySet Name="TBL_EMAIL_TYPE_MASTER" EntityType="Self.TBL_EMAIL_TYPE_MASTER" />
+    <EntitySet Name="TBL_EMIGRATION" EntityType="Self.TBL_EMIGRATION" />
+    <EntitySet Name="TBL_ERROR_LOG" EntityType="Self.TBL_ERROR_LOG" />
+    <EntitySet Name="TBL_GENDER_MASTER" EntityType="Self.TBL_GENDER_MASTER" />
+    <EntitySet Name="TBL_INDUSTRY_MASTER" EntityType="Self.TBL_INDUSTRY_MASTER" />
+    <EntitySet Name="TBL_INTERVIEW" EntityType="Self.TBL_INTERVIEW" />
+    <EntitySet Name="TBL_INTERVIEW_MODE_MASTER" EntityType="Self.TBL_INTERVIEW_MODE_MASTER" />
+    <EntitySet Name="TBL_LANGUAGE_MASTER" EntityType="Self.TBL_LANGUAGE_MASTER" />
+    <EntitySet Name="TBL_MARITAL_STATUS_MASTER" EntityType="Self.TBL_MARITAL_STATUS_MASTER" />
+    <EntitySet Name="TBL_MEDICAL" EntityType="Self.TBL_MEDICAL" />
+    <EntitySet Name="TBL_MEDICAL_STATUS" EntityType="Self.TBL_MEDICAL_STATUS" />
+    <EntitySet Name="TBL_MOFA" EntityType="Self.TBL_MOFA" />
+    <EntitySet Name="TBL_PASSPORT_DETAILS" EntityType="Self.TBL_PASSPORT_DETAILS" />
+    <EntitySet Name="TBL_POLICY" EntityType="Self.TBL_POLICY" />
+    <EntitySet Name="TBL_PREFIX_MASTER" EntityType="Self.TBL_PREFIX_MASTER" />
+    <EntitySet Name="TBL_REGISTRATION_COUNTER" EntityType="Self.TBL_REGISTRATION_COUNTER" />
+    <EntitySet Name="TBL_RELIGION_MASTER" EntityType="Self.TBL_RELIGION_MASTER" />
+    <EntitySet Name="TBL_REQUIREMENT_ALLOWANCE" EntityType="Self.TBL_REQUIREMENT_ALLOWANCE" />
+    <EntitySet Name="TBL_REQUIREMENT_DETAILS" EntityType="Self.TBL_REQUIREMENT_DETAILS" />
+    <EntitySet Name="TBL_REQUIREMENT_GENDER" EntityType="Self.TBL_REQUIREMENT_GENDER" />
+    <EntitySet Name="TBL_REQUIREMENT_LANGUAGE" EntityType="Self.TBL_REQUIREMENT_LANGUAGE" />
+    <EntitySet Name="TBL_REQUIREMENT_RELIGION" EntityType="Self.TBL_REQUIREMENT_RELIGION" />
+    <EntitySet Name="TBL_REQUIRMENT_CERTIFICATION" EntityType="Self.TBL_REQUIRMENT_CERTIFICATION" />
+    <EntitySet Name="TBL_REQUIRMENT_EDUCATION_TYPE" EntityType="Self.TBL_REQUIRMENT_EDUCATION_TYPE" />
+    <EntitySet Name="TBL_REQUIRMENT_INDUSTRY" EntityType="Self.TBL_REQUIRMENT_INDUSTRY" />
+    <EntitySet Name="TBL_REQUIRMENT_SPECIALIZATION" EntityType="Self.TBL_REQUIRMENT_SPECIALIZATION" />
+    <EntitySet Name="TBL_RESUME_VIEW" EntityType="Self.TBL_RESUME_VIEW" />
+    <EntitySet Name="TBL_ROLE_MASTER" EntityType="Self.TBL_ROLE_MASTER" />
+    <EntitySet Name="TBL_SOURCE_MASTER" EntityType="Self.TBL_SOURCE_MASTER" />
+    <EntitySet Name="TBL_SPECIALIZATION_MASTER" EntityType="Self.TBL_SPECIALIZATION_MASTER" />
+    <EntitySet Name="TBL_STATE_MASTER" EntityType="Self.TBL_STATE_MASTER" />
+    <EntitySet Name="TBL_STATUS_MASTER" EntityType="Self.TBL_STATUS_MASTER" />
+    <EntitySet Name="TBL_TASK_FOLLOWUP" EntityType="Self.TBL_TASK_FOLLOWUP" />
+    <EntitySet Name="TBL_TASK_MASTER" EntityType="Self.TBL_TASK_MASTER" />
+    <EntitySet Name="TBL_TICKET" EntityType="Self.TBL_TICKET" />
+    <EntitySet Name="TBL_UNIVERSITY_MASTER" EntityType="Self.TBL_UNIVERSITY_MASTER" />
+    <EntitySet Name="TBL_USER_ADDRESS" EntityType="Self.TBL_USER_ADDRESS" />
+    <EntitySet Name="TBL_USER_CERTIFICATION" EntityType="Self.TBL_USER_CERTIFICATION" />
+    <EntitySet Name="TBL_USER_CONTACTS" EntityType="Self.TBL_USER_CONTACTS" />
+    <EntitySet Name="TBL_USER_DETAILS" EntityType="Self.TBL_USER_DETAILS" />
+    <EntitySet Name="TBL_USER_DOCUMENT_MASTER" EntityType="Self.TBL_USER_DOCUMENT_MASTER" />
+    <EntitySet Name="TBL_USER_DOCUMENTS" EntityType="Self.TBL_USER_DOCUMENTS" />
+    <EntitySet Name="TBL_USER_DRIVING_LICENCE_DETAILS" EntityType="Self.TBL_USER_DRIVING_LICENCE_DETAILS" />
+    <EntitySet Name="TBL_USER_EDUCATION_DETAILS" EntityType="Self.TBL_USER_EDUCATION_DETAILS" />
+    <EntitySet Name="TBL_USER_EMAIL_ADDRESS" EntityType="Self.TBL_USER_EMAIL_ADDRESS" />
+    <EntitySet Name="TBL_USER_EXPERIENCE" EntityType="Self.TBL_USER_EXPERIENCE" />
+    <EntitySet Name="TBL_USER_LANGUAGE" EntityType="Self.TBL_USER_LANGUAGE" />
+    <EntitySet Name="TBL_USER_MENU_MAPPING" EntityType="Self.TBL_USER_MENU_MAPPING" />
+    <EntitySet Name="TBL_USER_PERSONAL_DETAILS" EntityType="Self.TBL_USER_PERSONAL_DETAILS" />
+    <EntitySet Name="TBL_USER_REGISTRATION" EntityType="Self.TBL_USER_REGISTRATION" />
+    <EntitySet Name="TBL_USER_REQUIREMENT" EntityType="Self.TBL_USER_REQUIREMENT" />
+    <EntitySet Name="TBL_USER_TYPE" EntityType="Self.TBL_USER_TYPE" />
+    <EntitySet Name="TBL_USER_VISA_DETAILS" EntityType="Self.TBL_USER_VISA_DETAILS" />
+    <EntitySet Name="TBL_VEHICLE_TYPE" EntityType="Self.TBL_VEHICLE_TYPE" />
+    <EntitySet Name="TBL_VISA_ENDORSEMENT" EntityType="Self.TBL_VISA_ENDORSEMENT" />
+    <EntitySet Name="TBL_VISA_MASTER" EntityType="Self.TBL_VISA_MASTER" />
+    <EntitySet Name="TBL_VISA_SUBMISSION_STATUS" EntityType="Self.TBL_VISA_SUBMISSION_STATUS" />
+    <EntitySet Name="TBL_BRANCH_MASTER" EntityType="Self.TBL_BRANCH_MASTER" />
+    <EntitySet Name="TBL_LMS_MENU" EntityType="Self.TBL_LMS_MENU" />
+    <EntitySet Name="TBL_NATIONALITY_MASTER" EntityType="Self.TBL_NATIONALITY_MASTER" />
+    <EntitySet Name="TBL_PORTAL_MASTER" EntityType="Self.TBL_PORTAL_MASTER" />
+    <EntitySet Name="TBL_REQUIREMENT_STATUS_MASTER" EntityType="Self.TBL_REQUIREMENT_STATUS_MASTER" />
+    <EntitySet Name="TBL_REQUIREMENT_TYPE_MASTER" EntityType="Self.TBL_REQUIREMENT_TYPE_MASTER" />
+    <EntitySet Name="TBL_REQUIRMENT_DESIGNATION" EntityType="Self.TBL_REQUIRMENT_DESIGNATION" />
+    <EntitySet Name="TBL_SAVE_TO_FOLDER_DETAILS" EntityType="Self.TBL_SAVE_TO_FOLDER_DETAILS" />
+    <EntitySet Name="Tmp_TBL_TASK_MASTER" EntityType="Self.Tmp_TBL_TASK_MASTER" />
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_MASTER">
+      <End Role="TBL_ALLOWANCE_MASTER" EntitySet="TBL_ALLOWANCE_MASTER" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_ALLOWANCE_TYPE_MASTER">
+      <End Role="TBL_ALLOWANCE_TYPE_MASTER" EntitySet="TBL_ALLOWANCE_TYPE_MASTER" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER" Association="Self.FK_TBL_DESIGNATION_MASTER_TBL_INDUSTRY_MASTER">
+      <End Role="TBL_INDUSTRY_MASTER" EntitySet="TBL_INDUSTRY_MASTER" />
+      <End Role="TBL_DESIGNATION_MASTER" EntitySet="TBL_DESIGNATION_MASTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_EMIGRATION_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_EMIGRATION" EntitySet="TBL_EMIGRATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER" Association="Self.FK_TBL_INTERVIEW_TBL_INTERVIEW_MODE_MASTER">
+      <End Role="TBL_INTERVIEW_MODE_MASTER" EntitySet="TBL_INTERVIEW_MODE_MASTER" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_INTERVIEW_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_INTERVIEW_TBL_USER_DETAILS" Association="Self.FK_TBL_INTERVIEW_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_INTERVIEW" EntitySet="TBL_INTERVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MEDICAL_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_MEDICAL_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_MEDICAL" EntitySet="TBL_MEDICAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MOFA_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_MOFA_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_MOFA" EntitySet="TBL_MOFA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_POLICY_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_POLICY_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_POLICY" EntitySet="TBL_POLICY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_ALLOWANCE_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_ALLOWANCE" EntitySet="TBL_REQUIREMENT_ALLOWANCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER" Association="Self.FK_TBL_REQUIREMENT_GENDER_TBL_REQUIREMENT_GENDER">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_GENDER" EntitySet="TBL_REQUIREMENT_GENDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_LANGUAGE_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_LANGUAGE" EntitySet="TBL_REQUIREMENT_LANGUAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_REQUIREMENT_RELIGION_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_REQUIREMENT_RELIGION" EntitySet="TBL_REQUIREMENT_RELIGION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS" Association="Self.FK_TBL_USER_REQUIREMENT_TBL_REQUIREMENT_DETAILS">
+      <End Role="TBL_REQUIREMENT_DETAILS" EntitySet="TBL_REQUIREMENT_DETAILS" />
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_TICKET_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_TICKET_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_TICKET" EntitySet="TBL_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS" Association="Self.FK_TBL_USER_DOCUMENTS_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_USER_DOCUMENTS" EntitySet="TBL_USER_DOCUMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS" Association="Self.FK_TBL_USER_REQUIREMENT_TBL_USER_DETAILS">
+      <End Role="TBL_USER_DETAILS" EntitySet="TBL_USER_DETAILS" />
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT" Association="Self.FK_TBL_VISA_ENDORSEMENT_TBL_USER_REQUIREMENT">
+      <End Role="TBL_USER_REQUIREMENT" EntitySet="TBL_USER_REQUIREMENT" />
+      <End Role="TBL_VISA_ENDORSEMENT" EntitySet="TBL_VISA_ENDORSEMENT" />
+    </AssociationSet>
+    <FunctionImport Name="FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_REQUIREMENT_EDUCATION_SPECIALIZATION_Result)">
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FUNC_REQUIREMENT_INDUSTRY_TYPE" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_REQUIREMENT_INDUSTRY_TYPE_Result)">
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FUNC_USER_contact" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_USER_contact_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FUNC_USER_CONTACTS" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_USER_CONTACTS_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FUNC_USER_EMAIL_ADDRESS" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_USER_EMAIL_ADDRESS_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FUNC_USER_HIGHEST_EDUCATION" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.FUNC_USER_HIGHEST_EDUCATION_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Split" IsComposable="true" ReturnType="Collection(ArbabTravelsERPModel.Split_Result)">
+      <Parameter Name="InputString" Mode="In" Type="String" />
+      <Parameter Name="Delimiter" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_COUNTRY_STATE_CITY" ReturnType="Collection(ArbabTravelsERPModel.GET_COUNTRY_STATE_CITY_Result)" />
+    <FunctionImport Name="GET_DESIGNATION_BYINDUSTRY" ReturnType="Collection(ArbabTravelsERPModel.GET_DESIGNATION_BYINDUSTRY_Result)">
+      <Parameter Name="INDUSTRY_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_SPECIALIZATION_BYEDUCATION" ReturnType="Collection(ArbabTravelsERPModel.GET_SPECIALIZATION_BYEDUCATION_Result)">
+      <Parameter Name="EDUCATION_TYPE_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_ADD_DELETE_MENU_FOR_USERTYPE">
+      <Parameter Name="MENU_ID" Mode="In" Type="Int32" />
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_ADVERTIZEMENT_MASTER">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_ALL_MASTER">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_CANDIDATE_RESUME_DOWNLOAD" ReturnType="Collection(ArbabTravelsERPModel.PROC_CANDIDATE_RESUME_DOWNLOAD_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_CANDIDATE_STATUS_SEARCH" ReturnType="Collection(ArbabTravelsERPModel.PROC_CANDIDATE_STATUS_SEARCH_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_CANDIDATE_STATUS_SEARCH_1">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_CERTIFICATION_MASTER" ReturnType="Collection(Decimal)">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="CERTIFICATION" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_CHECKDUPLICATE_USER" ReturnType="Collection(String)">
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="FIRST_NAME" Mode="In" Type="String" />
+      <Parameter Name="LAST_NAME" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_BIRTH" Mode="In" Type="DateTime" />
+      <Parameter Name="PLACE_OF_BIRTH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_COMPANY_MASTER" ReturnType="Collection(Decimal)">
+      <Parameter Name="COMPANY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="COMPANY_NAME" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_PERSON" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_DASHBOARD" ReturnType="Collection(Int32)">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_DOCUMENT_DOWNLOAD" ReturnType="Collection(ArbabTravelsERPModel.PROC_DOCUMENT_DOWNLOAD_Result)">
+      <Parameter Name="PASSPORT_NO" Mode="In" Type="String" />
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_FETCH_ALL_MASTERS" ReturnType="Collection(ArbabTravelsERPModel.PROC_FETCH_ALL_MASTERS_Result)" />
+    <FunctionImport Name="PROC_GET_ADVERTISEMENT_DATA" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_ADVERTISEMENT_DATA_Result)">
+      <Parameter Name="ADVERTISEMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_AGENT_NAME" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_AGENT_NAME_Result)" />
+    <FunctionImport Name="PROC_GET_ALL_CITIES" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_ALL_CITIES_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_ALL_PROCESS" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_ALL_PROCESS_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CONDITION_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="FROMDATE" Mode="In" Type="DateTime" />
+      <Parameter Name="TODATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PASSPORT_NUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_ALL_STATES" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_ALL_STATES_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_CANDIDATE_NAME_BASED_ON_PASPPORT_NO" ReturnType="Collection(String)">
+      <Parameter Name="USER_REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result)">
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_LAYOUT_MENU" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_LAYOUT_MENU_Result)">
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_MENU_BY_SELECTED_USER" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_MENU_BY_SELECTED_USER_Result)">
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_PASSPORT_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_PASSPORT_DETAILS_Result)">
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_PROCESS_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_PROCESS_DETAILS_Result)">
+      <Parameter Name="USER_REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_REQUIREMENT" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_REQUIREMENT_Result)">
+      <Parameter Name="RequirementId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GETUSER_BYUSERTYPE" ReturnType="Collection(ArbabTravelsERPModel.PROC_GETUSER_BYUSERTYPE_Result)">
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_INSERT_TICKET_DETAILS">
+      <Parameter Name="CONDITION_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_INTERVIEW_STATUS" ReturnType="Collection(ArbabTravelsERPModel.PROC_INTERVIEW_STATUS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_MANAGE_USERS" ReturnType="Collection(ArbabTravelsERPModel.PROC_MANAGE_USERS_Result)">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="IS_ACTIVE" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_MENU" ReturnType="Collection(ArbabTravelsERPModel.PROC_MENU_Result)">
+      <Parameter Name="LMS_MENU_ID" Mode="In" Type="Int32" />
+      <Parameter Name="MENU_NAME" Mode="In" Type="String" />
+      <Parameter Name="MENU_TITLE" Mode="In" Type="String" />
+      <Parameter Name="MENU_URL" Mode="In" Type="String" />
+      <Parameter Name="PARENT_MENU_ID" Mode="In" Type="Int32" />
+      <Parameter Name="IS_PARENT" Mode="In" Type="Boolean" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CREATED_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="CHANNEL_CODE" Mode="In" Type="String" />
+      <Parameter Name="CHANNEL_USER_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="MENU_ID" Mode="In" Type="Int32" />
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="String" />
+      <Parameter Name="PAGE_NAME" Mode="In" Type="String" />
+      <Parameter Name="CONTROLLER_NAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_PEOPLE_MASTER" ReturnType="Collection(ArbabTravelsERPModel.PROC_PEOPLE_MASTER_Result)" />
+    <FunctionImport Name="PROC_PORTAL_SEARCH" ReturnType="Collection(ArbabTravelsERPModel.PROC_PORTAL_SEARCH_Result)">
+      <Parameter Name="ANY" Mode="In" Type="String" />
+      <Parameter Name="ALL" Mode="In" Type="String" />
+      <Parameter Name="EXCLUDING" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_DEGREE" Mode="In" Type="String" />
+      <Parameter Name="SPECIALIZATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_PASSING_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="MAX_PASSING_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CERTIFICATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_EXPERIENCE" Mode="In" Type="Decimal" />
+      <Parameter Name="MAX_EXPERIENCE" Mode="In" Type="Decimal" />
+      <Parameter Name="STATE_CODE" Mode="In" Type="String" />
+      <Parameter Name="CITY_CODE" Mode="In" Type="String" />
+      <Parameter Name="COMPANY_SPECIALIZATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_AGE" Mode="In" Type="Int32" />
+      <Parameter Name="MAX_AGE" Mode="In" Type="Int32" />
+      <Parameter Name="RESUME_NOT_VIEWED" Mode="In" Type="Int32" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="WHERE_CONDITION" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_POWER_SEARCH" ReturnType="Collection(ArbabTravelsERPModel.PROC_POWER_SEARCH_Result)">
+      <Parameter Name="ANY" Mode="In" Type="String" />
+      <Parameter Name="ALL" Mode="In" Type="String" />
+      <Parameter Name="EXCLUDING" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_DEGREE" Mode="In" Type="String" />
+      <Parameter Name="SPECIALIZATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_PASSING_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="MAX_PASSING_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CERTIFICATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_EXPERIENCE" Mode="In" Type="Decimal" />
+      <Parameter Name="MAX_EXPERIENCE" Mode="In" Type="Decimal" />
+      <Parameter Name="STATE_CODE" Mode="In" Type="String" />
+      <Parameter Name="CITY_CODE" Mode="In" Type="String" />
+      <Parameter Name="COMPANY_SPECIALIZATION" Mode="In" Type="String" />
+      <Parameter Name="MIN_AGE" Mode="In" Type="Int32" />
+      <Parameter Name="MAX_AGE" Mode="In" Type="Int32" />
+      <Parameter Name="RESUME_NOT_VIEWED" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_DETAILS" ReturnType="Collection(Decimal)">
+      <Parameter Name="COMPANY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="RECIEVED_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="NO_OF_OPENINGS" Mode="In" Type="Int32" />
+      <Parameter Name="EXPERIENCE_FROM" Mode="In" Type="Decimal" />
+      <Parameter Name="EXPERIENCE_TO" Mode="In" Type="Decimal" />
+      <Parameter Name="JOB_DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="AGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="AGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="INTERVIEW_MODE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SPECIALIZATION_ID" Mode="In" Type="Int32" />
+      <Parameter Name="POSTING_PLACE" Mode="In" Type="String" />
+      <Parameter Name="CURRENCY_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="OVERTIME" Mode="In" Type="Decimal" />
+      <Parameter Name="TRIP_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CONTACT_PERIOD" Mode="In" Type="Decimal" />
+      <Parameter Name="WORKING_HOURS" Mode="In" Type="Decimal" />
+      <Parameter Name="LEAVES_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="USER_CODE" Mode="In" Type="String" />
+      <Parameter Name="STATUS_ID" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_PERSON" Mode="In" Type="String" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_DETAILS_INSERT">
+      <Parameter Name="COMPANY_ID" Mode="In" Type="String" />
+      <Parameter Name="NO_OF_OPENINGS" Mode="In" Type="Int32" />
+      <Parameter Name="EXPERIENCE_FROM" Mode="In" Type="Decimal" />
+      <Parameter Name="EXPERIENCE_TO" Mode="In" Type="Decimal" />
+      <Parameter Name="JOB_DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="GENDER_CODES" Mode="In" Type="String" />
+      <Parameter Name="AGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="AGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="RELIGION_IDS" Mode="In" Type="String" />
+      <Parameter Name="INTERVIEW_MODE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SPECIALIZATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="POSTING_PLACE" Mode="In" Type="String" />
+      <Parameter Name="CURRENCY_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="OVERTIME" Mode="In" Type="Decimal" />
+      <Parameter Name="TRIP_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CONTACT_PERIOD" Mode="In" Type="Decimal" />
+      <Parameter Name="WORKING_HOURS" Mode="In" Type="Decimal" />
+      <Parameter Name="LEAVES_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+      <Parameter Name="USER_CODE" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_PERSON" Mode="In" Type="String" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+      <Parameter Name="ALLOWANCE_IDS" Mode="In" Type="String" />
+      <Parameter Name="LANGUAGES_IDS" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="INDUSTRY_IDS" Mode="In" Type="String" />
+      <Parameter Name="DESIGNATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="CIRTIFICATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="RequirementID" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_DETAILS_LIST" ReturnType="Collection(ArbabTravelsERPModel.PROC_REQUIREMENT_DETAILS_LIST_Result)">
+      <Parameter Name="REQUIREMENT_IDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_DETAILS_UPDATE">
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="COMPANY_ID" Mode="In" Type="String" />
+      <Parameter Name="NO_OF_OPENINGS" Mode="In" Type="Int32" />
+      <Parameter Name="EXPERIENCE_FROM" Mode="In" Type="Decimal" />
+      <Parameter Name="EXPERIENCE_TO" Mode="In" Type="Decimal" />
+      <Parameter Name="JOB_DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="GENDER_CODES" Mode="In" Type="String" />
+      <Parameter Name="AGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="AGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="RELIGION_IDS" Mode="In" Type="String" />
+      <Parameter Name="INTERVIEW_MODE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SPECIALIZATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="POSTING_PLACE" Mode="In" Type="String" />
+      <Parameter Name="CURRENCY_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_TO" Mode="In" Type="Int32" />
+      <Parameter Name="BASIC_SALARY_RANGE_FROM" Mode="In" Type="Int32" />
+      <Parameter Name="OVERTIME" Mode="In" Type="Decimal" />
+      <Parameter Name="TRIP_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CONTACT_PERIOD" Mode="In" Type="Decimal" />
+      <Parameter Name="WORKING_HOURS" Mode="In" Type="Decimal" />
+      <Parameter Name="LEAVES_PER_YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+      <Parameter Name="USER_CODE" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_PERSON" Mode="In" Type="String" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+      <Parameter Name="ALLOWANCE_IDS" Mode="In" Type="String" />
+      <Parameter Name="LANGUAGES_IDS" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="INDUSTRY_IDS" Mode="In" Type="String" />
+      <Parameter Name="DESIGNATION_IDS" Mode="In" Type="String" />
+      <Parameter Name="CIRTIFICATION_IDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_MASTER" ReturnType="Collection(ArbabTravelsERPModel.PROC_REQUIREMENT_MASTER_Result)" />
+    <FunctionImport Name="PROC_REQUIREMENT_SEARCH" ReturnType="Collection(ArbabTravelsERPModel.PROC_REQUIREMENT_SEARCH_Result)">
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_REQUIREMENT_SEARCH_RESULT" ReturnType="Collection(ArbabTravelsERPModel.PROC_REQUIREMENT_SEARCH_RESULT_Result)">
+      <Parameter Name="COMPANY_ID" Mode="In" Type="String" />
+      <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+      <Parameter Name="CLIENT_NAME" Mode="In" Type="String" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_SELECT_MASTER" ReturnType="Collection(ArbabTravelsERPModel.PROC_SELECT_MASTER_Result)">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="PASSPORT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="CANDIDATE_NAME" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_BIRTH" Mode="In" Type="DateTime" />
+      <Parameter Name="CONTACT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="COMPANY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="ALL_PENDING" Mode="In" Type="Int32" />
+      <Parameter Name="CLIENT_NAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_CANDIDATE" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_CANDIDATE_Result)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="PASSPORT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="CANDIDATE_NAME" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_BIRTH" Mode="In" Type="DateTime" />
+      <Parameter Name="CONTACT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS_Result)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_TASK_MASTER">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="TASK_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_UPDATE_CANDIDATE">
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_UPDATE_USER_STATUS">
+      <Parameter Name="USER_REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_ADDRESS_DETAILS">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="CITY_CODE" Mode="In" Type="String" />
+      <Parameter Name="VILLAGE" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CONTACT_NO" Mode="In" Type="String" />
+      <Parameter Name="EMAIL_ID" Mode="In" Type="String" />
+      <Parameter Name="PIN_CODE" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_ADDUPDATE_REQUIREMENT" ReturnType="Collection(ArbabTravelsERPModel.PROC_USER_ADDUPDATE_REQUIREMENT_Result)">
+      <Parameter Name="USER_REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CANDIDATE_STATUS" Mode="In" Type="Int32" />
+      <Parameter Name="CURRENT_STATUS" Mode="In" Type="Boolean" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_CERTIFICATION_LICENCE_VISA_DETAILS">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="CERTIFICATION" Mode="In" Type="String" />
+      <Parameter Name="CERTIFICATION_LEVEL" Mode="In" Type="String" />
+      <Parameter Name="INSTITUTE" Mode="In" Type="String" />
+      <Parameter Name="YEAR_OF_PASSING" Mode="In" Type="Int32" />
+      <Parameter Name="DRIVING_LICENCE_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="PLACE_OF_ISSUE" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_ISSUE" Mode="In" Type="DateTime" />
+      <Parameter Name="EXPIRY_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="VEHICLE_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="VISA_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="PASSPORT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="PASSPORT_DATE_OF_ISSUE" Mode="In" Type="DateTime" />
+      <Parameter Name="PASSPORT_PLACE_OF_ISSUE" Mode="In" Type="String" />
+      <Parameter Name="PASSPORT_DATE_OF_EXPIRY" Mode="In" Type="DateTime" />
+      <Parameter Name="EMIGRATION_CLEARANCE_REQUIRED" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_DETAILS" ReturnType="Collection(String)">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="AVAILING_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SOURCE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="STATUS_ID" Mode="In" Type="Int32" />
+      <Parameter Name="VISIT_NUMBER" Mode="In" Type="Int32" />
+      <Parameter Name="REQUIREMENT_ID" Mode="In" Type="Int32" />
+      <Parameter Name="LOGIN_PASSWORD" Mode="In" Type="String" />
+      <Parameter Name="LOGIN_ACCESS" Mode="In" Type="Boolean" />
+      <Parameter Name="USER_IMAGE_PATH" Mode="In" Type="String" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="IS_EXPERIENCED" Mode="In" Type="Boolean" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="WEBSITE" Mode="In" Type="String" />
+      <Parameter Name="SKYPE" Mode="In" Type="String" />
+      <Parameter Name="CONTACT_REMARK" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_REMARK" Mode="In" Type="String" />
+      <Parameter Name="WORK_REMARK" Mode="In" Type="String" />
+      <Parameter Name="BRANCH_CODE" Mode="In" Type="String" />
+      <Parameter Name="CIVILIAN_NO" Mode="In" Type="String" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="CLIENT_DESIGNATION" Mode="In" Type="Int32" />
+      <Parameter Name="CLIENT_INDUSTRY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="REFERENCE" Mode="In" Type="String" />
+      <Parameter Name="GAMCA_NO" Mode="In" Type="String" />
+      <Parameter Name="LOCATION_CODE" Mode="In" Type="String" />
+      <Parameter Name="MONTH" Mode="In" Type="Int32" />
+      <Parameter Name="YEAR" Mode="In" Type="Int32" />
+      <Parameter Name="CURRENT_COUNTER" Mode="In" Type="Int32" />
+      <Parameter Name="OTHER_SOURCE" Mode="In" Type="String" />
+      <Parameter Name="REFERRER_NAME" Mode="In" Type="String" />
+      <Parameter Name="FIRST_NAME" Mode="In" Type="String" />
+      <Parameter Name="MIDDLE_NAME" Mode="In" Type="String" />
+      <Parameter Name="LAST_NAME" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_BIRTH" Mode="In" Type="DateTime" />
+      <Parameter Name="PLACE_OF_BIRTH" Mode="In" Type="String" />
+      <Parameter Name="TOTAL_WORK_EXPERIENCE" Mode="In" Type="String" />
+      <Parameter Name="TOTAL_GULF_EXPERIENCE" Mode="In" Type="String" />
+      <Parameter Name="SKILL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_EDUCATION_WORK_DETAILS">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="EDUCATION_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SPECIALIZATION_TYPE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="UNIVERSITY_ID" Mode="In" Type="String" />
+      <Parameter Name="UNIVERSITY_YEAR_OF_PASSING" Mode="In" Type="String" />
+      <Parameter Name="COMPANY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="IS_CURRENT_COMPANY" Mode="In" Type="Boolean" />
+      <Parameter Name="IS_EXPERIENCED" Mode="In" Type="Boolean" />
+      <Parameter Name="DESIGNATION_ID" Mode="In" Type="Int32" />
+      <Parameter Name="INDUSTRY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CITY_CODE" Mode="In" Type="String" />
+      <Parameter Name="TOTAL_WORK_EXPERIENCE" Mode="In" Type="Decimal" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+      <Parameter Name="LANGUAGE_ID" Mode="In" Type="Int32" />
+      <Parameter Name="IS_READ" Mode="In" Type="Boolean" />
+      <Parameter Name="IS_WRITE" Mode="In" Type="Boolean" />
+      <Parameter Name="IS_SPEAK" Mode="In" Type="Boolean" />
+      <Parameter Name="DOCUMENT_TYPE_ID" Mode="In" Type="String" />
+      <Parameter Name="DOCUMENT_PATH" Mode="In" Type="String" />
+      <Parameter Name="IS_HIGHEST_QUALIFICATION" Mode="In" Type="Boolean" />
+      <Parameter Name="WORK_PERIOD_FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="WORK_PERIOD_TO" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_GETMASTER" ReturnType="Collection(ArbabTravelsERPModel.PROC_USER_GETMASTER_Result)" />
+    <FunctionImport Name="PROC_USER_INSERT">
+      <Parameter Name="USER_TYPE_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_LOGIN_DETAILS" ReturnType="Collection(ArbabTravelsERPModel.PROC_USER_LOGIN_DETAILS_Result)">
+      <Parameter Name="USER_NAME" Mode="In" Type="String" />
+      <Parameter Name="USER_PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_PERSONAL_DETAILS">
+      <Parameter Name="REGISTRATION_NO" Mode="In" Type="String" />
+      <Parameter Name="FIRST_NAME" Mode="In" Type="String" />
+      <Parameter Name="MIDDLE_NAME" Mode="In" Type="String" />
+      <Parameter Name="LAST_NAME" Mode="In" Type="String" />
+      <Parameter Name="FATHER_NAME" Mode="In" Type="String" />
+      <Parameter Name="MOTHER_NAME" Mode="In" Type="String" />
+      <Parameter Name="GENDER_CODE" Mode="In" Type="String" />
+      <Parameter Name="DATE_OF_BIRTH" Mode="In" Type="DateTime" />
+      <Parameter Name="PLACE_OF_BIRTH" Mode="In" Type="String" />
+      <Parameter Name="MARITAL_STATUS_ID" Mode="In" Type="Int32" />
+      <Parameter Name="NATIONALITY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CURRENT_LOCATION" Mode="In" Type="String" />
+      <Parameter Name="RELIGION_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_USER_VISA_DETAILS">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="VISA_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_VISA_GETALLVISA" ReturnType="Collection(ArbabTravelsERPModel.PROC_VISA_GETALLVISA_Result)">
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="VISA_ID" Mode="In" Type="Int32" />
+      <Parameter Name="VISA_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="FROMDATE" Mode="In" Type="DateTime" />
+      <Parameter Name="TODATE" Mode="In" Type="DateTime" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_VISA_MASTER" ReturnType="Collection(String)">
+      <Parameter Name="REGISTRATION_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="VISA_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="PLACE_OF_ENDORSEMENT" Mode="In" Type="String" />
+      <Parameter Name="ISSUE_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="EXPIRY_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="RECIEVED_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="FILE_NAME" Mode="In" Type="String" />
+      <Parameter Name="FILE_PATH" Mode="In" Type="String" />
+      <Parameter Name="REMARK" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="String" />
+      <Parameter Name="PURPOSE" Mode="In" Type="String" />
+      <Parameter Name="CONDITIONAL_OPERATOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GET_ALL_SPECIALIZATIONS" ReturnType="Collection(ArbabTravelsERPModel.PROC_GET_ALL_SPECIALIZATIONS_Result1)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GET_COUNTRY_STATE_CITY_Result">
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CITY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="COUNTRY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_DESIGNATION_BYINDUSTRY_Result">
+    <Property Type="Int32" Name="DESIGNATION_ID" Nullable="false" />
+    <Property Type="String" Name="DESIGNATION_NAME" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="INDUSTRY_ID" Nullable="false" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="false" MaxLength="80" />
+  </ComplexType>
+  <ComplexType Name="GET_SPECIALIZATION_BYEDUCATION_Result">
+    <Property Type="Int32" Name="EDUCATION_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SPECIALIZATION_TYPE" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SPECIALIZATION_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROC_CANDIDATE_RESUME_DOWNLOAD_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="REGISTRATION_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Candidate_Name" Nullable="true" MaxLength="154" />
+    <Property Type="String" Name="GENDER_NAME" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="RELIGION_NAME" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PLACE_OF_ISSUE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DATE_OF_EXPIRY" Nullable="true" />
+    <Property Type="Boolean" Name="EMIGRATION_CLEARANCE_REQUIRED" Nullable="true" />
+    <Property Type="String" Name="Contact_No" Nullable="true" />
+    <Property Type="String" Name="USER_EMAIL" Nullable="true" />
+    <Property Type="DateTime" Name="DATE_OF_BIRTH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PLACE_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="CURRENT_LOCATION" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="TOTAL_WORK_EXPERIENCE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TOTAL_GULF_EXPERIENCE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="POST_APPLIED_FOR" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="DRIVING_LICENCE_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="DRIVING_PLACE_OF_ISSUE" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DRIVING_DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DRIVING_EXPIRY_DATE" Nullable="true" />
+    <Property Type="String" Name="VEHICLE_TYPE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MARITAL_STATUS" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="PROC_CANDIDATE_STATUS_SEARCH_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="REGISTRATION_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FATHER_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="MOTHER_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="GENDER_CODE" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="DATE_OF_BIRTH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PLACE_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MARITAL_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="NATIONALITY_ID" Nullable="true" />
+    <Property Type="String" Name="CURRENT_LOCATION" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RELIGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="PASSPORT_ID" Nullable="true" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PLACE_OF_ISSUE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DATE_OF_EXPIRY" Nullable="true" />
+    <Property Type="Boolean" Name="EMIGRATION_CLEARANCE_REQUIRED" Nullable="true" />
+    <Property Type="String" Name="DRIVING_LICENCE_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="DRIVING_PLACE_OF_ISSUE" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DRIVING_DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DRIVING_EXPIRY_DATE" Nullable="true" />
+    <Property Type="Int32" Name="VEHICLE_TYPE_ID" Nullable="true" />
+    <Property Type="String" Name="DRIVING_REMARK" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="DRIVING_LICENCE_ID" Nullable="true" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="AVAILING_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="SOURCE_ID" Nullable="true" />
+    <Property Type="String" Name="OTHER_SOURCE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="REFERRER_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="STATUS_ID" Nullable="true" />
+    <Property Type="String" Name="POST_APPLIED_FOR" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="VISA_ID" Nullable="true" />
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="true" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="150" />
+    <Property Type="Boolean" Name="LOGIN_ACCESS" Nullable="false" />
+    <Property Type="String" Name="FILE_NO" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_DOCUMENT_DOWNLOAD_Result">
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="154" />
+    <Property Type="String" Name="VISA_NUMBER" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="PASSPORT_NO" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_FETCH_ALL_MASTERS_Result">
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CITY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="COUNTRY_NAME" Nullable="true" MaxLength="80" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ADVERTISEMENT_DATA_Result">
+    <Property Type="Int32" Name="ADV_ID" Nullable="false" />
+    <Property Type="String" Name="PAPER_NAME" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="AD_AGENCY_NAME" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="EXPENSES" Nullable="true" Precision="12" Scale="2" />
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="true" />
+    <Property Type="DateTime" Name="ADV_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="REQUIREMENT" Nullable="true" MaxLength="143" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_AGENT_NAME_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="AGENT_NAME" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="USER_EMAIL" Nullable="true" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ALL_CITIES_Result">
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CITY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ALL_PROCESS_Result">
+    <Property Type="String" Name="STATUS_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CheckupDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DoctorName" Nullable="true" MaxLength="204" />
+    <Property Type="String" Name="ReportDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CANDIDATE_NAME" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="MedicalId" Nullable="false" />
+    <Property Type="Int32" Name="USER_REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="DoctorID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TokenNumber" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="MedicalStatus" Nullable="true" />
+    <Property Type="String" Name="ReportPath" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ALL_SPECIALIZATIONS_Result">
+    <Property Type="Int32" Name="SPECIALIZATION_ID" Nullable="false" />
+    <Property Type="String" Name="SPECIALIZATION_TYPE" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="EDUCATION_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ALL_STATES_Result">
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COUNTRY_NAME" Nullable="false" MaxLength="80" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_EDIT_DETAILS_BY_REQUIREMENT_ID_Result">
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="COMPANY_ID" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="RECIEVED_DATE" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="NO_OF_OPENINGS" Nullable="true" />
+    <Property Type="String" Name="JOB_DESCRIPTION" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="INTERVIEW_MODE_ID" Nullable="true" />
+    <Property Type="String" Name="POSTING_PLACE" Nullable="true" MaxLength="70" />
+    <Property Type="Int32" Name="CURRENCY_TYPE_ID" Nullable="true" />
+    <Property Type="Decimal" Name="OVERTIME" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TRIP_PER_YEAR" Nullable="true" />
+    <Property Type="Decimal" Name="CONTACT_PERIOD" Nullable="true" Precision="12" Scale="2" />
+    <Property Type="Decimal" Name="WORKING_HOURS" Nullable="true" Precision="4" Scale="2" />
+    <Property Type="Int32" Name="LEAVES_PER_YEAR" Nullable="true" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="EXPERIENCE_FROM" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="EXPERIENCE_TO" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="AGE_FROM" Nullable="true" />
+    <Property Type="Int32" Name="AGE_TO" Nullable="true" />
+    <Property Type="Int32" Name="BASIC_SALARY_RANGE_TO" Nullable="true" />
+    <Property Type="Int32" Name="BASIC_SALARY_RANGE_FROM" Nullable="true" />
+    <Property Type="String" Name="CONTACT_PERSON" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="GENDER_CODES" Nullable="true" />
+    <Property Type="String" Name="LANGUAGE_ID" Nullable="true" />
+    <Property Type="String" Name="EDUCATION_TYPE_ID" Nullable="true" />
+    <Property Type="String" Name="RELIGION_ID" Nullable="true" />
+    <Property Type="String" Name="DESIGNATION_ID" Nullable="true" />
+    <Property Type="String" Name="INDUSTRY_ID" Nullable="true" />
+    <Property Type="String" Name="SPECIALIZATION_ID" Nullable="true" />
+    <Property Type="String" Name="CERTIFICATION_ID" Nullable="true" />
+    <Property Type="String" Name="ALLOWANCE_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_LAYOUT_MENU_Result">
+    <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+    <Property Type="Int32" Name="PARENT_MENU_ID" Nullable="true" />
+    <Property Type="String" Name="MENU_NAME" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MENU_TITLE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MENU_URL" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="CHANNEL_USER_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="PAGE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CONTROLLER_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CHANNEL_CODE" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="MENU_ICON" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PAGE_URL" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="PARENT_MENU_NAME" Nullable="false" MaxLength="1" />
+    <Property Type="Boolean" Name="IS_PARENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_MENU_BY_SELECTED_USER_Result">
+    <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+    <Property Type="String" Name="MENU_NAME" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MENU_TITLE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MENU_URL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PAGE_URL" Nullable="true" MaxLength="101" />
+    <Property Type="Boolean" Name="IS_PARENT" Nullable="true" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PARENT_MENU" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="PARENT_MENU_TITLE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="USER_TYPE_MENU_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_PASSPORT_DETAILS_Result">
+    <Property Type="Int32" Name="USER_REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="false" MaxLength="175" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_PROCESS_DETAILS_Result">
+    <Property Type="Int32" Name="MofaID" Nullable="false" />
+    <Property Type="Int32" Name="USER_REQUIREMENT_ID" Nullable="true" />
+    <Property Type="String" Name="MofaNumber" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="MofaDate" Nullable="true" />
+    <Property Type="String" Name="ApplicationNumber" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="ApplicationDate" Nullable="true" />
+    <Property Type="String" Name="HealthNumber" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="HealthDate" Nullable="true" />
+    <Property Type="String" Name="DDNumber" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="DDDate" Nullable="true" />
+    <Property Type="String" Name="MofaFilePath" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="MofaRemark" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_REQUIREMENT_Result">
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REQUIREMENT" Nullable="true" MaxLength="143" />
+  </ComplexType>
+  <ComplexType Name="PROC_GETUSER_BYUSERTYPE_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="PROC_INTERVIEW_STATUS_Result">
+    <Property Type="String" Name="INTERVIEWSTATUS" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="INTERVIEWDATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CLIENT_NAME" Nullable="true" MaxLength="70" />
+    <Property Type="Int32" Name="InterviewID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROC_MANAGE_USERS_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="EMPLOYEE_NAME" Nullable="true" MaxLength="152" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROC_MENU_Result">
+    <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+    <Property Type="String" Name="MENU_NAME" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MENU_TITLE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MENU_URL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PAGE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CONTROLLER_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PAGE_URL" Nullable="true" MaxLength="101" />
+    <Property Type="Boolean" Name="IS_PARENT" Nullable="true" />
+    <Property Type="Int32" Name="PARENT_MENU_ID" Nullable="true" />
+    <Property Type="String" Name="PARENT_MENU_NAME" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PROC_PEOPLE_MASTER_Result">
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CITY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="COUNTRY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_PORTAL_SEARCH_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="USER_IMAGE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CANDIDATE_NAME" Nullable="true" MaxLength="154" />
+    <Property Type="String" Name="TOTAL_WORK_EXPERIENCE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="GENDER_NAME" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="SOURCE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURRENT_LOCATION" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AGE" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="true" />
+    <Property Type="Int32" Name="VIEWED" Nullable="false" />
+    <Property Type="String" Name="VIEWED_BY" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="DESIGNATION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="USER_EMAIL" Nullable="true" />
+    <Property Type="String" Name="CONTACT_NO" Nullable="true" />
+    <Property Type="String" Name="HIGHEST_EDUCATION" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_POWER_SEARCH_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="USER_IMAGE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CANDIDATE_NAME" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="GENDER_NAME" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TOTAL_WORK_EXPERIENCE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SOURCE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURRENT_LOCATION" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AGE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="TOTAL_WORK_EXPERIENCE1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="true" />
+    <Property Type="Int32" Name="VIEWED" Nullable="false" />
+    <Property Type="String" Name="VIEWED_BY" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="PROC_REQUIREMENT_DETAILS_LIST_Result">
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="EXPERIENCE" Nullable="false" MaxLength="33" />
+    <Property Type="String" Name="AGE" Nullable="false" MaxLength="29" />
+    <Property Type="String" Name="BASIC_SALARY" Nullable="true" MaxLength="54" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="JOB_DESCRIPTION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="true" />
+    <Property Type="String" Name="DESIGNATION" Nullable="true" />
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" />
+    <Property Type="String" Name="SPECIALIZATION" Nullable="true" />
+    <Property Type="String" Name="CERTIFICATION_TYPE" Nullable="true" />
+    <Property Type="String" Name="GENDERS" Nullable="true" />
+    <Property Type="String" Name="LANGUAGES" Nullable="true" />
+    <Property Type="String" Name="RELIGIONS" Nullable="true" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="POSTING_PLACE" Nullable="true" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="PROC_REQUIREMENT_MASTER_Result">
+    <Property Type="Int32" Name="ALLOWANCE_ID" Nullable="false" />
+    <Property Type="String" Name="ALLOWANCE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_REQUIREMENT_SEARCH_Result">
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="DateTime" Name="OPENING_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="COMPANY_NAME" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="CONTACT_PERSON" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="NO_OF_OPENINGS" Nullable="true" />
+    <Property Type="String" Name="INTERVIEW_MODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EXPERIENCE" Nullable="false" MaxLength="33" />
+    <Property Type="String" Name="AGE" Nullable="false" MaxLength="29" />
+    <Property Type="String" Name="BASIC_SALARY" Nullable="true" MaxLength="54" />
+    <Property Type="String" Name="OVERTIME" Nullable="true" MaxLength="36" />
+    <Property Type="String" Name="CONTACT_PERIOD" Nullable="true" MaxLength="36" />
+    <Property Type="String" Name="WORKING_HOURS" Nullable="true" MaxLength="35" />
+    <Property Type="String" Name="LEAVES_PER_YEAR" Nullable="true" MaxLength="35" />
+    <Property Type="String" Name="TRIP_PER_YEAR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="POSTING_PLACE" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="JOB_DESCRIPTION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="true" />
+    <Property Type="String" Name="DESIGNATION" Nullable="true" />
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" />
+    <Property Type="String" Name="SPECIALIZATION" Nullable="true" />
+    <Property Type="String" Name="CERTIFICATION_TYPE" Nullable="true" />
+    <Property Type="String" Name="GENDERS" Nullable="true" />
+    <Property Type="String" Name="LANGUAGES" Nullable="true" />
+    <Property Type="String" Name="RELIGIONS" Nullable="true" />
+    <Property Type="String" Name="VISA_NUMBER" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="ISSUE_DATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EXPIRY_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="COMPANY_NAME_ID" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_REQUIREMENT_SEARCH_RESULT_Result">
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="COMPANY_NAME" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="CLIENT_NAME" Nullable="false" MaxLength="101" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="PROC_SELECT_MASTER_Result">
+    <Property Type="Int32" Name="AvAILING_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="AvAILING_TYPE" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="REGISTRATION_DATE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CANDIDATE_NAME" Nullable="true" MaxLength="154" />
+    <Property Type="String" Name="DATE_OF_BIRTH" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CONTACT_NO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_CANDIDATE_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="REGISTRATION_DATE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CANDIDATE_NAME" Nullable="true" MaxLength="154" />
+    <Property Type="DateTime" Name="DATE_OF_BIRTH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CONTACT_NO" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_CERTIFICATION_DETAILS_Result">
+    <Property Type="String" Name="REGISTRATION_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CERTIFICATION" Nullable="false" MaxLength="70" />
+    <Property Type="Int32" Name="CERTIFICATION_LEVEL" Nullable="true" />
+    <Property Type="String" Name="INSTITUTE" Nullable="true" MaxLength="80" />
+    <Property Type="Int32" Name="YEAR_OF_PASSING" Nullable="true" />
+    <Property Type="Int32" Name="USER_CERTIFICATION_ID" Nullable="false" />
+    <Property Type="Int32" Name="CERTIFICATION_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_EDUCATION_DETAILS_Result">
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SPECIALIZATION_TYPE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UNIVERSITY_ID" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="UNIVERSITY_YEAR_OF_PASSING" Nullable="true" MaxLength="8" />
+    <Property Type="Int32" Name="EDUCATION_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="USER_EDUCATION_ID" Nullable="false" />
+    <Property Type="Int32" Name="SPECIALIZATION_TYPE_ID" Nullable="true" />
+    <Property Type="Boolean" Name="IS_HIGHEST_QUALIFICATION" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_USER_CONTACT_DETAILS_Result">
+    <Property Type="Int32" Name="ADDRESS_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="ADDRESS_TYPE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="USER_VILLAGE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="USER_PINCODE" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="USER_ADDRESS_ID" Nullable="false" />
+    <Property Type="String" Name="USER_STATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="USER_COUNTRY" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_USER_DOCUMENT_DETAILS_Result">
+    <Property Type="Int32" Name="DOCUMENT_ID" Nullable="false" />
+    <Property Type="String" Name="DOCUMENT_TYPE_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DOCUMENT_PATH" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_USER_EXPERIENCE_DETAILS_Result">
+    <Property Type="Int32" Name="EXPERIENCE_ID" Nullable="false" />
+    <Property Type="String" Name="DESIGNATION" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="INDUSTRY_ID" Nullable="true" />
+    <Property Type="Int32" Name="DESIGNATION_ID" Nullable="true" />
+    <Property Type="String" Name="WORK_CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="IS_CURRENT_COMPANY" Nullable="true" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="INDUSTRY_TYPE" Nullable="false" MaxLength="80" />
+    <Property Type="DateTime" Name="WORK_PERIOD_FROM" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="WORK_PERIOD_TO" Nullable="true" Precision="23" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COMPANY_NAME" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="USER_COMPANY_NAME" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="TOTAL_WORK_EXPERIENCE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TOTAL_GULF_EXPERIENCE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SKILLS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="WORK_REMARK" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_USER_PERSONAL_DETAILS_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="REGISTRATION_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FATHER_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="MOTHER_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="GENDER_CODE" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="DATE_OF_BIRTH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PLACE_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MARITAL_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="NATIONALITY_ID" Nullable="true" />
+    <Property Type="String" Name="CURRENT_LOCATION" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RELIGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="PASSPORT_ID" Nullable="true" />
+    <Property Type="String" Name="PASSPORT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PLACE_OF_ISSUE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DATE_OF_EXPIRY" Nullable="true" />
+    <Property Type="Boolean" Name="EMIGRATION_CLEARANCE_REQUIRED" Nullable="true" />
+    <Property Type="String" Name="DRIVING_LICENCE_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="DRIVING_PLACE_OF_ISSUE" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DRIVING_DATE_OF_ISSUE" Nullable="true" />
+    <Property Type="DateTime" Name="DRIVING_EXPIRY_DATE" Nullable="true" />
+    <Property Type="Int32" Name="VEHICLE_TYPE_ID" Nullable="true" />
+    <Property Type="String" Name="DRIVING_REMARK" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="DRIVING_LICENCE_ID" Nullable="true" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="AVAILING_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="SOURCE_ID" Nullable="true" />
+    <Property Type="String" Name="OTHER_SOURCE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="REFERRER_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="STATUS_ID" Nullable="true" />
+    <Property Type="String" Name="POST_APPLIED_FOR" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="VISA_ID" Nullable="true" />
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="true" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="150" />
+    <Property Type="Boolean" Name="LOGIN_ACCESS" Nullable="false" />
+    <Property Type="String" Name="FILE_NO" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PROC_STATUS_SEARCH_GET_USER_REQUIREMENT_DETAILS_Result">
+    <Property Type="Int32" Name="USER_REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REQUIREMENT" Nullable="true" MaxLength="143" />
+    <Property Type="Int32" Name="CANDIDATE_STATUS" Nullable="false" />
+    <Property Type="String" Name="STATUS_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="CURRENT_STATUS" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_USER_ADDUPDATE_REQUIREMENT_Result">
+    <Property Type="Int32" Name="USER_REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="REQUIREMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REQUIREMENT" Nullable="true" MaxLength="143" />
+    <Property Type="Int32" Name="CANDIDATE_STATUS" Nullable="false" />
+    <Property Type="String" Name="STATUS_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="CURRENT_STATUS" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_USER_GETMASTER_Result">
+    <Property Type="String" Name="CITY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CITY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="STATE_CODE" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="STATE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COUNTRY_CODE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="COUNTRY_NAME" Nullable="true" MaxLength="80" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_USER_LOGIN_DETAILS_Result">
+    <Property Type="String" Name="REGISTRATION_NO" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="USER_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="USER_IMAGE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="PROC_VISA_GETALLVISA_Result">
+    <Property Type="Int32" Name="VISA_ID" Nullable="false" />
+    <Property Type="String" Name="CIVILIAN_NO" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CREATED_BY" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="INDIAN_FORMAT_EXPIRY_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FILE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="INDIAN_FORMAT_ISSUE_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="PLACE_OF_ENDORSEMENT" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="PURPOSE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="RECIEVED_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="REGISTRATION_NUMBER" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="VISA_NUMBER" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="CLIENT_NAME" Nullable="true" MaxLength="174" />
+    <Property Type="String" Name="CREATED_BY1" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CREATED_DATE1" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PROC_GET_ALL_SPECIALIZATIONS_Result1">
+    <Property Type="Int32" Name="SPECIALIZATION_ID" Nullable="false" />
+    <Property Type="String" Name="SPECIALIZATION_TYPE" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="EDUCATION_TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="EDUCATION_TYPE" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>

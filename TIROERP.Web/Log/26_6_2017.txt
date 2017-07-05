@@ -1,0 +1,41 @@
+==================================================================
+DateTime26/06/2017 14:14:08
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/GetSourceByAvailingType
+ Action: GetSourceByAvailingType
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime26/06/2017 14:20:57
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/GetCandidateDetails?registrationNo=C620170018
+ Action: GetCandidateDetails
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime26/06/2017 14:37:27
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: Cannot insert the value NULL into column 'CANDIDATE_STATUS', table 'ArbabTravelsERP.dbo.TBL_USER_REQUIREMENT'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime26/06/2017 22:44:39
+ Controller: CANDIDATE Update
+ URL: 
+ Action: Update
+ Error Message: Invalid object name 'TBL_USER'.
+ Inner Exception: 
+ User: 
+ UserIP: 
+==================================================================

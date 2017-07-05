@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var countOfResultSetList = ViewBag.CountResultSet;
+    string totalCandidate = Convert.ToString(countOfResultSetList[0][0]);
+    string totalVisa = Convert.ToString(countOfResultSetList[1][0]);
+    string totalRequirement = Convert.ToString(countOfResultSetList[2][0]);
+    string totalDeparture = Convert.ToString(countOfResultSetList[3][0]);
+}
+
+@using (Html.BeginForm("Dashboard", "Index", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+
+            <div class="row top tiles">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                        <div class="count">@Html.ActionLink(totalCandidate, "CandidateIndex")</div>
+                        <p><h3>Total no. of Candidates</h3></p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-comments-o"></i></div>
+                        <div class="count">@Html.ActionLink(totalVisa, "Index", "Visa", new { id = 0, isDashboard = true }, new { })</div>
+                        <h3>Visa Expiring in 2 Months</h3>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+                        <div class="count">
+                            @Html.ActionLink(totalRequirement, "GetAllRequirements")
+                        </div>
+                        <h3>Total Pending Requirement</h3>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                        <div class="count">@Html.ActionLink(totalDeparture, "Index", "Ticket")</div>
+                        <h3>Total Departure in Next Month</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

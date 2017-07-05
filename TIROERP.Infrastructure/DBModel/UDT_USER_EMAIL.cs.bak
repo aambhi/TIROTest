@@ -1,0 +1,11 @@
+﻿using EntityFrameworkExtras.EF6;
+
+namespace TIROERP.Infrastructure.DBModel
+{
+    [UserDefinedTableType("UDT_USER_EMAIL")]
+    public class UDT_USER_EMAIL
+    {
+        [UserDefinedTableTypeColumn(1)]
+        public string USER_EMAIL { get; set; }
+    }
+}

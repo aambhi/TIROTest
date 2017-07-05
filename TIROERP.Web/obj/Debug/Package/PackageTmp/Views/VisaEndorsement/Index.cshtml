@@ -1,0 +1,153 @@
+﻿@model IEnumerable<TIROERP.Core.Model.VisaEndorsement>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+        $("#FromDate").datepicker({
+
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate, instance) {
+                if (selectedDate != '') { //added this to fix the issue
+                    $("#ToDate").datepicker("option", "minDate", selectedDate);
+                    var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
+                    date.setMonth(date.getMonth() + 2);
+                    console.log(selectedDate, date);
+                    $("#ToDate").datepicker("option", "minDate", selectedDate);
+                    $("#ToDate").datepicker("option", "maxDate", date);
+                }
+            }
+        });
+        $("#ToDate").datepicker({
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Process --> Visa Endorsement</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>@Html.ActionLink("Add New Record", "VisaEndorsement", "VisaEndorsement", new { }, new { @class = "btn btn-primary" })</h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a href="#"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            @if (!string.IsNullOrEmpty(@ViewBag.Success))
+                            {
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    @ViewBag.Success
+                                </div>
+                            }
+
+                            <div data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport No</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("PassportNo", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Passport No.", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">From Date</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("FromDate", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">To Date</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBox("ToDate", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary" title="Submit" name="SubmitButton" id="SubmitButton" value="Submit">Search</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Reset", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="headings">
+                                        <th>Candidate Name</th>
+                                        <th>Submission Status</th>
+                                        <th>Submission Date</th>
+                                        <th>Download Report</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@(Html.DisplayFor(modelItem => item.CANDIDATE_NAME) + (item.PASSPORT_NUMBER != "" ? " | " + item.PASSPORT_NUMBER : "") )</td>
+                                            <td>@Html.DisplayFor(modelItem => item.VisaSubmissionStatus)</td>
+                                            <td>@item.SubmissionDate</td>
+                                            <td>
+                                                @if (item.VisaEndorsementFilePath != null)
+                                                {
+                                                    string filepath = Url.Content(Server.MapPath("~/Uploads/VisaEndorsementUploadedFiles/" + item.VisaEndorsementFilePath));
+                                                    @Html.ActionLink("Download", "Download", "Medical", new { filepath = filepath }, new { @class = "glyphicon glyphicon-download" })
+                                                }
+                                            </td>
+                                            <td>@Html.ActionLink("Edit", "Edit", new { id = item.VisaEndorsementId }, new { @class = "btn btn-info btn-xs" }) </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+}

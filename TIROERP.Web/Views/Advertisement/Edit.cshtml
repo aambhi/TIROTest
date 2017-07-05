@@ -1,0 +1,148 @@
+﻿@model TIROERP.Core.Model.Advertisement
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string reportName = string.Empty;
+    string filepath = string.Empty;
+    if (!string.IsNullOrEmpty(Model.FILE_PATH))
+    {
+        reportName = Model.FILE_PATH.Substring(15);
+        filepath = Url.Content(Server.MapPath("~/Uploads/AdvertisementUploadedFiles/" + Model.FILE_PATH));
+    }
+}
+
+<link href="~/Content/datepicker" rel="stylesheet" />
+<script src="~/bundles/datepicker"></script>
+@Scripts.Render("~/bundles/chosen")
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#REQUIREMENT_ID").chosen();
+        $("#advDate").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $(document).on("click", ".removeFile", function () {
+
+            $(this).parent().remove();
+
+            //var appendHtml = '<div class="col-md-6 col-sm-6">';
+            //appendHtml += '<input type="file" draggable="auto" id="medicalFile" name="medicalFile" />';
+            //appendHtml += '</div>';
+            $(".fileGroup").hide();
+            $(".fileadd").show();
+            $("#ReportPath").val('');
+        });
+
+        var file = '@reportName';
+        if (file == null || file == "") {
+            $(".fileadd").show();
+        }
+    });
+</script>
+
+@using (Html.BeginForm("Edit", "Advertisement", FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Edit - Advertisement Master </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit </h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-inline">
+                                @Html.HiddenFor(model => model.ADV_ID)
+                                @Html.HiddenFor(model => model.CREATED_BY)
+                                @Html.HiddenFor(model => model.CREATED_DATE)
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Advertizement Type <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.PAPER_NAME, new { @id = "PAPER_NAME", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "50" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3">Advertizement Type <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.AD_AGENCY_NAME, new { @id = "AD_AGENCY_NAME", @class = "form-control  col-md-7 col-xs-12", @autocomplete = "off", @maxlength = "50" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Expense" class="control-label col-md-3 col-sm-3">Expense<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.EXPENSES, new { @id = "Expense", @class = "form-control  col-md-7 col-xs-12", @type = "number" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Requirement" class="control-label col-md-3 col-sm-3">Requirement/s </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => model.REQUIREMENT_ID, (IEnumerable<SelectListItem>)ViewBag.Requirements, "", htmlAttributes: new { @id = "REQUIREMENT_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Requirement" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="advDate" class="control-label col-md-3 col-sm-3">Date<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" id="advDate" name="ADV_DATE" value="@Convert.ToDateTime(Model.ADV_DATE).ToString("dd-MMM-yyyy")" class="form-control" autocomplete="off" required="required" placeholder="Enter Date" />
+                                    </div>
+                                </div>
+
+                                @if (@Model.FILE_PATH != null)
+                                {
+                                    <div class="form-group fileGroup">
+                                        <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Report</label>
+                                        <div class="col-md-6 col-sm-6 addPadding file-name">
+                                            @Html.ActionLink(reportName, "Download", "Medical", new { filepath = filepath }, new { })
+                                            <span class="glyphicon glyphicon-remove removeFile remove-part" title="Delete"></span>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                <div class="form-group fileadd" style="display:none;">
+                                    <label class="control-label col-md-3 col-sm-3">Upload File</label>
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="advFile" id="advFile" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.FILE_PATH)
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </form>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

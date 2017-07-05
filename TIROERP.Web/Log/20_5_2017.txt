@@ -1,0 +1,10 @@
+==================================================================
+DateTime20/05/2017 14:17:58
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/1
+ Action: Create
+ Error Message: The specified cast from a materialized 'System.Int32' type to the 'System.String' type is not valid.
+ Inner Exception: The specified cast from a materialized 'System.Int32' type to the 'System.String' type is not valid.
+ User: ADMIN
+ UserIP: 192.168.1.32
+==================================================================

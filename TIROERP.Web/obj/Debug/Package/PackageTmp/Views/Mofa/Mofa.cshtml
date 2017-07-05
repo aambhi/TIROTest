@@ -1,0 +1,220 @@
+﻿@model TIROERP.Core.Model.Mofa
+@{
+    ViewBag.Title = "Mofa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/chosen")
+@Styles.Render("~/Content/chosen")
+
+@Scripts.Render(("~/bundles/datepicker"))
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render(("~/bundles/jasny"))
+@Styles.Render("~/Content/wizard")
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#USER_REQUIREMENT_ID").chosen();
+
+        $("#MofaDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#ApplicationDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#HealthDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#DDDate").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#USER_REQUIREMENT_ID").change(function (e) {
+            $("#CandidateName").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCandidateName","Mofa")', // we are calling json method
+                data: { userRequirementId: $("#USER_REQUIREMENT_ID").val() },
+                success: function (d) {
+                    $("#CandidateName").val(d);
+                },
+                error: function (ex) {
+                    $("#CandidateName").empty();
+                }
+            });
+            return false;
+        });
+
+        $("#SaveMofa").click(function (e) {
+            var isStepValid = true;
+
+            var USER_REQUIREMENT_ID = $("#USER_REQUIREMENT_ID").val();
+            if (USER_REQUIREMENT_ID == "") {
+                $("#Err_USER_REQUIREMENT_ID").text("Please select Passport No.");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_USER_REQUIREMENT_ID").text("");
+            }
+
+            var MofaNumber = $("#MofaNumber").val();
+            if (MofaNumber == "") {
+                $("#Err_MofaNumber").text("Please enter Mofa No.");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_MofaNumber").text("");
+            }
+
+            var MofaDate = $("#MofaDate").val();
+            if (MofaDate == "") {
+                $("#Err_MofaDate").text("Please enter Mofa Date");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_MofaDate").text("");
+            }
+
+            return isStepValid;
+        });
+    });
+</script>
+
+@using (Html.BeginForm("Mofa", "Mofa", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+     <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Mofa</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add Mofa Details</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- Tabs -->
+                            <br />
+                            <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Passport Number <span class="required">*</span> </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownListFor(model => Model.USER_REQUIREMENT_ID, (IEnumerable<SelectListItem>)ViewBag.GetPassportNo, "Select Passport", htmlAttributes: new { @id = "USER_REQUIREMENT_ID", @class = "form-control col-md-7 col-xs-12", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.USER_REQUIREMENT_ID, "", new { @class = "text-danger",@id= "Err_USER_REQUIREMENT_ID" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Mofa No <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.MofaNumber, new { @id = "MofaNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Mofa No", @autocomplete = "off", @maxlength = "30" })
+                                        @Html.ValidationMessageFor(model => model.MofaNumber, "", new { @class = "text-danger", @id = "Err_MofaNumber" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Date <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.MofaDate, new { @id = "MofaDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.MofaDate, "", new { @class = "text-danger",@id= "Err_MofaDate" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Application </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.ApplicationNumber, new { @id = "ApplicationNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Transaction Number", @autocomplete = "off", @maxlength = "30" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Application Date </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.ApplicationDate, new { @id = "ApplicationDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Health </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.HealthNumber, new { @id = "HealthNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Transaction Number", @autocomplete = "off", @maxlength = "30" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Health Date </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.HealthDate, new { @id = "HealthDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">DD </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.DDNumber, new { @id = "DDNumber", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Transaction Number", @autocomplete = "off", @maxlength = "30" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">
+                                        DD Date
+                                    </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.TextBoxFor(model => model.DDDate, new { @id = "DDDate", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DD/MM/YYYY", @autocomplete = "off", @maxlength = "10" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3">Upload Report</label>
+                                    <div class="fileinput fileinput-new col-md-6 col-sm-6" data-provides="fileinput">
+                                        <div>
+                                            <input type="file" name="mofaFile" id="mofaFile" style="width: 100%;" />
+                                            @Html.HiddenFor(model => model.MofaFilePath)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextAreaFor(model => model.MofaRemark, new { @id = "MofaRemark", @class = "form-control", @placeholder = "Remark", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success" id="SaveMofa">Submit</button>
+                                        | @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- End SmartWizard Content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                <!-- /page content -->
+
+}

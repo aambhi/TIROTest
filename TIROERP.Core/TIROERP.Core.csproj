@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38F6D6A9-A87C-44AD-9724-BAF5307F9A85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TIROERP.Core</RootNamespace>
+    <AssemblyName>TIROERP.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\EmailTemplateConstants.cs" />
+    <Compile Include="Model\Advertisement.cs" />
+    <Compile Include="Model\Agent.cs" />
+    <Compile Include="Model\AgentEmail.cs" />
+    <Compile Include="Model\Airline.cs" />
+    <Compile Include="Model\Allowance.cs" />
+    <Compile Include="Model\AllowanceType.cs" />
+    <Compile Include="Model\Candidate.cs" />
+    <Compile Include="Model\Certification.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\CompanyMaster.cs" />
+    <Compile Include="Model\ContactPerson.cs" />
+    <Compile Include="Model\ContactType.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\Designation.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\EducationType.cs" />
+    <Compile Include="Model\Emigration.cs" />
+    <Compile Include="Model\State.cs" />
+    <Compile Include="Model\TaskMaster.cs" />
+    <Compile Include="RepositoryInterface\ICity.cs" />
+    <Compile Include="RepositoryInterface\ICompany.cs" />
+    <Compile Include="RepositoryInterface\IDashboard.cs" />
+    <Compile Include="Model\Industry.cs" />
+    <Compile Include="Model\CandidateSearch.cs" />
+    <Compile Include="Model\Interview.cs" />
+    <Compile Include="Model\InterviewMode.cs" />
+    <Compile Include="Model\Master.cs" />
+    <Compile Include="Model\Medical.cs" />
+    <Compile Include="Model\MenuModel.cs" />
+    <Compile Include="Model\Mofa.cs" />
+    <Compile Include="Model\Policy.cs" />
+    <Compile Include="Model\RequirementModel.cs" />
+    <Compile Include="Model\RequirementSearch.cs" />
+    <Compile Include="Model\RequirementSearchViewModel.cs" />
+    <Compile Include="Model\RequirementStatus.cs" />
+    <Compile Include="Model\Specialization.cs" />
+    <Compile Include="Model\Ticket.cs" />
+    <Compile Include="Model\UserAddress.cs" />
+    <Compile Include="Model\UserCertification.cs" />
+    <Compile Include="Model\UserContact.cs" />
+    <Compile Include="Model\UserDocument.cs" />
+    <Compile Include="Model\UserEducation.cs" />
+    <Compile Include="Model\UserEmail.cs" />
+    <Compile Include="Model\UserExperience.cs" />
+    <Compile Include="Model\UserLanguage.cs" />
+    <Compile Include="Model\UserLogin.cs" />
+    <Compile Include="Model\UserRequirement.cs" />
+    <Compile Include="Model\Visa.cs" />
+    <Compile Include="Model\VisaEndorsement.cs" />
+    <Compile Include="RepositoryInterface\IAdvertisement.cs" />
+    <Compile Include="RepositoryInterface\IAgent.cs" />
+    <Compile Include="RepositoryInterface\IAirline.cs" />
+    <Compile Include="RepositoryInterface\ICandidate.cs" />
+    <Compile Include="RepositoryInterface\ICertification.cs" />
+    <Compile Include="RepositoryInterface\IClient.cs" />
+    <Compile Include="RepositoryInterface\ICountry.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryInterface\IDesignation.cs" />
+    <Compile Include="RepositoryInterface\IDoctor.cs" />
+    <Compile Include="RepositoryInterface\IEducation.cs" />
+    <Compile Include="RepositoryInterface\IEmigration.cs" />
+    <Compile Include="RepositoryInterface\IIndustry.cs" />
+    <Compile Include="RepositoryInterface\IInterview.cs" />
+    <Compile Include="RepositoryInterface\IMedical.cs" />
+    <Compile Include="RepositoryInterface\IMenu.cs" />
+    <Compile Include="RepositoryInterface\IMofa.cs" />
+    <Compile Include="RepositoryInterface\IPolicy.cs" />
+    <Compile Include="RepositoryInterface\IRequirement.cs" />
+    <Compile Include="RepositoryInterface\ISpecialization.cs" />
+    <Compile Include="RepositoryInterface\IState.cs" />
+    <Compile Include="RepositoryInterface\IStatusSearch.cs" />
+    <Compile Include="RepositoryInterface\ITask.cs" />
+    <Compile Include="RepositoryInterface\ITicket.cs" />
+    <Compile Include="RepositoryInterface\IUserLogin.cs" />
+    <Compile Include="RepositoryInterface\IVisa.cs" />
+    <Compile Include="RepositoryInterface\IVisaEndorsement.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

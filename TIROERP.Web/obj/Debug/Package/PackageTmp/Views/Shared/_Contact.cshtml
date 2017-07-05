@@ -1,0 +1,179 @@
+﻿@{
+    string contactJSON = "";
+    var userContact = new List<TIROERP.Core.Model.UserContact>();
+
+    if (ViewBag.UserContact != null)
+    {
+        userContact = ViewBag.UserContact as List<TIROERP.Core.Model.UserContact>;
+
+        if (userContact != null)
+        {
+            for (int i = 0; i < userContact.Count; i++)
+            {
+                contactJSON += "{\"CONTACT_TYPE_ID\":\"" + userContact[i].CONTACT_TYPE_ID + "\", \"CONTACT_NO\":\"" + userContact[i].CONTACT_NO + "\",\"IsNew\" : \"" + true + "\",\"USER_CONTACT_ID\":\"" + userContact[i].USER_CONTACT_ID + "\"},";
+            }
+
+            contactJSON = contactJSON.TrimEnd(',');
+            contactJSON = "[" + contactJSON + "]";
+        }
+    }
+}
+
+<script type="text/javascript">
+    var lstOfUserContact = '@ViewBag.UserContact';
+    contactCollection = (typeof contactCollection != 'undefined' && contactCollection instanceof Array) ? contactCollection : [];
+    if (lstOfUserContact != null && @contactJSON.Length > 0) {
+        contactCollection = "@contactJSON".replace(/&quot;/g, '\"');
+        contactCollection = JSON.parse(contactCollection);
+    }
+</script>
+
+
+<div class="groupEmail">
+    <div class="form-group">
+        <div class="row">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3">Phone Number <span class="required">*</span></label>
+            <div class="col-md-2 col-sm-2">
+                @Html.DropDownList("CONTACT_TYPE_ID", ViewData["GetContactType"] as SelectList, "", new { @id = "CONTACT_TYPE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Type", @tabindex = "47" })
+                @Html.ValidationMessage("CONTACT_TYPE_ID", "", new { @class = "text-danger", @id = "Err_CONTACT_TYPE_ID" })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                @Html.TextBox("CONTACT_NO", "", new { @id = "CONTACT_NO", @class = " form-control col-md-7 col-xs-12", @placeholder = "Phone No", @autocomplete = "off", @maxlength = "20", @onkeypress = "return isNumberKey(event)", @tabindex = "48" })
+                @Html.ValidationMessage("CONTACT_NO", "", new { @class = "text-danger", @id = "Err_CONTACT_NO" })
+                <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <button type="button" class="addButton addPhoneButton" id="SavePhone" tabindex="49"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3">&nbsp;</div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em; margin-top:10px;" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            Phone Type
+                        </th>
+                        <th>
+                            Phone No
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tblcontact">
+                        @if (userContact != null && userContact.Count > 0)
+                        {
+                            foreach (var contactItem in userContact)
+                            {
+                                <tr id='tr_old_row_cont_@contactItem.CONTACT_NO'>
+                                    <td>
+                                        @contactItem.CONTACT_TYPE_ID
+                                        <input type="hidden" class="contact_type_id" value=@contactItem.USER_CONTACT_ID />
+                                    </td>
+                                    <td>
+                                        @contactItem.CONTACT_TYPE
+                                    </td>
+                                    <td>
+                                        @contactItem.CONTACT_NO
+                                    </td>
+                                    <td><a href="javascript:void()"><span aria-hidden="true" class="delete_contact glyphicon glyphicon-trash" title="Delete"></span></a></td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    $(document).ready(function () {
+
+        $("#CONTACT_TYPE_ID").chosen({width: "100%"});
+
+        $("#CONTACT_NO").mask("999-999-999-99999");
+
+        $("#SavePhone").click(function (e) {
+            var isStepValid = true;
+
+            var CONTACT_TYPE_ID = $("#CONTACT_TYPE_ID").val();
+            var CONTACT_NO = $("#CONTACT_NO").val();
+
+            if (CONTACT_TYPE_ID == "") {
+                $("#Err_CONTACT_TYPE_ID").text("Please select Contact Type");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_CONTACT_TYPE_ID").text("");
+            }
+
+            if (CONTACT_NO == "") {
+                $("#Err_CONTACT_NO").text("Please enter Contact no.");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_CONTACT_NO").text("");
+            }
+
+            if (isStepValid) {
+                var row_id = $('#tblcontact').children().length + 1
+                var row = "";
+                row += "<tr id ='tr_old_row_cont_" + CONTACT_NO + "'><td >" + row_id + " </td><td>" + $("#CONTACT_TYPE_ID option:selected").text() + "</td><td><span class='user-contact'>" + CONTACT_NO + "</td>";
+                row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_contact glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tblcontact").append(row);
+
+                var addJson = { "CONTACT_TYPE_ID": CONTACT_TYPE_ID, "CONTACT_NO": CONTACT_NO, "IsNew": "true","USER_CONTACT_ID":"0" };
+                var exists = !!_.where(contactCollection, { "CONTACT_NO": CONTACT_NO }).length;
+                if (!exists)
+                    contactCollection.push(addJson);
+                else {
+                    var contact = $.grep(contactCollection, function (e) { return e.CONTACT_NO == CONTACT_NO; });
+                    if (contact && contact.length == 1) {
+                        contact[0].IsNew = 'false';
+                    }
+                }
+
+
+                $("#CONTACT_TYPE_ID").val('').trigger("chosen:updated");
+                $("#CONTACT_NO").val("");
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    $(document).on("click",".delete_contact",function() {
+
+        var deletedRowId = $(this).closest("tr").attr("id");
+        var contactToBeDeleted = deletedRowId.substr(deletedRowId.lastIndexOf('_') + 1);
+        $(this).closest("tr").remove();
+
+        var contact = $.grep(contactCollection, function (e) { return (e.CONTACT_NO == contactToBeDeleted) });
+        if (contact && contact.length ==1) {
+            contact[0].IsNew = 'false';
+        }
+    });
+
+    //function fnDeleteContact(rowId) {
+
+    //    var deletedRow = $('#tr_old_row_cont_' + rowId);
+    //    var contactToBeDeleted = deletedRow.find(".user-contact").text();
+    //    deletedRow.remove();
+    //    var contact = $.grep(contactCollection, function (e) { return (e.CONTACT_NO == rowId) });
+    //    if (contact && contact.length == 1) {
+    //        contact[0].IsNew = 'false';
+    //    }
+    //}
+</script>

@@ -1,0 +1,40 @@
+==================================================================
+DateTime20-Mar-17 10:33:38 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 1
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime20-Mar-17 10:33:39 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 2
+ User: C320170007
+ UserIP: 
+==================================================================
+==================================================================
+DateTime20-Mar-17 10:36:48 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 1
+ User: 
+ UserIP: 
+==================================================================
+==================================================================
+DateTime20-Mar-17 10:36:48 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: EXCEPTION OCCURED
+ Inner Exception: CALL 2
+ User: C320170008
+ UserIP: 
+==================================================================

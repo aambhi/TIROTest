@@ -1,0 +1,4 @@
+F:\Project Works\TIRO\TIROERP.Core\bin\Release\TIROERP.Core.dll
+F:\Project Works\TIRO\TIROERP.Core\bin\Release\TIROERP.Core.pdb
+F:\Project Works\TIRO\TIROERP.Core\obj\Release\TIROERP.Core.dll
+F:\Project Works\TIRO\TIROERP.Core\obj\Release\TIROERP.Core.pdb

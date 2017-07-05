@@ -1,0 +1,236 @@
+﻿<div class="groupAddress">
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3" for="contactPerson">
+            Address <span class="required">*</span>
+        </label>
+        <div class="col-md-2 col-sm-2">
+            @Html.DropDownList("ADDRESS_TYPE_ID", (SelectList)ViewData["GetAddressType"], "--Select Address type--", new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessage("ADDRESS_TYPE_ID", "", new { @class = "text-danger", id = "Err_ADDRESS_TYPE_ID" })
+        </div>
+        <div class="col-md-4 col-sm-4">
+            @Html.TextBox("ADDRESS", "", new { id = "ADDRESS", @class = " form-control", @placeholder = "Address", @autocomplete = "off" })
+            @Html.ValidationMessage("ADDRESS", "", new { @class = "text-danger", id = "Err_ADDRESS" })
+        </div>
+        <div class="">
+            <button type="button" class="addAddress addButton" id="SaveAddress"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-3 col-md-3 col-sm-3">
+            @Html.DropDownList("COUNTRY_CODE", (SelectList)ViewData["GetCountry"], "--Select Country--", new { @id = "COUNTRY_CODE", @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessage("COUNTRY_CODE", "", new { @class = "text-danger", @id = "Err_COUNTRY_CODE" })
+        </div>
+        <div class="col-md-3 col-sm-3">
+            @Html.DropDownList("STATE_CODE", new SelectList(""), "--Select State--", new { @id = "STATE_CODE", @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessage("STATE_CODE", "", new { @class = "text-danger", @id = "Err_STATE_CODE" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-3 col-md-3 col-sm-3">
+            @Html.DropDownList("CITY_CODE", new SelectList(""), "--Select City--", new { @id = "CITY_CODE", @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessage("CITY_CODE", "", new { @class = "text-danger", @id = "Err_CITY_CODE" })
+        </div>
+        <div class="col-md-3 col-sm-3">
+            @Html.TextBox("USER_VILLAGE", "", new { @id = "USER_VILLAGE", @class = "form-control col-md-7 col-xs-12", @placeholder = "Village", @autocomplete = "off", @maxlength = "50" })
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="middle-name" class="control-label col-md-3 col-sm-3">Pin Code</label>
+        <div class="col-md-6 col-sm-6">
+            @Html.TextBox("USER_PINCODE", "", new { @id = "USER_PINCODE", @class = " form-control", @placeholder = "Pin Code", @autocomplete = "off", @maxlength = "15" })
+            @Html.ValidationMessage("USER_PINCODE", "", new { @class = "text-danger", @id = "Err_USER_PINCODE" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-3 col-sm-3"></div>
+        <div class="col-md-6 col-sm-6">
+            <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                <tr>
+                    <th>Address</th>
+                    <th>Country</th>
+                    <th>State-City</th>
+                    <th>Village</th>
+                    <th>Pincode</th>
+                    <th></th>
+                </tr>
+                <tbody id="tblchild"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#ADDRESS_TYPE_ID").select2();
+        $("#COUNTRY_CODE").select2();
+        $("#STATE_CODE").select2();
+        $("#CITY_CODE").select2();
+
+        $("#COUNTRY_CODE").change(function () {
+            $("#STATE_CODE").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCountryStateCity")',
+                dataType: 'json',
+                data: { code: $("#COUNTRY_CODE").val(), type: "S" },
+                success: function (states) {
+                    $("#STATE_CODE").append('<option value="0">--Select State--</option>');
+                    $.each(states, function (i, state) {
+                        $("#STATE_CODE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    $("#STATE_CODE").append('<option value="0">--Select State--</option>');
+                }
+            });
+            return false;
+        })
+
+
+        $("#STATE_CODE").change(function () {
+            $("#CITY_CODE").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCountryStateCity")',
+                dataType: 'json',
+                data: { code: $("#STATE_CODE").val(), type: "C" },
+                success: function (states) {
+                    $("#CITY_CODE").append('<option value="0">--Select City--</option>');
+                    $.each(states, function (i, state) {
+                        $("#CITY_CODE").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    $("#CITY_CODE").append('<option value="0">--Select City--</option>');
+                }
+            });
+            return false;
+        })
+
+
+        $("#SaveAddress").click(function (e) {
+            var isStepValid = true;
+
+            var ADDRESS_TYPE_ID = $("#ADDRESS_TYPE_ID").val();
+            var ADDRESS = $("#ADDRESS").val();
+            var COUNTRY_CODE = $("#COUNTRY_CODE").val();
+            var STATE_CODE = $("#STATE_CODE").val();
+            var CITY_CODE = $("#CITY_CODE").val();
+            var VILLAGE = $("#USER_VILLAGE").val();
+            var PIN_CODE = $("#USER_PINCODE").val();
+
+            if (ADDRESS_TYPE_ID == "") {
+                $("#Err_ADDRESS_TYPE_ID").text("Please select Address Type");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_ADDRESS_TYPE_ID").text("");
+            }
+            if (ADDRESS == "") {
+                $("#Err_ADDRESS").text("Please enter Address details");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_ADDRESS").text("");
+            }
+
+            if (COUNTRY_CODE == "") {
+                $("#Err_COUNTRY_CODE").text("Please select Country");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_COUNTRY_CODE").text("");
+            }
+
+            if (STATE_CODE == "" || STATE_CODE == "0") {
+                $("#Err_STATE_CODE").text("Please select State");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_STATE_CODE").text("");
+            }
+            if (CITY_CODE == "" || CITY_CODE == "0") {
+                $("#Err_CITY_CODE").text("Please select City");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_CITY_CODE").text("");
+            }
+
+            if (COUNTRY_CODE == "IND") {
+                if (PIN_CODE == "") {
+                    $("#Err_USER_PINCODE").text("Please enter Pin Code");
+                    isStepValid = false;
+                }
+                else if (PIN_CODE.length != 6) {
+                    $("#Err_USER_PINCODE").text("Please enter valid Pin Code");
+                    isStepValid = false;
+                }
+                else {
+                    var len = PIN_CODE.length;
+                    var c;
+                    for (var i = 0; i < len; i++) {
+                        c = PIN_CODE.charAt(i).charCodeAt(0);
+                        if (c == 45 && i == 0) {
+                            continue;
+                        }
+                        if (c < 48 || c > 57) {
+                            $("#Err_USER_PINCODE").text("Please enter valid Pin Code");
+                            isStepValid = false;
+                        }
+                        else {
+                            $("#Err_USER_PINCODE").text("");
+                        }
+                    }
+                }
+            }
+            else {
+                $("#Err_USER_PINCODE").text("");
+            }
+
+            if (isStepValid) {
+                var row = "";
+                row += "<tr id ='tr_old_row_" + ADDRESS + "'><td>" + ADDRESS + "</td><td>" + $("#COUNTRY_CODE option:selected").text() + "</td><td>" + $("#STATE_CODE option:selected").text() + "-" + $("#CITY_CODE option:selected").text() + "</td><td>" + $("#USER_VILLAGE").val() + "</td><td>" + PIN_CODE + "</td> "
+                row += '<td><a onclick="fnDeleteRow(' + "'" + ADDRESS + "'" + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                $("#tblchild").append(row);
+
+                var addJson = { "ADDRESS_TYPE_ID": ADDRESS_TYPE_ID, "ADDRESS": ADDRESS, "CITY_CODE": CITY_CODE, "USER_VILLAGE": VILLAGE, "USER_PINCODE": PIN_CODE, "COUNTRY_CODE": COUNTRY_CODE, "STATE_CODE": STATE_CODE, "IsNew": "true" };
+                var exists = !!_.where(addressCollection, { "ADDRESS": ADDRESS }).length;
+                if (!exists)
+                    addressCollection.push(addJson);
+                else {
+                    var address = $.grep(addressCollection, function (e) { return e.ADDRESS == ADDRESS; });
+                    if (address && address.length == 1) {
+                        address[0].IsNew = 'false';
+                    }
+                }
+
+                $("#ADDRESS_TYPE_ID").val('').trigger('change')
+                $("#ADDRESS").val("");
+                $("#COUNTRY_CODE").val('').trigger('change')
+                $("#STATE_CODE").val('').trigger('change')
+                $("#CITY_CODE").val('').trigger('change')
+                $("#USER_VILLAGE").val("");
+                $("#USER_PINCODE").val("");
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    function fnDeleteRow(rowId) {
+        $('#tr_old_row_' + rowId).remove();
+        $('#tr_old_row_' + rowId).addClass("notActive");
+        $('#tr_old_row_' + rowId + ' .IsActive').val('0');
+    }
+</script>

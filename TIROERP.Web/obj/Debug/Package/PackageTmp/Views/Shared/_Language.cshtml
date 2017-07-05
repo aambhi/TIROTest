@@ -1,0 +1,224 @@
+﻿@{
+    string langJSON = "";
+    var userLanguage = new List<TIROERP.Core.Model.UserLanguage>();
+
+    if (ViewBag.UserLanguages != null)
+    {
+        userLanguage = ViewBag.UserLanguages as List<TIROERP.Core.Model.UserLanguage>;
+
+        if (userLanguage != null)
+        {
+            for (int i = 0; i < userLanguage.Count; i++)
+            {
+                langJSON += "{\"LANGUAGE_ID\":\"" + userLanguage[i].LANGUAGE_ID + "\", \"IS_READ\":\"" + userLanguage[i].IS_READ + "\",\"IsNew\" : \"" + true + "\",\"IS_WRITE\":\"" + userLanguage[i].IS_WRITE + "\",\"IS_SPEAK\":\"" + userLanguage[i].IS_SPEAK + "\" ,\"USER_LANGUAGE_ID\":\"" + userLanguage[i].USER_LANGUAGE_ID + "\",\"SRNO\":\"" + i + "\"},";
+            }
+
+            langJSON = langJSON.TrimEnd(',');
+            langJSON = "[" + langJSON + "]";
+        }
+    }
+}
+<script type="text/javascript">
+    var lstOfUserLanguage = '@ViewBag.UserLanguages';
+    languageCollection = (typeof languageCollection != 'undefined' && languageCollection instanceof Array) ? languageCollection : [];
+
+    if (lstOfUserLanguage != null && @langJSON.Length > 0) {
+        languageCollection = "@langJSON".replace(/&quot;/g, '\"');
+        languageCollection = JSON.parse(languageCollection);
+    }
+</script>
+
+<div class="groupEmail">
+    <div class="form-group">
+        <div class="row">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3">Languages</label>
+            <div class="col-md-7 col-sm-7">
+                @Html.DropDownList("LANGUAGE_ID", ViewData["GetLanguage"] as SelectList, "", new { @id = "LANGUAGE_ID", @class = "form-control", @autocomplete = "off", @data_placeholder = "Select Language", @tabindex = "23" })
+                @Html.ValidationMessage("LANGUAGE_ID", "", new { @class = "text-danger", @id = "Err_LANGUAGE_ID" })
+            </div>
+            <div class="col-xs-1 col-md-2">
+                <button type="button" class="addAddress addButton" id="SaveLanguage" tabindex="27"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div id="divLang">
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-md-4 col-sm-4">Read</label>
+                <div class="col-md-8 col-sm-8">
+                    @Html.CheckBox("IS_READ", new { @id = "IS_READ", @autocomplete = "off", @tabindex = "24" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-md-4 col-sm-4">Write</label>
+                <div class="col-md-8 col-sm-8">
+                    @Html.CheckBox("IS_WRITE", new { @id = "IS_WRITE", @autocomplete = "off", @tabindex = "25" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-md-4 col-sm-4" style="padding-top: 1px;">Speak</label>
+                <div class="col-md-8 col-sm-8">
+                    @Html.CheckBox("IS_SPEAK", new { @id = "IS_SPEAK", @autocomplete = "off", @tabindex = "26" })
+                    @Html.ValidationMessage("LANGUAGE_ID", "", new { @class = "text-danger", @id = "Err_LANGUAGE_ABILITY" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-bordered table-striped" style="padding-right:10em" cellspacing="0" width="10%" border="1" height="10px">
+                    <tr>
+                        @*<th>ID</th>*@
+                        <th>Language</th>
+                        <th>Read</th>
+                        <th>Write</th>
+                        <th>Speak</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tbllanguage">
+                        @if (userLanguage != null && userLanguage.Count > 0)
+                        {
+                            foreach (var langItem in userLanguage)
+                            {
+                                <tr id="tr_old_row_lang_@langItem.LANGUAGE_ID">
+                                    @*<td>
+                                            @langItem.LANGUAGE_ID
+                                            <input type="hidden" value="@langItem.USER_LANGUAGE_ID" />
+                                        </td>*@
+                                    <td>
+                                        @langItem.LANGUAGE_NAME
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" value="@langItem.IS_READ" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" value="@langItem.IS_WRITE" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" value="@langItem.IS_SPEAK" />
+                                    </td>
+                                    <td>
+                                        <a onclick="fnDeleteLanguage(@langItem.LANGUAGE_ID)" href="javascript:void()"><span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        //$("#IS_SPEAK").focusout(function () {
+        //    $("#SaveLanguage").focus();
+        //});
+
+
+        $("#SaveLanguage").click(function (e) {
+            var isStepValid = true;
+
+            var LANGUAGE_ID = $("#LANGUAGE_ID").val();
+            var IS_READ = $('#IS_READ').prop('checked');
+            var IS_WRITE = $('#IS_WRITE').prop('checked');
+            var IS_SPEAK = $("#IS_SPEAK").prop('checked');
+
+            if (LANGUAGE_ID == "" || LANGUAGE_ID == null) {
+                $("#Err_LANGUAGE_ID").text("Please select Language");
+                isStepValid = false;
+            }
+            else{
+                $("#Err_LANGUAGE_ID").text("");
+            }
+
+            if (IS_READ == false && IS_WRITE == false && IS_SPEAK == false) {
+                $("#Err_LANGUAGE_ABILITY").text("Please select Language fluency.");
+                isStepValid = false;
+            }
+            else{
+                $("#Err_LANGUAGE_ABILITY").text("");
+            }
+
+            var read = "";
+            var write = "";
+            var speak = "";
+
+            if (IS_READ == true) {
+                read = '<input  type="checkbox" checked="checked" disabled="true">';
+            }
+            else {
+                read = '<input  type="checkbox"  disabled="true">';
+            }
+
+            if (IS_WRITE == true) {
+                write = '<input  type="checkbox" checked="checked" disabled="true">';
+            }
+            else {
+                write = '<input name="IS_WRITE" type="checkbox"  disabled="true">';
+            }
+
+            var speak = "";
+            if (IS_SPEAK == true) {
+                speak = '<input  type="checkbox" checked="checked" disabled="true">';
+            }
+            else {
+                speak = '<input type="checkbox"  disabled="true">';
+            }
+
+
+            if (isStepValid) {
+                var row_id = languageCollection.length + 1
+                
+                var exists = !!_.where(languageCollection, { "LANGUAGE_ID": LANGUAGE_ID,"IsNew": "true" }).length;
+                if (!exists){
+                    var row = "";
+                    row += "<tr id ='tr_old_row_lang_" + row_id + "'><td>" + $("#LANGUAGE_ID option:selected").text() + "</td><td>" + read + "</td><td>" + write + "</td><td>" + speak + "</td>";
+                    row += '<td><a onclick="fnDeleteLanguage(' + row_id + ')" href="javascript:void()"> <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+                    $("#tbllanguage").append(row);
+
+                    var addJson = { "LANGUAGE_ID": LANGUAGE_ID, "IS_READ": IS_READ, "IsNew": "true", "IS_WRITE": IS_WRITE, "IS_SPEAK": IS_SPEAK,"USER_LANGUAGE_ID": "0" ,"LANGUAGE_NAME":$("#LANGUAGE_ID option:selected").text(),"SRNO":row_id};
+
+                    languageCollection.push(addJson);
+                }
+                else {
+                    alert("Record already exists");
+                    return false;
+                    //var contact = $.grep(languageCollection, function (e) { return e.LANGUAGE_ID == LANGUAGE_ID; });
+                    //if (contact && contact.length == 1) {
+                    //    contact[0].IsNew = 'false';
+                    //}
+                }
+
+                $("#LANGUAGE_ID").val('').trigger("chosen:updated");
+                $("#IS_READ").prop('checked', false);
+                $("#IS_WRITE").prop('checked', false);
+                $("#IS_SPEAK").prop('checked', false);
+            }
+            else {
+                return isStepValid;
+            }
+
+        });
+
+    });
+
+    function fnDeleteLanguage(rowId) {
+        $('#tr_old_row_lang_' + rowId).remove();
+
+        var lang = $.grep(languageCollection, function (e) { return e.SRNO == rowId; });
+        if (lang && lang.length == 1) {
+            lang[0].IsNew = 'false';
+        }
+    }
+</script>

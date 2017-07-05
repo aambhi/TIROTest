@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TIROERP.Core.Model.TaskMaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+    });
+</script>
+
+@using (Html.BeginForm("Index", "Task", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Task Master</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>@Html.ActionLink("Add New Task", "Create", "Task", new { }, new { @class = "btn btn-primary" })</h2>
+                            <ul class="nav navbar-right panel_toolbox" style="min-width: 0px;">
+                                <li><a href="#"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            @if (!string.IsNullOrEmpty(@ViewBag.Success))
+                            {
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    @ViewBag.Success
+                                </div>
+                            }
+                            <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="headings">
+                                        <th style="width: 30%">Task Name</th>
+                                        <th>Assigned To</th>
+                                        <th>Task Progress</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var Task in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a><b>@Task.TASK_NAME </b></a>
+                                                <br />
+                                                <small>Assigned By : @Task.CREATED_BY</small>
+                                            </td>
+
+
+                                            <td><a>@Html.DisplayFor(modelItem => Task.TASK_ASSIGNED_TO)</a></td>
+
+                                            <td class="project_progress">
+                                                <div class="progress progress_sm">
+                                                    <div class="progress-bar bg-green" role="progressbar"
+                                                         data-transitiongoal="@Task.PERC_COMPLETED" style="width:@Task.PERC_COMPLETED.ToString()%;">
+                                                    </div>
+                                                </div>
+                                                <small>@Task.PERC_COMPLETED % Complete</small>
+                                            </td>
+                                            <td>
+
+                                                @if (Task.PERC_COMPLETED > 0 && Task.PERC_COMPLETED < 100)
+                                                {
+                                                    <button type="button" class="btn btn-primary btn-xs" style="cursor:none;">In Progress  </button>
+                                                }
+                                                else if (Task.PERC_COMPLETED == 0)
+                                                {
+                                                    <button type="button" class="btn btn-warning btn-xs" style="cursor:none;">New  </button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-success btn-xs" style="cursor:none;">Completed  </button>
+                                                }
+
+                                            </td>
+
+                                            <td>@Html.ActionLink(" ", "Edit", new { taskId = Task.TASK_ID }, new { @class = "glyphicon glyphicon-edit" })</td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+}
+

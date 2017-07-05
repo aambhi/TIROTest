@@ -1,0 +1,120 @@
+﻿@model IEnumerable<TIROERP.Core.Model.CandidateSearch>
+@{
+    ViewBag.Title = "CandidateSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int userTypeId = @ViewBag.UserTtypeId;
+}
+<link href="~/Content/css/datatable/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Content/js/datatable/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/mask/mask.js"></script>
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    $(document).ready(function () {
+        $("#CONTACT_NO").mask("999-999-999-99999");
+        //Date Picker
+        $("#DOB").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $('#common-grid').DataTable(
+            {
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+    });
+</script>
+
+@using (Html.BeginForm("CandidateSearch", "StatusSearch", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "formControl" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Client Search</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            @Html.ActionLink("Add New Client", "Create", "Candidate", new { @id = 5 }, new { @class = "btn btn-primary" })
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="step-5">
+                            <div id="candidateForm5" data-parsley-validate class="form-horizontal form-label-left">
+
+                                <div class="groupCompany career" id="divCandidate">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Contact No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("CONTACT_NO", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Contact No.", @autocomplete = "off", @onkeypress = "return isNumberKey(event)" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Name</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("NAME", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Name", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3">Registration No</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBox("REGISTRATION_NO", "", new { @class = "form-control col-md-7 col-xs-12", @placeholder = "Registration No", @autocomplete = "off" })
+                                        </div>
+                                    </div>
+                                    @Html.Hidden("USER_TYPE_ID", @userTypeId)
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary" title="Search" name="SubmitButton" id="SubmitButton" value="Submit">Search</button>
+                                        <div class="btn btn-default">
+                                            @Html.ActionLink("Reset", "CandidateSearch", new { @id = 5 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="x_content">
+                                <table id="common-grid" class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th>Registration No.</th>
+                                            <th>Name</th>
+                                            <th>Contact No</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var candidate in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.ActionLink(candidate.REGISTRATION_NO, "GetClientDetails", new { registrationNo = Convert.ToString(candidate.REGISTRATION_NO) }, new { @class = "btn btn-primary btn-xs" })</td>
+                                                <td>@Html.DisplayFor(modelItem => candidate.NAME)</td>
+                                                <td>@Html.DisplayFor(modelItem => candidate.CONTACT_NO)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

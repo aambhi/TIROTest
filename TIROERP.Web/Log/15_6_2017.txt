@@ -1,0 +1,10 @@
+==================================================================
+DateTime15/06/2017 00:01:38
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/Create/3
+ Action: Create
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

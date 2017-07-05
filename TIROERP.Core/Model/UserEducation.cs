@@ -1,0 +1,21 @@
+﻿namespace TIROERP.Core.Model
+{
+    public class UserEducation
+    {
+        public int USER_EDUCATION_ID { get; set; }
+        public string REGISTRATION_NO { get; set; }
+        public int? EDUCATION_TYPE_ID { get; set; }
+        public int? SPECIALIZATION_TYPE_ID { get; set; }
+        public string UNIVERSITY_ID { get; set; }
+        public string UNIVERSITY_YEAR_OF_PASSING { get; set; }
+        public bool? IS_HIGHEST_QUALIFICATION { get; set; }
+        public bool IsNew { get; set; }
+
+        public string EDUCATION_TYPE { get; set; }
+
+        public string SPECIALIZATION_TYPE { get; set; }
+        public string EDUCATION_REMARK { get; set; }
+
+
+    }
+}

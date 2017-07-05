@@ -1,0 +1,398 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using TIROERP.Core.Model;
+using TIROERP.Infrastructure.DBModel;
+
+namespace TIROERP.Infrastructure.Utilities
+{
+    public class CommonRepository
+    {
+        private static string loginuser = ((UserLoginResult)HttpContext.Current.Session["UserDetails"]).REGISTRATION_NO;
+
+        TIROERPEntities _entities;
+
+        public static List<UDT_USER_DETAILS> GetLstUserDetails(Candidate candidate)
+        {
+            List<UDT_USER_DETAILS> lstUserDetails = new List<UDT_USER_DETAILS>();
+            UDT_USER_DETAILS _udtuser = new UDT_USER_DETAILS();
+            _udtuser.REGISTRATION_NO = candidate.REGISTRATION_NO;
+            _udtuser.FIRST_NAME = candidate.FIRST_NAME;
+            _udtuser.MIDDLE_NAME = candidate.MIDDLE_NAME;
+            _udtuser.LAST_NAME = candidate.LAST_NAME;
+            _udtuser.GAMCA_NO = candidate.GAMCA_NO;
+            _udtuser.FILE_NAME = candidate.FILE_NAME;
+            _udtuser.FILE_PATH = candidate.FILE_PATH;
+            _udtuser.WEBSITE = candidate.WEBSITE;
+            _udtuser.SKYPE = candidate.SKYPE;
+            _udtuser.REMARK = candidate.REMARK;
+            _udtuser.CONTACT_REMARK = candidate.CONTACT_REMARK;
+            _udtuser.CREATED_BY = loginuser;
+            _udtuser.AVAILING_TYPE_ID = candidate.AVAILING_TYPE_ID;
+            _udtuser.SOURCE_ID = candidate.SOURCE_ID;
+            _udtuser.OTHER_SOURCE = candidate.OTHER_SOURCE;
+            _udtuser.REFERRER_NAME = candidate.REFERRER_NAME;
+            _udtuser.STATUS_ID = candidate.STATUS_ID;
+            _udtuser.REQUIREMENT_ID = Convert.ToInt16(candidate.REQUIREMENT_ID);
+            _udtuser.LOGIN_ACCESS = candidate.LOGIN_ACCESS;
+            _udtuser.LOGIN_PASSWORD = candidate.LOGIN_PASSWORD;
+            _udtuser.IS_EXPERIENCED = candidate.IS_EXPERIENCED;
+            _udtuser.EDUCATION_REMARK = candidate.EDUCATION_REMARK;
+            _udtuser.WORK_REMARK = candidate.WORK_REMARK;
+            _udtuser.BRANCH_CODE = candidate.BRANCH_CODE;
+            _udtuser.LOCATION_CODE = candidate.LOCATION_CODE;
+            _udtuser.COMPANY_NAME = candidate.COMPANY_NAME;
+            _udtuser.TOTAL_WORK_EXPERIENCE = candidate.TOTAL_WORK_EXPERIENCE;
+            _udtuser.TOTAL_GULF_EXPERIENCE = candidate.TOTAL_GULF_EXPERIENCE;
+            _udtuser.SKILLS = candidate.SKILLS;
+            _udtuser.FATHER_NAME = candidate.FATHER_NAME;
+            _udtuser.MOTHER_NAME = candidate.MOTHER_NAME;
+            _udtuser.GENDER_CODE = candidate.GENDER_CODE;
+            _udtuser.DATE_OF_BIRTH = candidate.DATE_OF_BIRTH;
+            _udtuser.PLACE_OF_BIRTH = candidate.PLACE_OF_BIRTH;
+            _udtuser.MARITAL_STATUS_ID = candidate.MARITAL_STATUS_ID;
+            _udtuser.NATIONALITY_ID = candidate.NATIONALITY_ID;
+            _udtuser.CURRENT_LOCATION = candidate.CURRENT_LOCATION;
+            _udtuser.RELIGION_ID = candidate.RELIGION_ID;
+
+            if (candidate.DESIGNATION != null)
+            {
+                _udtuser.DESIGNATION = string.Join(",", candidate.DESIGNATION);
+            }
+            if (candidate.INDUSTRY != null)
+            {
+                _udtuser.INDUSTRY = string.Join(",", candidate.INDUSTRY);
+            }
+            _udtuser.REFERENCE = candidate.REFERENCE;
+            _udtuser.POST_APPLIED_FOR = candidate.POST_APPLIED_FOR;
+            _udtuser.VISA_ID = candidate.VISA_ID;
+            //_udtuser.CIVILIAN_NO = candidate.CIVILIAN_NO;
+            _udtuser.CLINIC_NAME = candidate.CLINIC_NAME;
+            //_udtuser.COMPANY_NAME = candidate.COMPANY_NAME;
+
+            lstUserDetails.Add(_udtuser);
+            return lstUserDetails;
+        }
+
+        public static List<UDT_USER_ADDRESS> GetLstUserAddress(Candidate candidate)
+        {
+            List<UDT_USER_ADDRESS> lstUdtUserAddress = new List<UDT_USER_ADDRESS>();
+
+            if (candidate.LST_USER_ADDRESS != null && candidate.LST_USER_ADDRESS.Count > 0)
+            {
+                lstUdtUserAddress = candidate.LST_USER_ADDRESS.Select(x => new UDT_USER_ADDRESS
+                {
+                    ADDRESS = x.ADDRESS,
+                    ADDRESS_TYPE_ID = x.ADDRESS_TYPE_ID,
+                    CITY_CODE = x.CITY_CODE,
+                    CREATED_BY = loginuser,
+                    USER_PINCODE = x.USER_PINCODE,
+                    USER_VILLAGE = x.USER_VILLAGE,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO,
+                    USER_ADDRESS_ID = x.USER_ADDRESS_ID,
+                    ISNEW = x.IsNew
+                    
+                }).ToList();
+            }
+            return lstUdtUserAddress;
+        }
+
+        public static List<UDT_USER_EMAIL> GetLstUserEmail(Candidate candidate)
+        {
+            List<UDT_USER_EMAIL> lstUdtUserEmail = new List<UDT_USER_EMAIL>();
+            if (candidate.LST_USER_EMAIL != null && candidate.LST_USER_EMAIL.Count > 0)
+            {
+                lstUdtUserEmail = candidate.LST_USER_EMAIL.Select(x => new UDT_USER_EMAIL
+                {
+                    USER_EMAIL = x.USER_EMAIL,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO,
+                    USER_EMAIL_ID = x.USER_EMAIL_ID,
+                    ISNEW = x.IsNew
+                }).ToList();
+            }
+            return lstUdtUserEmail;
+        }
+
+        public static List<UDT_USER_CONTACT> GetLstUserContact(Candidate candidate)
+        {
+            List<UDT_USER_CONTACT> lstUdtUserContact = new List<UDT_USER_CONTACT>();
+            if (candidate.LST_USER_CONTACT != null && candidate.LST_USER_CONTACT.Count > 0)
+            {
+                lstUdtUserContact = candidate.LST_USER_CONTACT.Select(x => new UDT_USER_CONTACT
+                {
+                    CONTACT_NO = x.CONTACT_NO,
+                    CONTACT_TYPE_ID = Convert.ToInt16(x.CONTACT_TYPE_ID),
+                    CREATED_BY = loginuser,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO,
+                    USER_CONTACT_ID = x.USER_CONTACT_ID,
+                    ISNEW = x.IsNew
+                }).ToList();
+            }
+            return lstUdtUserContact;
+        }
+
+        public static List<UDT_USER_EDUCATION> GetLstUserEducation(Candidate candidate)
+        {
+            List<UDT_USER_EDUCATION> lstUdtUserEducation = new List<UDT_USER_EDUCATION>();
+            if (candidate.LST_USER_EDUCATION != null && candidate.LST_USER_EDUCATION.Count > 0)
+            {
+                lstUdtUserEducation = candidate.LST_USER_EDUCATION.Select(x => new UDT_USER_EDUCATION
+                {
+                    EDUCATION_TYPE_ID = x.EDUCATION_TYPE_ID,
+                    SPECIALIZATION_TYPE_ID = x.SPECIALIZATION_TYPE_ID,
+                    UNIVERSITY_ID = x.UNIVERSITY_ID,
+                    UNIVERSITY_YEAR_OF_PASSING = x.UNIVERSITY_YEAR_OF_PASSING,
+                    IS_HIGHEST_QUALIFICATION = x.IS_HIGHEST_QUALIFICATION,
+                    CREATED_BY = loginuser,
+                    IsNEW = x.IsNew,
+                    USER_EDUCATION_ID = x.USER_EDUCATION_ID,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO
+                }).ToList();
+            }
+            return lstUdtUserEducation;
+        }
+
+        public static List<UDT_USER_DOCUMENT> GetLstUserDocument(Candidate candidate)
+        {
+            List<UDT_USER_DOCUMENT> lstUdtUserDocument = new List<UDT_USER_DOCUMENT>();
+            if (candidate.LST_USER_DOCUMENT != null && candidate.LST_USER_DOCUMENT.Count > 0)
+            {
+                lstUdtUserDocument = candidate.LST_USER_DOCUMENT.Select(x => new UDT_USER_DOCUMENT
+                {
+                    DOCUMENT_TYPE_ID = x.DOCUMENT_TYPE_ID,
+                    DOCUMENT_PATH = x.DOCUMENT_PATH,
+                    CREATED_BY = loginuser,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO,
+                    DOCUMENT_ID = x.DOCUMENT_ID,
+                    ISNEW = x.IsNew
+                    
+                }).ToList();
+            }
+            return lstUdtUserDocument;
+        }
+
+        public static List<UDT_USER_PASSPORT> GetLstUserPassport(Candidate candidate)
+        {
+
+            List<UDT_USER_PASSPORT> lstUdtUserPassport = new List<UDT_USER_PASSPORT>();
+            try
+            {
+
+                if (!string.IsNullOrEmpty(candidate.PASSPORT_NUMBER))
+                {
+                    UDT_USER_PASSPORT _udtuser = new UDT_USER_PASSPORT();
+                    _udtuser.PASSPORT_NUMBER = candidate.PASSPORT_NUMBER;
+                    _udtuser.DATE_OF_ISSUE = candidate.DATE_OF_ISSUE;
+                    _udtuser.PLACE_OF_ISSUE = candidate.PLACE_OF_ISSUE;
+                    _udtuser.DATE_OF_EXPIRY = candidate.DATE_OF_EXPIRY;
+                    _udtuser.EMIGRATION_CLEARANCE_REQUIRED = candidate.EMIGRATION_CLEARANCE_REQUIRED;
+                    _udtuser.CREATED_BY = loginuser;
+                    _udtuser.PASSPORT_ID = candidate.PASSPORT_ID;
+                    _udtuser.REGISTATION_NUMBER = candidate.REGISTRATION_NO;
+                    lstUdtUserPassport.Add(_udtuser);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return lstUdtUserPassport;
+        }
+
+        public static List<UDT_USER_DRIVING> GetLstUserDriving(Candidate candidate)
+        {
+            List<UDT_USER_DRIVING> lstUdtUserDriving = new List<UDT_USER_DRIVING>();
+            if (!string.IsNullOrEmpty(candidate.DRIVING_LICENCE_NUMBER))
+            {
+                UDT_USER_DRIVING _udtuser = new UDT_USER_DRIVING();
+                _udtuser.DRIVING_LICENCE_NUMBER = candidate.DRIVING_LICENCE_NUMBER;
+                _udtuser.PLACE_OF_ISSUE = candidate.DRIVING_PLACE_OF_ISSUE;
+                _udtuser.DATE_OF_ISSUE = candidate.DRIVING_DATE_OF_ISSUE;
+                _udtuser.DATE_OF_EXPIRY = candidate.DRIVING_EXPIRY_DATE;
+                _udtuser.VEHICLE_TYPE_ID = candidate.VEHICLE_TYPE_ID;
+                _udtuser.REMARK = candidate.DRIVING_REMARK;
+                _udtuser.CREATED_BY = loginuser;
+                _udtuser.REGISTRATION_NO = candidate.REGISTRATION_NO;
+                _udtuser.DRIVING_LICENCE_ID = candidate.DRIVING_LICENCE_ID;
+                lstUdtUserDriving.Add(_udtuser);
+            }
+            return lstUdtUserDriving;
+        }
+
+        public static List<UDT_USER_LANGUAGE> GetLstUserLanguage(Candidate candidate)
+        {
+            List<UDT_USER_LANGUAGE> lstUdtUserLanguage = new List<UDT_USER_LANGUAGE>();
+
+            if (candidate.LST_USER_LANGUAGE != null && candidate.LST_USER_LANGUAGE.Count > 0)
+            {
+                lstUdtUserLanguage = candidate.LST_USER_LANGUAGE.Select(x => new UDT_USER_LANGUAGE
+                {
+                    LANGUAGE_ID = x.LANGUAGE_ID,
+                    IS_READ = x.IS_READ,
+                    IS_WRITE = x.IS_WRITE,
+                    IS_SPEAK = x.IS_SPEAK,
+                    REGISTRATION_NO = candidate.REGISTRATION_NO,
+                    USER_LANGUAGE_ID = x.USER_LANGUAGE_ID,
+                    ISNEW = x.IsNew
+                }).ToList();
+            }
+            return lstUdtUserLanguage;
+        }
+
+        public List<UDT_USER_CERTIFICATION> GetLstUserCertification(Candidate candidate)
+        {
+            _entities = new TIROERPEntities();
+            List<UDT_USER_CERTIFICATION> lstUdtUserCertification = new List<UDT_USER_CERTIFICATION>();
+            if (candidate.LST_USER_CERTIFICATION != null && candidate.LST_USER_CERTIFICATION.Count > 0)
+            {
+                foreach (var certification in candidate.LST_USER_CERTIFICATION)
+                {
+                    UDT_USER_CERTIFICATION udtCert = new UDT_USER_CERTIFICATION();
+
+                    if (!string.IsNullOrEmpty(certification.OTHER_CERTIFICATION))
+                    {
+                        TBL_CERTIFICATION_MASTER tblcertification = new TBL_CERTIFICATION_MASTER();
+                        tblcertification.CERTIFICATION_NAME = certification.OTHER_CERTIFICATION;
+                        tblcertification.CREATED_BY = loginuser;
+                        tblcertification.CREATED_DATE = DateTime.Now;
+                        tblcertification.IS_ACTIVE = true;
+                        _entities.TBL_CERTIFICATION_MASTER.Add(tblcertification);
+                        _entities.SaveChanges();
+                        certification.CERTIFICATION = Convert.ToString(tblcertification.CERTIFICATION_ID);
+                        udtCert.CERTIFICATION = certification.CERTIFICATION;
+                    }
+                    else 
+                    {
+                        udtCert.CERTIFICATION = certification.CERTIFICATION_ID.ToString();
+                    }
+                    udtCert.CERTIFICATION_LEVEL = certification.CERTIFICATION_LEVEL;
+                    udtCert.INSTITUTE = certification.INSTITUTE;
+                    udtCert.YEAR_OF_PASSING = certification.YEAR_OF_PASSING;
+					udtCert.REGISTRATION_NO = candidate.REGISTRATION_NO;
+                    udtCert.ISNEW = certification.IsNew;
+                    udtCert.USER_CERTIFICATION_ID = certification.USER_CERTIFICATION_ID;
+
+                    lstUdtUserCertification.Add(udtCert);
+                }
+            }
+            return lstUdtUserCertification;
+        }
+
+        public List<UDT_USER_EXPERIENCE> GetLstUserExperience(Candidate candidate)
+        {
+            _entities = new TIROERPEntities();
+            List<UDT_USER_EXPERIENCE> lstUdtUserExperiecne = new List<UDT_USER_EXPERIENCE>();
+
+            if (candidate.LST_USER_EXPERIENCE != null && candidate.LST_USER_EXPERIENCE.Count > 0)
+            {
+                foreach (var experience in candidate.LST_USER_EXPERIENCE)
+                {
+                    UDT_USER_EXPERIENCE udtExp = new UDT_USER_EXPERIENCE();
+
+                    if (!string.IsNullOrEmpty(experience.OTHER_COMPANY))
+                    {
+                        TBL_COMPANY_MASTER tblcompany = new TBL_COMPANY_MASTER();
+                        tblcompany.COMPANY_NAME = experience.OTHER_COMPANY;
+                        tblcompany.CREATED_BY = loginuser;
+                        tblcompany.CREATED_DATE = DateTime.Now;
+                        tblcompany.IS_ACTIVE = true;
+                        _entities.TBL_COMPANY_MASTER.Add(tblcompany);
+                        _entities.SaveChanges();
+                        experience.USER_COMPANY_NAME = Convert.ToString(tblcompany.COMPANY_ID);
+                    }
+
+                    udtExp.USER_COMPANY_NAME = experience.USER_COMPANY_NAME;
+                    udtExp.IS_CURRENT_COMPANY = experience.IS_CURRENT_COMPANY;
+                    udtExp.DESIGNATION_ID = experience.DESIGNATION_ID;
+                    udtExp.INDUSTRY_ID = experience.INDUSTRY_ID;
+                    udtExp.CITY_CODE = experience.WORK_CITY_CODE;
+                    udtExp.WORK_PERIOD_FROM = experience.WORK_PERIOD_FROM;
+                    udtExp.WORK_PERIOD_TO = experience.WORK_PERIOD_TO;
+                    udtExp.TOTAL_WORK_EXPERIENCE = experience.TOTAL_WORK_EXPERIENCE;
+                    udtExp.REMARK = experience.REMARK;
+					udtExp.ISNEW = experience.ISNEW;
+                    udtExp.EXPERIENCE_ID = experience.EXPERIENCE_ID;
+                    udtExp.REGISTRATION_NO = candidate.REGISTRATION_NO;
+                    udtExp.CREATED_BY = loginuser;
+
+                    lstUdtUserExperiecne.Add(udtExp);
+                }
+            }
+            return lstUdtUserExperiecne;
+        }
+
+        public List<Country> LstGetCountryStateCity()
+        {
+            _entities = new TIROERPEntities();
+            var lstresult = (_entities.GET_COUNTRY_STATE_CITY()).Select(d => new Country
+            {
+                COUNTRY_CODE = d.COUNTRY_CODE,
+                COUNTRY_NAME = d.COUNTRY_NAME,
+                STATE_CODE = d.STATE_CODE,
+                STATE_NAME = d.STATE_NAME,
+                CITY_CODE = d.CITY_CODE,
+                CITY_NAME = d.CITY_NAME
+            }).ToList();
+            return lstresult;
+        }
+
+        public List<EducationSpeciaization> LstGetSpecializationByEducation(int educationId)
+        {
+            _entities = new TIROERPEntities();
+            var lstresult = (_entities.GET_SPECIALIZATION_BYEDUCATION(educationId.ToString())).Select(d => new EducationSpeciaization
+            {
+                SPECIALIZATION_ID = d.SPECIALIZATION_ID,
+                SPECIALIZATION_TYPE = d.SPECIALIZATION_TYPE
+            }).ToList();
+            return lstresult;
+        }
+
+        public List<IndustryDesignation> LstGetDesignationByIndustry(int industryId)
+        {
+            _entities = new TIROERPEntities();
+            var lstresult = (_entities.GET_DESIGNATION_BYINDUSTRY(industryId.ToString())).Select(x => new IndustryDesignation
+            {
+                DESIGNATION_ID = x.DESIGNATION_ID,
+                DESIGNATION_NAME = x.DESIGNATION_NAME
+            }).ToList();
+            return lstresult;
+        }
+
+        public List<IndustryDesignation> LstGetDesignationByIndustry(int[] industry)
+        {
+            _entities = new TIROERPEntities();
+
+            var lstdesignation = _entities.TBL_DESIGNATION_MASTER.Where(c => industry.Contains(c.INDUSTRY_ID)).ToList()
+                .Select(c => new IndustryDesignation
+                {
+                    DESIGNATION_ID = c.DESIGNATION_ID,
+                    DESIGNATION_NAME = c.DESIGNATION_NAME,
+                }).ToList();
+
+            return lstdesignation;
+        }
+
+        public string GetCandidateName(int userRequirementId)
+        {
+            string candidateName = string.Empty;
+            _entities = new TIROERPEntities();
+            candidateName = _entities.PROC_GET_CANDIDATE_NAME_BASED_ON_PASPPORT_NO(userRequirementId).Select(x => x).FirstOrDefault().ToString();
+            return candidateName;
+        }
+
+        public List<Passport_Details> GetPassportNumbers(string status)
+        {
+            _entities = new TIROERPEntities();
+            var result = _entities.PROC_GET_PASSPORT_DETAILS(status).ToList().Select(x => new Passport_Details
+            {
+                PASSPORT_NUMBER = x.PASSPORT_NUMBER,
+                USER_REQUIREMENT_ID = x.USER_REQUIREMENT_ID
+            }).ToList();
+
+            return result;
+        }
+    }
+}

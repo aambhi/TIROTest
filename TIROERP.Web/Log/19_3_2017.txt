@@ -1,0 +1,110 @@
+==================================================================
+DateTime19-Mar-17 1:31:38 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: 
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 1:35:10 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: 
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 2:12:40 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: 
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 2:16:20 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170008
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 2:16:31 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170008
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:21:05 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: 
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:22:45 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170009
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:22:46 AM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170009
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:03:48 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: 
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:05:44 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170010
+ User: 1
+ UserIP: 
+==================================================================
+==================================================================
+DateTime19-Mar-17 3:05:46 PM
+ Controller: CANDIDATE
+ URL: 
+ Action: CREATE
+ Error Message: CREATE SUCCESS
+ Inner Exception: C320170010
+ User: 1
+ UserIP: 
+==================================================================

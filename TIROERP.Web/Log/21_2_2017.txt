@@ -1,0 +1,33 @@
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMedicalDetails
+ Action: LoadMedicalDetails
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMedicalDetails
+ Action: LoadMedicalDetails
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+ Controller: StatusSearch
+ URL: http://localhost:50130/StatusSearch/LoadMedicalDetails
+ Action: LoadMedicalDetails
+ Error Message: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ Inner Exception: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.PartialViewResult LoadMedicalDetails(Int32)' in 'TIROERP.Web.Controllers.StatusSearchController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

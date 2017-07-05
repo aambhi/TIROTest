@@ -1,0 +1,40 @@
+==================================================================
+DateTime07/06/2017 22:13:16
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/GetRoleByIndustry
+ Action: GetRoleByIndustry
+ Error Message: Input string was not in a correct format.
+ Inner Exception: Input string was not in a correct format.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime07/06/2017 22:13:16
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/GetRoleByIndustry
+ Action: GetRoleByIndustry
+ Error Message: The process cannot access the file 'F:\Project Works\TIRO\TIROERP.Web\Log\7_6_2017.txt' because it is being used by another process.
+ Inner Exception: The process cannot access the file 'F:\Project Works\TIRO\TIROERP.Web\Log\7_6_2017.txt' because it is being used by another process.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime07/06/2017 22:14:19
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/GetRoleByIndustry
+ Action: GetRoleByIndustry
+ Error Message: Input string was not in a correct format.
+ Inner Exception: Input string was not in a correct format.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime07/06/2017 22:14:53
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/GetRoleByIndustry
+ Action: GetRoleByIndustry
+ Error Message: Input string was not in a correct format.
+ Inner Exception: Input string was not in a correct format.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================

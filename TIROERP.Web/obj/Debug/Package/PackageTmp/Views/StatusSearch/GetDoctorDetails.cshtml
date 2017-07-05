@@ -1,0 +1,579 @@
+﻿@model TIROERP.Core.Model.Candidate
+
+@{
+    ViewBag.Title = "GetDoctorDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string imagepath = string.Empty;
+    string noimagepath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["NoImageFile"]);
+    if (!string.IsNullOrEmpty(Model.FILE_PATH))
+    {
+        imagepath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImageFile"]) + "/Uploads/DocUploadedFiles/" + Model.FILE_PATH;
+    }
+}
+@Scripts.Render("~/bundles/wizard")
+@Styles.Render("~/Content/wizard")
+<script src="~/Content/js/mask/jquery.inputmask.js"></script>
+<script src="~/Content/js/mask/mask.js"></script>
+
+<script src="~/Content/js/underscore/underscore.js"></script>
+<script src="~/Content/js/Doctor_Details.js"></script>
+<script src="~/Content/js/AttachmentUpload.js"></script>
+<link href="~/Content/css/chosen/chosen.css" rel="stylesheet" />
+<script src="~/Content/js/chosen/chosen.jquery.js"></script>
+<style>
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        background-color: #FAFAFA;
+        border-color: #EEEEEE;
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #73879C;
+            background-color: #fff;
+        }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .panel-body .panel-body {
+        padding: 6px 5px;
+    }
+
+    .add-padding {
+        padding-top: 9px;
+        padding-bottom: 0px;
+    }
+</style>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "formControl", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!--page content-->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title" style="width:100%">
+                <div class="title_left" style="width:100%">
+                    <h3>View Doctor Details <a href="@Url.Action("CandidateSearch", "StatusSearch", new { id = 4 })" class="btn btn-primary pull-right" style="color: white;background-color: #337ab7;"><i class="fa fa-chevron-left"></i> Back </a></h3>
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.REGISTRATION_NO)
+            <div class="clearfix"></div>
+            <div class="alert alert-success alert-dismissable" id="divSuccessMsg" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                Record Updated Successfully!!!
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="container demo">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-parent="#accordion">
+                                            <i class="fa fa-chevron-down alignright"></i>
+                                            <i class="fa fa-align-left"></i> Personal Details
+                                            <i class="btn btn-info fa fa-edit alignright" data-toggle="modal" id="personalDetailsModalLink" title="Edit personal details" style="color: white;background-color: #337ab7; margin-top:-7px;"></i>
+                                        </a>
+
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-expanded="true" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="col-md-9 col-sm-9 details-panel">
+                                            <div class="panel-body" id="divcall">
+                                                <div class="col-sm-3 col-md-2">
+                                                    <label class="control-label">Registration No: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 add-padding registration-no">
+                                                    @Html.DisplayFor(model => model.REGISTRATION_NO, new { @id = "REGISTRATION_NO", @class = "form-control", @placeholder = "Registration No", @autocomplete = "off" })
+
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Registration Date: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 add-padding registration-date">
+                                                    @Html.DisplayFor(model => model.REGISTRATION_DATE, new { @id = "REGISTRATION_DATE", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-2">
+                                                    <label class="control-label">Full Name: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 candidate-name add-padding">
+                                                    @Html.DisplayFor(model => model.Candidate_Name, new { @id = "CANDIDATE_NAME", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-3 col-md-2">
+                                                    <label class="control-label">Phone No: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 contact-no" id="divContact_No" style="word-wrap: break-word;">
+                                                    <ul style="margin-left:-25px;" id="ulContact">
+                                                        @foreach (var contact in Model.LST_USER_CONTACT)
+                                                        {
+                                                            <li>@contact.CONTACT_NO</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label for="inputemail" class="control-label">Email Address: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 user-email" id="divUSER_EMAIL"  style="word-wrap: break-word;">
+                                                    <ul style="margin-left:-25px;" id="ulEmail">
+                                                        @foreach (var email in Model.LST_USER_EMAIL)
+                                                        {
+                                                            <li>@email.USER_EMAIL</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-2 col-md-2">
+                                                    <label class="control-label">Clinic Name: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 clinic-name add-padding"> 
+                                                    @Html.DisplayFor(model => model.CLINIC_NAME, new { @id = "CLINIC_NAME", @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">GAMCA NO: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 gamca-no add-padding">
+                                                    @Html.DisplayFor(model => model.GAMCA_NO, new { @id = "GAMCA_NO", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-2 col-md-2">
+                                                    <label class="control-label">Website: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 website add-padding" style="word-wrap: break-word;">
+                                                    @Html.DisplayFor(model => model.WEBSITE, new { @id = "WEBSITE", @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3" style="word-wrap: break-word;">
+                                                    <label for="inputemail" class="control-label">Skype: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 skype add-padding">
+                                                    @Html.DisplayFor(model => model.SKYPE, new { @id = "SKYPE", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-2 col-md-2" style="word-wrap: break-word;">
+                                                    <label for="inputemail" class="control-label">Remark: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 remark add-padding">
+                                                    @Html.DisplayFor(model => model.REMARK, new { @id = "REMARK", @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-3 col-md-3">
+                                                    <label class="control-label">Contact Remark: </label>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 contactremark add-padding" style="word-wrap: break-word;">
+                                                    @Html.DisplayFor(model => model.CONTACT_REMARK, new { @id = "CONTACT_REMARK", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (Model.FILE_PATH != null)
+                                        {
+                                            <div class="panel-body col-md-3 col-sm-3" style="padding-left: 50px;">
+                                                <div class="fileinput fileinput-exists image-div" data-provides="fileinput">
+                                                    <div class="fileinput-preview fileupload-exists thumbnail image-div" style="max-width: 200px; width:200px; max-height: 150px; line-height: 20px;">
+                                                        <img src="@imagepath" class="candidate-img" style="width: 200px; height: 150px;" alt="@Model.Candidate_Name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="panel-body col-md-3 col-sm-3" style="padding-left: 50px;">
+                                                <div class="fileinput fileinput-exists" data-provides="fileinput">
+                                                    <div class="fileinput-preview fileupload-exists thumbnail" id="imageUploadDiv" style="max-width: 200px; width:200px; max-height: 150px; line-height: 20px;">
+                                                        <img src="@noimagepath" class="candidate-img" style="width: 200px; height: 150px;" alt="@Model.Candidate_Name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @Html.HiddenFor(model => model.FILE_PATH)
+                                        <div class="panel-body col-md-12 col-sm-12">
+                                            <a class="btn btn-primary pull-right" data-toggle="modal" id="contact_details_modal_link" title="Edit contact details" style="color: white;background-color: #337ab7;"><i class="fa fa-edit"></i> Edit contact details </a>
+                                            <table class="display table datable-grid table-striped table-bordered table-responsive jambo_table" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th>Address</th>
+                                                        <th>Country</th>
+                                                        <th>State-City</th>
+                                                        <th>Village</th>
+                                                        <th>Pincode</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblAddDetails">
+                                                    @if (Model.LST_USER_ADDRESS.Count > 0)
+                                                    {
+                                                        foreach (var addressItem in Model.LST_USER_ADDRESS)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <span class="user-address">@(addressItem.ADDRESS_TYPE + "-" + addressItem.ADDRESS)</span>
+                                                                    <input type="hidden" class="add_type_id" value=@addressItem.USER_ADDRESS_ID />
+                                                                </td>
+                                                                <td>@addressItem.USER_COUNTRY</td>
+                                                                <td>@addressItem.USER_STATE - @addressItem.CITY_CODE</td>
+                                                                <td>@addressItem.USER_VILLAGE</td>
+                                                                <td>@addressItem.USER_PINCODE</td>
+                                                            </tr>
+                                                        }
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--page content-->
+}
+
+
+<!--++++++++++++++++++++--Modal for all panels--+++++++++++++-->
+<!--Modal for personal details-->
+<div class="modal fade personal-details" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Personal Details</h4>
+            </div>
+            <div class="modal-body" style="height:370px;width: 100%;">
+                <div class="col-md-12" style="margin-top:10px">
+                    <div class="col-md-9">
+                        <form id="clientForm1" data-parsley-validate class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4">Clinic Name</label>
+                                <div class="col-md-8 col-sm-8">
+                                    @Html.TextBoxFor(model => model.CLINIC_NAME, new { @id = "CLINIC_NAME", @class = "form-control col-md-10", @autocomplete = "off", @placeholder = "Clinic Name", style = "float: left;", @maxlength = "50" })
+                                    <div id="autocomplete-container" style="position: relative; float: left; width: 400px;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4" for="contactPerson">
+                                    Doctor Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.TextBoxFor(model => model.FIRST_NAME, new { @id = "FIRST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "First Name", @autocomplete = "off", @maxlength = "50" })
+                                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger", @id = "ErrItem_FIRST_NAME" })
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    @Html.TextBoxFor(model => model.MIDDLE_NAME, new { @id = "MIDDLE_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Middle Name", @autocomplete = "off", @maxlength = "50" })
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.TextBoxFor(model => model.LAST_NAME, new { @id = "LAST_NAME", @class = "form-control col-md-7 col-xs-12", @placeholder = "Last Name", @autocomplete = "off", @maxlength = "50" })
+                                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger", @id = "ErrItem_LAST_NAME" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Reference" class="control-label col-md-4 col-sm-4">GAMCA No</label>
+                                <div class="col-md-8 col-sm-8">
+                                    @Html.TextBoxFor(model => model.GAMCA_NO, new { @id = "GAMCA_NO", @class = "form-control col-md-7 col-xs-12", @placeholder = "Reference", @autocomplete = "off", @maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-4 col-sm-4">Remark</label>
+                                <div class="col-md-8 col-sm-8">
+                                    @Html.TextAreaFor(model => model.REMARK, new { @id = "REMARK", @class = "resizable_textarea form-control", @placeholder = "Remark", @autocomplete = "off",@maxlength="1000", @style = "width: 100%; overflow: hidden; word-wrap: break-word; resize: horizontal; height: 87px;" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        @*@if (Model.FILE_PATH != null)
+        {*@
+                        <div class="fileinput fileinput-exists" data-provides="fileinput" id="divWithImg">
+                            <div class="fileinput-preview fileupload-exists thumbnail" style="width:200px; max-width: 200px; max-height: 150px; line-height: 20px;">
+                                <img src="@imagepath" alt="@Model.Candidate_Name" class="agent-img" style="width:200px;height:150px;" />
+                            </div>
+                            <div>
+                                <span class="btn btn-default btn-file" style="margin-left: 20px;"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..." id="SaveImageWithImg"></span>
+                                <a href="#" class="btn btn-default fileinput-exists removeImg" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                        @*}
+
+        else
+        {*@
+                        <div class="fileinput fileinput-exists" data-provides="fileinput" id="divWithoutImg">
+                            <div class="fileinput-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px; width:200px;">
+                                <img src="/Uploads/CandidateUploadedFiles/no_img.png" id="emptyImg" class="agent-img" style="width:200px;height:150px;" />
+                            </div>
+                            <div>
+                                <span class="btn btn-default btn-file" style="margin-left: 20px;">
+                                    <span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                    <input type="file" name="..." id="SaveImage">
+                                </span>
+                                <a href="#" class="btn btn-default fileinput-exists removeImg" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                        @*}*@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="UpdateDoctorDetails" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Personal Details End-->
+<!--Address/Contact/Email Modal-->
+<div class="modal fade contact_details" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Contact Details</h4>
+            </div>
+            <div class="modal-body" style="height:700px;width: 100%;overflow:auto;">
+                <div id="candidatecontactdetails" data-parsley-validate="" class="form-horizontal form-label-left">
+                    @Html.Partial("~/Views/Shared/_Address.cshtml")
+                    @Html.Partial("~/Views/Shared/_Contact.cshtml")
+                    @Html.Partial("~/Views/Shared/_Email.cshtml")
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Website</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.WEBSITE, new { @id = "WEBSITE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Website", @autocomplete = "off", @maxlength = "50", @tabindex = "52" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Skype</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextBoxFor(model => model.SKYPE, new { @id = "SKYPE", @class = " form-control col-md-7 col-xs-12", @placeholder = "Skype", @autocomplete = "off", @maxlength = "50", @tabindex = "53" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label col-md-3 col-sm-3">Remark</label>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.TextAreaFor(model => model.CONTACT_REMARK, new { @id = "CONTACT_REMARK", @class = " form-control col-md-7 col-xs-12", @placeholder = "Remark", @autocomplete = "off", @tabindex = "54" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitContactDetails" class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Address/Contact/Email Modal-->
+@*For Progress Bar*@
+<div id="progressBar" style="margin: 0px; padding: 0px; position: fixed; right: 0px;
+                top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
+                opacity: .8; filter: alpha(opacity=70);display:none">
+    <p style="position: fixed; top: 20%; left: 30%; color: White;">
+        <img src="@Url.Content("~/Content/img/please_wait.gif")">
+    </p>
+</div>
+@*For Progress Bar [end]*@
+
+<script>
+
+    $(document).on("click", "#personalDetailsModalLink", function () {
+        var filepath = $("#FILE_PATH").val();
+        if (filepath != "") {
+            $(".agent-img").attr("src", '/Uploads/DocUploadedFiles/' + filepath);
+            $("#divWithImg").show();
+            $("#divWithoutImg").hide();
+        }
+        else {
+            $(".agent-img").attr("src", '/Uploads/CandidateUploadedFiles/no_img.png');
+            $("#divWithImg").hide();
+            $("#divWithoutImg").show();
+        }
+        $(".personal-details").modal("show");
+    });
+
+    //load contact details partial view
+    $(document).on("click", "#contact_details_modal_link", function () {
+        var urlPath = "@Url.Action("LoadContactDetailsPartialView", "StatusSearch")";
+        var registrationNo = $("#REGISTRATION_NO").val();
+        $.ajax({
+            url: urlPath,
+            type: "GET",
+            data: { registrationNo: registrationNo },
+            success: function (data) {
+                
+                bindContactDetails(data);
+
+                $(".contact_details").modal("show");
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+    });
+
+    function bindContactDetails(contact) {
+
+        $("#WEBSITE").val(contact.candidate.WEBSITE);
+        $("#SKYPE").val(contact.candidate.SKYPE);
+        $("#CONTACT_REMARK").val(contact.candidate.CONTACT_REMARK);
+
+        addressCollection = [];
+        contactCollection = [];
+        emailCollection = [];
+        $("#tblchild").empty();
+        $("#tblcontact").empty();
+        $("#tblemail").empty();
+
+        //Address Details Bind
+        var row = "";
+        var row_id = 0;
+        _.each(contact.candidate.LST_USER_ADDRESS, function (value) {
+            row_id = row_id + 1;
+            row += "<tr id ='tr_old_row_add_" + row_id + "'><td><span class='user-address'>" + value.ADDRESS_TYPE + "-" + value.ADDRESS + "</span></td><td>" + value.USER_COUNTRY + "</td><td>" + value.USER_STATE + "-" + value.CITY_CODE + "</td><td>" + value.USER_VILLAGE + "</td><td>" + value.USER_PINCODE + "</td> "
+            row += '<td><a onclick="fnDeleteRow(' + "'" + row_id + "'" + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+            var addJson = { "ADDRESS_TYPE_ID": value.ADDRESS_TYPE_ID, "ADDRESS": value.ADDRESS, "CITY_CODE": value.CITY_CODE, "USER_VILLAGE": value.USER_VILLAGE, "USER_PINCODE": value.USER_PINCODE, "COUNTRY_CODE": value.COUNTRY_CODE, "STATE_CODE": value.STATE_CODE, "IsNew": "true", "USER_ADDRESS_ID": value.USER_ADDRESS_ID, "SRNO": row_id };
+
+            addressCollection.push(addJson);
+        });
+        $("#tblchild").append(row);
+
+        //Contact Details Bind
+        var row = "";
+        var row_id = 1;
+        _.each(contact.candidate.LST_USER_CONTACT, function (value) {
+
+            row += "<tr id ='tr_old_row_cont_" + value.CONTACT_NO + "'><td >" + row_id + " </td><td>" + value.CONTACT_TYPE + "</td><td><span class='user-contact'>" + value.CONTACT_NO + "</td>";
+            row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_contact glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+
+            var addJson = { "CONTACT_TYPE_ID": value.CONTACT_TYPE_ID, "CONTACT_NO": value.CONTACT_NO, "IsNew": "true", "USER_CONTACT_ID": value.USER_CONTACT_ID };
+
+            contactCollection.push(addJson);
+            row_id++;
+        });
+        $("#tblcontact").append(row);
+
+        //Email Details Bind
+        var row = "";
+        var row_id = 1;
+        _.each(contact.candidate.LST_USER_EMAIL, function (value) {
+            row += "<tr id ='tr_old_row_email_" + value.USER_EMAIL + "'><td >" + row_id + " </td><td><span class='user-email'>" + value.USER_EMAIL + "</td>";
+            //row += '<td><a class="delete_email" onclick="fnDeleteEmail(' + value.USER_EMAIL + ')" href="javascript:void()" <span aria-hidden="true" class="glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+            row += '<td><a href="javascript:void()" <span aria-hidden="true" class="delete_email glyphicon glyphicon-trash" title="Delete"></span></a></td></tr>';
+
+            var addJson = { "USER_EMAIL": value.USER_EMAIL, "IsNew": "true", "USER_EMAIL_ID": value.USER_EMAIL_ID };
+
+            emailCollection.push(addJson);
+            row_id++;
+        });
+        $("#tblemail").append(row);
+
+    }
+
+
+    function isAlphaNumeric() {
+        var charCode = event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) ||
+              (charCode >= 65 && charCode <= 90) ||
+              (charCode >= 97 && charCode <= 122) || charCode == 32)
+            return true;
+
+        return false;
+    }
+
+
+    $(document).ready(function () {
+        $("#CONTACT_REMARK").focusout(function () {
+            $(".btn-default").focus();
+        });
+
+        $("#SaveImage").change(function (e) {
+            var file = e.target.files;
+            var path = UploadAttachment(file, "Doctor");
+        });
+
+        $("#SaveImageWithImg").change(function (e) {
+            var file = e.target.files;
+            var path = UploadAttachment(file, "Doctor");
+        });
+
+        function UploadAttachment(file, uploadFrom) {
+            var path = "";
+            if (file.length > 0) {
+                var isvalid = checkImagefile(file);
+                if (isvalid) {
+                    var data = new FormData();
+
+                    // Add the uploaded image content to the form data collection
+                    data.append("UploadedImage", file[0]);
+                    data.append("UploadFrom", uploadFrom);
+
+                    // Make Ajax request with the contentType = false, and procesDate = false
+                    var ajaxRequest = $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("UploadImageFile", "StatusSearch")',
+                        contentType: false,
+                        processData: false,
+                        data: data
+                    });
+
+                    ajaxRequest.done(function (xhr, textStatus) {
+                        // Do other operation
+                        path = xhr;
+                        $("#FILE_PATH").val(path);
+                    });
+                }
+            }
+            else {
+                path = "";
+                $("#FILE_PATH").val(path);
+            }
+        }
+
+    });
+</script>

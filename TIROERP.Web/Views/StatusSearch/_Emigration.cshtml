@@ -1,0 +1,401 @@
+﻿@model TIROERP.Core.Model.Emigration
+@{
+    string policyName = string.Empty;
+    string policyfilepath = string.Empty;
+    string policyReportPath = string.Empty;
+
+    string emigrationName = string.Empty;
+    string emigrationfilepath = string.Empty;
+    string emigrationReportPath = string.Empty;
+    string isecr = string.Empty;
+    if (Model != null)
+    {
+        isecr = Model.IS_ECR.ToString();
+        if (!string.IsNullOrEmpty(Model.POLICY_ATTACHMENT))
+        {
+            policyReportPath = Model.POLICY_ATTACHMENT;
+            policyName = Model.POLICY_ATTACHMENT.Substring(15);
+            policyfilepath = Url.Content(Server.MapPath("~/Uploads/EmigrationUploadedFiles/" + Model.POLICY_ATTACHMENT));
+        }
+        if (!string.IsNullOrEmpty(Model.EMIGRATION_ATTACHMENT))
+        {
+            emigrationReportPath = Model.EMIGRATION_ATTACHMENT;
+            emigrationName = Model.EMIGRATION_ATTACHMENT.Substring(15);
+            emigrationfilepath = Url.Content(Server.MapPath("~/Uploads/EmigrationUploadedFiles/" + Model.EMIGRATION_ATTACHMENT));
+        }
+    }
+}
+
+@*Date picker*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var isecr = '@isecr';
+
+        if (isecr == 'True') {
+            $("#ECR").prop('checked', true);
+            $("#lblECR").attr("class", "btn btn-default active")
+            $("#lblECNR").attr("class", "btn btn-default")
+            $("#divECR").css("display", "block");
+        }
+        else {
+            $("#ECNR").prop('checked', true);
+            $("#lblECNR").attr("class", "btn btn-default active")
+            $("#lblECR").attr("class", "btn btn-default")
+            $("#divECR").css("display", "none");
+        }
+
+
+        $("#DM_DATE").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#POLICY_DATE").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#SUBMISSION_DATE").datepicker({
+            dateFormat: "dd-M-yy",
+            changeMonth: true,
+            changeYear: true, yearRange: "-70:+10",
+        });
+
+        $("#USER_REQUIREMENT_ID").change(function (e) {
+            $("#CandidateName").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCandidateName","Emigration")', // we are calling json method
+                data: { userRequirementId: $("#USER_REQUIREMENT_ID").val() },
+                success: function (d) {
+                    $("#CandidateName").val(d);
+                },
+                error: function (ex) {
+                    $("#CandidateName").empty();
+                }
+            });
+            return false;
+        });
+
+        $(".emigrationstatus").change(function () {
+            var IS_EECNR = $('input[name=emigrationstatus]:checked').val();
+            if (IS_EECNR == "false") {
+                $("#FE_NO").val("");
+                $("#PT_NO").val("");
+                $("#DM_NO").val("");
+                $("#DM_DATE").val("");
+                $("#POLICY_NO").val("");
+                $("#POLICY_DATE").val("");
+                $("#POLICY_AMOUNT").val("");
+                $("#POLICY_COMPANYNAME").val("");
+
+                $(".policyfileGroup").hide();
+                $(".policyfileadd").show();
+                $("#POLICY_ATTACHMENT").val('');
+
+                $("#SUBMISSION_DATE").val("");
+                $("#EMIGRATION_CLEARANCENO").val("");
+
+                $(".emigrationfileGroup").hide();
+                $(".emigrationfileadd").show();
+                $("#EMIGRATION_ATTACHMENT").val('');
+
+                $("#POE").val("");
+                $("#divECR").css("display", "none");
+            }
+            else {
+                $("#divECR").css("display", "block");
+            }
+        });
+
+        $("#SaveEmigration").click(function (e) {
+            var isStepValid = true;
+
+            var USER_REQUIREMENT_ID = $("#USER_REQUIREMENT_ID").val();
+            if (USER_REQUIREMENT_ID == "") {
+                $("#Err_USER_REQUIREMENT_ID").text("Please select Passport No.");
+                isStepValid = false;
+            }
+            else {
+                $("#Err_USER_REQUIREMENT_ID").text("");
+            }
+
+            var isECR = $('input[name=emigrationstatus]:checked').val();
+            $("#IS_ECR").val(isECR);
+
+            if (isECR == "true") {
+
+                var dmno = $("#DM_NO").val();
+                if (dmno == "") {
+                    $("#Err_DM_NO").text("Please enter DM No.");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_DM_NO").text("");
+                }
+
+                var dmdate = $("#DM_DATE").val();
+                if (dmdate == "") {
+                    $("#Err_DM_DATE").text("Please enter DM Date");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_DM_DATE").text("");
+                }
+
+                var policyno = $("#POLICY_NO").val();
+                if (policyno == "") {
+                    $("#Err_POLICY_NO").text("Please enter Policy No");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_POLICY_NO").text("");
+                }
+
+                var policydate = $("#POLICY_DATE").val();
+                if (policydate == "") {
+                    $("#Err_POLICY_DATE").text("Please enter Policy Date");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_POLICY_DATE").text("");
+                }
+
+                var policyamt = $("#POLICY_AMOUNT").val();
+                if (policyamt == "") {
+                    $("#Err_POLICY_AMOUNT").text("Please enter Policy Amount");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_POLICY_AMOUNT").text("");
+                }
+
+                var policycompname = $("#POLICY_COMPANYNAME").val();
+                if (policycompname == "") {
+                    $("#Err_POLICY_COMPANYNAME").text("Please enter Policy Company Name");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_POLICY_COMPANYNAME").text("");
+                }
+
+                var SUBMISSION_DATE = $("#SUBMISSION_DATE").val();
+                if (SUBMISSION_DATE == "") {
+                    $("#Err_SUBMISSION_DATE").text("Please enter Submission Date");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_SUBMISSION_DATE").text("");
+                }
+
+                var EMIGRATION_CLEARANCENO = $("#EMIGRATION_CLEARANCENO").val();
+                if (EMIGRATION_CLEARANCENO == "") {
+                    $("#Err_EMIGRATION_CLEARANCENO").text("Please enter Emigration Clearance No");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_EMIGRATION_CLEARANCENO").text("");
+                }
+
+                var POE = $("#POE").val();
+                if (POE == "") {
+                    $("#Err_POE").text("Please enter POE");
+                    isStepValid = false;
+                }
+                else {
+                    $("#Err_POE").text("");
+                }
+            }
+
+            return isStepValid;
+
+        });
+
+        $(document).on("click", ".policyremoveFile", function () {
+            $(this).parent().remove();
+            $(".policyfileGroup").hide();
+            $(".policyfileadd").show();
+            $("#POLICY_ATTACHMENT").val('');
+        });
+
+        var file = '@policyName';
+        if (file == null || file == "") {
+            $(".policyfileadd").show();
+        }
+
+
+        $(document).on("click", ".emigrationremoveFile", function () {
+            $(this).parent().remove();
+            $(".emigrationfileGroup").hide();
+            $(".emigrationfileadd").show();
+            $("#EMIGRATION_ATTACHMENT").val('');
+        });
+
+        var file = '@emigrationName';
+        if (file == null || file == "") {
+            $(".emigrationfileadd").show();
+        }
+    });
+</script>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div id="medicalForm" data-parsley-validate class="form-horizontal form-label-left">
+        @Html.HiddenFor(model => model.EMIGRATION_ID)
+        @Html.HiddenFor(model => model.USER_REQUIREMENT_ID, new { @id = "EmigrationUserReqId" })
+        @Html.HiddenFor(model => model.CREATED_BY)
+        @Html.HiddenFor(model => model.CREATED_DATE)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Candidate Name</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBox("Candidate_Name", null, htmlAttributes: new { @id = "CandidateName", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Candidate Name", @autocomplete = "off", @maxlength = "200", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3">Emigration Status</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="btn-group" data-toggle="buttons" id="isECR">
+                    <label class="btn btn-default active" id="lblECR">
+                        <input type="radio" name="emigrationstatus" id="ECR" class="emigrationstatus" value="true">
+                        ECR
+                    </label>
+                    <label class="btn btn-default" id="lblECNR">
+                        <input type="radio" name="emigrationstatus" class="emigrationstatus" id="ECNR" value="false">
+                        ECNR
+                    </label>
+                    @Html.HiddenFor(model => model.IS_ECR)
+                </div>
+            </div>
+        </div>
+        <div id="divECR">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">FE No </label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.FE_NO, new { @id = "FE_NO", @class = "form-control  col-md-7 col-xs-12", @placeholder = "FE No", @autocomplete = "off", @maxlength = "20" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">PT No </label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.PT_NO, new { @id = "PT_NO", @class = "form-control  col-md-7 col-xs-12", @placeholder = "PT No", @autocomplete = "off", @maxlength = "20" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">DM No <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.DM_NO, new { @id = "DM_NO", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DM Number", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.DM_NO, "", new { @class = "text-danger", @id = "Err_DM_NO" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">DM Date <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.DM_DATE, "{0:dd-MMM-yyyy}", new { @id = "DM_DATE", @class = "form-control  col-md-7 col-xs-12", @placeholder = "DM Date", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.DM_DATE, "", new { @class = "text-danger", @id = "Err_DM_DATE" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Policy No <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.POLICY_NO, new { @id = "POLICY_NO", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy Number", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.POLICY_NO, "", new { @class = "text-danger", @id = "Err_POLICY_NO" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Policy Date <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.POLICY_DATE, "{0:dd-MMM-yyyy}", new { @id = "POLICY_DATE", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy Date", @autocomplete = "off", @maxlength = "30" })
+                    @Html.ValidationMessageFor(model => model.POLICY_DATE, "", new { @class = "text-danger", @id = "Err_POLICY_DATE" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Policy Amount <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.POLICY_AMOUNT, new { @id = "POLICY_AMOUNT", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy Amount", @autocomplete = "off", @maxlength = "10", @type = "number" })
+                    @Html.ValidationMessageFor(model => model.POLICY_AMOUNT, "", new { @class = "text-danger", @id = "Err_POLICY_AMOUNT" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Policy Company Name <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.POLICY_COMPANYNAME, new { @id = "POLICY_COMPANYNAME", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Policy Company Name", @autocomplete = "off", @maxlength = "50" })
+                    @Html.ValidationMessageFor(model => model.POLICY_AMOUNT, "", new { @class = "text-danger", @id = "Err_POLICY_COMPANYNAME" })
+                </div>
+            </div>
+
+            @if (policyReportPath != null && policyReportPath != "")
+            {
+                <div class="form-group policyfileGroup">
+                    <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Policy Attachment</label>
+                    <div class="col-md-6 col-sm-6 addPadding file-name">
+                        @Html.ActionLink(policyName, "Download", "Medical", new { filepath = policyfilepath }, new { })
+                        <span class="glyphicon glyphicon-remove policyremoveFile remove-part" title="Delete"></span>
+                    </div>
+                </div>
+
+            }
+
+            <div class="form-group policyfileadd" style="display:none;">
+                <label class="control-label col-md-3 col-sm-3">Policy Attachment</label>
+                <div>
+                    <input type="file" name="policyFile" id="policyFile" />
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.POLICY_ATTACHMENT)
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Submission Date <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.SUBMISSION_DATE, "{0:dd-MMM-yyyy}", new { @id = "SUBMISSION_DATE", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Submission Date", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.SUBMISSION_DATE, "", new { @class = "text-danger", @id = "Err_SUBMISSION_DATE" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">Emigration Clearance No <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.EMIGRATION_CLEARANCENO, new { @id = "EMIGRATION_CLEARANCENO", @class = "form-control  col-md-7 col-xs-12", @placeholder = "Emigration Clearance No", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.EMIGRATION_CLEARANCENO, "", new { @class = "text-danger", @id = "Err_EMIGRATION_CLEARANCENO" })
+                </div>
+            </div>
+
+            @if (emigrationReportPath != null && emigrationReportPath != "")
+            {
+                <div class="form-group emigrationfileGroup">
+                    <label for="advFile" class="control-label col-md-3 col-sm-3" id="fileLabel">Emigration Attachment</label>
+                    <div class="col-md-6 col-sm-6 addPadding file-name">
+                        @Html.ActionLink(emigrationName, "Download", "Medical", new { filepath = emigrationfilepath }, new { })
+                        <span class="glyphicon glyphicon-remove emigrationremoveFile remove-part" title="Delete"></span>
+                    </div>
+                </div>
+
+            }
+
+            <div class="form-group emigrationfileadd" style="display:none;">
+                <label class="control-label col-md-3 col-sm-3">Emigration Attachment</label>
+                <div>
+                    <input type="file" name="emigrationFile" id="emigrationFile" />
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.EMIGRATION_ATTACHMENT)
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3">POE<span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6">
+                    @Html.TextBoxFor(model => model.POE, new { @id = "POE", @class = "form-control  col-md-7 col-xs-12", @placeholder = "POE", @autocomplete = "off", @maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.POE, "", new { @class = "text-danger", @id = "Err_POE" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Remark </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextAreaFor(model => model.REMARK, new { @id = "EMIGRATION_REMARK", @class = "form-control", @placeholder = "Remark", @autocomplete = "off", @maxlength = "500" })
+            </div>
+        </div>
+
+    </div>
+</form>

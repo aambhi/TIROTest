@@ -1,0 +1,40 @@
+==================================================================
+DateTime10/06/2017 00:37:36
+ Controller: Requirement
+ URL: http://localhost:50130/Requirement/CreateReq
+ Action: CreateReq
+ Error Message: An error occurred while executing the command definition. See the inner exception for details.
+ Inner Exception: An error occurred while executing the command definition. See the inner exception for details.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime10/06/2017 14:18:36
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/UploadFile
+ Action: UploadFile
+ Error Message: Maximum request length exceeded.
+ Inner Exception: Maximum request length exceeded.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime10/06/2017 14:20:09
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/UploadFile
+ Action: UploadFile
+ Error Message: Object reference not set to an instance of an object.
+ Inner Exception: Object reference not set to an instance of an object.
+ User: 
+ UserIP: 192.168.0.11
+==================================================================
+==================================================================
+DateTime10/06/2017 14:21:35
+ Controller: Candidate
+ URL: http://localhost:50130/Candidate/UploadFile
+ Action: UploadFile
+ Error Message: Maximum request length exceeded.
+ Inner Exception: Maximum request length exceeded.
+ User: ADMIN
+ UserIP: 192.168.0.11
+==================================================================
