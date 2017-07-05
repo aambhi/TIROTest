@@ -18,7 +18,7 @@ namespace ArbabTravelsERP.Controllers
         public ActionResult Index()
         {
             UserLogin objLogin = new UserLogin();
-            return View(objLogin);
+            return View(objLogin);//
         }
 
         [HttpPost]
