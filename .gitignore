@@ -1,0 +1,27 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+/IET.Shibboleth.BusinessDataService
+/IET.Shibboleth.Common
+/IET.Shibboleth.ShibbolethConsumingApp
+/IET.ShibbolethMetadataImporter
+/IET.TV.Common
+/IET.TV.MARC
+/IET.TV.MARC.BulkConvertor
+/IET.TV.NotificationService
+/IET.TV.Server.BusinessDataService
+/IET.TV.Sitemap.Common
+/IET.TV.Web.ActivityLogger
+/IET.TV.Web.PushService
+/IET.TV.Web.ServiceHandler
+/IET.TV.Web.Services
+/IET.TV.Web.UI.Admin.Business
+/IET.TV.Web.UI.Admin1
+/IET.TV.Web.UI.ExternalAccess
+/IET.TV.Web.UI.Portal
+/Iet.TV.Web.UnitTest
+/IET.TV.Windows.Migration
+/IET.TV.Windows.Schedulers
+/IET.TV.Windows.SnapshotGenerator
+/MultipleVideoUpload
+*.suo
